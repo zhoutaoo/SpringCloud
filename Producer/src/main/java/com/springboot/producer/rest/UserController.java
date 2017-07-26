@@ -28,7 +28,7 @@ public class UserController {
 
     @RequestMapping("/users")
     public String users() throws InterruptedException {
-        int millis = new Random().nextInt(2000);
+        int millis = new Random().nextInt(1000);
         logger.info("耗时：" + millis);
         Thread.sleep(millis);
         return discoveryClient.getServices().toString();
