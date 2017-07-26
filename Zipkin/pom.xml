@@ -42,20 +42,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
+        <!--注册中心-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
-        <!--日志监控-->
+        <!--日志收集消息通道-->
         <dependency>
-            <groupId>io.zipkin.java</groupId>
-            <artifactId>zipkin-server</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin-stream</artifactId>
+        </dependency>
+        <!--日志收集消息通道-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
         </dependency>
         <dependency>
             <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-autoconfigure-ui</artifactId>
         </dependency>
+
         <!--测试框架-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
