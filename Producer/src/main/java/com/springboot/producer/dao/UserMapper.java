@@ -14,13 +14,13 @@ public interface UserMapper {
     @Select("select * from users where name=#{name}")
     List<User> query(UserQueryParam userQueryParam);
 
-    @Insert("insert into users(name, updatedDate) values(#{name}, #{updatedDate})")
+    @Insert("insert into users(name, updated_date) values(#{name}, #{updatedDate})")
     int insert(User user);
 
     @Delete("delete from users where id=#{id}")
     void delete(long id);
 
-    @Update("update users set name=#{name},updatedDate=#{updatedDate} where id=#{id}")
+    @Update("update users set name=#{name},updated_date=#{updatedDate} where id=#{id}")
     void update(User user);
 
     @Select("select * from users where id = #{id}")

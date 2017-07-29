@@ -5,10 +5,7 @@ import com.springboot.producer.entity.User;
 import com.springboot.producer.entity.form.UserQueryForm;
 import com.springboot.producer.entity.param.UserQueryParam;
 import com.springboot.producer.service.IUserService;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +21,7 @@ import java.util.List;
 @RestController
 @RefreshScope
 @RequestMapping("/users")
+@Api(tags = "eureka-producer", description = "用户管理的API")
 public class UserController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
