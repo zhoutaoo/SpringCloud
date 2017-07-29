@@ -8,9 +8,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @ApiModel
-public class UserQueryForm {
-    @ApiModelProperty(value = "用户姓名", required = true)
+public class UserAddForm {
+
     @NotEmpty(message = "姓名不能为空")
+    @ApiModelProperty(value = "用户姓名", required = true)
     private String name;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

@@ -2,7 +2,9 @@ package com.springboot.producer.rest;
 
 import com.springboot.producer.entity.Result;
 import com.springboot.producer.entity.User;
+import com.springboot.producer.entity.form.UserAddForm;
 import com.springboot.producer.entity.form.UserQueryForm;
+import com.springboot.producer.entity.form.UserUpdateForm;
 import com.springboot.producer.entity.param.UserQueryParam;
 import com.springboot.producer.service.IUserService;
 import io.swagger.annotations.*;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -34,9 +37,12 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value = "新增用户", notes = "新增一个用户")
-    @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
-    public Result<Long> add(@RequestBody User user) {
-        logger.info("name:", user.getId());
+    @ApiImplicitParam(name = "userAddForm", value = "新增用户form表单", required = true, dataType = "UserAddForm")
+    public Result<Long> add(@Valid @RequestBody UserAddForm userAddForm) {
+        logger.info("name:", userAddForm);
+        User user = new User();
+        user.setName(userAddForm.getName());
+        user.setUpdatedDate(userAddForm.getUpdatedDate());
         return Result.success(userService.add(user));
     }
 
@@ -52,10 +58,13 @@ public class UserController {
     @ApiOperation(value = "修改用户", notes = "修改指定用户信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "long"),
-            @ApiImplicitParam(name = "user", value = "用户实体", required = true, dataType = "User")
+            @ApiImplicitParam(name = "userUpdateForm", value = "用户实体", required = true, dataType = "UserUpdateForm")
     })
-    public Result update(@PathVariable long id, @RequestBody User user) {
+    public Result update(@PathVariable long id, @Valid @RequestBody UserUpdateForm userUpdateForm) {
+        User user = new User();
         user.setId(id);
+        user.setName(userUpdateForm.getName());
+        user.setUpdatedDate(userUpdateForm.getUpdatedDate());
         userService.update(user);
         return Result.success();
     }
@@ -71,7 +80,7 @@ public class UserController {
     @ApiOperation(value = "查询用户", notes = "根据条件查询用户信息")
     @ApiImplicitParam(name = "userQueryForm", value = "用户查询参数", required = true, dataType = "UserQueryForm")
     @ApiResponse(code = 200, message = "处理成功", response = Result.class)
-    public Result<List<User>> query(@RequestBody UserQueryForm userQueryForm) {
+    public Result<List<User>> query(@Valid @RequestBody UserQueryForm userQueryForm) {
         UserQueryParam userQueryParam = new UserQueryParam();
         userQueryParam.setName(userQueryForm.getName());
         logger.info("name:", userQueryParam);
