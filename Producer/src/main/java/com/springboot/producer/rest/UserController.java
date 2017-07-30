@@ -42,7 +42,7 @@ public class UserController {
         logger.info("name:", userAddForm);
         User user = new User();
         user.setName(userAddForm.getName());
-        user.setUpdatedDate(userAddForm.getUpdatedDate());
+        user.setUpdatedDate(userAddForm.getCreatedDate());
         return Result.success(userService.add(user));
     }
 
@@ -64,7 +64,7 @@ public class UserController {
         User user = new User();
         user.setId(id);
         user.setName(userUpdateForm.getName());
-        user.setUpdatedDate(userUpdateForm.getUpdatedDate());
+        user.setUpdatedDate(userUpdateForm.getCreatedDate());
         userService.update(user);
         return Result.success();
     }
@@ -76,11 +76,24 @@ public class UserController {
         return Result.success(userService.get(id));
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ApiOperation(value = "查询用户", notes = "根据条件查询用户信息，简单查询")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "name", value = "用户姓名", required = true, dataType = "string")
+    })
+    @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    public Result<List<User>> query(@Valid @RequestParam String name) {
+        UserQueryParam userQueryParam = new UserQueryParam();
+        userQueryParam.setName(name);
+        logger.info("name:", userQueryParam);
+        return Result.success(userService.query(userQueryParam));
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    @ApiOperation(value = "查询用户", notes = "根据条件查询用户信息")
+    @ApiOperation(value = "搜索用户", notes = "根据条件查询用户信息")
     @ApiImplicitParam(name = "userQueryForm", value = "用户查询参数", required = true, dataType = "UserQueryForm")
     @ApiResponse(code = 200, message = "处理成功", response = Result.class)
-    public Result<List<User>> query(@Valid @RequestBody UserQueryForm userQueryForm) {
+    public Result<List<User>> search(@Valid @RequestBody UserQueryForm userQueryForm) {
         UserQueryParam userQueryParam = new UserQueryParam();
         userQueryParam.setName(userQueryForm.getName());
         logger.info("name:", userQueryParam);

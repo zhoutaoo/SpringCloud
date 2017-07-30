@@ -2,20 +2,22 @@ package com.springboot.producer.entity.form;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 @ApiModel
 public class UserAddForm {
 
-    @NotEmpty(message = "姓名不能为空")
+    @NotBlank(message = "姓名不能为空")
     @ApiModelProperty(value = "用户姓名", required = true)
     private String name;
 
+    @Past(message = "查询日期必须小于当前日期")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date updatedDate;
+    private Date createdDate;
 
     public String getName() {
         return name;
@@ -25,11 +27,11 @@ public class UserAddForm {
         this.name = name;
     }
 
-    public Date getUpdatedDate() {
-        return updatedDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 }

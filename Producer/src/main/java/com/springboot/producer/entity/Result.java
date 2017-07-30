@@ -3,7 +3,7 @@ package com.springboot.producer.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel
+@ApiModel(description = "rest请求的返回模型，所有rest正常都返回该类的对象")
 public class Result<T> {
 
     public static final String SUCCESSFUL_CODE = "000000";
