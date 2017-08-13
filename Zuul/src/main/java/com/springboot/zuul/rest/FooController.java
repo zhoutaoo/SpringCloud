@@ -14,6 +14,6 @@ public class FooController {
     @PreAuthorize("#oauth2.hasScope('read')")
     @RequestMapping(method = RequestMethod.GET, value = "/foos/{id}")
     public String findById(@PathVariable long id) {
-        return "aa"+randomNumeric(2);
+        return randomNumeric(2);
     }
 }
