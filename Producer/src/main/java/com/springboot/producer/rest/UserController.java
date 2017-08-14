@@ -11,7 +11,6 @@ import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,10 +26,7 @@ import java.util.List;
 @Api(tags = "eureka-producer", description = "用户管理的API")
 public class UserController {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @Value("${username}")
-    private String username;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private IUserService userService;

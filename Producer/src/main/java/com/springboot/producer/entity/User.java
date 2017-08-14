@@ -9,6 +9,15 @@ public class User {
     private Integer age;
     private Date updatedDate;
 
+    public User() {
+        super();
+    }
+
+    public User(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public Long getId() {
         return id;
     }
