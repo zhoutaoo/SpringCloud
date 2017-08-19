@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper {
 
-    @Select("select * from users where id = #{id}")
-    User get(long id);
-
     @Select("select * from users where username = #{username}")
     User loadByUsername(String username);
 }

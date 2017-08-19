@@ -1,23 +1,51 @@
 package com.springboot.oauth2.service;
 
+import com.google.common.collect.Sets;
 import com.springboot.oauth2.dao.UserMapper;
 import com.springboot.oauth2.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class UserService implements IUserService {
+import java.util.Set;
+
+@Service("userDetailsService")
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
 
     @Override
-    public User get(long id) {
-        return userMapper.get(id);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userMapper.loadByUsername(username);
+
+        Set<GrantedAuthority> grantedAuthorities = this.obtainGrantedAuthorities(user);
+
+        boolean accountEnabled = true;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(username,
+                user.getPassword(),
+                accountEnabled,
+                accountNonExpired,
+                credentialsNonExpired,
+                accountNonLocked,
+                grantedAuthorities);
+        return userDetails;
     }
 
-    @Override
-    public User loadByUsername(String username) {
-        return userMapper.loadByUsername(username);
+    /**
+     * 获得登录者所有角色的权限集合.
+     */
+    private Set<GrantedAuthority> obtainGrantedAuthorities(User user) {
+        Set<GrantedAuthority> authSet = Sets.newHashSet();
+        authSet.add(new SimpleGrantedAuthority("ROLE_USER"));
+        return authSet;
     }
 }
