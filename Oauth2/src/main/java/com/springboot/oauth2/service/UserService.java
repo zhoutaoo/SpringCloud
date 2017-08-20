@@ -21,22 +21,18 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         User user = userMapper.loadByUsername(username);
+        System.out.println(user);
 
-        Set<GrantedAuthority> grantedAuthorities = this.obtainGrantedAuthorities(user);
-
-        boolean accountEnabled = true;
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
-
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(username,
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+                username,
                 user.getPassword(),
-                accountEnabled,
-                accountNonExpired,
-                credentialsNonExpired,
-                accountNonLocked,
-                grantedAuthorities);
+                user.isEnabled(),
+                user.isAccountNonExpired(),
+                user.isCredentialsNonExpired(),
+                user.isAccountNonLocked(),
+                this.obtainGrantedAuthorities(user));
         return userDetails;
     }
 
