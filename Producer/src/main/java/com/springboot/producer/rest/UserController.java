@@ -36,9 +36,9 @@ public class UserController {
     @ApiImplicitParam(name = "userAddForm", value = "新增用户form表单", required = true, dataType = "UserAddForm")
     public Result<Long> add(@Valid @RequestBody UserAddForm userAddForm) {
         logger.info("name:", userAddForm);
-        User user = new User();
-        user.setName(userAddForm.getName());
-        user.setUpdatedDate(userAddForm.getCreatedDate());
+        User user = new User(userAddForm.getUsername(), userAddForm.getPassword(), userAddForm.getName());
+        user.setCreatedBy("system");
+        user.setUpdatedBy("system");
         return Result.success(userService.add(user));
     }
 
@@ -60,7 +60,6 @@ public class UserController {
         User user = new User();
         user.setId(id);
         user.setName(userUpdateForm.getName());
-        user.setUpdatedDate(userUpdateForm.getCreatedDate());
         userService.update(user);
         return Result.success();
     }

@@ -31,7 +31,7 @@ public class RedisTests {
 
     @Test
     public void testObj() throws Exception {
-        User user = new User("aa@126.com", 11);
+        User user = new User("aa@126.com", "123456", "张三");
         ValueOperations<String, User> operations = redisTemplate.opsForValue();
         operations.set("com.neox", user);
         operations.set("com.neo.f", user, 10, TimeUnit.SECONDS);

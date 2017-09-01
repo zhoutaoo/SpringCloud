@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.springboot.producer</groupId>
+    <groupId>com.springboot.cloud</groupId>
     <artifactId>eureka-producer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -16,7 +16,6 @@
         <artifactId>cloud</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
 
     <dependencies>
         <!--断路器-->
@@ -47,9 +46,15 @@
         </dependency>
         <!--数据库-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.21</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <!--数据库-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1203-jdbc4</version>
         </dependency>
         <!--Redis缓存-->
         <dependency>

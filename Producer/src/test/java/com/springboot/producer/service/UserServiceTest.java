@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceTest {
@@ -18,9 +16,9 @@ public class UserServiceTest {
 
     @Test
     public void add() throws Exception {
-        User user = new User();
-        user.setName("王五");
-        user.setUpdatedDate(new Date());
+        User user = new User("username", "passwd", "李四");
+        user.setCreatedBy("system");
+        user.setUpdatedBy("system");
         Assert.assertEquals(1, userService.add(user));
     }
 
