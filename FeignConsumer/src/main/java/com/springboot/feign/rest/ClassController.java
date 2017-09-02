@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ClassController {
 
-    @Qualifier("eureka-producer")
     @Autowired
-    ClassService classService;
+    private ClassService classService;
 
     @RequestMapping("/classes")
     public String hello() {
