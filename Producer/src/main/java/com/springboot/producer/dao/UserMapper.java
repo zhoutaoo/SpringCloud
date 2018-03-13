@@ -23,7 +23,7 @@ public interface UserMapper {
     @Update("update users set name=#{name},updated_time=now() where id=#{id}")
     void update(User user);
 
-    @Select("select * from users where id = #{id}")
+    @Select("select id,username,password,mobile,name,updated_time,created_time,updated_by,created_by from users where id = #{id}")
     User select(long id);
 
 }

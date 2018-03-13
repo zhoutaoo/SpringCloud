@@ -9,17 +9,15 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.lang.Nullable;
 
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
-
-    private static int DEFAULT_EXPIRE_TIME = 600;
 
     @Bean
     public KeyGenerator keyGenerator() {
@@ -34,12 +32,11 @@ public class RedisConfig extends CachingConfigurerSupport {
         };
     }
 
-    @Bean
-    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-        //设置缓存过期时间
-        rcm.setDefaultExpiration(DEFAULT_EXPIRE_TIME);//秒
-        return rcm;
+    @Nullable
+    @Override
+    public CacheManager cacheManager() {
+        CacheManager cacheManager = super.cacheManager();
+        return cacheManager;
     }
 
     @Bean
