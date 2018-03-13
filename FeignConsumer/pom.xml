@@ -11,7 +11,6 @@
     <name>feign-consumer</name>
     <description>Demo project for Spring Cloud Feign Consumer</description>
 
-
     <parent>
         <groupId>com.springboot.cloud</groupId>
         <artifactId>cloud</artifactId>
@@ -21,18 +20,18 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <!--断路器-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-hystrix</artifactId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
-        <!--集群监控消息队列-->
+        <!--集群监控消息队列
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-netflix-hystrix-amqp</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 </project>
