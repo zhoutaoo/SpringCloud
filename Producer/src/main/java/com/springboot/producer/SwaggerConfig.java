@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .title("Spring Boot中使用Swagger2构建RESTful APIs")
                 .description("更多Spring Boot API")
                 .termsOfServiceUrl("http://www.cikeonline.com/")
-                .version("1.0")
+                .version("2.0")
                 .build();
     }
 
