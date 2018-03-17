@@ -6,6 +6,7 @@ public class User {
 
     private Long id;
     private String name;
+    private String mobile;
     private String username;
     private String password;
     private Boolean enabled;
@@ -16,11 +17,10 @@ public class User {
     private String updatedBy;
     private Date createdTime;
     private Date updatedTime;
-
-
     public User() {
         super();
     }
+
 
     public User(String name, String username) {
         this.name = name;
@@ -41,6 +41,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getPassword() {

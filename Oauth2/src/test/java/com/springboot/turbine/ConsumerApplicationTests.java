@@ -10,7 +10,7 @@ public class ConsumerApplicationTests {
     @Test
     public void contextLoads() {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        System.out.println(passwordEncoder.encode("password"));
+        System.out.println(passwordEncoder.encode("test_secret"));
     }
 
 }
