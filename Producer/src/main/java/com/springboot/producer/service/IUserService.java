@@ -2,6 +2,7 @@ package com.springboot.producer.service;
 
 import com.springboot.producer.entity.User;
 import com.springboot.producer.entity.param.UserQueryParam;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public interface IUserService {
      * @param id
      * @return
      */
+    @Cacheable(value="#id")
     User get(long id);
 
     /**

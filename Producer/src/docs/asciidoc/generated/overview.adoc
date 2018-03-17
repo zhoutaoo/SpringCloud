@@ -1,0 +1,30 @@
+= Spring Boot中使用Swagger2构建RESTful APIs
+
+
+[[_overview]]
+== Overview
+更多Spring Boot API
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : 2.0
+
+
+=== License information
+[%hardbreaks]
+__Terms of service__ : http://www.cikeonline.com/
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : localhost:8001
+__BasePath__ : /
+
+
+=== Tags
+
+* eureka-producer : 用户管理的API
+
+
+

@@ -1,0 +1,141 @@
+
+[[_definitions]]
+== Definitions
+
+[[_result]]
+=== Result
+rest请求的返回模型，所有rest正常都返回该类的对象
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**code** +
+__required__|处理结果code|string
+|**data** +
+__optional__|处理结果数据信息|object
+|**mesg** +
+__optional__|处理结果描述信息|string
+|===
+
+
+[[_dd4f2c715e4502a883960a3da7798745]]
+=== Result«List«User»»
+rest请求的返回模型，所有rest正常都返回该类的对象
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**code** +
+__required__|处理结果code|string
+|**data** +
+__optional__|处理结果数据信息|< <<_user,User>> > array
+|**mesg** +
+__optional__|处理结果描述信息|string
+|===
+
+
+[[_c325cb68f7bdaad8aa7df5c0208b027f]]
+=== Result«User»
+rest请求的返回模型，所有rest正常都返回该类的对象
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**code** +
+__required__|处理结果code|string
+|**data** +
+__optional__|处理结果数据信息|<<_user,User>>
+|**mesg** +
+__optional__|处理结果描述信息|string
+|===
+
+
+[[_c5e8d1d11ddb429572042cb1fe53c7a5]]
+=== Result«long»
+rest请求的返回模型，所有rest正常都返回该类的对象
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**code** +
+__required__|处理结果code|string
+|**data** +
+__optional__|处理结果数据信息|integer(int64)
+|**mesg** +
+__optional__|处理结果描述信息|string
+|===
+
+
+[[_user]]
+=== User
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**createdBy** +
+__optional__|string
+|**createdTime** +
+__optional__|string(date-time)
+|**id** +
+__optional__|integer(int64)
+|**mobile** +
+__optional__|string
+|**name** +
+__optional__|string
+|**password** +
+__optional__|string
+|**updatedBy** +
+__optional__|string
+|**updatedTime** +
+__optional__|string(date-time)
+|**username** +
+__optional__|string
+|===
+
+
+[[_useraddform]]
+=== UserAddForm
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**mobile** +
+__optional__|用户手机号码|string
+|**name** +
+__required__|用户姓名|string
+|**password** +
+__required__|密码|string
+|**username** +
+__required__|用户名|string
+|===
+
+
+[[_userqueryform]]
+=== UserQueryForm
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**createdDate** +
+__optional__||string(date-time)
+|**name** +
+__required__|用户姓名|string
+|===
+
+
+[[_userupdateform]]
+=== UserUpdateForm
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**name** +
+__optional__|用户姓名|string
+|===
+
+
+

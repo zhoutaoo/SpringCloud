@@ -1,0 +1,283 @@
+
+[[_paths]]
+== Paths
+
+[[_addusingpost]]
+=== 新增用户
+....
+POST /users
+....
+
+
+==== Description
+新增一个用户
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**userAddForm** +
+__required__|新增用户form表单|<<_useraddform,UserAddForm>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_c5e8d1d11ddb429572042cb1fe53c7a5,Result«long»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* eureka-producer
+
+
+[[_searchusingpost]]
+=== 搜索用户
+....
+POST /users/
+....
+
+
+==== Description
+根据条件查询用户信息
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**userQueryForm** +
+__required__|用户查询参数|<<_userqueryform,UserQueryForm>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_dd4f2c715e4502a883960a3da7798745,Result«List«User»»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* eureka-producer
+
+
+[[_queryusingget]]
+=== 查询用户
+....
+GET /users/
+....
+
+
+==== Description
+根据条件查询用户信息，简单查询
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**name** +
+__required__|用户姓名|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_dd4f2c715e4502a883960a3da7798745,Result«List«User»»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* eureka-producer
+
+
+[[_getusingget]]
+=== 获取用户
+....
+GET /users/{id}
+....
+
+
+==== Description
+获取指定用户信息
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|用户ID|integer(int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_c325cb68f7bdaad8aa7df5c0208b027f,Result«User»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* eureka-producer
+
+
+[[_updateusingput]]
+=== 修改用户
+....
+PUT /users/{id}
+....
+
+
+==== Description
+修改指定用户信息
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|用户ID|integer(int64)
+|**Body**|**userUpdateForm** +
+__required__|用户实体|<<_userupdateform,UserUpdateForm>>
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_result,Result>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* eureka-producer
+
+
+[[_deleteusingdelete]]
+=== 删除用户
+....
+DELETE /users/{id}
+....
+
+
+==== Description
+根据url的id来指定删除对象
+
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|用户ID|integer(int64)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_result,Result>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Produces
+
+* `*/*`
+
+
+==== Tags
+
+* eureka-producer
+
+
+
