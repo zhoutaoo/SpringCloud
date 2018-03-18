@@ -1,6 +1,7 @@
 package com.springboot.producer.task;
 
-import com.springboot.producer.events.Sender;
+import com.springboot.producer.events.BusSender;
+import com.springboot.producer.events.RedisSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,19 @@ public class ScheduledTasks {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private Sender sender;
+    private RedisSender redisSender;
+    @Autowired
+    private BusSender busSender;
 
     @Scheduled(fixedRate = 10000)
     public void sendMessageToRedis() {
-        logger.info("Send Hello To Redis");
-        sender.send("chat", "Hello from Redis!");
+        logger.info("Send Hello To Redis With chat");
+        redisSender.send("chat", "Hello from Redis!");
+    }
+
+    @Scheduled(fixedRate = 15000)
+    public void sendMessageToMq() {
+        logger.info("Send Hello To RabbitMQ With mq");
+        busSender.send("mq", "Hello To RabbitMQ!");
     }
 }
