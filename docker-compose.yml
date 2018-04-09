@@ -35,7 +35,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
   eureka-server:
-    image: eureka-server
+    image: 120.52.79.17:80/cike/eureka-server
     container_name: sc-eureka-server
     restart: always
     volumes:
@@ -43,7 +43,7 @@ services:
     networks:
       - sc-net
     ports:
-      - 8761:8761
+      - 8081:8761
     environment:
       - RABBIT_MQ_HOST=rabbitmq
       - RABBIT_MQ_PORT=5672
