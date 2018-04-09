@@ -58,7 +58,7 @@ services:
     networks:
       - sc-net
     ports:
-      - 8081:8761
+      - 8061:8061
     environment:
       - RABBIT_MQ_HOST=rabbitmq
       - RABBIT_MQ_PORT=5672
