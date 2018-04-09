@@ -39,7 +39,7 @@ services:
     container_name: sc-eureka-server
     restart: always
     volumes:
-      - ./data/logs:/eureka-server
+      - ./data/logs/eureka-server:/logs
     networks:
       - sc-net
     ports:
@@ -49,6 +49,23 @@ services:
       - RABBIT_MQ_PORT=5672
     depends_on:
       - rabbitmq
+  config-server:
+    image: 120.52.79.17:80/cike/config-server
+    container_name: sc-config-server
+    restart: always
+    volumes:
+      - ./data/logs/config-server:/logs
+    networks:
+      - sc-net
+    ports:
+      - 8081:8761
+    environment:
+      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_PORT=5672
+      - EUREKA_ZONE_HOST=eureka-server
+      - EUREKA_ZONE_PORT=8761
+    depends_on:
+      - eureka-server
 networks:
   sc-net:
     external: false
