@@ -18,11 +18,6 @@
     </parent>
 
     <dependencies>
-        <!--断路器-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
         <!--配置中心客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -17,7 +17,7 @@ public class ClassService {
     @HystrixCommand(fallbackMethod = "usersFallback")
     @CacheResult
     public String users() {
-        String body = restTemplate.getForEntity("http://EUREKA-PRODUCER/users", String.class).getBody();
+        String body = restTemplate.getForEntity("http://EUREKA-PRODUCER/users/?name=张三", String.class).getBody();
         return body;
     }
 

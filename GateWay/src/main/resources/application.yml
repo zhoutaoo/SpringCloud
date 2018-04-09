@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: geteway
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://host1:9001/eureka/,http://host2:9002/eureka/
+
+spring:
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: guest
+    password: guest
