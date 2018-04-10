@@ -31,7 +31,7 @@ spring:
         uri: lb://producer
         order: 8000
         predicates:
-        - Path=/**
+        - Path=/products/**
         filters:
         - StripPrefix=2
 
