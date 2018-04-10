@@ -1,6 +1,6 @@
 package com.springboot.producer;
 
-import com.springboot.producer.entity.User;
+import com.springboot.producer.entity.Product;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,10 +31,10 @@ public class RedisTests {
 
     @Test
     public void testObj() throws Exception {
-        User user = new User("aa@126.com", "123456", "张三");
-        ValueOperations<String, User> operations = redisTemplate.opsForValue();
-        operations.set("com.neox", user);
-        operations.set("com.neo.f", user, 10, TimeUnit.SECONDS);
+        Product product = new Product("aa@126.com", "张三");
+        ValueOperations<String, Product> operations = redisTemplate.opsForValue();
+        operations.set("com.neox", product);
+        operations.set("com.neo.f", product, 10, TimeUnit.SECONDS);
         Assert.assertEquals("aa@126.com", operations.get("com.neox").getName());
     }
 }

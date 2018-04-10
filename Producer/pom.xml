@@ -65,18 +65,6 @@
 
     <build>
         <plugins>
-            <!--docker镜像build插件-->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <configuration>
-                    <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
-                    <imageName>${project.artifactId}</imageName>
-                    <baseImage>tomcat:8.5-alpine</baseImage>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>io.github.swagger2markup</groupId>
                 <artifactId>swagger2markup-maven-plugin</artifactId>

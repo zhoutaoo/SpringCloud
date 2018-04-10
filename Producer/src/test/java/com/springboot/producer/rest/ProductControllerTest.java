@@ -14,13 +14,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UserControllerTest {
+public class ProductControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @Test
     public void query() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/users/").param("name", "王五"))
+        mvc.perform(MockMvcRequestBuilders.get("/products/").param("海报", "好海报"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("code", Is.is("000000")));
     }

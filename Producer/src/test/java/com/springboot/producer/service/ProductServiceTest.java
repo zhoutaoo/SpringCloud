@@ -1,6 +1,6 @@
 package com.springboot.producer.service;
 
-import com.springboot.producer.entity.User;
+import com.springboot.producer.entity.Product;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,16 +10,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceTest {
+public class ProductServiceTest {
     @Autowired
-    private IUserService userService;
+    private IProductService productService;
 
     @Test
     public void add() throws Exception {
-        User user = new User("username", "passwd", "李四");
-        user.setCreatedBy("system");
-        user.setUpdatedBy("system");
-        Assert.assertEquals(1, userService.add(user));
+        Product product = new Product("海报", "我是海报");
+        product.setCreatedBy("system");
+        product.setUpdatedBy("system");
+        Assert.assertEquals(1, productService.add(product));
     }
 
 }

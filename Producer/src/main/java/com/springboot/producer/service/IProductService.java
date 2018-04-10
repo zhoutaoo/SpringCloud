@@ -1,42 +1,42 @@
 package com.springboot.producer.service;
 
-import com.springboot.producer.entity.User;
-import com.springboot.producer.entity.param.UserQueryParam;
+import com.springboot.producer.entity.Product;
+import com.springboot.producer.entity.param.ProductQueryParam;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
-public interface IUserService {
+public interface IProductService {
     /**
      * 获取用户
      *
      * @param id
      * @return
      */
-    @Cacheable(value="#id")
-    User get(long id);
+    @Cacheable(value = "#id")
+    Product get(long id);
 
     /**
      * 新增用户
      *
-     * @param user
+     * @param product
      * @return
      */
-    long add(User user);
+    long add(Product product);
 
     /**
      * 查询用户
      *
      * @return
      */
-    List<User> query(UserQueryParam userQueryParam);
+    List<Product> query(ProductQueryParam productQueryParam);
 
     /**
      * 更新用户信息
      *
-     * @param user
+     * @param product
      */
-    void update(User user);
+    void update(Product product);
 
     /**
      * 根据id删除用户
