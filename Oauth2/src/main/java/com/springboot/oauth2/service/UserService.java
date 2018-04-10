@@ -28,10 +28,10 @@ public class UserService implements UserDetailsService {
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(
                 username,
                 user.getPassword(),
-                user.isEnabled(),
-                user.isAccountNonExpired(),
-                user.isCredentialsNonExpired(),
-                user.isAccountNonLocked(),
+                user.getEnabled(),
+                user.getAccountNonExpired(),
+                user.getCredentialsNonExpired(),
+                user.getAccountNonLocked(),
                 this.obtainGrantedAuthorities(user));
         return userDetails;
     }
