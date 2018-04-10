@@ -92,6 +92,25 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - config-server
+  gateway:
+    image: 120.52.79.17:80/cike/gateway
+    container_name: sc-gateway
+    restart: always
+    volumes:
+      - ./data/logs/gateway:/logs
+    networks:
+      - sc-net
+    ports:
+      - 8443:8443
+    environment:
+      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_PORT=5672
+      - RABBIT_MQ_USERNAME=guest
+      - RABBIT_MQ_PASSWORD=guest
+      - EUREKA_ZONE_HOST=eureka-server
+      - EUREKA_ZONE_PORT=8761
+    depends_on:
+      - eureka-server
 networks:
   sc-net:
     external: false
