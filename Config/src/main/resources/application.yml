@@ -1,5 +1,5 @@
 server:
-  port: ${CONFIG_SERVER_PORT:8061}
+  port: 8061
 
 eureka:
   client:
@@ -12,8 +12,8 @@ spring:
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
-    username: guest
-    password: guest
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
   cloud:
     config:
       server:
