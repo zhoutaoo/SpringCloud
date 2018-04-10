@@ -63,6 +63,7 @@ public class ProductController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "产品ID", required = true, dataType = "long")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Result<Product> get(@PathVariable long id) {
+        log.info("get with id:{}", id);
         return Result.success(productService.get(id));
     }
 
@@ -72,8 +73,8 @@ public class ProductController {
     })
     @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Result<List<Product>> query(@Valid @RequestParam String name) {
-        log.info("name:", name);
+    public Result<List<Product>> query(@RequestParam String name) {
+        log.info("query with name:{}", name);
         return Result.success(productService.query(new ProductQueryParam(name)));
     }
 
@@ -82,7 +83,7 @@ public class ProductController {
     @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Result<List<Product>> search(@Valid @RequestBody ProductQueryForm productQueryForm) {
-        log.info("productQueryForm:", productQueryForm);
+        log.info("search with productQueryForm:", productQueryForm);
         return Result.success(productService.query(new ProductQueryParam(productQueryForm.getName())));
     }
 }

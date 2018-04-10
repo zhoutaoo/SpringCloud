@@ -11,9 +11,6 @@ import java.util.List;
 @Repository
 public interface ProductMapper {
 
-    @Select("select * from products where name=#{name}")
-    List<Product> query(ProductQueryParam productQueryParam);
-
     @Insert("insert into products(name,description,updated_time,created_time,updated_by,created_by) values(#{name},#{description},now(),now(),#{updatedBy},#{createdBy})")
     int insert(Product product);
 
@@ -23,7 +20,9 @@ public interface ProductMapper {
     @Update("update products set name=#{name},updated_time=now() where id=#{id}")
     void update(Product product);
 
-    @Select("select id,name,description,updated_time,created_time,updated_by,created_by from products where id = #{id}")
+    @Select("select id,name,description,updated_time,created_time,updated_by,created_by from products where id=#{id}")
     Product select(long id);
 
+    @Select("select id,name,description,updated_time,created_time,updated_by,created_by from products where name=#{name}")
+    List<Product> query(ProductQueryParam productQueryParam);
 }

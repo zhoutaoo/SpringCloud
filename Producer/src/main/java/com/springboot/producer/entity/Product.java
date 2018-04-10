@@ -4,11 +4,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class Product {
+public class Product implements Serializable{
     private Long id;
     private String name;
     private String description;

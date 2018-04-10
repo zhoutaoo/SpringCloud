@@ -28,10 +28,16 @@ spring:
     baseUrl: http://localhost:8091
 
 logging:
-  pattern:
-    level:
-      com.springboot.producer.dao: DEBUG
+  level:
+    com.springboot.producer.dao: debug
+    org.springframework.web: debug
+    org.apache.ibatis: debug
+    java.sql.PreparedStatement: debug
+    java.sql.Statement: debug
+    Java.sql.Connection: debug
   path: logs/
+  file:
+    max-size: 1GB
 
 management:
   endpoints:
