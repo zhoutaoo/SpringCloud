@@ -1,19 +1,19 @@
 --用户表
 CREATE TABLE users
 (
-  id                      SERIAL,
-  username                CHARACTER VARYING(100),
-  password                CHARACTER VARYING(100),
-  name                    CHARACTER VARYING(256),
-  moblie                  CHARACTER VARYING(20),
+  id                      SERIAL PRIMARY KEY,
+  username                VARCHAR(100),
+  password                VARCHAR(100),
+  name                    VARCHAR(256),
+  moblie                  VARCHAR(20),
   enabled                 BOOLEAN,
   account_non_expired     BOOLEAN,
   credentials_non_expired BOOLEAN,
   account_non_locked      BOOLEAN,
-  created_time            TIMESTAMP              NOT NULL DEFAULT now(),
-  updated_time            TIMESTAMP              NOT NULL DEFAULT now(),
-  created_by              CHARACTER VARYING(100) NOT NULL,
-  updated_by              CHARACTER VARYING(100) NOT NULL
+  created_time            TIMESTAMP    NOT NULL DEFAULT now(),
+  updated_time            TIMESTAMP    NOT NULL DEFAULT now(),
+  created_by              VARCHAR(100) NOT NULL,
+  updated_by              VARCHAR(100) NOT NULL
 );
 SELECT setval('users_id_seq', 1000000);
 
