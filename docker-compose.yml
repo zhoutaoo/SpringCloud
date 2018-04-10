@@ -111,6 +111,32 @@ services:
       - EUREKA_ZONE_PORT=8761
     depends_on:
       - eureka-server
+  oauth2:
+    image: 120.52.79.17:80/cike/oauth2
+    container_name: sc-oauth2
+    restart: always
+    volumes:
+      - ./data/logs/oauth2:/logs
+    networks:
+      - sc-net
+    ports:
+      - 8000:8000
+    environment:
+      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_PORT=5672
+      - RABBIT_MQ_USERNAME=guest
+      - RABBIT_MQ_PASSWORD=guest
+      - EUREKA_ZONE_HOST=eureka-server
+      - EUREKA_ZONE_PORT=8761
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=123456
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - eureka-server
 networks:
   sc-net:
     external: false
