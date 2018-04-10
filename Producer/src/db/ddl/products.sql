@@ -9,10 +9,7 @@ create table products
   updated_time timestamp default now() not null,
   created_by varchar(100) not null,
   updated_by varchar(100) not null
-)
-;
+);
 
-create unique index products_id_uindex
-  on products (id)
-;
+create unique index products_id_uindex on products (id);
 
