@@ -1,15 +1,19 @@
-create table products
+CREATE TABLE products
 (
-  id serial not null
-    constraint products_pkey
-    primary key,
-  name varchar(200) not null,
-  description varchar(500),
-  created_time timestamp default now() not null,
-  updated_time timestamp default now() not null,
-  created_by varchar(100) not null,
-  updated_by varchar(100) not null
+  id           SERIAL PRIMARY KEY,
+  name         VARCHAR(200)            NOT NULL,
+  description  VARCHAR(500),
+  created_time TIMESTAMP DEFAULT now() NOT NULL,
+  updated_time TIMESTAMP DEFAULT now() NOT NULL,
+  created_by   VARCHAR(100)            NOT NULL,
+  updated_by   VARCHAR(100)            NOT NULL
 );
 
-create unique index products_id_uindex on products (id);
+COMMENT ON COLUMN products.id IS '编号';
+COMMENT ON COLUMN products.name IS '产品名称';
+COMMENT ON COLUMN products.description IS '产品描述';
+COMMENT ON COLUMN products.created_time IS '创建时间';
+COMMENT ON COLUMN products.updated_time IS '更新时间';
+COMMENT ON COLUMN products.created_by IS '创建人';
+COMMENT ON COLUMN products.updated_by IS '更新人';
 
