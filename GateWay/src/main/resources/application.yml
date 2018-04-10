@@ -1,18 +1,57 @@
-spring:
-  application:
-    name: geteway
-
 server:
-  port: 8081
+  port: 8443
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://host1:9001/eureka/,http://host2:9002/eureka/
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8081}/eureka/
 
 spring:
+  application:
+    name: geteway
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
-    username: guest
-    password: guest
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
+  sleuth:
+    enabled: true
+    http:
+      legacy:
+        enabled: true
+  cloud:
+    gateway:
+      locator:
+        enabled: true
+      default-filters:
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+      routes:
+      # =====================================
+      - id: producer
+        uri: lb://producer
+        order: 8000
+        predicates:
+        - Path=/**
+        filters:
+        - StripPrefix=2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+#请求和响应GZIP压缩支持
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+#  compression:
+#    response:
+#      enabled: true
+#    request:
+#      enabled: true
+#      mime-types: text/xml,application/xml,application/json
+#      min-request-size: 2048
+
