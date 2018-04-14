@@ -28,6 +28,10 @@ spring:
       url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
   zipkin:
     baseUrl: http://localhost:8091
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
 
 logging:
   level:
