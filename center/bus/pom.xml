@@ -13,17 +13,8 @@
 
     <parent>
         <groupId>com.springboot.cloud</groupId>
-        <artifactId>cloud</artifactId>
+        <artifactId>center</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <dependencies>
-        <!--测试框架-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
 </project>
