@@ -3,6 +3,7 @@ package com.springboot.oauth2.service;
 import com.google.common.collect.Sets;
 import com.springboot.oauth2.dao.UserMapper;
 import com.springboot.oauth2.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service("userDetailsService")
+@Slf4j
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -23,7 +25,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userMapper.loadByUsername(username);
-        System.out.println(user);
+        log.debug("loadByUsername:", user.toString());
 
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(
                 username,

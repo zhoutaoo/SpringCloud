@@ -37,15 +37,18 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     DataSource dataSource;
 
     @Autowired
+    @Qualifier("userDetailsService")
     UserDetailsService userDetailsService;
 
     @Value("${spring.security.oauth2.jwt.signingKey}")
     private String signingKey;
 
+    @Value("${spring.security.oauth2.jwt.verifierKey}")
+    private String verifierKey;
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
-        oauthServer
-                .tokenKeyAccess("permitAll()")
+        oauthServer.tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
     }
 
@@ -58,11 +61,8 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         //配置token的数据源、自定义的tokenServices等信息,配置身份认证器，配置认证方式，TokenStore，TokenGranter，OAuth2RequestFactory
-        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(new CustomTokenEnhancer(), accessTokenConverter()));
-
         endpoints.tokenStore(tokenStore())
-                .tokenEnhancer(tokenEnhancerChain)
+                .tokenEnhancer(tokenEnhancerChain())
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
     }
@@ -83,10 +83,17 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
         return new JwtTokenStore(accessTokenConverter());
     }
 
+    @Bean
+    public TokenEnhancerChain tokenEnhancerChain() {
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(new CustomTokenEnhancer(), accessTokenConverter()));
+        return tokenEnhancerChain;
+    }
+
+    @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(signingKey);
         return converter;
     }
-
 }
