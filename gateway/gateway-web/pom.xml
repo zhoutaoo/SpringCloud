@@ -3,24 +3,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.springboot.cloud.gateway.web</groupId>
+    <artifactId>gateway-web</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>gateway-web</name>
+    <description>Demo Gateway Api project for Spring Boot</description>
+
     <parent>
-        <groupId>com.springboot.cloud</groupId>
-        <artifactId>cloud</artifactId>
+        <groupId>com.springboot.cloud.gateway</groupId>
+        <artifactId>gateway</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.springboot.cloud.gateway</groupId>
-    <artifactId>gateway</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <name>geteway</name>
-    <description>Demo Gateway project for Spring Boot</description>
-
     <dependencies>
+        <!--api网关-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
     </dependencies>
 </project>
