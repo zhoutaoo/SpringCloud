@@ -14,7 +14,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>geteway</name>
+    <name>gateway</name>
     <description>Demo Gateway project for Spring Boot</description>
 
     <dependencies>
