@@ -13,7 +13,7 @@
 
     <parent>
         <groupId>com.springboot.cloud</groupId>
-        <artifactId>cloud</artifactId>
+        <artifactId>services</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 

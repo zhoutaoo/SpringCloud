@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.springboot.cloud.gateway.zuul</groupId>
+    <groupId>com.springboot.cloud</groupId>
     <artifactId>gateway-zuul</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -12,7 +12,7 @@
     <description>Demo project for Spring Cloud API Zuul</description>
 
     <parent>
-        <groupId>com.springboot.cloud.gateway</groupId>
+        <groupId>com.springboot.cloud</groupId>
         <artifactId>gateway</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>

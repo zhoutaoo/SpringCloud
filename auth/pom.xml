@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springboot.cloud</groupId>
-    <artifactId>oauth2</artifactId>
+    <artifactId>auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>oauth2</name>
-    <description>Demo project for Spring Cloud Oauth2</description>
+    <name>auth</name>
+    <description>Demo Auth project for Spring Boot</description>
 
     <parent>
         <groupId>com.springboot.cloud</groupId>
@@ -18,11 +18,6 @@
     </parent>
 
     <dependencies>
-        <!--oauth2认证-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-security</artifactId>
-        </dependency>
         <!--mybatis依赖包-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -46,4 +41,5 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
     </dependencies>
+
 </project>

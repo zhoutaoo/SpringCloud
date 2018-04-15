@@ -4,33 +4,24 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springboot.cloud</groupId>
-    <artifactId>feign-consumer</artifactId>
+    <artifactId>auth-oauth2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>feign-consumer</name>
-    <description>Demo project for Spring Cloud Feign Consumer</description>
+    <name>auth-oauth2</name>
+    <description>Demo Oauth2 project for Spring Cloud Oauth2</description>
 
     <parent>
         <groupId>com.springboot.cloud</groupId>
-        <artifactId>cloud</artifactId>
+        <artifactId>auth</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
+        <!--oauth2认证-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-security</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!--集群监控消息队列
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-netflix-hystrix-amqp</artifactId>
-        </dependency>-->
     </dependencies>
-
 </project>

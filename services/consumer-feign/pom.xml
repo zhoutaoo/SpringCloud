@@ -4,29 +4,33 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springboot.cloud</groupId>
-    <artifactId>hystrix-dashboard</artifactId>
+    <artifactId>feign-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>hystrix-dashboard</name>
-    <description>Demo project for Spring Cloud Hystrix Dashboard</description>
+    <name>feign-consumer</name>
+    <description>Demo project for Spring Cloud Feign Consumer</description>
 
     <parent>
         <groupId>com.springboot.cloud</groupId>
-        <artifactId>cloud</artifactId>
+        <artifactId>services</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
-        <!--断路器-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <!--断路器仪表盘-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--集群监控消息队列
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-        </dependency>
+            <artifactId>spring-cloud-netflix-hystrix-amqp</artifactId>
+        </dependency>-->
     </dependencies>
+
 </project>

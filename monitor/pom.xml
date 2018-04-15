@@ -4,24 +4,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springboot.cloud</groupId>
-    <artifactId>gateway-web</artifactId>
+    <artifactId>monitor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>gateway-web</name>
-    <description>Demo Gateway Api project for Spring Boot</description>
+    <name>monitor</name>
+    <description>Demo Monitor project for Spring Boot</description>
 
     <parent>
         <groupId>com.springboot.cloud</groupId>
-        <artifactId>gateway</artifactId>
+        <artifactId>cloud</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <dependencies>
-        <!--api网关-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>
