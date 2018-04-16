@@ -1,7 +1,7 @@
 package com.springboot.producer.rest;
 
 import com.springboot.producer.entity.Product;
-import com.springboot.producer.entity.Result;
+import com.springboot.cloud.core.entity.Result;
 import com.springboot.producer.entity.form.ProductAddForm;
 import com.springboot.producer.entity.form.ProductQueryForm;
 import com.springboot.producer.entity.form.ProductUpdateForm;

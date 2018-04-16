@@ -1,4 +1,4 @@
-package com.springboot.producer.entity;
+package com.springboot.cloud.core.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

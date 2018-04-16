@@ -4,24 +4,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springboot.cloud</groupId>
-    <artifactId>consumer-ribbon</artifactId>
+    <artifactId>common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>ribbon-consumer</name>
-    <description>Demo project for Spring Cloud Ribbon Consumer</description>
+    <name>common</name>
+    <description>Demo Common project for Spring Boot</description>
 
     <parent>
         <groupId>com.springboot.cloud</groupId>
-        <artifactId>services</artifactId>
+        <artifactId>cloud</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

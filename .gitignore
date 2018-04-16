@@ -2,4 +2,5 @@
 .idea/
 *.iml
 data
+logs
 
