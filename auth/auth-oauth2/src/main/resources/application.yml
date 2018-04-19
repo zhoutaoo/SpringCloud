@@ -32,7 +32,6 @@ spring:
     oauth2:
       jwt:
         signingKey: 123456
-        verifierKey: 111111
 
 logging:
   level:

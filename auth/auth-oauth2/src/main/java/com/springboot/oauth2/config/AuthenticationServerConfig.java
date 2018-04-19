@@ -43,9 +43,6 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     @Value("${spring.security.oauth2.jwt.signingKey}")
     private String signingKey;
 
-    @Value("${spring.security.oauth2.jwt.verifierKey}")
-    private String verifierKey;
-
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer.tokenKeyAccess("permitAll()")
