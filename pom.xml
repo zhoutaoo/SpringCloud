@@ -109,6 +109,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
+        <!--热加载-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
         <!--使用 lombok 简化 Java 代码-->
         <dependency>
             <groupId>org.projectlombok</groupId>
