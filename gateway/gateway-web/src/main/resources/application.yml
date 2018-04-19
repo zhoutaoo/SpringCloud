@@ -34,6 +34,13 @@ spring:
         - Path=/products/**
         filters:
         - StripPrefix=2
+      - id: oauth2
+        uri: lb://oauth2
+        order: 8000
+        predicates:
+        - Path=/oauth2/**
+        filters:
+        - StripPrefix=2
 
 management:
   endpoints:
@@ -55,3 +62,9 @@ feign:
 #      mime-types: text/xml,application/xml,application/json
 #      min-request-size: 2048
 
+logging:
+  level:
+    com.springboot.cloud.gateway: debug
+  path: logs/
+  file:
+    max-size: 1GB
