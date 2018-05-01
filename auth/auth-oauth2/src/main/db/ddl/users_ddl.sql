@@ -241,6 +241,8 @@ CREATE TABLE resources
   updated_by   VARCHAR(100) NOT NULL
 );
 SELECT setval('resources_id_seq', 1000000);
+CREATE UNIQUE INDEX ux_resources_code
+  ON resources (code);
 COMMENT ON TABLE resources IS '资源表';
 COMMENT ON COLUMN resources.id IS '资源id';
 COMMENT ON COLUMN resources.name IS '资源名称';

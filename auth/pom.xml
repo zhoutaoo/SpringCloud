@@ -17,6 +17,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <modules>
+        <module>auth-oauth2</module>
+    </modules>
+
     <dependencies>
         <!--mybatis依赖包-->
         <dependency>

@@ -1,7 +1,7 @@
 package com.springboot.oauth2.service;
 
 import com.google.common.collect.Sets;
-import com.springboot.oauth2.dao.UserMapper;
+import com.springboot.oauth2.entity.Resource;
 import com.springboot.oauth2.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +16,18 @@ import java.util.Set;
 
 @Service("userDetailsService")
 @Slf4j
-public class UserService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserMapper userMapper;
+    private IUserService userService;
+    @Autowired
+    private IResourceService resourceService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userMapper.loadByUsername(username);
-        log.debug("loadByUsername:", user.toString());
+        User user = userService.getByUsername(username);
+        log.debug("loadByUsername:{}", user.toString());
 
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(
                 username,
@@ -42,8 +44,12 @@ public class UserService implements UserDetailsService {
      * 获得登录者所有角色的权限集合.
      */
     private Set<GrantedAuthority> obtainGrantedAuthorities(User user) {
+        Set<Resource> resources = resourceService.findUserResourcesByUserId(user.getId());
+        log.debug("resources:{}", resources);
         Set<GrantedAuthority> authSet = Sets.newHashSet();
-        authSet.add(new SimpleGrantedAuthority("ROLE_USER"));
+        for (Resource resource : resources) {
+            authSet.add(new SimpleGrantedAuthority(resource.getCode()));
+        }
         return authSet;
     }
 }

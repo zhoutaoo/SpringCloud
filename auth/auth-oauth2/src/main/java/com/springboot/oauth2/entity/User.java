@@ -1,14 +1,12 @@
 package com.springboot.oauth2.entity;
 
+import com.springboot.cloud.core.entity.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
-public class User {
-    private Long id;
+public class User extends Entity {
     private String name;
     private String mobile;
     private String username;
@@ -17,8 +15,4 @@ public class User {
     private Boolean accountNonExpired;
     private Boolean credentialsNonExpired;
     private Boolean accountNonLocked;
-    private String createdBy;
-    private String updatedBy;
-    private Date createdTime;
-    private Date updatedTime;
 }
