@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS groups;
 CREATE TABLE groups
 (
   id           SERIAL PRIMARY KEY,
-  parent_id    SERIAL       NOT NULL,
+  parent_id    INT          NOT NULL,
   name         VARCHAR(200),
   descrition   VARCHAR(500),
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
@@ -64,8 +64,8 @@ DROP TABLE IF EXISTS users_groups_relation;
 CREATE TABLE users_groups_relation
 (
   id           SERIAL PRIMARY KEY,
-  user_id      SERIAL       NOT NULL,
-  group_id     SERIAL       NOT NULL,
+  user_id      INT          NOT NULL,
+  group_id     INT          NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -108,8 +108,8 @@ DROP TABLE IF EXISTS users_positions_relation;
 CREATE TABLE users_positions_relation
 (
   id           SERIAL PRIMARY KEY,
-  user_id      SERIAL       NOT NULL,
-  position_id  SERIAL       NOT NULL,
+  user_id      INT          NOT NULL,
+  position_id  INT          NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -154,8 +154,8 @@ DROP TABLE IF EXISTS users_roles_relation;
 CREATE TABLE users_roles_relation
 (
   id           SERIAL PRIMARY KEY,
-  user_id      SERIAL       NOT NULL,
-  role_id      SERIAL       NOT NULL,
+  user_id      INT          NOT NULL,
+  role_id      INT          NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -176,7 +176,7 @@ DROP TABLE IF EXISTS menus;
 CREATE TABLE menus
 (
   id           SERIAL PRIMARY KEY,
-  parent_id    SERIAL       NOT NULL,
+  parent_id    INT          NOT NULL,
   type         VARCHAR(100),
   href         VARCHAR(200),
   icon         VARCHAR(200),
@@ -207,8 +207,8 @@ DROP TABLE IF EXISTS roles_menus_relation;
 CREATE TABLE roles_menus_relation
 (
   id           SERIAL PRIMARY KEY,
-  menu_id      SERIAL       NOT NULL,
-  role_id      SERIAL       NOT NULL,
+  menu_id      INT          NOT NULL,
+  role_id      INT          NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -257,8 +257,8 @@ DROP TABLE IF EXISTS roles_resources_relation;
 CREATE TABLE roles_resources_relation
 (
   id           SERIAL PRIMARY KEY,
-  resource_id  SERIAL       NOT NULL,
-  role_id      SERIAL       NOT NULL,
+  resource_id  INT          NOT NULL,
+  role_id      INT          NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,

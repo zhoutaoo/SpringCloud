@@ -46,8 +46,8 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
-        oauthServer.tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+        oauthServer.tokenKeyAccess("isAuthenticated()")
+                .checkTokenAccess("permitAll()");
     }
 
     @Override
