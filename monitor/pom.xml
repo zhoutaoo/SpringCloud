@@ -17,6 +17,13 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <modules>
+        <module>admin</module>
+        <module>hystrix-dashboard</module>
+        <module>turbine</module>
+        <module>zipkin</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

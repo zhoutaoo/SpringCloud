@@ -17,6 +17,11 @@
     <name>gateway</name>
     <description>Demo Gateway project for Spring Boot</description>
 
+    <modules>
+        <module>gateway-web</module>
+        <module>gateway-zuul</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

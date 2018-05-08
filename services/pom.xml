@@ -17,6 +17,12 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <modules>
+        <module>consumer-feign</module>
+        <module>consumer-ribbon</module>
+        <module>producer</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

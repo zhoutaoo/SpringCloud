@@ -18,6 +18,15 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <modules>
+        <module>auth</module>
+        <module>center</module>
+        <module>common</module>
+        <module>gateway</module>
+        <module>monitor</module>
+        <module>services</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
