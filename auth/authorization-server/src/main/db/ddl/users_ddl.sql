@@ -234,7 +234,7 @@ CREATE TABLE resources
   name         VARCHAR(200),
   url          VARCHAR(200),
   method       VARCHAR(20),
-  descrition   VARCHAR(500),
+  description  VARCHAR(500),
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,

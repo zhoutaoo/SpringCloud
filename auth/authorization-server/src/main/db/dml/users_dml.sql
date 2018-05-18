@@ -30,7 +30,7 @@ VALUES (101, -1, 'MENU', '/admin', 'setting', '系统管理', '系统设置管�
   (102, 101, 'MENU', '/admin/users', 'fa-user', '用户管理', '用户新增，修改，查看，删除', 10, now(), now(), 'system', 'system'),
   (103, 101, 'MENU', '/admin/menus', 'category', '菜单管理', '菜单新增，修改，删除', 20, now(), now(), 'system', 'system');
 --资源
-INSERT INTO resources (id, name, code, type, url, method, descrition, created_time, updated_time, created_by, updated_by)
+INSERT INTO resources (id, name, code, type, url, method, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, '新增', 'user_manager:btn_add', 'button', '/users', 'POST', '新增用户功能', now(), now(), 'system', 'system'),
   (102, '编辑', 'user_manager:btn_edit', 'button', '/users', 'PUT', '编辑用户功能', now(), now(), 'system', 'system'),
   (103, '删除', 'user_manager:btn_del', 'button', '/users', 'DELETE', '删除用户功能', now(), now(), 'system', 'system'),

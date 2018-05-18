@@ -18,7 +18,8 @@
     </parent>
 
     <modules>
-        <module>auth-oauth2</module>
+        <module>authentication-server</module>
+        <module>authorization-server</module>
     </modules>
 
     <dependencies>

@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springboot.cloud</groupId>
-    <artifactId>auth-oauth2</artifactId>
+    <artifactId>authorization-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>auth-oauth2</name>
+    <name>authorization-server</name>
     <description>Demo Oauth2 project for Spring Cloud Oauth2</description>
 
     <parent>
