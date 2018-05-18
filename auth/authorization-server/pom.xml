@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>authorization-server</name>
-    <description>Demo Oauth2 project for Spring Cloud Oauth2</description>
+    <description>Demo Oauth2 project for Spring Cloud Oauth2 Authorization Server</description>
 
     <parent>
         <groupId>com.springboot.cloud</groupId>

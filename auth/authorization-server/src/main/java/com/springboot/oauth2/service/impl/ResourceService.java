@@ -18,8 +18,4 @@ public class ResourceService implements IResourceService {
         return resourceMapper.findByUserId(userId);
     }
 
-    @Override
-    public Set<Resource> findAll() {
-        return resourceMapper.findAll();
-    }
 }

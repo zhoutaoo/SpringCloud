@@ -10,5 +10,4 @@ public interface IResourceService {
 
     Set<Resource> findUserResourcesByUserId(long userId);
 
-    Set<Resource> findAll();
 }
