@@ -7,12 +7,14 @@ import com.springboot.auth.authentication.service.IResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.access.intercept.DefaultFilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -63,16 +65,20 @@ class LoadResourceDefine {
     @Autowired
     private IResourceService resourceService;
 
+    @Autowired
+    private HandlerMappingIntrospector mvcHandlerMappingIntrospector;
+
     @Bean
     public LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap() {
         LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> map = Maps.newLinkedHashMap();
         Set<Resource> resources = resourceService.findAll();
         for (Resource resource : resources) {
             // url匹配器
-            AntPathRequestMatcher pathRequestMatcher = new AntPathRequestMatcher(resource.getUrl(), resource.getMethod());
-            // 把资源放入到spring security的resouceMap中
+            MvcRequestMatcher mvcRequestMatcher = new MvcRequestMatcher(mvcHandlerMappingIntrospector, resource.getUrl());
+            mvcRequestMatcher.setMethod(HttpMethod.resolve(resource.getMethod()));
+            // 把资源放入到spring security的resourceMap中
             Collection<ConfigAttribute> configAttributes = Sets.newHashSet(new SecurityConfig(resource.getCode()));
-            map.put(pathRequestMatcher, configAttributes);
+            map.put(mvcRequestMatcher, configAttributes);
         }
         log.debug("requestMap:{}", map);
         return map;

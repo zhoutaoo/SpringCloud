@@ -17,7 +17,7 @@ public interface ResourceMapper {
     Set<Resource> findAll();
 
     @Select("<script>" +
-            "SELECT DISTINCT rs.id,rs.code,rs.name,rs.type,rs.method,rs.description" +
+            "SELECT DISTINCT rs.code,rs.url,rs.name,rs.type,rs.method,rs.description" +
             " FROM roles r" +
             " INNER JOIN roles_resources_relation rrr ON r.id = rrr.role_id" +
             " INNER JOIN resources rs ON rs.id = rrr.resource_id" +
