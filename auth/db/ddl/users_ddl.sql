@@ -42,7 +42,7 @@ CREATE TABLE groups
   id           SERIAL PRIMARY KEY,
   parent_id    INT          NOT NULL,
   name         VARCHAR(200),
-  descrition   VARCHAR(500),
+  description   VARCHAR(500),
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -53,7 +53,7 @@ COMMENT ON TABLE groups IS '用户组表';
 COMMENT ON COLUMN groups.id IS '用户组id';
 COMMENT ON COLUMN groups.parent_id IS '用户组父id';
 COMMENT ON COLUMN groups.name IS '用户组名称';
-COMMENT ON COLUMN groups.descrition IS '用户组简介';
+COMMENT ON COLUMN groups.description IS '用户组简介';
 COMMENT ON COLUMN groups.created_time IS '创建时间';
 COMMENT ON COLUMN groups.updated_time IS '更新时间';
 COMMENT ON COLUMN groups.created_by IS '创建人';
@@ -87,7 +87,7 @@ CREATE TABLE positions
 (
   id           SERIAL PRIMARY KEY,
   name         VARCHAR(200),
-  descrition   VARCHAR(500),
+  description   VARCHAR(500),
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -97,7 +97,7 @@ SELECT setval('positions_id_seq', 1000000);
 COMMENT ON TABLE positions IS '岗位表';
 COMMENT ON COLUMN positions.id IS '岗位id';
 COMMENT ON COLUMN positions.name IS '岗位名称';
-COMMENT ON COLUMN positions.descrition IS '岗位简介';
+COMMENT ON COLUMN positions.description IS '岗位简介';
 COMMENT ON COLUMN positions.created_time IS '创建时间';
 COMMENT ON COLUMN positions.updated_time IS '更新时间';
 COMMENT ON COLUMN positions.created_by IS '创建人';
@@ -132,7 +132,7 @@ CREATE TABLE roles
   id           SERIAL PRIMARY KEY,
   code         VARCHAR(100) NOT NULL,
   name         VARCHAR(200),
-  descrition   VARCHAR(500),
+  description   VARCHAR(500),
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -143,7 +143,7 @@ COMMENT ON TABLE roles IS '角色表';
 COMMENT ON COLUMN roles.id IS '角色id';
 COMMENT ON COLUMN roles.code IS '角色编码';
 COMMENT ON COLUMN roles.name IS '角色名称';
-COMMENT ON COLUMN roles.descrition IS '角色简介';
+COMMENT ON COLUMN roles.description IS '角色简介';
 COMMENT ON COLUMN roles.created_time IS '创建时间';
 COMMENT ON COLUMN roles.updated_time IS '更新时间';
 COMMENT ON COLUMN roles.created_by IS '创建人';
@@ -181,7 +181,7 @@ CREATE TABLE menus
   href         VARCHAR(200),
   icon         VARCHAR(200),
   name         VARCHAR(200),
-  descrition   VARCHAR(500),
+  description   VARCHAR(500),
   order_num    INTEGER,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
@@ -196,7 +196,7 @@ COMMENT ON COLUMN menus.name IS '菜单名称';
 COMMENT ON COLUMN menus.type IS '菜单类型';
 COMMENT ON COLUMN menus.href IS '菜单路径';
 COMMENT ON COLUMN menus.icon IS '菜单图标';
-COMMENT ON COLUMN menus.descrition IS '菜单简介';
+COMMENT ON COLUMN menus.description IS '菜单简介';
 COMMENT ON COLUMN menus.created_time IS '创建时间';
 COMMENT ON COLUMN menus.updated_time IS '更新时间';
 COMMENT ON COLUMN menus.created_by IS '创建人';
@@ -246,7 +246,7 @@ CREATE UNIQUE INDEX ux_resources_code
 COMMENT ON TABLE resources IS '资源表';
 COMMENT ON COLUMN resources.id IS '资源id';
 COMMENT ON COLUMN resources.name IS '资源名称';
-COMMENT ON COLUMN resources.descrition IS '资源简介';
+COMMENT ON COLUMN resources.description IS '资源简介';
 COMMENT ON COLUMN resources.created_time IS '创建时间';
 COMMENT ON COLUMN resources.updated_time IS '更新时间';
 COMMENT ON COLUMN resources.created_by IS '创建人';

@@ -6,17 +6,17 @@ VALUES
   (102, 'zhoutaoo', '$2a$10$vYA9wKn/hVGOtwQw2eHiceeIGNBdfLYpDmbzHgBSVmOfHXPH4iYdS', 'true', 'true', 'true', 'true',
         '周涛', 15619841000, now(), now(), 'system', 'system');
 --岗位
-INSERT INTO positions (id, name, descrition, created_time, updated_time, created_by, updated_by)
+INSERT INTO positions (id, name, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, '首席执行官', '公司CEO，负责公司整体运转', now(), now(), 'system', 'system'),
   (102, '首席运营官', '公司COO，负责公司整体运营', now(), now(), 'system', 'system'),
   (103, '首席技术官', '公司CTO，负责公司整体运营', now(), now(), 'system', 'system');
 --角色
-INSERT INTO roles (id, code, name, descrition, created_time, updated_time, created_by, updated_by)
+INSERT INTO roles (id, code, name, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, 'ADMIN', '超级管理员', '公司IT总负责人', now(), now(), 'system', 'system'),
   (102, 'FIN', '财务', '财务', now(), now(), 'system', 'system'),
   (103, 'IT', 'IT', 'IT角色', now(), now(), 'system', 'system');
 --用户组
-INSERT INTO groups (id, parent_id, name, descrition, created_time, updated_time, created_by, updated_by)
+INSERT INTO groups (id, parent_id, name, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, -1, '总公司', '总公司', now(), now(), 'system', 'system'),
   (102, 101, '上海分公司', '上海分公司', now(), now(), 'system', 'system'),
   (103, 102, '研发部门', '负责产品研发', now(), now(), 'system', 'system'),
@@ -25,7 +25,7 @@ VALUES (101, -1, '总公司', '总公司', now(), now(), 'system', 'system'),
   (106, 102, '销售部门', '负责公司产品销售', now(), now(), 'system', 'system'),
   (107, 101, '北京分公司', '北京分公司', now(), now(), 'system', 'system');
 --菜单
-INSERT INTO menus (id, parent_id, type, href, icon, name, descrition, order_num, created_time, updated_time, created_by, updated_by)
+INSERT INTO menus (id, parent_id, type, href, icon, name, description, order_num, created_time, updated_time, created_by, updated_by)
 VALUES (101, -1, 'MENU', '/admin', 'setting', '系统管理', '系统设置管理', 0, now(), now(), 'system', 'system'),
   (102, 101, 'MENU', '/admin/users', 'fa-user', '用户管理', '用户新增，修改，查看，删除', 10, now(), now(), 'system', 'system'),
   (103, 101, 'MENU', '/admin/menus', 'category', '菜单管理', '菜单新增，修改，删除', 20, now(), now(), 'system', 'system');
