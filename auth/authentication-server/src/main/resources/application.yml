@@ -1,0 +1,57 @@
+server:
+  port: 8001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8081}/eureka/
+
+spring:
+  application:
+    name: authentication-server
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    ##password: ${REDIS_PASSWORD:}
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/spring_cloud
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  boot:
+    admin:
+      url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
+  zipkin:
+    baseUrl: http://localhost:8091
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
+
+logging:
+  level:
+    org.springframework.web: debug
+    org.springframework.security: DEBUG
+    com.springboot.oauth2: DEBUG
+    org.apache.ibatis: debug
+    java.sql.PreparedStatement: debug
+    java.sql.Statement: debug
+    Java.sql.Connection: debug
+  path: logs/
+  file:
+    max-size: 1GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
