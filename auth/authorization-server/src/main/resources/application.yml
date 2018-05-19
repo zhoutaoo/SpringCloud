@@ -37,7 +37,7 @@ logging:
   level:
     org.springframework.web: debug
     org.springframework.security: DEBUG
-    com.springboot.oauth2: DEBUG
+    com.springboot.auth: DEBUG
     org.apache.ibatis: debug
     java.sql.PreparedStatement: debug
     java.sql.Statement: debug
