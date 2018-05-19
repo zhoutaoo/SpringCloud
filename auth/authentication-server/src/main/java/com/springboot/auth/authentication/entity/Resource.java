@@ -1,4 +1,4 @@
-package com.springboot.oauth2.entity;
+package com.springboot.auth.authentication.entity;
 
 import com.springboot.cloud.core.entity.Entity;
 import lombok.Data;

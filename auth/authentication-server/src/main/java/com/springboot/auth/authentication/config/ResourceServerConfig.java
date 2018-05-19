@@ -1,6 +1,6 @@
-package com.springboot.oauth2.config;
+package com.springboot.auth.authentication.config;
 
-import com.springboot.oauth2.config.custom.CustomFilterSecurityInterceptor;
+import com.springboot.auth.authentication.config.custom.CustomFilterSecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

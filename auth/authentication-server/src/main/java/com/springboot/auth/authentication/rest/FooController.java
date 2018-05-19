@@ -1,4 +1,4 @@
-package com.springboot.oauth2.rest;
+package com.springboot.auth.authentication.rest;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

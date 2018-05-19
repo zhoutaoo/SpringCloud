@@ -1,7 +1,7 @@
-package com.springboot.oauth2.config.custom;
+package com.springboot.auth.authentication.config.custom;
 
-import com.springboot.oauth2.entity.Resource;
-import com.springboot.oauth2.service.impl.ResourceService;
+import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.auth.authentication.service.impl.ResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDecisionManager;

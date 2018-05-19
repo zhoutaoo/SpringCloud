@@ -1,4 +1,4 @@
-package com.springboot.oauth2;
+package com.springboot.auth.authentication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

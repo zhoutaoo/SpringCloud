@@ -1,4 +1,4 @@
-package com.springboot.oauth2.config.custom;
+package com.springboot.auth.authentication.config.custom;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

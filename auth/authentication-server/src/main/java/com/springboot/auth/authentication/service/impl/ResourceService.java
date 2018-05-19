@@ -1,8 +1,8 @@
-package com.springboot.oauth2.service.impl;
+package com.springboot.auth.authentication.service.impl;
 
-import com.springboot.oauth2.dao.ResourceMapper;
-import com.springboot.oauth2.entity.Resource;
-import com.springboot.oauth2.service.IResourceService;
+import com.springboot.auth.authentication.dao.ResourceMapper;
+import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.auth.authentication.service.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

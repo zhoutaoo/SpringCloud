@@ -1,6 +1,6 @@
-package com.springboot.oauth2.service;
+package com.springboot.auth.authentication.service;
 
-import com.springboot.oauth2.entity.Resource;
+import com.springboot.auth.authentication.entity.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;

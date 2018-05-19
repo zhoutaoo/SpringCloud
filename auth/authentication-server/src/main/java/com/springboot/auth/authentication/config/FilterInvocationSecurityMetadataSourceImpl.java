@@ -1,9 +1,9 @@
-package com.springboot.oauth2.config;
+package com.springboot.auth.authentication.config;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.springboot.oauth2.entity.Resource;
-import com.springboot.oauth2.service.IResourceService;
+import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.auth.authentication.service.IResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -51,7 +51,7 @@ public class FilterInvocationSecurityMetadataSourceImpl extends DefaultFilterInv
 
     @Override
     public Collection<ConfigAttribute> getAllConfigAttributes() {
-        log.info("getAllConfigAttributes:{}");
+        log.info("getAllConfigAttributes");
         return super.getAllConfigAttributes();
     }
 }
