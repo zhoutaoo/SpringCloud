@@ -1,6 +1,6 @@
 package com.springboot.oauth2.service;
 
-import com.springboot.oauth2.entity.Resource;
+import com.springboot.oauth2.entity.Role;
 import com.springboot.oauth2.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private IUserService userService;
     @Autowired
-    private IResourceService resourceService;
+    private IRoleService roleService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userService.getByUsername(username);
-        log.debug("loadByUsername:{}", user.toString());
+        log.info("loadByUsername:{}", user.toString());
 
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(
                 username,
@@ -47,10 +47,10 @@ public class CustomUserDetailsService implements UserDetailsService {
      * @return
      */
     private Set<GrantedAuthority> obtainGrantedAuthorities(User user) {
-        Set<Resource> resources = resourceService.findUserResourcesByUserId(user.getId());
-        log.debug("resources:{}", resources);
-        Set<GrantedAuthority> authSet = resources.stream()
-                .map(resource -> new SimpleGrantedAuthority(resource.getCode()))
+        Set<Role> roles = roleService.queryUserRolesByUserId(user.getId());
+        log.info("user:{},roles:{}", user.getUsername(), roles);
+        Set<GrantedAuthority> authSet = roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getCode()))
                 .collect(Collectors.toSet());
         return authSet;
     }
