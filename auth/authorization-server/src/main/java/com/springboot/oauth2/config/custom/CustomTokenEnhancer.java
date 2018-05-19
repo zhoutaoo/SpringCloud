@@ -8,6 +8,9 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
 import java.util.Map;
 
+/**
+ * 自定义token携带内容
+ */
 public class CustomTokenEnhancer implements TokenEnhancer {
 
     @Override
