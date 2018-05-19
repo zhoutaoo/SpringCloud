@@ -13,11 +13,26 @@ public class FooController {
     //@PreAuthorize("#oauth2.hasScope('read')")
     @RequestMapping(method = RequestMethod.GET, value = "/users/{id}")
     public String findById(@PathVariable long id) {
-        return randomNumeric(2);
+        return randomNumeric(2) + id;
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/users/{id}")
+    public String deleteById(@PathVariable long id) {
+        return randomNumeric(2) + id;
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/users/{id}")
+    public String update(@PathVariable long id) {
+        return randomNumeric(2) + id;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/users/{id}")
+    public String add(@PathVariable long id) {
+        return randomNumeric(2) + id;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/hello/{name}")
     public String findByName(@PathVariable String name) {
-        return randomNumeric(2);
+        return randomNumeric(2) + name;
     }
 }

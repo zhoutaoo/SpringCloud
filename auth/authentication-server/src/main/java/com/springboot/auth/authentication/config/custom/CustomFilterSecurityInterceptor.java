@@ -42,6 +42,7 @@ public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        log.debug("filter init");
     }
 
     @Override
@@ -62,6 +63,6 @@ public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
 
     @Override
     public void destroy() {
-
+        log.debug("filter destroy");
     }
 }

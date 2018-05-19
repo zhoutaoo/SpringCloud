@@ -18,5 +18,4 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated();
     }
-
 }

@@ -12,7 +12,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -64,13 +63,15 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
      */
     private Set<Resource> getResourcesByAuthorityRoles(Collection<? extends GrantedAuthority> authorityRoles) {
         //用户被授予的角色
-        if (log.isDebugEnabled())
-            log.debug("用户的授权角色集合信息为:{}", authorityRoles);
+        log.debug("用户的授权角色集合信息为:{}", authorityRoles);
 
-        List<String> authorityRoleCodes = authorityRoles.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList());
-        Set<Resource> resources = resourceService.queryByRoleCodes((String[]) authorityRoleCodes.toArray());
+        String[] authorityRoleCodes = authorityRoles.stream()
+                .map(authority -> authority.getAuthority())
+                .collect(Collectors.toList())
+                .toArray(new String[authorityRoles.size()]);
+        Set<Resource> resources = resourceService.queryByRoleCodes(authorityRoleCodes);
         if (log.isDebugEnabled()) {
-            log.debug("用户的授权角色的资源数量是:{}, 角色集合信息为:{}", resources.size(), resources);
+            log.debug("用户被授予角色的资源数量是:{}, 资源集合信息为:{}", resources.size(), resources);
         }
         return resources;
     }
@@ -83,7 +84,7 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        log.debug("supports attribute:{}", clazz);
+        log.debug("supports clazz:{}", clazz);
         return true;
     }
 }

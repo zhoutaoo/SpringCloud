@@ -44,7 +44,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         return new JwtTokenStore(accessTokenConverter());
     }
 
-
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
