@@ -1,4 +1,4 @@
-package com.springboot.turbine;
+package com.springboot.auth.authentication;
 
 import com.google.common.collect.Lists;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class ConsumerApplicationTests {
+public class ConsumerApplicationTest {
 
     @Test
     public void contextLoads() {
