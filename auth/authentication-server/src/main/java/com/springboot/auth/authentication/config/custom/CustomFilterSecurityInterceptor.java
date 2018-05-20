@@ -18,6 +18,11 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
+    /**
+     * 用来标识filter名称，判断是否执行过
+     * 自定义filter会被spring自动加入servlet filter中，为防止重复执行，在servlet attribute中设置该值
+     */
+    private static final String FILTER_APPLIED = "__spring_security_customFilterSecurityInterceptor_filterApplied";
 
     @Autowired
     FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSourceImpl;
@@ -46,9 +51,15 @@ public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        FilterInvocation filterInvocation = new FilterInvocation(servletRequest, servletResponse, filterChain);
-        invoke(filterInvocation);
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+            throws IOException, ServletException {
+        //未调用过为null,则去调用，并设置为true代表已调用过
+        if (servletRequest.getAttribute(FILTER_APPLIED) == null) {
+            servletRequest.setAttribute(FILTER_APPLIED, true);
+            invoke(new FilterInvocation(servletRequest, servletResponse, filterChain));
+            return;
+        }
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     private void invoke(FilterInvocation filterInvocation) throws IOException, ServletException {

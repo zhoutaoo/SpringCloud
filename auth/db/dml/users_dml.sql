@@ -33,8 +33,8 @@ VALUES (101, -1, 'MENU', '/admin', 'setting', '系统管理', '系统设置管�
 INSERT INTO resources (id, name, code, type, url, method, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, '新增', 'user_manager:btn_add', 'button', '/users', 'POST', '新增用户功能', now(), now(), 'system', 'system'),
   (102, '编辑', 'user_manager:btn_edit', 'button', '/users', 'PUT', '编辑用户功能', now(), now(), 'system', 'system'),
-  (103, '删除', 'user_manager:btn_del', 'button', '/users', 'DELETE', '删除用户功能', now(), now(), 'system', 'system'),
-  (104, '查看', 'user_manager:view', 'url', '/users', 'GET', '查询用户功能', now(), now(), 'system', 'system');
+  (103, '删除', 'user_manager:btn_del', 'button', '/users/{id}', 'DELETE', '删除用户功能', now(), now(), 'system', 'system'),
+  (104, '查看', 'user_manager:view', 'url', '/users/{id}', 'GET', '查询用户功能', now(), now(), 'system', 'system');
 
 --用户关系授权
 INSERT INTO users_roles_relation (id, user_id, role_id, created_time, updated_time, created_by, updated_by)
