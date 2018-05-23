@@ -12,7 +12,7 @@
 
 1. 克隆代码库：`git clone https://gitee.com/toopoo/SpringCloud.git`
 
-2. 生成ide配置： `mvn eclipse:eclipse` 或 `mvn idea:idea` 并导入对应的ide进行开发
+2. 生成ide配置： `mvn idea:idea` 并导入对应的ide进行开发
 
 3. 初使化数据库：
 
@@ -21,6 +21,7 @@
 启动服务： `mvn srpingboot:run` 
 
 网关地址：http://localhost:8443/
+
 注册中心：http://localhost:8081/
 
 ### 测试
@@ -33,9 +34,11 @@
 ### 项目目录结构
 
 ```
-├── auth                 --认证子项目
-│   ├── auth-oauth2        --oauth认证
-│   └── pom.xml            --子项目maven配置文件
+├── auth                           --授权认证子项目
+│   ├── authentication-server        --认证组件 
+│   ├── authorization-server         --授权组件
+│   ├── db                           --子项目公共数据库脚本
+│   └── pom.xml                      --子项目maven配置文件
 ├── center               --中心子项目
 │   ├── bus                --消息中心
 │   ├── config             --配置中心
@@ -49,7 +52,6 @@
 │   ├── postgres           --postgres数据库文件存储目录 
 │   ├── rabbitmq           --rabbitmq数据文件存储目录
 │   └── redis              --redis数据文件存储目录
-├── docker-compose.yml   --docker compose配置文件 
 ├── gateway              --网关子项目  
 │   ├── gateway-web        --基于springcloud gateway的网关
 │   ├── gateway-zuul       --基于netflix zuul的网关
@@ -60,13 +62,14 @@
 │   ├── turbine            --turbine监控聚集 
 │   ├── zipkin             --日志汇总
 │   └── pom.xml
-├── pom.xml
+├── services             --业务服务子项目
+│   ├── consumer-feign     --消费者服务 feign demo
+│   ├── consumer-ribbon    --消费者服务 ribbon demo 
+│   ├── producer         --服务提供者，产品服务
+│   └── pom.xml
 ├── readme.md            --文档入口
-└── services             --业务服务子项目
-    ├── consumer-feign     --消费者服务 feign demo
-    ├── consumer-ribbon    --消费者服务 ribbon demo 
-    ├── producer         --服务提供者，产品服务
-    └── pom.xml    
+├── docker-compose.yml   --docker compose配置文件 
+└── pom.xml              --业务服务子项目
 ```
 
 ### module目录结构
@@ -74,7 +77,7 @@
 ```
 ├── logs                     --日志目录
 │   ├── spring.log
-│   ├── spring.log.2018-04-15.0.gz
+│   └── spring.log.2018-04-15.0.gz
 ├── pom.xml                  --module maven配置文件
 ├── src                      --源码目录
 │   ├── main                   --源文件
@@ -85,6 +88,14 @@
 │   │   │   └── Dockerfile       --dockerfile
 │   │   ├── docs               --接口文档目录，一般由swagger生成
 │   │   ├── java               --java源码目录
+│   │   │   ├── dao              --数据操作层
+│   │   │   ├── service          --业务逻辑层
+│   │   │   ├── rest             --接口controller
+│   │   │   ├── entity           --实体类
+│   │   │   │   ├── form           --rest表单校验
+│   │   │   │   └── param          --参数，可以由form转化来
+│   │   │   ├── events           --事件或消息处理类
+│   │   │   └── task             --定时任务
 │   │   └── resources          --配置文件目录 
 │   │       ├── application.yml  --springboot的应用配置文件
 │   │       └── bootstrap.yml    --springboot的配置文件
@@ -92,7 +103,6 @@
 │       └── java                 --java测试案例目录
 └── target                     --编译目标目录
 ```
-
 
 ## 数据库设计规范
 
@@ -131,7 +141,9 @@
 | 时间类  | timestamp |    |        |
     
 
-## RESTFUL API
+## URL和方法命名规范
+
+### RESTFUL URL命名规范
 
 API URI design
 API URI 设计最重要的一个原则： nouns (not verbs!) ，名词（而不是动词）。
@@ -157,3 +169,33 @@ CRUD 简单 URI：
 | PUT    | /users/1/products/2 | 在 Id 为 1 用户下，替换 Id 为 2 的产品|
 | PATCH  | /users/1/products/2 | 修改 Id 为 1 的用户下 Id 为 2 的产品  |
 | DELETE | /users/1/products/2 | 删除 Id 为 1 的用户下 Id 为 2 的产品  |
+
+### 方法命名规范
+
+### Mapper
+
+insert/add
+delete
+update
+query
+search
+
+### Service
+
+add
+get
+delete
+update
+save
+query
+search
+
+### Rest
+
+add
+get
+delete
+update
+save
+query
+search
