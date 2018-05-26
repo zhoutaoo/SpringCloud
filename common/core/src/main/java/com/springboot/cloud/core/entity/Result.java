@@ -2,8 +2,10 @@ package com.springboot.cloud.core.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel(description = "rest请求的返回模型，所有rest正常都返回该类的对象")
+@Data
 public class Result<T> {
 
     public static final String SUCCESSFUL_CODE = "000000";
@@ -18,11 +20,13 @@ public class Result<T> {
     @ApiModelProperty(value = "处理结果数据信息")
     private T data;
 
+    public Result() {
+    }
+
     public Result(String code, String mesg) {
         this.code = code;
         this.mesg = mesg;
     }
-
 
     public Result(String code, String mesg, T data) {
         this.code = code;
@@ -44,29 +48,5 @@ public class Result<T> {
 
     public static Result fail(Object data) {
         return new Result(ERROR_CODE, ERROR_MESG, data);
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMesg() {
-        return mesg;
-    }
-
-    public void setMesg(String mesg) {
-        this.mesg = mesg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }
