@@ -23,30 +23,79 @@ public class Result<T> {
     public Result() {
     }
 
+    /**
+     * @param code
+     * @param mesg
+     */
     public Result(String code, String mesg) {
         this.code = code;
         this.mesg = mesg;
     }
 
+    /**
+     * @param code
+     * @param mesg
+     * @param data
+     */
     public Result(String code, String mesg, T data) {
         this.code = code;
         this.mesg = mesg;
         this.data = data;
     }
 
+    /**
+     * 快速创建成功结果并返回结果数据
+     *
+     * @param data
+     * @return
+     */
     public static Result success(Object data) {
         return new Result(SUCCESSFUL_CODE, SUCCESSFUL_MESG, data);
     }
 
+    /**
+     * 快速创建成功结果
+     *
+     * @return
+     */
     public static Result success() {
         return new Result(SUCCESSFUL_CODE, SUCCESSFUL_MESG);
     }
 
+    /**
+     * 快速创建失败结果没有返回数据
+     *
+     * @return
+     */
     public static Result fail() {
         return new Result(ERROR_CODE, ERROR_MESG);
     }
 
+    /**
+     * 快速创建失败结果并返回结果数据
+     *
+     * @param data
+     * @return
+     */
     public static Result fail(Object data) {
         return new Result(ERROR_CODE, ERROR_MESG, data);
+    }
+
+    /**
+     * 成功code=000000
+     *
+     * @return
+     */
+    public boolean isSuccess() {
+        return SUCCESSFUL_CODE.equals(this.code);
+    }
+
+    /**
+     * 失败
+     *
+     * @return
+     */
+    public boolean isFail() {
+        return !isSuccess();
     }
 }

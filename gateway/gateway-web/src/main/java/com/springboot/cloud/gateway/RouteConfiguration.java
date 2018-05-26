@@ -1,4 +1,4 @@
-package com.springboot.cloud;
+package com.springboot.cloud.gateway;
 
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;

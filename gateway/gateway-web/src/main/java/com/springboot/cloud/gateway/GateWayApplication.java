@@ -1,4 +1,4 @@
-package com.springboot.cloud;
+package com.springboot.cloud.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 public class GateWayApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(GateWayApplication.class, args);
     }
