@@ -1,8 +1,7 @@
 package com.springboot.auth.authentication.entity;
 
 import com.springboot.cloud.core.entity.Entity;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
