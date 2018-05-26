@@ -2,6 +2,7 @@ package com.springboot.auth.authentication.rest;
 
 import com.springboot.auth.authentication.service.IAuthenticationService;
 import com.springboot.cloud.core.entity.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@Slf4j
 public class AuthenticationController {
     @Autowired
     IAuthenticationService authenticationService;
