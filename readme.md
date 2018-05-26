@@ -12,7 +12,7 @@
 
 1. 克隆代码库：`git clone https://gitee.com/toopoo/SpringCloud.git`
 
-2. 生成ide配置： `mvn idea:idea` 并导入对应的ide进行开发
+2. 生成ide配置： `mvn idea:idea` 并导入对应的ide进行开发,IDE安装lombok插件
 
 3. 初使化数据库：
 
