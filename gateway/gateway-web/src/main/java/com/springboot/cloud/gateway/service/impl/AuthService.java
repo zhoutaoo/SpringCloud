@@ -65,6 +65,9 @@ public class AuthService implements IAuthService {
 
     @Override
     public boolean hasPermission(String authentication, String url, String method) {
+        if (invalidJwtAccessToken(authentication)) {
+            return Boolean.FALSE;
+        }
         return hasPermission(authenticate(authentication, url, method));
     }
 

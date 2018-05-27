@@ -44,10 +44,6 @@ public class AccessGatewayFilter implements GlobalFilter {
         if (authService.ignoreAuthentication(url)) {
             return chain.filter(exchange);
         }
-        //无效token直接返回401
-        if (authService.invalidJwtAccessToken(authentication)) {
-            return unauthorized(exchange);
-        }
         //调用签权服务看用户是否有权限，若有权限进入下一个filter
         if (authService.hasPermission(authentication, url, method)) {
             return chain.filter(exchange);
