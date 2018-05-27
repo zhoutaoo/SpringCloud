@@ -18,6 +18,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.stream.Stream;
+
 
 /**
  * 主要负责jwt token的初步校验
@@ -36,6 +38,14 @@ public class AccessGatewayFilter implements GlobalFilter {
     private String signingKey;
 
     /**
+     * 不需要网关签权的url配置(/oauth,/open)
+     * 默认/oauth开头是不需要的
+     */
+    @Value("${gate.ignore.authentication.startWith}")
+    private String ignoreUrls = "/oauth";
+
+
+    /**
      * 1.首先网关检查token是否有效，无效直接返回401，不调用签权服务
      * 2.调用签权服务器看是否对该请求有权限，有权限进入下一个filter，没有权限返回401
      *
@@ -50,14 +60,30 @@ public class AccessGatewayFilter implements GlobalFilter {
         String method = request.getMethodValue();
         String url = request.getPath().value();
         log.debug("url:{},method:{},headers:{}", url, method, request.getHeaders());
+        //不需要网关签权的url
+        if (isIgnoreAuthentication(url)) {
+            return chain.filter(exchange);
+        }
         //无效token直接返回401
         if (isInvalidJwtAccessToken(token)) {
             return unauthorized(exchange);
         }
+        //调用签权服务看用户是否有权限，若有权限进入下一个filter
         if (hasPermission(authProvider.auth(token, url, method))) {
             return chain.filter(exchange);
         }
         return unauthorized(exchange);
+    }
+
+    /**
+     * 判断url是否在忽略的范围内
+     * 只要是配置中的开头，即返回true
+     *
+     * @param url
+     * @return
+     */
+    private boolean isIgnoreAuthentication(String url) {
+        return Stream.of(this.ignoreUrls.split(",")).anyMatch(ignoreUrl -> url.startsWith(StringUtils.trim(ignoreUrl)));
     }
 
     /**

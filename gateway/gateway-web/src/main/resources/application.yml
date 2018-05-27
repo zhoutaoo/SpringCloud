@@ -45,6 +45,10 @@ spring:
         - Path=/oauth2/**
         filters:
         - StripPrefix=2
+gate:
+  ignore:
+    authentication:
+      startWith: /oauth,/open
 
 management:
   endpoints:
