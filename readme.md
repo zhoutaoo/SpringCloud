@@ -18,7 +18,7 @@
 
 ### 编译 & 启动
 
-启动服务： `mvn srpingboot:run` 
+启动服务： `mvn springboot:run` 
 
 网关地址：http://localhost:8443/
 
@@ -95,6 +95,7 @@
 │   │   │   │   ├── form           --rest表单校验
 │   │   │   │   └── param          --参数，可以由form转化来
 │   │   │   ├── events           --事件或消息处理类
+│   │   │   ├── provider         --调用第三方服务的提供类
 │   │   │   └── task             --定时任务
 │   │   └── resources          --配置文件目录 
 │   │       ├── application.yml  --springboot的应用配置文件
