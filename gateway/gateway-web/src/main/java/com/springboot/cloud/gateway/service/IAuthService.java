@@ -9,7 +9,7 @@ public interface IAuthService {
     /**
      * 调用签权服务，判断用户是否有权限
      *
-     * @param token
+     * @param authentication
      * @param url
      * @param method
      * @return Result

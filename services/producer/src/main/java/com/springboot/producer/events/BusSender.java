@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class BusSender {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public final static String QUEUE_NAME = "mq";
+    public static final String QUEUE_NAME = "mq";
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -51,7 +51,7 @@ public class BusSender {
     }
 
     public void send(String routingKey, String message) {
-        logger.info(routingKey + " => " + message);
+        logger.info("{}=>{}", routingKey, message);
         rabbitTemplate.convertAndSend(routingKey, message);
     }
 }

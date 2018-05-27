@@ -23,12 +23,12 @@ public class RedisSender {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
         container.addMessageListener(listenerAdapter, new ChannelTopic("chat"));
-        logger.info("init container", listenerAdapter);
+        logger.info("init container:{}", listenerAdapter);
         return container;
     }
 
     public void send(String channel, String message) {
-        logger.info(channel + " => " + message);
+        logger.info("{}=>{}", channel, message);
         stringRedisTemplate.convertAndSend(channel, message);
     }
 }

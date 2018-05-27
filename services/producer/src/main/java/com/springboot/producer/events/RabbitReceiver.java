@@ -13,7 +13,7 @@ public class RabbitReceiver {
 
     @RabbitHandler
     public void process(String message) {
-        logger.info("Receiver: " + message);
+        logger.info("Receiver: {}", message);
     }
 
 }

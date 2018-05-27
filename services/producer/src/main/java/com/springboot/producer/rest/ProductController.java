@@ -1,7 +1,7 @@
 package com.springboot.producer.rest;
 
-import com.springboot.producer.entity.Product;
 import com.springboot.cloud.core.entity.Result;
+import com.springboot.producer.entity.Product;
 import com.springboot.producer.entity.form.ProductAddForm;
 import com.springboot.producer.entity.form.ProductQueryForm;
 import com.springboot.producer.entity.form.ProductUpdateForm;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RefreshScope
 @RequestMapping("/products")
-@Api(tags = "eureka-producer", description = "产品管理的API")
+@Api("product")
 @Slf4j
 public class ProductController {
 

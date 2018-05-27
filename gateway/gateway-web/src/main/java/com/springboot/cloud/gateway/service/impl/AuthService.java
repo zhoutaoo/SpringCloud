@@ -29,7 +29,7 @@ public class AuthService implements IAuthService {
     /**
      * Authorization认证开头是"bearer "
      */
-    private final static int BEARER_BEGIN_INDEX = 7;
+    private static final int BEARER_BEGIN_INDEX = 7;
 
     /**
      * jwt token 密钥，主要用于token解析，签名验证

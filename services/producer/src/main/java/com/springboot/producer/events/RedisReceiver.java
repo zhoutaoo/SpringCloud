@@ -11,7 +11,7 @@ public class RedisReceiver {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void handleMessage(String message) {
-        logger.info("Received <" + message + ">");
+        logger.info("Received <{}>", message);
     }
 
     @Bean
