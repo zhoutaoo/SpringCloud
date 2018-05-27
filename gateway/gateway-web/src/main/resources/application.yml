@@ -69,10 +69,17 @@ feign:
 #      enabled: true
 #      mime-types: text/xml,application/xml,application/json
 #      min-request-size: 2048
-
+hystrix:
+  command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 3000
 logging:
   level:
     com.springboot.cloud.gateway: debug
+    com.jalja.org.spring.simple.dao.FeignUserClient: DEBUG
   path: logs/
   file:
     max-size: 1GB
