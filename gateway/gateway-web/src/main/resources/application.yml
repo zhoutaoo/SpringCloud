@@ -19,6 +19,10 @@ spring:
     http:
       legacy:
         enabled: true
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
   cloud:
     gateway:
       locator:

@@ -3,4 +3,5 @@
 *.iml
 data
 logs
+target
 
