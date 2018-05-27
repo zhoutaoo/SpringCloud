@@ -40,7 +40,7 @@ public class ResourceMapperTest {
     @Test
     public void testQueryByRoleCodes_假如不存在角色NOTHING_当传入角色NOTHING时_那么不能查询到角色拥有的资源() {
         Set<Resource> resources = resourceMapper.queryByRoleCodes(new String[]{"NOTHING"});
-        Assert.assertEquals(resources.size(), 0);
+        Assert.assertEquals(0, resources.size());
     }
 
     @Test

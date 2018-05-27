@@ -33,6 +33,6 @@ public class ResourceServiceTest {
     @Test
     public void testQueryByRoleCodes_假如不存在角色NOTHING_当传入NOTHING时_那么获取不到资源信息() {
         Set<Resource> resources = resourceService.queryByRoleCodes(new String[]{"NOTHING"});
-        Assert.assertEquals(resources.size(), 0);
+        Assert.assertEquals(0, resources.size());
     }
 }

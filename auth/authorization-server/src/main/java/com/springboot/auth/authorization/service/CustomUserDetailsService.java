@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -24,12 +23,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     private IRoleService roleService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
 
         User user = userService.getByUsername(username);
         log.info("loadByUsername:{}", user.toString());
 
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+        return new org.springframework.security.core.userdetails.User(
                 username,
                 user.getPassword(),
                 user.getEnabled(),
@@ -37,7 +36,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 user.getCredentialsNonExpired(),
                 user.getAccountNonLocked(),
                 this.obtainGrantedAuthorities(user));
-        return userDetails;
     }
 
     /**
@@ -49,9 +47,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     private Set<GrantedAuthority> obtainGrantedAuthorities(User user) {
         Set<Role> roles = roleService.queryUserRolesByUserId(user.getId());
         log.info("user:{},roles:{}", user.getUsername(), roles);
-        Set<GrantedAuthority> authSet = roles.stream()
+        return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getCode()))
                 .collect(Collectors.toSet());
-        return authSet;
     }
 }

@@ -82,13 +82,12 @@ public class AuthenticationService implements IAuthenticationService {
      * @return
      */
     public ConfigAttribute findConfigAttributesByUrl(HttpServletRequest authRequest) {
-        ConfigAttribute urlConfigAttributes = this.resourceConfigAttributes.keySet().stream()
+        return this.resourceConfigAttributes.keySet().stream()
                 .filter(requestMatcher -> requestMatcher.matches(authRequest))
                 .map(requestMatcher -> this.resourceConfigAttributes.get(requestMatcher))
                 .peek(urlConfigAttribute -> log.debug("url在资源池中配置：{}", urlConfigAttribute.getAttribute()))
                 .findFirst()
                 .orElse(new SecurityConfig(NONEXISTENT_URL));
-        return urlConfigAttributes;
     }
 
     /**
@@ -101,7 +100,7 @@ public class AuthenticationService implements IAuthenticationService {
         //用户被授予的角色
         log.debug("用户的授权角色集合信息为:{}", authorityRoles);
         String[] authorityRoleCodes = authorityRoles.stream()
-                .map(authority -> authority.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList())
                 .toArray(new String[authorityRoles.size()]);
         Set<Resource> resources = resourceService.queryByRoleCodes(authorityRoleCodes);
