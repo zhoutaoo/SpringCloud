@@ -1,11 +1,15 @@
 package com.springboot.cloud.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
+
+import java.time.Instant;
+import java.time.ZonedDateTime;
 
 @ApiModel(description = "rest请求的返回模型，所有rest正常都返回该类的对象")
-@Data
+@Getter
 public class Result<T> {
 
     public static final String SUCCESSFUL_CODE = "000000";
@@ -17,6 +21,8 @@ public class Result<T> {
     private String code;
     @ApiModelProperty(value = "处理结果描述信息")
     private String mesg;
+    @ApiModelProperty(value = "请求结果生成时间戳")
+    private Instant timestamp;
     @ApiModelProperty(value = "处理结果数据信息")
     private T data;
 
@@ -30,6 +36,7 @@ public class Result<T> {
     public Result(String code, String mesg) {
         this.code = code;
         this.mesg = mesg;
+        this.timestamp = ZonedDateTime.now().toInstant();
     }
 
     /**
@@ -38,8 +45,7 @@ public class Result<T> {
      * @param data
      */
     public Result(String code, String mesg, T data) {
-        this.code = code;
-        this.mesg = mesg;
+        this(code, mesg);
         this.data = data;
     }
 
@@ -47,7 +53,7 @@ public class Result<T> {
      * 快速创建成功结果并返回结果数据
      *
      * @param data
-     * @return
+     * @return Result
      */
     public static Result success(Object data) {
         return new Result(SUCCESSFUL_CODE, SUCCESSFUL_MESG, data);
@@ -56,36 +62,49 @@ public class Result<T> {
     /**
      * 快速创建成功结果
      *
-     * @return
+     * @return Result
      */
     public static Result success() {
         return new Result(SUCCESSFUL_CODE, SUCCESSFUL_MESG);
     }
 
     /**
-     * 快速创建失败结果没有返回数据
+     * 系统异常类没有返回数据
      *
-     * @return
+     * @return Result
      */
     public static Result fail() {
         return new Result(ERROR_CODE, ERROR_MESG);
     }
 
     /**
-     * 快速创建失败结果并返回结果数据
+     * 系统异常类并返回结果数据
      *
      * @param data
-     * @return
+     * @return Result
      */
     public static Result fail(Object data) {
         return new Result(ERROR_CODE, ERROR_MESG, data);
     }
 
     /**
+     * 系统异常类并返回结果数据
+     *
+     * @param code
+     * @param mesg
+     * @param data
+     * @return Result
+     */
+    public static Result fail(String code, String mesg, Object data) {
+        return new Result(code, mesg, data);
+    }
+
+    /**
      * 成功code=000000
      *
-     * @return
+     * @return true/false
      */
+    @JsonIgnore
     public boolean isSuccess() {
         return SUCCESSFUL_CODE.equals(this.code);
     }
@@ -93,8 +112,9 @@ public class Result<T> {
     /**
      * 失败
      *
-     * @return
+     * @return true/false
      */
+    @JsonIgnore
     public boolean isFail() {
         return !isSuccess();
     }
