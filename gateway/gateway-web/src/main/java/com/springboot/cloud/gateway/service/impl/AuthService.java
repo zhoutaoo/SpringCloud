@@ -1,6 +1,6 @@
 package com.springboot.cloud.gateway.service.impl;
 
-import com.springboot.cloud.core.entity.Result;
+import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.gateway.provider.AuthProvider;
 import com.springboot.cloud.gateway.service.IAuthService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package com.springboot.cloud.gateway.service;
 
-import com.springboot.cloud.core.entity.Result;
+import com.springboot.cloud.common.core.entity.vo.Result;
 
 /**
  * Created by zhoutaoo on 2018/5/27.
