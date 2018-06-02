@@ -19,13 +19,13 @@ public class ClassService {
     @HystrixCommand(fallbackMethod = "usersFallback")
     @CacheResult
     public Result users(String name) {
-        return restTemplate.getForEntity("http://PRODUCER/products/?name={1}", Result.class, name).getBody();
+        return restTemplate.getForEntity("http://PRODUCER/product/?name={1}", Result.class, name).getBody();
     }
 
     @HystrixCommand(fallbackMethod = "usersFallback")
     @CacheResult
     public Result users(Map map) {
-        return restTemplate.postForEntity("http://PRODUCER/products/", map, Result.class).getBody();
+        return restTemplate.postForEntity("http://PRODUCER/product/", map, Result.class).getBody();
     }
 
     public Result usersFallback(String name) {

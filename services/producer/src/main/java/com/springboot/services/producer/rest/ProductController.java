@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @RestController
 @RefreshScope
-@RequestMapping("/products")
+@RequestMapping("/product")
 @Api("product")
 @Slf4j
 public class ProductController {
