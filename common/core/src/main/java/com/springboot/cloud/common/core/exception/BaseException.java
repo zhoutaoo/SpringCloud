@@ -1,35 +1,32 @@
-package com.springboot.cloud.common.core.entity.exception;
+package com.springboot.cloud.common.core.exception;
 
 import lombok.Getter;
 
-/**
- * Created by zhoutaoo on 2018/5/31.
- */
 @Getter
 public class BaseException extends RuntimeException {
+    /**
+     * 异常对应的错误类型
+     */
+    private ErrorType errorType;
 
-    private String code;
-    private String mesg;
-
-    public BaseException(String code, String mesg, String message, Throwable cause) {
-        super(message, cause);
-        this.code = code;
-        this.mesg = mesg;
+    /**
+     * 默认是系统异常
+     */
+    public BaseException() {
+        this.errorType = ErrorType.SYSTEM_ERROR;
     }
 
-    public BaseException(String code, String mesg, String message) {
+    public BaseException(ErrorType errorType) {
+        this.errorType = errorType;
+    }
+
+    public BaseException(ErrorType errorType, String message) {
         super(message);
-        this.code = code;
-        this.mesg = mesg;
+        this.errorType = errorType;
     }
 
-    public BaseException(String code, String mesg) {
-        this(code);
-        this.mesg = mesg;
-    }
-
-    public BaseException(String code) {
-        super();
-        this.code = code;
+    public BaseException(ErrorType errorType, String message, Throwable cause) {
+        super(message, cause);
+        this.errorType = errorType;
     }
 }

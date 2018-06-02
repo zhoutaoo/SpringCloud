@@ -16,15 +16,12 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
- * Created by zhoutaoo on 2018/5/27.
- */
 @Service
 @Slf4j
 public class AuthService implements IAuthService {
 
     @Autowired
-    AuthProvider authProvider;
+    private AuthProvider authProvider;
 
     /**
      * Authorization认证开头是"bearer "

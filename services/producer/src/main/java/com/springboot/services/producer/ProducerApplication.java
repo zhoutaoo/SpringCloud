@@ -9,7 +9,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 @EnableCircuitBreaker
 public class ProducerApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ProducerApplication.class, args);
     }
