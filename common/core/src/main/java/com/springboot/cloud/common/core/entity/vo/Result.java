@@ -1,6 +1,8 @@
 package com.springboot.cloud.common.core.entity.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.springboot.cloud.common.core.exception.BaseException;
+import com.springboot.cloud.common.core.exception.ErrorType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -14,8 +16,6 @@ public class Result<T> {
 
     public static final String SUCCESSFUL_CODE = "000000";
     public static final String SUCCESSFUL_MESG = "处理成功";
-    public static final String ERROR_CODE = "-1";
-    public static final String ERROR_MESG = "系统异常";
 
     @ApiModelProperty(value = "处理结果code", required = true)
     private String code;
@@ -27,26 +27,39 @@ public class Result<T> {
     private T data;
 
     public Result() {
-    }
-
-    /**
-     * @param code
-     * @param mesg
-     */
-    public Result(String code, String mesg) {
-        this.code = code;
-        this.mesg = mesg;
         this.timestamp = ZonedDateTime.now().toInstant();
     }
 
     /**
+     * @param errorType
+     */
+    public Result(ErrorType errorType) {
+        this.code = errorType.getCode();
+        this.mesg = errorType.getMesg();
+        this.timestamp = ZonedDateTime.now().toInstant();
+    }
+
+    /**
+     * @param errorType
+     * @param data
+     */
+    public Result(ErrorType errorType, T data) {
+        this(errorType);
+        this.data = data;
+    }
+
+    /**
+     * 内部使用，用于构造成功的结果
+     *
      * @param code
      * @param mesg
      * @param data
      */
-    public Result(String code, String mesg, T data) {
-        this(code, mesg);
+    private Result(String code, String mesg, T data) {
+        this.code = code;
+        this.mesg = mesg;
         this.data = data;
+        this.timestamp = ZonedDateTime.now().toInstant();
     }
 
     /**
@@ -65,7 +78,7 @@ public class Result<T> {
      * @return Result
      */
     public static Result success() {
-        return new Result(SUCCESSFUL_CODE, SUCCESSFUL_MESG);
+        return success(null);
     }
 
     /**
@@ -74,7 +87,48 @@ public class Result<T> {
      * @return Result
      */
     public static Result fail() {
-        return new Result(ERROR_CODE, ERROR_MESG);
+        return new Result(ErrorType.SYSTEM_ERROR);
+    }
+
+    /**
+     * 系统异常类没有返回数据
+     *
+     * @param baseException
+     * @return Result
+     */
+    public static Result fail(BaseException baseException) {
+        return fail(baseException, null);
+    }
+
+    /**
+     * 系统异常类并返回结果数据
+     *
+     * @param data
+     * @return Result
+     */
+    public static Result fail(BaseException baseException, Object data) {
+        return new Result<>(baseException.getErrorType(), data);
+    }
+
+    /**
+     * 系统异常类并返回结果数据
+     *
+     * @param errorType
+     * @param data
+     * @return Result
+     */
+    public static Result fail(ErrorType errorType, Object data) {
+        return new Result<>(errorType, data);
+    }
+
+    /**
+     * 系统异常类并返回结果数据
+     *
+     * @param errorType
+     * @return Result
+     */
+    public static Result fail(ErrorType errorType) {
+        return Result.fail(errorType, null);
     }
 
     /**
@@ -84,20 +138,9 @@ public class Result<T> {
      * @return Result
      */
     public static Result fail(Object data) {
-        return new Result<>(ERROR_CODE, ERROR_MESG, data);
+        return new Result<>(ErrorType.SYSTEM_ERROR, data);
     }
 
-    /**
-     * 系统异常类并返回结果数据
-     *
-     * @param code
-     * @param mesg
-     * @param data
-     * @return Result
-     */
-    public static Result fail(String code, String mesg, Object data) {
-        return new Result<>(code, mesg, data);
-    }
 
     /**
      * 成功code=000000
