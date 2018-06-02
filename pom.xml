@@ -130,7 +130,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
+            <version>1.16.22</version>
             <scope>provided</scope>
         </dependency>
         <!--测试框架-->
