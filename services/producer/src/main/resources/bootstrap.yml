@@ -7,6 +7,6 @@ spring:
         enabled: true
         service-id: config-server
       profile: test
-      fail-fast: true
+      fail-fast: false
       retry:
         max-attempts: 6

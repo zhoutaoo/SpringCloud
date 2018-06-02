@@ -1,5 +1,5 @@
 server:
-  port: 8041
+  port: 8010
 
 eureka:
   client:
@@ -8,7 +8,7 @@ eureka:
 
 spring:
   application:
-    name: feign-consumer
+    name: ribbon-consumer
   boot:
     admin:
       url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
@@ -23,19 +23,6 @@ spring:
   jackson:
     time-zone: GMT+8
 
-#请求和响应GZIP压缩支持
-feign:
-  httpclient:
-    enabled: false
-  okhttp:
-    enabled: true
-#  compression:
-#    response:
-#      enabled: true
-#    request:
-#      enabled: true
-#      mime-types: text/xml,application/xml,application/json
-#      min-request-size: 2048
 hystrix:
   command:
       default:
