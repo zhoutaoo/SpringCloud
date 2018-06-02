@@ -32,6 +32,8 @@ spring:
     multipart:
       max-request-size: 2
       max-file-size: 2
+  jackson:
+    time-zone: GMT+8
 
 logging:
   level:
