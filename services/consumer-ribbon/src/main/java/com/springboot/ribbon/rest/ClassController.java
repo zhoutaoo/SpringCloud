@@ -1,6 +1,6 @@
 package com.springboot.ribbon.rest;
 
-import com.springboot.cloud.core.entity.Result;
+import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.ribbon.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

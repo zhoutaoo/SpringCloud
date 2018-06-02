@@ -1,12 +1,12 @@
 package com.springboot.auth.authorization.entity;
 
-import com.springboot.cloud.core.entity.Entity;
+import com.springboot.cloud.common.core.entity.po.BasePo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class User extends Entity {
+public class User extends BasePo {
     private String name;
     private String mobile;
     private String username;

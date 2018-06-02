@@ -2,7 +2,7 @@ package com.springboot.ribbon.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
-import com.springboot.cloud.core.entity.Result;
+import com.springboot.cloud.common.core.entity.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

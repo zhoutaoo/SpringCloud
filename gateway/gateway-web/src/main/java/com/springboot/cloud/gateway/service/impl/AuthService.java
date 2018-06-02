@@ -1,6 +1,6 @@
 package com.springboot.cloud.gateway.service.impl;
 
-import com.springboot.cloud.core.entity.Result;
+import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.gateway.provider.AuthProvider;
 import com.springboot.cloud.gateway.service.IAuthService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,15 +16,12 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/**
- * Created by zhoutaoo on 2018/5/27.
- */
 @Service
 @Slf4j
 public class AuthService implements IAuthService {
 
     @Autowired
-    AuthProvider authProvider;
+    private AuthProvider authProvider;
 
     /**
      * Authorization认证开头是"bearer "

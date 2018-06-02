@@ -23,7 +23,7 @@ import reactor.core.publisher.Mono;
 public class AccessGatewayFilter implements GlobalFilter {
 
     @Autowired
-    IAuthService authService;
+    private IAuthService authService;
 
     /**
      * 1.首先网关检查token是否有效，无效直接返回401，不调用签权服务

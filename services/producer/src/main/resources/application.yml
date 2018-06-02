@@ -28,12 +28,14 @@ spring:
     baseUrl: http://localhost:8091
   mvc:
     throw-exception-if-no-handler-found: true
-  resources:
-    add-mappings: false
+  servlet:
+    multipart:
+      max-request-size: 2
+      max-file-size: 2
 
 logging:
   level:
-    com.springboot.producer.dao: debug
+    com.springboot.services.producer.dao: debug
     org.springframework.web: debug
     org.apache.ibatis: debug
     java.sql.PreparedStatement: debug

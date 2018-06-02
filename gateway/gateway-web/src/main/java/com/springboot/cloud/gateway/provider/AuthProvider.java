@@ -1,6 +1,6 @@
 package com.springboot.cloud.gateway.provider;
 
-import com.springboot.cloud.core.entity.Result;
+import com.springboot.cloud.common.core.entity.vo.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -36,7 +36,7 @@ public interface AuthProvider {
         /**
          * 降级统一返回无权限
          *
-         * @param token
+         * @param authentication
          * @param url
          * @param method
          * @return <pre>

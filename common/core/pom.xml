@@ -11,6 +11,13 @@
     <name>core</name>
     <description>Demo Core project for Spring Boot</description>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <!--Swagger2 - RESTful API文档-->
         <dependency>
