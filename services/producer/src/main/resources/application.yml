@@ -37,7 +37,6 @@ spring:
 
 logging:
   level:
-    com.springboot.services.producer.dao: debug
     org.springframework.web: debug
     org.apache.ibatis: debug
     java.sql.PreparedStatement: debug

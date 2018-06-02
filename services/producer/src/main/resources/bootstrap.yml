@@ -3,10 +3,14 @@ spring:
     name: producer
   cloud:
     config:
+#      uri: http://localhost:8061/
+      name: eureka-producer
+      label: master
+      profile: test
+      enabled: true
       discovery:
         enabled: true
         service-id: config-server
-      profile: test
-      fail-fast: false
+      fail-fast: true
       retry:
         max-attempts: 6

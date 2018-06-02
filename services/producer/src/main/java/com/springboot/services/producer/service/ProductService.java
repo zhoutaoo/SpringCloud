@@ -3,16 +3,22 @@ package com.springboot.services.producer.service;
 import com.springboot.services.producer.dao.ProductMapper;
 import com.springboot.services.producer.entity.param.ProductQueryParam;
 import com.springboot.services.producer.entity.po.Product;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class ProductService implements IProductService {
 
     @Autowired
     private ProductMapper productMapper;
+
+    @Value("${username}")
+    private String value;
 
     @Override
     public long add(Product product) {
@@ -31,6 +37,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Product get(long id) {
+        log.info("value:{}", value);
         return productMapper.select(id);
     }
 
