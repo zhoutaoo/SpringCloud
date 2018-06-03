@@ -18,7 +18,8 @@ public interface ProductMapper {
     @Delete("delete from products where id=#{id}")
     void delete(long id);
 
-    @Update("update products set name=#{name},updated_time=now() where id=#{id}")
+    @Update("update products set name=#{name},description=#{description},updated_by=#{updatedBy},updated_time=now()" +
+            " where id=#{id}")
     void update(Product product);
 
     @Select("select id,name,description,updated_time,created_time,updated_by,created_by" +

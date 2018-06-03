@@ -5,7 +5,6 @@ import com.springboot.services.producer.entity.param.ProductQueryParam;
 import com.springboot.services.producer.entity.po.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    @Value("${username}")
+    //@Value("${username}")
     private String value;
 
     @Override

@@ -1,7 +1,8 @@
 package com.springboot.services.producer.service;
 
-import com.springboot.services.producer.entity.po.Product;
 import com.springboot.services.producer.entity.param.ProductQueryParam;
+import com.springboot.services.producer.entity.po.Product;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface IProductService {
      * @param id
      * @return
      */
-    @Cacheable(value = "#id")
+    @Cacheable(value = "product", key = "#root.targetClass+'-'+#id")
     Product get(long id);
 
     /**
@@ -22,6 +23,7 @@ public interface IProductService {
      * @param product
      * @return
      */
+    @Cacheable(value = "product", key = "#root.targetClass+'-'+#product.id")
     long add(Product product);
 
     /**
@@ -36,6 +38,7 @@ public interface IProductService {
      *
      * @param product
      */
+    @CacheEvict(value = "product", key = "#root.targetClass+'-'+#product.id")
     void update(Product product);
 
     /**
@@ -43,5 +46,6 @@ public interface IProductService {
      *
      * @param id
      */
+    @CacheEvict(value = "product", key = "#root.targetClass+'-'+#id")
     void delete(long id);
 }
