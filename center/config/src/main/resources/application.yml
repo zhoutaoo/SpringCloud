@@ -20,8 +20,8 @@ spring:
         git:
           uri: https://git.oschina.net/toopoo/config.git
           searchPaths: /
-          username: zhoutaoo
-          password: 5563557zztt029
+          username: your_username
+          password: your_password
   zipkin:
     baseUrl: http://localhost:8091
 
