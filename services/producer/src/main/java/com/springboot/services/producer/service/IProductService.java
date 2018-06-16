@@ -23,7 +23,6 @@ public interface IProductService {
      * @param product
      * @return
      */
-    @Cacheable(value = "product", key = "#root.targetClass+'-'+#product.id")
     long add(Product product);
 
     /**

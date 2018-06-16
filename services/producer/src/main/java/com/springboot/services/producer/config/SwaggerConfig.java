@@ -1,4 +1,4 @@
-package com.springboot.services.producer;
+package com.springboot.services.producer.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

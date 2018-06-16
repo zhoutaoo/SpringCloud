@@ -1,4 +1,4 @@
-package com.springboot.services.producer;
+package com.springboot.services.producer.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
