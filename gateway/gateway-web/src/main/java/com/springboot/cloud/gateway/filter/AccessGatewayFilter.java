@@ -1,10 +1,11 @@
 package com.springboot.cloud.gateway.filter;
 
-import com.springboot.cloud.gateway.service.IAuthService;
+import com.springboot.cloud.auth.client.service.IAuthService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
@@ -14,13 +15,16 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
 /**
  * 请求url权限校验
  */
 @Configuration
+@ComponentScan(basePackages = "com.springboot.cloud.auth.client")
 @Slf4j
 public class AccessGatewayFilter implements GlobalFilter {
+
+    private final static String X_CLIENT_TOKEN_USER = "x-client-token-user";
+    private final static String X_CLIENT_TOKEN = "x-client-token";
 
     @Autowired
     private IAuthService authService;
@@ -46,7 +50,12 @@ public class AccessGatewayFilter implements GlobalFilter {
         }
         //调用签权服务看用户是否有权限，若有权限进入下一个filter
         if (authService.hasPermission(authentication, url, method)) {
-            return chain.filter(exchange);
+            ServerHttpRequest.Builder builder = request.mutate();
+            //TODO 转发的请求都加上服务间认证token
+            builder.header(X_CLIENT_TOKEN, "TODO zhoutaoo添加服务间简单认证");
+            //将jwt token中的用户信息传给服务
+            builder.header(X_CLIENT_TOKEN_USER, authService.getJwt(authentication).getClaims());
+            return chain.filter(exchange.mutate().request(builder.build()).build());
         }
         return unauthorized(exchange);
     }

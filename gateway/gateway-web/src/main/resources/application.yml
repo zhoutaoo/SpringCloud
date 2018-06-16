@@ -35,7 +35,7 @@ spring:
         uri: lb://producer
         order: 8000
         predicates:
-        - Path=/products/**
+        - Path=/product/**
         filters:
         - StripPrefix=2
       - id: oauth2
