@@ -19,6 +19,7 @@
 
     <modules>
         <module>authentication-server</module>
+        <module>authentication-client</module>
         <module>authorization-server</module>
     </modules>
 
@@ -46,5 +47,4 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
     </dependencies>
-
 </project>
