@@ -25,7 +25,9 @@ public class AccessGatewayFilter implements GlobalFilter {
 
     private final static String X_CLIENT_TOKEN_USER = "x-client-token-user";
     private final static String X_CLIENT_TOKEN = "x-client-token";
-
+    /**
+     * 由authentication-client模块提供签权的feign客户端
+     */
     @Autowired
     private IAuthService authService;
 

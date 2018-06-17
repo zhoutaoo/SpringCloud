@@ -1,4 +1,4 @@
-package com.springboot.services.producer.interceptor;
+package com.springboot.common.web.interceptor;
 
 import com.springboot.cloud.common.core.entity.po.BasePo;
 import com.springboot.cloud.common.core.util.UserContextHolder;
