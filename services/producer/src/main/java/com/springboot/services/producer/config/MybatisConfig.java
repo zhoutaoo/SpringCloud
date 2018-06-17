@@ -1,7 +1,12 @@
 package com.springboot.services.producer.config;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
 /**
- * Created by zhoutaoo on 2018/6/17.
+ * 初使化Mybatis审计字段自动赋值的interceptor
  */
+@Configuration
+@ComponentScan(basePackageClasses = com.springboot.common.web.interceptor.AuditInterceptor.class)
 public class MybatisConfig {
 }
