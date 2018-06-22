@@ -1,4 +1,4 @@
-package com.springboot.bus;
+package com.springboot.cloud.center.bus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

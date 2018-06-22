@@ -1,20 +1,16 @@
-spring:
-  application:
-    name: bus-server
-
 server:
-  port: ${EUREKA_PORT:8071}
+  port: 8071
 
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
       defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
 
 spring:
+  application:
+    name: bus-server
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
-    username: guest
-    password: guest
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
