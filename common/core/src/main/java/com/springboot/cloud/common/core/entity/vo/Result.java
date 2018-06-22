@@ -1,6 +1,7 @@
 package com.springboot.cloud.common.core.entity.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.springboot.cloud.common.core.exception.BaseException;
 import com.springboot.cloud.common.core.exception.ErrorType;
 import io.swagger.annotations.ApiModel;
@@ -24,6 +25,7 @@ public class Result<T> {
     @ApiModelProperty(value = "请求结果生成时间戳")
     private Instant timestamp;
     @ApiModelProperty(value = "处理结果数据信息")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
     public Result() {
