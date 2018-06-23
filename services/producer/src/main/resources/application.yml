@@ -30,8 +30,8 @@ spring:
     throw-exception-if-no-handler-found: true
   servlet:
     multipart:
-      max-request-size: 2
-      max-file-size: 2
+      max-request-size: "2MB"
+      max-file-size: "2MB"
   jackson:
     time-zone: GMT+8
 

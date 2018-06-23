@@ -166,7 +166,7 @@
                 <version>1.0.0</version>
                 <configuration>
                     <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
-                    <imageName>120.52.79.17:80/cike/${project.artifactId}</imageName>
+                    <imageName>cike/${project.artifactId}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <rm>true</rm>
                     <resources>

@@ -19,13 +19,13 @@ public class ScheduledTasks {
     @Autowired
     private BusSender busSender;
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 20000)
     public void sendMessageToRedis() {
         logger.info("Send Hello To Redis With chat");
         redisSender.send("chat", "Hello from Redis!");
     }
 
-    @Scheduled(fixedRate = 15000)
+    @Scheduled(fixedRate = 30000)
     public void sendMessageToMq() {
         logger.info("Send Hello To RabbitMQ With mq");
         busSender.send("mq", "Hello To RabbitMQ!");

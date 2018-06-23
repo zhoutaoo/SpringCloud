@@ -25,19 +25,14 @@ spring:
         signingKey: 123456
   cloud:
     gateway:
-      locator:
-        enabled: true
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       default-filters:
       - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       routes:
       # =====================================
-      - id: producer
-        uri: lb://producer
-        order: 8000
-        predicates:
-        - Path=/product/**
-        filters:
-        - StripPrefix=2
       - id: oauth2
         uri: lb://oauth2
         order: 8000
@@ -45,6 +40,7 @@ spring:
         - Path=/oauth2/**
         filters:
         - StripPrefix=2
+
 gate:
   ignore:
     authentication:
@@ -82,7 +78,7 @@ hystrix:
 logging:
   level:
     com.springboot.cloud.gateway: debug
-    com.jalja.org.spring.simple.dao.FeignUserClient: DEBUG
+    com.jalja.org.spring: debug
   path: logs/
   file:
     max-size: 1GB
