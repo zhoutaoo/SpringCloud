@@ -7,14 +7,14 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
 @ApiModel
 @Data
 public class ProductQueryForm extends BaseQueryForm<ProductQueryParam> {
-    @NotEmpty(message = "名称不能为空")
+    @NotBlank(message = "名称不能为空")
     @ApiModelProperty(value = "产品名称", required = true)
     private String name;
 
