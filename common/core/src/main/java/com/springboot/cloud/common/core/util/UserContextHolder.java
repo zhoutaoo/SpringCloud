@@ -1,6 +1,9 @@
 package com.springboot.cloud.common.core.util;
 
+import com.google.common.collect.Maps;
+
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 用户上下文
@@ -54,7 +57,7 @@ public class UserContextHolder {
      * @return
      */
     public String getUsername() {
-        return threadLocal.get().get("user_name");
+        return Optional.ofNullable(threadLocal.get()).orElse(Maps.newHashMap()).get("user_name");
     }
 
     /**
