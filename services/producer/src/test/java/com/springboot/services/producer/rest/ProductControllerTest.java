@@ -20,7 +20,7 @@ public class ProductControllerTest {
 
     @Test
     public void query() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/products/").param("海报", "好海报"))
+        mvc.perform(MockMvcRequestBuilders.get("/product/").param("name", "好海报"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("code", Is.is("000000")));
     }

@@ -17,8 +17,6 @@ public class ProductServiceTest {
     @Test
     public void add() throws Exception {
         Product product = new Product("海报", "我是海报");
-        product.setCreatedBy("system");
-        product.setUpdatedBy("system");
         Assert.assertEquals(1, productService.add(product));
     }
 
