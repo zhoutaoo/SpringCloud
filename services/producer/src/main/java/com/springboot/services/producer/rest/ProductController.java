@@ -26,7 +26,7 @@ public class ProductController {
 
     @ApiOperation(value = "新增产品", notes = "新增一个产品")
     @ApiImplicitParam(name = "productForm", value = "新增产品form表单", required = true, dataType = "ProductForm")
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @PostMapping
     public Result add(@Valid @RequestBody ProductForm productForm) {
         log.info("name:", productForm);
         Product product = productForm.toPo(Product.class);
@@ -35,7 +35,7 @@ public class ProductController {
 
     @ApiOperation(value = "删除产品", notes = "根据url的id来指定删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "产品ID", required = true, dataType = "long")
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable long id) {
         productService.delete(id);
         return Result.success();
@@ -46,7 +46,7 @@ public class ProductController {
             @ApiImplicitParam(name = "id", value = "产品ID", required = true, dataType = "long"),
             @ApiImplicitParam(name = "productForm", value = "产品实体", required = true, dataType = "ProductForm")
     })
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @PutMapping(value = "/{id}")
     public Result update(@PathVariable long id, @Valid @RequestBody ProductForm productForm) {
         Product product = productForm.toPo(Product.class);
         product.setId(id);
@@ -56,7 +56,7 @@ public class ProductController {
 
     @ApiOperation(value = "获取产品", notes = "获取指定产品信息")
     @ApiImplicitParam(paramType = "path", name = "id", value = "产品ID", required = true, dataType = "long")
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public Result get(@PathVariable long id) {
         log.info("get with id:{}", id);
         return Result.success(productService.get(id));
@@ -67,7 +67,7 @@ public class ProductController {
             @ApiImplicitParam(paramType = "query", name = "name", value = "产品名称", required = true, dataType = "string")
     })
     @ApiResponse(code = 200, message = "处理成功", response = Result.class)
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping
     public Result query(@RequestParam String name) {
         log.info("query with name:{}", name);
         ProductQueryParam productQueryParam = new ProductQueryParam();
@@ -78,7 +78,7 @@ public class ProductController {
     @ApiOperation(value = "搜索产品", notes = "根据条件查询产品信息")
     @ApiImplicitParam(name = "productQueryForm", value = "产品查询参数", required = true, dataType = "ProductQueryForm")
     @ApiResponse(code = 200, message = "处理成功", response = Result.class)
-    @RequestMapping(value = "/conditions", method = RequestMethod.POST)
+    @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody ProductQueryForm productQueryForm) {
         log.info("search with productQueryForm:", productQueryForm);
         return Result.success(productService.query(productQueryForm.toParam(ProductQueryParam.class)));
