@@ -12,6 +12,7 @@ services:
       - sc-net
     ports:
       - 6379:6379
+
   rabbitmq:
     image: rabbitmq:alpine
     container_name: sc-rabbitmq
@@ -22,6 +23,7 @@ services:
       - sc-net
     ports:
       - 5672:5672
+      
   postgres:
     image: postgres:9.6-alpine
     container_name: sc-postgres
@@ -34,6 +36,7 @@ services:
       - 5432:5432
     environment:
       - POSTGRES_PASSWORD=postgres
+
   eureka-server:
     image: cike/eureka-server
     container_name: sc-eureka-server
@@ -51,6 +54,7 @@ services:
       - RABBIT_MQ_PASSWORD=guest
     depends_on:
       - rabbitmq
+
   config-server:
     image: cike/config-server
     container_name: sc-config-server
@@ -68,6 +72,7 @@ services:
       - EUREKA_ZONE_PORT=8761
     depends_on:
       - eureka-server
+
   producer:
     image: cike/producer
     container_name: sc-producer
@@ -94,6 +99,7 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - config-server
+
   gateway:
     image: cike/gateway-web
     container_name: sc-gateway-web
@@ -113,6 +119,9 @@ services:
       - EUREKA_ZONE_PORT=8761
     depends_on:
       - eureka-server
+      - authorization-server
+      - authentication-server
+
   authorization-server:
     image: cike/authorization-server
     container_name: sc-authorization-server
@@ -139,6 +148,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - eureka-server
+      - postgres
+
   authentication-server:
     image: cike/authentication-server
     container_name: sc-authentication-server
@@ -165,6 +176,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - eureka-server
+      - postgres
+
 networks:
   sc-net:
     external: false
