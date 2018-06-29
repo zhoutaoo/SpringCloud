@@ -42,7 +42,7 @@
 ├── center               --中心子项目
 │   ├── bus                --消息中心
 │   ├── config             --配置中心
-│   ├── eureka             --注册是心 
+│   ├── eureka             --注册中心 
 │   └── pom.xml
 ├── common               --通用子项目
 │   ├── core               --核心类库
