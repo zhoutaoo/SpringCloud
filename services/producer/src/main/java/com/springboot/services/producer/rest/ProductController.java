@@ -63,10 +63,10 @@ public class ProductController {
     }
 
     @ApiOperation(value = "查询产品", notes = "根据条件查询产品信息，简单查询")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "name", value = "产品名称", required = true, dataType = "string")
-    })
-    @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    @ApiImplicitParam(paramType = "query", name = "name", value = "产品名称", required = true, dataType = "string")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
     @GetMapping
     public Result query(@RequestParam String name) {
         log.info("query with name:{}", name);
@@ -77,7 +77,9 @@ public class ProductController {
 
     @ApiOperation(value = "搜索产品", notes = "根据条件查询产品信息")
     @ApiImplicitParam(name = "productQueryForm", value = "产品查询参数", required = true, dataType = "ProductQueryForm")
-    @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody ProductQueryForm productQueryForm) {
         log.info("search with productQueryForm:", productQueryForm);
