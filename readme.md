@@ -35,8 +35,9 @@
 
 ```
 ├── auth                           --授权认证子项目
-│   ├── authentication-server        --认证组件 
-│   ├── authorization-server         --授权组件
+│   ├── authentication-server        --认证组件服务端 
+│   ├── authentication-client        --认证组件客户端 
+│   ├── authorization-server         --授权组件服务端
 │   ├── db                           --子项目公共数据库脚本
 │   └── pom.xml                      --子项目maven配置文件
 ├── center               --中心子项目
@@ -46,9 +47,11 @@
 │   └── pom.xml
 ├── common               --通用子项目
 │   ├── core               --核心类库
+│   ├── test               --测试工具类库
+│   ├── web                --WEB核心类库
 │   └── pom.xml          
 ├── data                 --server及服务数据存储目录
-│   ├── logs
+│   ├── logs               --日志存储位置
 │   ├── postgres           --postgres数据库文件存储目录 
 │   ├── rabbitmq           --rabbitmq数据文件存储目录
 │   └── redis              --redis数据文件存储目录
@@ -65,9 +68,9 @@
 ├── services             --业务服务子项目
 │   ├── consumer-feign     --消费者服务 feign demo
 │   ├── consumer-ribbon    --消费者服务 ribbon demo 
-│   ├── producer         --服务提供者，产品服务
+│   ├── producer           --服务提供者，产品服务
 │   └── pom.xml
-├── readme.md            --文档入口
+├── readme.md            --readme文档入口
 ├── docker-compose.yml   --docker compose配置文件 
 └── pom.xml              --业务服务子项目
 ```
@@ -90,18 +93,25 @@
 │   │   ├── java               --java源码目录
 │   │   │   ├── dao              --数据操作层
 │   │   │   ├── service          --业务逻辑层
+│   │   │   ├── provider         --调用第三方服务的提供类
 │   │   │   ├── rest             --接口controller
 │   │   │   ├── entity           --实体类
 │   │   │   │   ├── form           --rest表单校验
-│   │   │   │   └── param          --参数，可以由form转化来
+│   │   │   │   ├── param          --dao参数，可以由form转化来
+│   │   │   │   ├── po             --实体类
+│   │   │   │   └── vo             --rest返回对象
 │   │   │   ├── events           --事件或消息处理类
-│   │   │   ├── provider         --调用第三方服务的提供类
+│   │   │   ├── config           --配置类
+│   │   │   ├── exception        --异常处理相关类
+│   │   │   ├── interceptor      --拦截器相关类
 │   │   │   └── task             --定时任务
 │   │   └── resources          --配置文件目录 
 │   │       ├── application.yml  --springboot的应用配置文件
 │   │       └── bootstrap.yml    --springboot的配置文件
 │   └── test                   --测试目录
-│       └── java                 --java测试案例目录
+│       ├── java                 --java测试案例目录
+│       └── resources          --配置文件目录 
+│          └── application.yml   --springboot test的配置文件
 └── target                     --编译目标目录
 ```
 
