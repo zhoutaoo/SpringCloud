@@ -23,7 +23,7 @@ public class AuthServiceTest {
     AuthProvider authProvider;
 
     private static final String VALID_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ6aG91dGFvbyIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiemhvdXRhb28iLCJleHAiOjE1Mjc0NTM5NDQsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiSVQiXSwianRpIjoiZTZiNzM5ZmUtYWEzZC00Y2RmLWIxZjUtNzZkMmVlMjU0ODU1IiwiY2xpZW50X2lkIjoidGVzdF9jbGllbnQifQ.l6PQrs98zT40H6Ad4NHE7NSXyeWnMn-ZhURw3zO-EfE";
-    private String BEARER = "bearer ";
+    private static final String BEARER = "bearer ";
 
 
     @Before
@@ -42,7 +42,6 @@ public class AuthServiceTest {
 
     @Test
     public void testInvalidJwtAccessToken_假如授权服务通过给定密钥生成了token_当输入该token组成的authentication_那么返回false表示token有效() {
-
         Assert.assertFalse(authService.invalidJwtAccessToken(BEARER + VALID_TOKEN));
     }
 
@@ -77,7 +76,6 @@ public class AuthServiceTest {
 
     @Test
     public void testAuthenticate_假如用户authentication正确且有对请求url只有POST权限_当用户请求该url的GET_那么返回成功无权限() {
-        when(authProvider.auth(BEARER + VALID_TOKEN, "/users", "POST")).thenReturn(Result.success(true));
         when(authProvider.auth(BEARER + VALID_TOKEN, "/users", "GET")).thenReturn(Result.success(false));
         Assert.assertFalse((Boolean) authService.authenticate(BEARER + VALID_TOKEN, "/users", "GET").getData());
     }
@@ -95,7 +93,6 @@ public class AuthServiceTest {
 
     @Test
     public void testHasPermission_假如用户authentication正确且有对请求url只有POST权限_当用户请求该url的GET_那么返回成功无权限() {
-        when(authProvider.auth(BEARER + VALID_TOKEN, "/users", "POST")).thenReturn(Result.success(true));
         when(authProvider.auth(BEARER + VALID_TOKEN, "/users", "GET")).thenReturn(Result.success(false));
         Assert.assertFalse(authService.hasPermission(BEARER + VALID_TOKEN, "/users", "GET"));
     }
