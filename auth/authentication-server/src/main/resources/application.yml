@@ -39,8 +39,6 @@ logging:
     org.springframework.security: DEBUG
     org.apache.ibatis: debug
     java.sql.PreparedStatement: debug
-    java.sql.Statement: debug
-    Java.sql.Connection: debug
   path: logs/
   file:
     max-size: 1GB

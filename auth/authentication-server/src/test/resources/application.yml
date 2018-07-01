@@ -30,11 +30,11 @@ spring:
 
 logging:
   level:
-    org.springframework.web: debug
-    org.apache.ibatis: debug
-    java.sql.PreparedStatement: debug
-    java.sql.Statement: debug
-    Java.sql.Connection: debug
+    org.springframework.web: info
+    org.apache.ibatis: info
+    java.sql.PreparedStatement: info
+    java.sql.Statement: info
+    Java.sql.Connection: info
   path: logs/
   file:
     max-size: 1GB
