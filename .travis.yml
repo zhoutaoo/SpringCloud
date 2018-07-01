@@ -18,6 +18,7 @@ before_install:
 after_success:
   - mvn clean test jacoco:report coveralls:report
   - codecov
+  - bash <(curl -s https://codecov.io/bash)
 
 branches:
   only:
