@@ -16,7 +16,6 @@ CREATE TABLE users
   created_by              VARCHAR(100) NOT NULL,
   updated_by              VARCHAR(100) NOT NULL
 );
-SELECT setval('users_id_seq', 1000000);
 CREATE UNIQUE INDEX ux_users_username
   ON users (username);
 CREATE UNIQUE INDEX ux_users_mobile
@@ -48,7 +47,6 @@ CREATE TABLE groups
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('groups_id_seq', 1000000);
 COMMENT ON TABLE groups IS '用户组表';
 COMMENT ON COLUMN groups.id IS '用户组id';
 COMMENT ON COLUMN groups.parent_id IS '用户组父id';
@@ -71,7 +69,6 @@ CREATE TABLE users_groups_relation
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('users_groups_relation_id_seq', 1000000);
 COMMENT ON TABLE users_groups_relation IS '用户和组关系表';
 COMMENT ON COLUMN users_groups_relation.id IS '关系id';
 COMMENT ON COLUMN users_groups_relation.user_id IS '用户id';
@@ -93,7 +90,6 @@ CREATE TABLE positions
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('positions_id_seq', 1000000);
 COMMENT ON TABLE positions IS '岗位表';
 COMMENT ON COLUMN positions.id IS '岗位id';
 COMMENT ON COLUMN positions.name IS '岗位名称';
@@ -115,7 +111,6 @@ CREATE TABLE users_positions_relation
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('users_positions_relation_id_seq', 1000000);
 COMMENT ON TABLE users_positions_relation IS '用户和角色关系表';
 COMMENT ON COLUMN users_positions_relation.id IS '关系id';
 COMMENT ON COLUMN users_positions_relation.user_id IS '用户id';
@@ -138,7 +133,6 @@ CREATE TABLE roles
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('roles_id_seq', 1000000);
 COMMENT ON TABLE roles IS '角色表';
 COMMENT ON COLUMN roles.id IS '角色id';
 COMMENT ON COLUMN roles.code IS '角色编码';
@@ -161,7 +155,6 @@ CREATE TABLE users_roles_relation
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('users_roles_relation_id_seq', 1000000);
 COMMENT ON TABLE users_roles_relation IS '用户和角色关系表';
 COMMENT ON COLUMN users_roles_relation.id IS '关系id';
 COMMENT ON COLUMN users_roles_relation.user_id IS '用户id';
@@ -188,7 +181,6 @@ CREATE TABLE menus
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('menus_id_seq', 1000000);
 COMMENT ON TABLE menus IS '菜单表';
 COMMENT ON COLUMN menus.id IS '菜单id';
 COMMENT ON COLUMN menus.parent_id IS '父菜单id';
@@ -214,7 +206,6 @@ CREATE TABLE roles_menus_relation
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('roles_menus_relation_id_seq', 1000000);
 COMMENT ON TABLE roles_menus_relation IS '角色和菜单关系表';
 COMMENT ON COLUMN roles_menus_relation.id IS '关系id';
 COMMENT ON COLUMN roles_menus_relation.role_id IS '角色id';
@@ -240,7 +231,6 @@ CREATE TABLE resources
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('resources_id_seq', 1000000);
 CREATE UNIQUE INDEX ux_resources_code
   ON resources (code);
 COMMENT ON TABLE resources IS '资源表';
@@ -264,7 +254,6 @@ CREATE TABLE roles_resources_relation
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-SELECT setval('roles_resources_relation_id_seq', 1000000);
 COMMENT ON TABLE roles_resources_relation IS '角色和资源关系表';
 COMMENT ON COLUMN roles_resources_relation.id IS '关系id';
 COMMENT ON COLUMN roles_resources_relation.role_id IS '角色id';

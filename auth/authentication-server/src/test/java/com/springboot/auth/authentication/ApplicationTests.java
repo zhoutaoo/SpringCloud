@@ -4,8 +4,6 @@ import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
@@ -13,13 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class ConsumerApplicationTest {
-
-    @Test
-    public void contextLoads() {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        System.out.println(passwordEncoder.encode("test_secret"));
-    }
+public class ApplicationTests {
 
     @Test
     public void testMethod() {

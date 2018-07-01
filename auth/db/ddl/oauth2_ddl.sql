@@ -1,4 +1,5 @@
 --access_token存储表
+DROP TABLE IF EXISTS oauth_access_token;
 CREATE TABLE oauth_access_token
 (
   token_id          CHARACTER VARYING(256), -- MD5加密的access_token的值
@@ -18,6 +19,7 @@ COMMENT ON COLUMN oauth_access_token.client_id IS '客户端ID';
 COMMENT ON COLUMN oauth_access_token.authentication IS 'OAuth2Authentication.java对象序列化后的二进制数据';
 COMMENT ON COLUMN oauth_access_token.refresh_token IS 'MD5加密果的refresh_token的值';
 --refresh_token存储表
+DROP TABLE IF EXISTS oauth_refresh_token;
 CREATE TABLE oauth_refresh_token
 (
   token_id       CHARACTER VARYING(256), -- MD5加密过的refresh_token的值
@@ -30,6 +32,7 @@ COMMENT ON COLUMN oauth_refresh_token.token IS 'OAuth2RefreshToken.java对象序
 COMMENT ON COLUMN oauth_refresh_token.authentication IS 'OAuth2Authentication.java对象序列化后的二进制数据';
 
 --授权记录表
+DROP TABLE IF EXISTS oauth_approvals;
 CREATE TABLE oauth_approvals
 (
   userid         CHARACTER VARYING(256), -- 登录的用户名
@@ -47,6 +50,7 @@ COMMENT ON COLUMN oauth_approvals.status IS '状态（Approve或Deny）';
 COMMENT ON COLUMN oauth_approvals.expiresat IS '过期时间';
 COMMENT ON COLUMN oauth_approvals.lastmodifiedat IS '最终修改时间';
 --授权码表
+DROP TABLE IF EXISTS oauth_code;
 CREATE TABLE oauth_code
 (
   code           CHARACTER VARYING(256), -- 授权码(未加密)
@@ -57,6 +61,7 @@ COMMENT ON COLUMN oauth_code.code IS '授权码(未加密)';
 COMMENT ON COLUMN oauth_code.authentication IS 'AuthorizationRequestHolder.java对象序列化后的二进制数据';
 
 --client用户表
+DROP TABLE IF EXISTS oauth_client_details;
 CREATE TABLE oauth_client_details
 (
   client_id               CHARACTER VARYING(256) NOT NULL, -- 客户端ID
@@ -87,6 +92,7 @@ COMMENT ON COLUMN oauth_client_details.additional_information IS '预留字段';
 COMMENT ON COLUMN oauth_client_details.autoapprove IS '用户是否自动Approval操作';
 
 --客户端授权令牌表
+DROP TABLE IF EXISTS oauth_client_token;
 CREATE TABLE oauth_client_token
 (
   token_id          CHARACTER VARYING(256), -- MD5加密的access_token值
