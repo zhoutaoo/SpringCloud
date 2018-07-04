@@ -30,9 +30,4 @@ public class FooController {
     public String add(@PathVariable long id) {
         return randomNumeric(2) + id;
     }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/hello/{name}")
-    public String findByName(@PathVariable String name) {
-        return randomNumeric(2) + name;
-    }
 }

@@ -12,7 +12,7 @@ import java.util.Map;
 @FeignClient(name = "producer", fallback = ClassServiceFallback.class)
 public interface ClassService {
 
-    @RequestMapping(value = "/product/", method = RequestMethod.GET)
+    @RequestMapping(value = "/product", method = RequestMethod.GET)
     Result users(@RequestParam("name") String name);
 
     @RequestMapping(value = "/product/", method = RequestMethod.POST)

@@ -78,6 +78,12 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.8.0</version>
         </dependency>
+        <!--测试-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-verifier</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -113,6 +119,17 @@
                         <sectlinks></sectlinks>
                         <sectanchors></sectanchors>
                     </attributes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                <!-- Don't forget about this value !! -->
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- Provide the base class for your auto-generated tests -->
+                    <baseClassForTests>com.springboot.services.producer.MvcMockTest</baseClassForTests>
                 </configuration>
             </plugin>
         </plugins>
