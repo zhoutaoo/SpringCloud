@@ -138,7 +138,7 @@
 
 1、表名全部小写，单词间通过'_'间隔
 
-2、主键命名为'id'，类型为serial自增长主键，会默认创建名为[表名_id_seq]的序列，约定初始值(start)为1000000
+2、主键命名为'id'，类型为serial自增长主键，会默认创建名为[表名_id_seq]的序列
 
 3、必须包含4个审计字段且不能为空。created_time、updated_time、created_by、updated_by。
 
