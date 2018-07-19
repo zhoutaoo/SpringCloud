@@ -34,8 +34,7 @@
 * 简化模式（implicit）：
 不通过第三方应用程序的服务器，直接在浏览器中向认证服务器申请令牌，跳过了"授权码"这个步骤，因此得名。所有步骤在浏览器中完成，令牌对访问者是可见的，且客户端不需要认证。
 
-具体请参考阮一峰老师的文章，这里不展开讲
-[理解OAuth 2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)
+具体请参考阮一峰老师的文章 [理解OAuth 2.0](http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html)，这里不展开讲
 
 #### OAuth2的角色
 
@@ -86,8 +85,6 @@ Token基本内容如下
 | expires_in   | 过期时间，单位秒     |
 | token_type   | Bearer和OAuth2     |
 | scope        | read和write        |
-| organization | 组织                |
-| jti          | jwt token id       |
 
 #### JWT(JSON Web Tokens)简介
 
@@ -141,7 +138,7 @@ Jwt Token例子：
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiYWRtaW4iLCJleHAiOjE1MzE5NzU2MjEsImF1dGhvcml0aWVzIjpbIkFETUlOIl0sImp0aSI6IjIzNDA4ZDM4LThjZGMtNDQ2MC1iZWFjLTI0Yzc2ZGM3NjI5YSIsImNsaWVudF9pZCI6InRlc3RfY2xpZW50In0.qawS1Z4j_h4vNx10GBC_Y_PHM1LLSQt64eniWLGzsJY
 ```
-可到http://www.bejson.com/enc/base64解码，注意分3部分分别解
+可到http://www.bejson.com/enc/base64 解码，注意分3部分分别解，
 也可使用官网解码工具[官网解码](https://jwt.io/)
 
 ### 表结构简介
