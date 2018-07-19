@@ -7,9 +7,11 @@
 
 ## 启动
 
-命令：`mvn spring-boot:run`
+部署脚本：启动数据库，部署`auth/db`下的ddl和dml脚本
 
-地址：`http://localhost:8000`
+启动应用：`mvn spring-boot:run`
+
+应用地址：`http://localhost:8000`
 
 ## 使用指南
 
