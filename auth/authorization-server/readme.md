@@ -3,57 +3,55 @@
 
 ## 简介
 
+授权微服务，可供网关gateway实现微服务对外权限的授予
+
 ## 启动
 
-`mvn spring-boot:run`
+命令：`mvn spring-boot:run`
 
-## 测试
+地址：`http://localhost:8000`
 
-### 用户名密码
+## 使用指南
 
-client_id:     test_client
+### 初始账号
 
-client_secret: test_secret
+本例中初使化的客户端与用户账号
 
-username: admin
+client_id:     `test_client`
 
-password: password
+client_secret: `test_secret`
 
-### client_credentials模式
+username: `admin`
 
-主要
+password: `password`
 
-请求报文
+### JWT Token介绍
 
-```
-POST /oauth/token?scope=read&grant_type=client_credentials HTTP/1.1
-Host: localhost:8000
-Authorization: Basic dGVzdF9jbGllbnQ6dGVzdF9zZWNyZXQ=
-Cache-Control: no-cache
-```
-响应报文
+本例中access_token Payload 负载（中间部分）base64解码后结构如下
 
 ```
 {
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sIm9yZ2FuaXphdGlvbiI6InRlc3RfY2xpZW50IiwiZXhwIjoxNTMxOTczMzAzLCJqdGkiOiI0NjBlYWRkNi1iNjU3LTRkNzAtYTFjZi00MWJjYWM5OTFkNzgiLCJjbGllbnRfaWQiOiJ0ZXN0X2NsaWVudCJ9.d_7f1N81hKWakA0eQeHOqW88-mYjYGgXHChMR_S6d6w",
-  "token_type": "bearer",
-  "expires_in": 43199,
-  "scope": "read",
-  "organization": "test_client",
-  "jti": "460eadd6-b657-4d70-a1cf-41bcac991d78"
+   "user_name": "admin",   //用户username，users表中username字段
+   "scope": [
+       "read"              //授权权限范围
+   ], 
+   "organization": "admin", //组织，该字段为自定义，自定义方法见 开发指南中
+   "exp": 1531975621,       //过期时间
+   "authorities": [         //授权权限，本例子中为用户授权的角色名，roles表中code字段
+       "ADMIN"
+   ], 
+   "jti": "23408d38-8cdc-4460-beac-24c76dc7629a",  //jwt token的id
+   "client_id": "test_client"                      //客户端id，oauth_client_details表中client_id
 }
 ```
 
-| key          |       备注         |
-|--------------|--------------------|
-| expires_in   | 过期时间，默认12小时 |
-| token_type   | bearer             |
-| scope        | read和write        |
-| organization | 组织                |
-| jti          | jwt token id       |
-| access_token | token              |
+### 接口测试
 
-### password模式
+#### 密码模式，grant_type=password
+
+用途：可用于用户通过前端应用登陆、使用应用，如app，web等终端
+
+![postman](../../docs/auth/oauth2_password_token.png)
 
 请求报文
 
@@ -79,9 +77,39 @@ username=zhoutaoo&password=password
   "jti": "51b868d1-0ce1-4fb8-901d-9c7bffc0adbb"
 }
 ```
-### refresh_token-刷新access_token
 
-使用refresh_token更新access_token
+### 客户端模式，grant_type=client_credentials
+
+用途：可用于接口开放给第三方商户，商户申请client_id和密码，即可调用授权的接口
+
+![postman](../../docs/auth/oauth2_client_token.png)
+
+请求报文
+
+```
+POST /oauth/token?scope=read&grant_type=client_credentials HTTP/1.1
+Host: localhost:8000
+Authorization: Basic dGVzdF9jbGllbnQ6dGVzdF9zZWNyZXQ=
+Cache-Control: no-cache
+```
+响应报文
+
+```
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sIm9yZ2FuaXphdGlvbiI6InRlc3RfY2xpZW50IiwiZXhwIjoxNTMxOTczMzAzLCJqdGkiOiI0NjBlYWRkNi1iNjU3LTRkNzAtYTFjZi00MWJjYWM5OTFkNzgiLCJjbGllbnRfaWQiOiJ0ZXN0X2NsaWVudCJ9.d_7f1N81hKWakA0eQeHOqW88-mYjYGgXHChMR_S6d6w",
+  "token_type": "bearer",
+  "expires_in": 43199,
+  "scope": "read",
+  "organization": "test_client",
+  "jti": "460eadd6-b657-4d70-a1cf-41bcac991d78"
+}
+```
+
+### 刷新access_token
+
+用途：使用refresh_token更新access_token
+
+![postman](../../docs/auth/oauth2_refresh_token.png)
 
 请求报文
 
@@ -105,12 +133,49 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
   "jti": "23408d38-8cdc-4460-beac-24c76dc7629a"
 }
 ```
-### authorization_code-授权码模式
 
-先登录获取code,再获取token，暂未实现
+### 开发指南
 
-### 简化模式
+#### token自定义
 
-在redirect_uri 的Hash传递token; Auth客户端运行在浏览器中,如JS,Flash，暂未实现
+见CustomTokenEnhancer类
 
+```
+public class CustomTokenEnhancer implements TokenEnhancer {
 
+    @Override
+    public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+        Map<String, Object> additionalInfo = Maps.newHashMap();
+        //自定义token内容，加入组织机构信息
+        additionalInfo.put("organization", authentication.getName());
+        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
+        return accessToken;
+    }
+}
+```
+
+#### jwt使用
+
+* jwt配置
+
+见AuthenticationServerConfig类，本例中jwt使用对称加密算法，
+也可使用非对称，这里不做实现，如有需要，请自行研究。
+
+``` 
+@Bean
+public JwtAccessTokenConverter accessTokenConverter() {
+   JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+   converter.setSigningKey(signingKey);
+   return converter;
+}
+```
+
+* jwt对称密钥配置项
+
+```
+spring:
+  security:
+    oauth2:
+      jwt:
+        signingKey: 123456
+```
