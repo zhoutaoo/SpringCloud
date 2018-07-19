@@ -40,7 +40,9 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     @Autowired
     @Qualifier("userDetailsService")
     UserDetailsService userDetailsService;
-
+    /**
+     * jwt 对称加密密钥
+     */
     @Value("${spring.security.oauth2.jwt.signingKey}")
     private String signingKey;
 
@@ -70,17 +72,32 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
         return new JdbcApprovalStore(dataSource);
     }
 
+    /**
+     * 授权码模式持久名授权码
+     *
+     * @return
+     */
     @Bean
     protected AuthorizationCodeServices authorizationCodeServices() {
         //授权码存储等处理方式类，使用jdbc，操作oauth_code表
         return new JdbcAuthorizationCodeServices(dataSource);
     }
 
+    /**
+     * token的持久化
+     *
+     * @return
+     */
     @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(accessTokenConverter());
     }
 
+    /**
+     * 自定义token
+     *
+     * @return
+     */
     @Bean
     public TokenEnhancerChain tokenEnhancerChain() {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
@@ -88,6 +105,11 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
         return tokenEnhancerChain;
     }
 
+    /**
+     * jwt token的生成配置
+     *
+     * @return
+     */
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();

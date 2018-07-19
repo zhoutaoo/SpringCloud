@@ -28,6 +28,12 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
+    /**
+     * 注入自定义的userDetailsService实现，获取用户信息，设置密码加密方式
+     *
+     * @param authenticationManagerBuilder
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
@@ -35,7 +41,9 @@ public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-    // 将 AuthenticationManager 注册为 bean , 方便配置 oauth server 的时候使用
+    /**
+     * 将 AuthenticationManager 注册为 bean , 方便配置 oauth server 的时候使用
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
