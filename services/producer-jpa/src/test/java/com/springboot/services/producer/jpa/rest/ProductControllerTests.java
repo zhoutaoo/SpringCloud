@@ -1,6 +1,5 @@
 package com.springboot.services.producer.jpa.rest;
 
-import org.hamcrest.core.Is;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +20,8 @@ public class ProductControllerTests {
 
     @Test
     public void query() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/product").param("name", "好海报"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("code", Is.is("000000")));
+        mvc.perform(MockMvcRequestBuilders.get("/products").param("page", "0"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
 }

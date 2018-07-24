@@ -6,18 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class Product extends JpaBasePo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id = UUID.randomUUID().getLeastSignificantBits();
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String name;

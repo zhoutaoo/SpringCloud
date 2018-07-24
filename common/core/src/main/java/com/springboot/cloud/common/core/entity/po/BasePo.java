@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 public class BasePo implements Serializable {
     public final static String DEFAULT_USERNAME = "system";
-    private Long id;
+    private Long id = 0L;
     private String createdBy = DEFAULT_USERNAME;
     private String updatedBy = DEFAULT_USERNAME;
     private Date createdTime = Date.from(ZonedDateTime.now().toInstant());
