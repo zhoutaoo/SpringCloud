@@ -15,6 +15,9 @@ spring:
   redis:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
+    lettuce:
+      pool:
+        max-active: 300
     ##password: ${REDIS_PASSWORD:}
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/spring_cloud
@@ -34,6 +37,8 @@ spring:
       max-file-size: "2MB"
   jackson:
     time-zone: GMT+8
+#  resources:
+#    add-mappings: false
 
 logging:
   level:
