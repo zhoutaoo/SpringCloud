@@ -14,6 +14,10 @@ spring:
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:guest}
     password: ${RABBIT_MQ_PASSWORD:guest}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    #password: ${REDIS_PASSWORD:}
   sleuth:
     enabled: true
     http:
@@ -31,15 +35,21 @@ spring:
           lower-case-service-id: true
       default-filters:
       - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+      - name: RequestRateLimiter
+        args:
+          redis-rate-limiter.replenishRate: 1  #令牌桶的容积
+          redis-rate-limiter.burstCapacity: 1  #流速 每秒
+          rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
+          key-resolver: "#{@remoteAddressKeyResolver}" #SPEL表达式去的对应的bean
       routes:
       # =====================================
-      - id: oauth2
-        uri: lb://oauth2
-        order: 8000
+      - id: authorization-server
+        uri: lb://authorization-server
         predicates:
-        - Path=/oauth2/**
+        - Path=/authorization-server/**
         filters:
-        - StripPrefix=2
+        - StripPrefix=1
+        - AddResponseHeader=foo, bar
 
 gate:
   ignore:

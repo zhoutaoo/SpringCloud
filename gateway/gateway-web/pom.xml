@@ -23,11 +23,17 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
+        <!--redis限流-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.springboot.cloud</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!--网关签权客户端-->
         <dependency>
             <groupId>com.springboot.cloud</groupId>
             <artifactId>authentication-client</artifactId>

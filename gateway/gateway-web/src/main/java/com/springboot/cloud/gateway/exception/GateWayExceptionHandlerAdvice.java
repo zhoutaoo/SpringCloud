@@ -27,9 +27,8 @@ public class GateWayExceptionHandlerAdvice {
         return Result.fail(ErrorType.GATEWAY_CONNECT_TIME_OUT);
     }
 
-
     @ExceptionHandler(value = {NotFoundException.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public Result handle(NotFoundException ex) {
         log.error("not found exception:{}", ex.getMessage());
         return Result.fail(ErrorType.GATEWAY_NOT_FOUND_SERVICE);
