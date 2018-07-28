@@ -128,7 +128,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <scope>test</scope>
+            <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
         <!--使用 lombok 简化 Java 代码-->
