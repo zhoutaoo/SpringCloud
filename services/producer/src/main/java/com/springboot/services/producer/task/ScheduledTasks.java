@@ -16,6 +16,7 @@ public class ScheduledTasks {
 
     @Autowired
     private RedisSender redisSender;
+
     @Autowired
     private BusSender busSender;
 

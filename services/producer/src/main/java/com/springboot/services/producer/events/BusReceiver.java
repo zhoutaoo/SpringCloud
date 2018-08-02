@@ -1,22 +1,21 @@
 package com.springboot.services.producer.events;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class BusReceiver {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void handleMessage(String message) {
-        logger.info("Received <{}>", message);
+        log.info("Received Message:<{}>", message);
     }
 
     @Bean
     MessageListenerAdapter mqListenerAdapter() {
-        logger.info("new listener");
+        log.info("new listener");
         return new MessageListenerAdapter(this);
     }
 
