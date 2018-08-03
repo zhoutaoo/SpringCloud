@@ -30,20 +30,19 @@
 |  center  | eureka-server             | 注册中心   |  http://localhost:8761  |      |
 |  center  | bus-server                | 消息中心   |  http://localhost:8071  |      |
 |  center  | config-server             | 配置中心   |  http://localhost:8061  |      |
-|  auth    | authorization-server      | 授权服务   |  http://localhost:8000  | [文档](./auth/authorization-server)     |
-|  auth    | authentication-server     | 签权服务   |  http://localhost:8001  |      |
-|  auth    | authentication-client     | 签权客户端  |  jar包引入               |      |
+|  auth    | authorization-server      | 授权服务   |  http://localhost:8000  | [权限服务文档](./auth) 、[授权Server文档](./auth/authorization-server)     |
+|  auth    | authentication-server     | 签权服务   |  http://localhost:8001  | [认证Server文档](./auth/authentication-server)    |
+|  auth    | authentication-client     | 签权客户端  |  jar包引入              |      |
 |  gateway | gateway                   | 网关       |  http://localhost:8443  |      |
 |  monitor | admin                     | 总体监控    |  http://localhost:8022  |      |
-|  monitor | hystrix-dashboard         | 性能指标展示|  http://localhost:8021  |      |
-|  monitor | turbine                   | 性能指标收集|  http://localhost:8031  |      |
-|  monitor | zipkin                    | 日志收集   |  http://localhost:8091  |      |
+|  monitor | hystrix-dashboard         | 性能指标展示 |  http://localhost:8021  |      |
+|  monitor | turbine                   | 性能指标收集 |  http://localhost:8031  |      |
+|  monitor | zipkin                    | 日志收集     |  http://localhost:8091 |      |
 
 
 ### 测试
 
 运行 `mvn test` 启动测试.
-
 
 
 ## 开发指南
@@ -131,99 +130,76 @@
 │          └── application.yml   --springboot test的配置文件
 └── target                     --编译目标目录
 ```
+### 开发规范
 
-## 数据库设计规范
-
-### 表设计规范
-
-1、表名全部小写，单词间通过'_'间隔
-
-2、主键命名为'id'，类型为serial自增长主键，会默认创建名为[表名_id_seq]的序列
-
-3、必须包含4个审计字段且不能为空。created_time、updated_time、created_by、updated_by。
-
-4、关键词要求大写，使用IDE如idea进行格式化
-
-5、常量枚举全部用大写
-
-### 外键及索引命名规范
-
-1、唯一索引：ux_表名_索引字段。如：ux_resource_code
-
-2、普通索引：ix_表名_索引字段。如：ix_role_name
-
-3、外键命名：fk_表名_字段名。如：fk_orders_product_id
+[规范文档](docs/pattern.md)
 
 
-### 字段长度规则
+## 功能特性
 
-| 名称类  | 类型    | 长度  |  备注  |
-|--------|---------|------|--------|
-| 编码类  | varchar |  100 |        |
-| 账号类  | varchar |  100 | 如email，username |
-| 状态类  | varchar |  5   | 如订单状态等       |
-| 名称类  | varchar |  200 | 中文名称，如产品名  |
-| 手机电话| varchar |  20  |        |
-| 描述简介| varchar |  500 |        |
-| 网址类  | varchar |  500 | 如url  |
-| 时间类  | timestamp |    |        |
-    
+### 基础模块
 
-## URL和方法命名规范
+注册中心：Eureka✅
 
-### RESTFUL URL命名规范
+配置中心：Appollo🏗、Spring Cloud Config✅
 
-API URI design
-API URI 设计最重要的一个原则： nouns (not verbs!) ，名词（而不是动词）。
+消息总线：Rabbitmq✅
 
-CRUD 简单 URI：
+灰度分流：OpenResty+lua
 
-|  方法   | URL       |       功能       |
-|--------|-----------|------------------|
-| GET    | /users    | 获取用户列表       |
-| GET    | /users/1  | 获取 id 为 1 的用户|
-| POST   | /users    | 创建一个用户       |
-| PUT    | /users/1  | 替换 id 为 1 的用户|
-| PATCH  | /users/1  | 修改 id 为 1 的用户|
-| DELETE | /users/1  | 删除 id 为 1 的用户|
+动态网关：Spring Cloud Gateway✅，多种维度的流量控制（服务、IP、用户等），后端可配置化
 
-上面是对某一种资源进行操作的 URI，那如果是有关联的资源，或者称为级联的资源，该如何设计 URI 呢？比如某一用户下的产品：
+授权认证：Spring Security OAuth2✅
 
-|  方法   | URL                 |             功能                   |
-|--------|---------------------|------------------------------------|
-| GET    | /users/1/products   | 获取 Id 为 1 用户下的产品列表         |
-| GET    | /users/1/products/2 | 获取 Id 为 1 用户下 Id 为 2 的产品    |
-| POST   | /users/1/products   | 在 Id 为 1 用户下，创建一个产品       |
-| PUT    | /users/1/products/2 | 在 Id 为 1 用户下，替换 Id 为 2 的产品|
-| PATCH  | /users/1/products/2 | 修改 Id 为 1 的用户下 Id 为 2 的产品  |
-| DELETE | /users/1/products/2 | 删除 Id 为 1 的用户下 Id 为 2 的产品  |
+服务容错：Spring Cloud Hystrix✅
 
-### 方法命名规范
+服务调用：Spring Cloud OpenFeign✅
 
-### Mapper
+任务调度：Elastic-Job
 
-insert/add
-delete
-update
-query
-search
+缓存管理：基于Cache Cloud 保证Redis的高可用
 
-### Service
+对象存储：FastDFS
 
-add
-get
-delete
-update
-save
-query
-search
+分库分表：Mycat
 
-### Rest
+数据权限：使用mybatis对原查询做增强，业务代码不用控制，即可实现。
 
-add
-get
-delete
-update
-save
-query
-search
+### 开发管理
+
+代码生成：前后端代码的生成，支持Vue
+
+测试管理：
+
+文档管理：Swagger2✅
+
+### 运维监控
+
+服务监控: Spring Boot Admin✅
+
+链路追踪：Pinpoint、SkyWalking
+
+操作审计：系统关键操作日志记录和查询
+
+日志管理：ES + Kibana、Zipkin✅
+
+监控告警：Grafana
+
+### 平台功能
+
+用户管理：用户是系统操作者，该功能主要完成系统用户配置。
+
+角色管理：角色菜单权限分配、设置角色按机构进行数据范围权限划分。
+
+菜单管理：配置系统菜单，操作权限，按钮权限标识等。
+
+机构管理：配置系统组织机构，树结构展现，可随意调整上下级。
+
+通知平台：短信、邮件、微信模板发送
+
+
+## 联系交流
+
+EMail：zhoutaoo@foxmail.com
+
+![wechat](docs/wechat.png)
