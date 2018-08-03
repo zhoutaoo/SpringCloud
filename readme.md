@@ -175,7 +175,7 @@
 
 ### 运维监控
 
-服务监控: Spring Boot Admin✅
+服务监控：Spring Boot Admin✅
 
 链路追踪：Pinpoint、SkyWalking
 
