@@ -41,11 +41,11 @@ feign:
 #      min-request-size: 2048
 hystrix:
   command:
-      default:
-        execution:
-          isolation:
-            thread:
-              timeoutInMilliseconds: 3000
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
 
 logging:
   level:

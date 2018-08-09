@@ -25,11 +25,11 @@ spring:
 
 hystrix:
   command:
-      default:
-        execution:
-          isolation:
-            thread:
-              timeoutInMilliseconds: 3000
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
 
 logging:
   level:

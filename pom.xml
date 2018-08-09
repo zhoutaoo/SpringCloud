@@ -95,6 +95,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!--注册中心-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
         <!--断路器-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -105,19 +110,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-netflix-hystrix-stream</artifactId>
         </dependency>
-        <!--注册中心-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
         <!--日志跟踪-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
         <!--消息总线-->
         <dependency>

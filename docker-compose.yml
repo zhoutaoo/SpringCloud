@@ -8,6 +8,7 @@ services:
       - ./data/redis:/data
     environment:
       - REDIS_PASSWORD=123456
+    #command: redis-cli config set requirepass 123456
     networks:
       - sc-net
     ports:
@@ -23,7 +24,7 @@ services:
       - sc-net
     ports:
       - 5672:5672
-      
+
   postgres:
     image: postgres:9.6-alpine
     container_name: sc-postgres
@@ -72,6 +73,24 @@ services:
       - EUREKA_ZONE_PORT=8761
     depends_on:
       - eureka-server
+
+  zipkin-server:
+    image: openzipkin/zipkin
+    container_name: sc-zipkin-server
+    restart: always
+    volumes:
+      - ./data/logs/zipkin-server:/logs
+    networks:
+      - sc-net
+    ports:
+      - 9411:9411
+    environment:
+      - RABBIT_ADDRESSES=rabbitmq:5672
+      - RABBIT_MQ_PORT=5672
+      - RABBIT_PASSWORD=guest
+      - RABBIT_USER=guest
+    depends_on:
+      - rabbitmq
 
   producer:
     image: cike/producer

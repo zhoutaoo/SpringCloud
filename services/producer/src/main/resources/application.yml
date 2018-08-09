@@ -18,7 +18,7 @@ spring:
     lettuce:
       pool:
         max-active: 300
-    ##password: ${REDIS_PASSWORD:}
+    #password: ${REDIS_PASSWORD:123456}
   datasource:
     url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/spring_cloud
     username: ${POSTGRES_USERNAME:postgres}
@@ -28,7 +28,13 @@ spring:
     admin:
       url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
   zipkin:
-    baseUrl: http://localhost:8091
+    enabled: true
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1.0
+
   mvc:
     throw-exception-if-no-handler-found: true
   servlet:
@@ -42,8 +48,7 @@ spring:
 
 logging:
   level:
-    org.springframework.web: debug
-    org.apache.ibatis: debug
+    org.springframework.cloud.sleuth: debug
     java.sql.PreparedStatement: debug
   path: logs/
   file:
@@ -58,3 +63,4 @@ management:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+

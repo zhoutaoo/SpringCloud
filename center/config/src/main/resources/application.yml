@@ -22,8 +22,6 @@ spring:
           searchPaths: /
           username: your_username
           password: your_password
-  zipkin:
-    baseUrl: http://localhost:8091
 
 management:
   endpoints:
