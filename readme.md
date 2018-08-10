@@ -29,16 +29,14 @@
 |----------|---------------------------|-----------|-------------------------|------|
 |  center  | eureka-server             | 注册中心   |  http://localhost:8761  |      |
 |  center  | bus-server                | 消息中心   |  http://localhost:8071  |      |
-|  center  | config-server             | 配置中心   |  http://localhost:8061  |      |
+|  center  | config-server             | 配置中心   |  http://localhost:8888  |      |
 |  auth    | authorization-server      | 授权服务   |  http://localhost:8000  | [权限服务文档](./auth) 、[授权Server文档](./auth/authorization-server)     |
 |  auth    | authentication-server     | 签权服务   |  http://localhost:8001  | [认证Server文档](./auth/authentication-server)    |
 |  auth    | authentication-client     | 签权客户端  |  jar包引入              |      |
-|  gateway | gateway                   | 网关       |  http://localhost:8443  |      |
-|  monitor | admin                     | 总体监控    |  http://localhost:8022  |      |
-|  monitor | hystrix-dashboard         | 性能指标展示 |  http://localhost:8021  |      |
-|  monitor | turbine                   | 性能指标收集 |  http://localhost:8031  |      |
-|  monitor | zipkin                    | 日志收集     |  http://localhost:8091 |      |
-
+|  gateway | gateway                   | 网关       |  http://localhost:8443 |      |
+|  monitor | admin                     | 总体监控    |  http://localhost:8022 |      |
+|  monitor | hystrix-dashboard         | 性能指标展示 |  http://localhost:8021 |      |
+|  monitor | turbine                   | 性能指标收集 |  http://localhost:8031 |      |
 
 ### 测试
 
