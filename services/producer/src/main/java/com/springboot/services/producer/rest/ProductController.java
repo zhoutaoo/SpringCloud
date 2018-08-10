@@ -9,13 +9,11 @@ import com.springboot.services.producer.service.IProductService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RefreshScope
 @RequestMapping("/product")
 @Api("product")
 @Slf4j

@@ -1,5 +1,5 @@
 server:
-  port: 8061
+  port: 8888
 
 eureka:
   client:
@@ -20,8 +20,6 @@ spring:
         git:
           uri: https://git.oschina.net/toopoo/config.git
           searchPaths: /
-          username: your_username
-          password: your_password
 
 management:
   endpoints:

@@ -5,20 +5,23 @@ import com.springboot.services.producer.entity.param.ProductQueryParam;
 import com.springboot.services.producer.entity.po.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Slf4j
+@RefreshScope
 public class ProductService implements IProductService {
 
     @Autowired
     private ProductMapper productMapper;
 
-    //@Value("${username}")
+    @Value("${username}")
     private String value;
 
     @Override
