@@ -22,11 +22,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
-        <!--集群监控消息队列
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-netflix-hystrix-amqp</artifactId>
-        </dependency>-->
         <dependency>
             <groupId>com.didispace</groupId>
             <artifactId>swagger-butler-core</artifactId>
