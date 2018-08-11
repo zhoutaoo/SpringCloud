@@ -26,9 +26,6 @@ spring:
   flyway:
     locations: classpath:.
     baseline-on-migrate: true
-  devtools:
-    livereload:
-      enabled: true
 
 logging:
   level:
@@ -50,3 +47,6 @@ management:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+
+username: test123
