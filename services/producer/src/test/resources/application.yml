@@ -11,7 +11,7 @@ spring:
     druid:
       web-stat-filter:
         enabled: false
-    url: jdbc:h2:mem:spring_cloud;MODE=PostgreSQL;INIT=RUNSCRIPT FROM './src/main/db/ddl/V1__products.sql'
+    url: jdbc:h2:mem:sc_product;MODE=PostgreSQL;INIT=RUNSCRIPT FROM './src/main/db/ddl/V1__products.sql'
     username: sa
     password:
     driver-class-name: org.h2.Driver
