@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS sc_product;
+CREATE DATABASE sc_product;

@@ -1,8 +1,3 @@
-DROP DATABASE IF EXISTS sc_product;
-CREATE DATABASE sc_product;
-
-\c sc_product;
-
 DROP TABLE IF EXISTS product;
 CREATE TABLE product
 (
