@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   redis: 
     image: redis:alpine
@@ -43,7 +43,7 @@ services:
     container_name: sc-zipkin-server
     restart: always
     volumes:
-      - ./data/logs/zipkin-server:/logs
+      - ./data/zipkin-server/logs:/var/logs
     networks:
       - sc-net
     ports:
@@ -61,7 +61,7 @@ services:
     container_name: sc-elasticsearch
     restart: always
     volumes:
-      - ./data/logs/elasticsearch:/logs
+      - ./data/elasticsearch/logs:/var/logs/elasticsearch
     networks:
       - sc-net
     ports:
@@ -72,7 +72,7 @@ services:
     container_name: sc-kibana
     restart: always
     volumes:
-      - ./data/logs/kibana:/logs
+      - ./data/kibana/logs:/var/logs/kibana
     networks:
       - sc-net
     ports:
@@ -87,152 +87,11 @@ services:
     container_name: sc-grafana
     restart: always
     volumes:
-      - ./data/logs/grafana:/logs
+      - ./data/grafana/logs:/var/logs/grafana
     networks:
       - sc-net
     ports:
       - 3000:3000
-
-  eureka-server:
-    image: cike/eureka-server
-    container_name: sc-eureka-server
-    restart: always
-    volumes:
-      - ./data/logs/eureka-server:/logs
-    networks:
-      - sc-net
-    ports:
-      - 8081:8761
-    environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-    depends_on:
-      - rabbitmq
-
-  config-server:
-    image: cike/config-server
-    container_name: sc-config-server
-    restart: always
-    volumes:
-      - ./data/logs/config-server:/logs
-    networks:
-      - sc-net
-    ports:
-      - 8061:8061
-    environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-    depends_on:
-      - eureka-server
-
-  producer:
-    image: cike/producer
-    container_name: sc-producer
-    restart: always
-    volumes:
-      - ./data/logs/producer:/logs
-    networks:
-      - sc-net
-    ports:
-      - 8001:8001
-    environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=123456
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=postgres
-    depends_on:
-      - config-server
-
-  gateway:
-    image: cike/gateway-web
-    container_name: sc-gateway-web
-    restart: always
-    volumes:
-      - ./data/logs/gateway-web:/logs
-    networks:
-      - sc-net
-    ports:
-      - 8443:8443
-    environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-    depends_on:
-      - eureka-server
-      - authorization-server
-      - authentication-server
-
-  authorization-server:
-    image: cike/authorization-server
-    container_name: sc-authorization-server
-    restart: always
-    volumes:
-      - ./data/logs/authorization-server:/logs
-    networks:
-      - sc-net
-    ports:
-      - 8000:8000
-    environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=123456
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=postgres
-    depends_on:
-      - eureka-server
-      - postgres
-
-  authentication-server:
-    image: cike/authentication-server
-    container_name: sc-authentication-server
-    restart: always
-    volumes:
-      - ./data/logs/authentication-server:/logs
-    networks:
-      - sc-net
-    ports:
-      - 8000:8000
-    environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=123456
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=postgres
-    depends_on:
-      - eureka-server
-      - postgres
 
 networks:
   sc-net:
