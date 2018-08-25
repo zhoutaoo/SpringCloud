@@ -25,6 +25,7 @@
         <module>gateway</module>
         <module>monitor</module>
         <module>services</module>
+        <module>sysadmin</module>
     </modules>
 
     <dependencyManagement>
