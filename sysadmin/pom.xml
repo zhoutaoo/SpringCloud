@@ -18,10 +18,7 @@
     </parent>
 
     <modules>
+        <module>organization</module>
     </modules>
-
-    <dependencies>
-
-    </dependencies>
 
 </project>
