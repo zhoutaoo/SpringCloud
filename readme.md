@@ -53,7 +53,7 @@
 |----------|---------------------------|-----------|-------------------------|------|
 |  center  | eureka-server             | 注册中心   |  http://localhost:8761  |      |
 |  center  | bus-server                | 消息中心   |  http://localhost:8071  |      |
-|  center  | config-server             | 配置中心   |  http://localhost:8888  |      |
+|  center  | config-server             | 配置中心   |  http://localhost:8888  | [配置中心文档](./center/config-server)      |
 |  auth    | authorization-server      | 授权服务   |  http://localhost:8000  | [权限服务文档](./auth) 、[授权Server文档](./auth/authorization-server)     |
 |  auth    | authentication-server     | 签权服务   |  http://localhost:8001  | [认证Server文档](./auth/authentication-server)    |
 |  auth    | authentication-client     | 签权客户端  |  jar包引入              |      |
