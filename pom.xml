@@ -23,10 +23,10 @@
         <module>center</module>
         <module>common</module>
         <module>gateway</module>
+        <module>webapps</module>
         <module>monitor</module>
         <module>services</module>
         <module>sysadmin</module>
-        <module>webapps</module>
     </modules>
 
     <dependencyManagement>
