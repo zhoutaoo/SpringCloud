@@ -12,8 +12,8 @@
     <description>Demo Webapps project for Spring Boot</description>
 
     <parent>
-        <groupId>com.springboot.cloud</groupId>
         <artifactId>cloud</artifactId>
+        <groupId>com.springboot.cloud</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
