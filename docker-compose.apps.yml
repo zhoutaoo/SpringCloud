@@ -1,0 +1,30 @@
+version: '3'
+services:
+  producer:
+    image: cike/producer
+    container_name: sc-producer
+    restart: always
+    volumes:
+      - ./data/producer/logs:/var/logs
+      - ./data/pinpoint-agent:/pinpoint-agent
+    networks:
+      - sc-net
+    ports:
+      - 9001:9001
+    environment:
+      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_PORT=5672
+      - RABBIT_MQ_USERNAME=guest
+      - RABBIT_MQ_PASSWORD=guest
+      - EUREKA_ZONE_HOST=eureka-server
+      - EUREKA_ZONE_PORT=8761
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=123456
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=postgres
+      - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=producer1 -Dpinpoint.applicationName=producer
+    depends_on:
+      - config-server
