@@ -83,5 +83,12 @@ public class GroupController {
         log.info("search with groupQueryForm:", groupQueryForm);
         return Result.success(groupService.query(groupQueryForm.toParam(GroupQueryParam.class)));
     }
-}
 
+    @ApiOperation(value = "根据父id查询用户组", notes = "根据父id查询用户组列表")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "用户组父ID", required = true, dataType = "long")
+    @GetMapping(value = "/parent/{id}")
+    public Result search(@PathVariable long id) {
+        log.info("query with parent id:", id);
+        return Result.success(groupService.queryByParentId(id));
+    }
+}

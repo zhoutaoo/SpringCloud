@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 public interface GroupMapper {
 
+    String PUBLIC_COLUMN = "id,parent_id,name,description,updated_time,created_time,updated_by,created_by";
+
     @Options(useGeneratedKeys = true)
     @Insert("insert into \"group\"(parent_id,name,description,updated_time,created_time,updated_by,created_by)" +
             " values(#{name},#{description},now(),now(),#{updatedBy},#{createdBy})")
@@ -23,12 +25,14 @@ public interface GroupMapper {
             " where id=#{id}")
     void update(Group group);
 
-    @Select("select id,parent_id,name,description,updated_time,created_time,updated_by,created_by" +
-            " from \"group\" where id=#{id}")
+    @Select("select " + PUBLIC_COLUMN + " from \"group\" where id=#{id}")
     Group select(long id);
 
+    @Select("select " + PUBLIC_COLUMN + " from \"group\" where parent_id=#{id}")
+    List<Group> queryByParentId(long id);
+
     @Select("<script>" +
-            "select id,parent_id,name,description,updated_time,created_time,updated_by,created_by" +
+            "select " + PUBLIC_COLUMN +
             " from \"group\"" +
             " where name=#{name}" +
             "<if test='createdTimeStart!=null'>" +

@@ -23,11 +23,18 @@ public interface IGroupService {
     long add(Group group);
 
     /**
-     * 查询用户
+     * 查询用户组
      *
      * @return
      */
     List<Group> query(GroupQueryParam groupQueryParam);
+
+    /**
+     * 根据父id查询用户组
+     *
+     * @return
+     */
+    List<Group> queryByParentId(long id);
 
     /**
      * 更新用户组信息

@@ -8,14 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Slf4j
-@RefreshScope
 public class GroupService implements IGroupService {
 
     @Autowired
@@ -47,5 +45,10 @@ public class GroupService implements IGroupService {
     @Override
     public List<Group> query(GroupQueryParam groupQueryParam) {
         return groupMapper.query(groupQueryParam);
+    }
+
+    @Override
+    public List<Group> queryByParentId(long id) {
+        return groupMapper.queryByParentId(id);
     }
 }
