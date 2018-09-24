@@ -50,7 +50,7 @@ spring:
 
 logging:
   level:
-    org.springframework.cloud.sleuth: debug
+    org.springframework.web: debug
     java.sql.PreparedStatement: debug
   path: logs/
   file:

@@ -25,19 +25,19 @@ public class GroupService implements IGroupService {
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass+'-'+#id")
+    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#id")
     public void delete(long id) {
         groupMapper.delete(id);
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass+'-'+#group.id")
+    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#group.id")
     public void update(Group group) {
         groupMapper.update(group);
     }
 
     @Override
-    @Cacheable(value = "group", key = "#root.targetClass+'-'+#id")
+    @Cacheable(value = "group", key = "#root.targetClass.name+'-'+#id")
     public Group get(long id) {
         return groupMapper.select(id);
     }
