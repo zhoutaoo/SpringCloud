@@ -73,29 +73,6 @@ management:
       exposure:
         include: '*'
 
-#请求和响应GZIP压缩支持
-feign:
-  httpclient:
-    enabled: false
-  okhttp:
-    enabled: true
-  hystrix:
-    enabled: true
-
-#  compression:
-#    response:
-#      enabled: true
-#    request:
-#      enabled: true
-#      mime-types: text/xml,application/xml,application/json
-#      min-request-size: 2048
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 3000
 logging:
   level:
     com.springboot.cloud.gateway: debug

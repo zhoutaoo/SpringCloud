@@ -32,14 +32,6 @@ spring:
   jackson:
     time-zone: GMT+8
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 3000
-
 logging:
   level:
     org.springframework.web: debug
