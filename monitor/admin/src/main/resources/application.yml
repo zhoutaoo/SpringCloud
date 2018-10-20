@@ -5,6 +5,11 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+  #spring boot admin设置权限，故需要通过账号密码获取注册信息
+  instance:
+    metadata-map:
+      user.name: admin
+      user.password: 123456
 
 spring:
   application:
@@ -18,36 +23,25 @@ spring:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
     ##password: ${REDIS_PASSWORD:}
-  boot:
-    admin:
-      url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
-      client:
-        username: admin
-        password: 123456
-      routes:
-        endpoints: env,metrics,dump,hystrix.stream,turbine.stream,info,configprops,trace,logfile,refresh,heapdump,loggers,auditevents
-      turbine:
-        enabled: true
-        clusters: default
-        location: http://host1:8031/turbine.stream
-  zipkin:
-    baseUrl: http://localhost:8091
+  #spring boot admin的登陆账号和密码配置
   security:
     user:
       name: admin
       password: 123456
-
+  #通过rabbit MQ将日志发给zipkin
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1.0
+#日志相关配置
 logging:
   level:
-    org.springframework.web: debug
     org.springframework.security: DEBUG
   path: logs/
   file:
     max-size: 1GB
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
 
