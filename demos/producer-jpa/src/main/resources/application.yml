@@ -1,0 +1,59 @@
+server:
+  port: 9001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+
+spring:
+  application:
+    name: producer-jpa
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    ##password: ${REDIS_PASSWORD:}
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/sc_product
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1.0
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "2MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+  jpa:
+    show-sql: true
+    generate-ddl: true
+
+logging:
+  level:
+    org.springframework.web: debug
+    java.sql.PreparedStatement: debug
+  path: logs/
+  file:
+    max-size: 1GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

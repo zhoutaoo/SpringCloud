@@ -1,0 +1,49 @@
+server:
+  port: 9001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+
+spring:
+  datasource:
+    druid:
+      web-stat-filter:
+        enabled: false
+    url: jdbc:h2:mem:sc_product;MODE=PostgreSQL;INIT=RUNSCRIPT FROM './src/main/db/ddl/V1__products.sql'
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "2MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+  flyway:
+    locations: classpath:.
+    baseline-on-migrate: true
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    org.springframework.web: info
+    java.sql.PreparedStatement: info
+    java.sql.Statement: info
+    Java.sql.Connection: info
+  path: logs/
+  file:
+    max-size: 1GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
