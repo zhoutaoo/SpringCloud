@@ -26,9 +26,7 @@ spring:
     username: ${POSTGRES_USERNAME:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
-  boot:
-    admin:
-      url: http://${BOOT_ADMIN_HOST:localhost}:${BOOT_ADMIN_PORT:8022}
+
   zipkin:
     enabled: true
     sender:
@@ -62,6 +60,3 @@ management:
       exposure:
         include: '*'
 
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true

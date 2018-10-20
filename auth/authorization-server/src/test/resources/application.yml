@@ -47,6 +47,3 @@ management:
       exposure:
         include: '*'
 
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true

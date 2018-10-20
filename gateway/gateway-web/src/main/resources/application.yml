@@ -18,11 +18,17 @@ spring:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
     #password: ${REDIS_PASSWORD:}
+
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
   sleuth:
     enabled: true
     http:
       legacy:
         enabled: true
+  #jwt密码
   security:
     oauth2:
       jwt:
@@ -55,7 +61,7 @@ spring:
           args:
             retries: 3
             statuses: BAD_GATEWAY
-
+#网关白名单，无需要签权url
 gate:
   ignore:
     authentication:

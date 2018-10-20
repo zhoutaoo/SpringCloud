@@ -38,7 +38,3 @@ logging:
   path: logs/
   file:
     max-size: 1GB
-
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true

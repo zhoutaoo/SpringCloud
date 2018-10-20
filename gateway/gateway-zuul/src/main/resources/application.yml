@@ -14,6 +14,11 @@ spring:
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:guest}
     password: ${RABBIT_MQ_PASSWORD:guest}
+
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
   sleuth:
     enabled: true
     http:
@@ -41,8 +46,11 @@ feign:
 #      min-request-size: 2048
 
 logging:
+  level:
+    com.springboot.cloud.gateway: debug
   path: logs/
-
+  file:
+    max-size: 1GB
 
 
 
