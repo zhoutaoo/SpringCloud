@@ -24,8 +24,8 @@
         <module>gateway</module>
         <module>webapps</module>
         <module>monitor</module>
-        <module>services</module>
         <module>sysadmin</module>
+        <module>demos</module>
     </modules>
 
     <dependencyManagement>
