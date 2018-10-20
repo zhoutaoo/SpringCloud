@@ -53,6 +53,8 @@ services:
       - RABBIT_MQ_PORT=5672
       - RABBIT_PASSWORD=guest
       - RABBIT_USER=guest
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=http://elasticsearch:9200
     depends_on:
       - rabbitmq
 
