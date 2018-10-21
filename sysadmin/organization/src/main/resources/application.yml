@@ -34,7 +34,6 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
-
   mvc:
     throw-exception-if-no-handler-found: true
   servlet:
@@ -59,4 +58,8 @@ management:
     web:
       exposure:
         include: '*'
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
 
