@@ -62,12 +62,47 @@ services:
     image: elasticsearch:alpine
     container_name: sc-elasticsearch
     restart: always
+    environment:
+      - cluster.name=elasticsearch
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - node.name=elasticsearch_node_1
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     volumes:
-      - ./data/elasticsearch/logs:/var/logs/elasticsearch
+      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
     networks:
       - sc-net
     ports:
       - 9200:9200
+      - 9300:9300
+
+  skywalking:
+    image: wutang/skywalking-docker:5.x
+    container_name: skywalking
+    privileged: true
+    networks:
+      - sc-net
+    environment:
+      - ES_CLUSTER_NAME=elasticsearch
+      - ES_ADDRESSES=elasticsearch:9300
+      - BIND_HOST=127.0.0.1
+      - AGENT_JETTY_BIND_HOST=127.0.0.1
+      - NAMING_BIND_HOST=127.0.0.1
+      - UI_JETTY_BIND_HOST=0.0.0.0
+    depends_on:
+      - elasticsearch
+    command: ["/wait-for-it.sh", "elasticsearch:9300", "-t", "20"]
+    ports:
+      - 8080:8080
+      - 10800:10800
+      - 11800:11800
+      - 12800:12800
 
   kibana:
     image: kibana
