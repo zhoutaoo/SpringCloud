@@ -52,6 +52,10 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>RELEASE</version>
