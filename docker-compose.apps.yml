@@ -1,8 +1,8 @@
 version: '3'
 services:
-  producer:
-    image: cike/producer
-    container_name: sc-producer
+  producer-jpa:
+    image: cike/producer-jpa
+    container_name: sc-producer-jpa
     restart: always
     volumes:
       - ./data/producer/logs:/var/logs
@@ -11,20 +11,11 @@ services:
       - sc-net
     ports:
       - 9001:9001
+    env_file: .env
     environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=123456
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=postgres
-      - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=producer1 -Dpinpoint.applicationName=producer
+      - APP_ID=producer-jpa
+      - DB_NAME=sc_product
+      - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=producer-jpa -Dpinpoint.applicationName=producer-jpa
     depends_on:
-      - config-server
+      - postgres
+      - apollo-config

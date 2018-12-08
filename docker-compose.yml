@@ -38,21 +38,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
 
-  apollo-db:
-    image: mysql:5.7
-    container_name: sc-apollo-db
-    restart: always
-    networks:
-      - sc-net
-    ports:
-      - 3306:3306
-    volumes:
-      - ./data/config-server/sql:/docker-entrypoint-initdb.d
-      - ./data/mysql:/var/lib/mysql
-    environment:
-      TZ: Asia/Shanghai
-      MYSQL_ROOT_PASSWORD: root123
-
   zipkin-server:
     image: openzipkin/zipkin
     container_name: sc-zipkin-server
