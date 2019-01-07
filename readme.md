@@ -171,7 +171,6 @@
 |  授权认证 | Spring Security OAuth2  |   ✅          |  Jwt模式   |
 |  服务容错 | SpringCloud Hystrix     |   ✅          |           |
 |  服务调用 | SpringCloud OpenFeign   |   ✅          |           |
-|  缓存管理 | Redis Cache Cloud       |   🏗          |  基于Redis Cache Cloud        |
 |  对象存储 | FastDFS                 |   🏗          |           |
 |  任务调度 | Elastic-Job             |   🏗          |           |
 |  分库分表 | Mycat                   |   🏗          |           |

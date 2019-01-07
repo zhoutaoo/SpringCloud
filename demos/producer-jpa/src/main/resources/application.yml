@@ -6,9 +6,16 @@ eureka:
     serviceUrl:
       defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
 
+apollo:
+  bootstrap:
+    enabled: true
+  meta: http://${APOLLO_HOST:localhost}:${APOLLO_PORT:8080}
+app:
+  id: ${APP_ID}
+
 spring:
   application:
-    name: producer-jpa
+    name: ${APP_ID}
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -19,7 +26,7 @@ spring:
     port: ${REDIS_PORT:6379}
     ##password: ${REDIS_PASSWORD:}
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/sc_product
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${DB_NAME}
     username: ${POSTGRES_USERNAME:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
