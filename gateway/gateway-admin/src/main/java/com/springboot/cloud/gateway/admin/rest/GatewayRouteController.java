@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/gateway/routes")
-@Api("group")
+@Api("gateway routes")
 @Slf4j
 public class GatewayRouteController {
 

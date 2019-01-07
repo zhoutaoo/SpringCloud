@@ -11,30 +11,27 @@ import java.util.List;
 @Repository
 public interface GatewayRouteMapper {
 
-    String PUBLIC_COLUMN = "id,parent_id,name,description,updated_time,created_time,updated_by,created_by";
+    String PUBLIC_COLUMN = "id,uri,predicates,filters,description,updated_time,created_time,updated_by,created_by";
 
     @Options(useGeneratedKeys = true)
-    @Insert("insert into \"gateway_route\"(parent_id,name,description,updated_time,created_time,updated_by,created_by)" +
-            " values(#{name},#{description},now(),now(),#{updatedBy},#{createdBy})")
+    @Insert("insert into gateway_routes(uri,predicates,filters,description,updated_time,created_time,updated_by,created_by)" +
+            " values(#{uri},#{predicates},#{filters},#{description},now(),now(),#{updatedBy},#{createdBy})")
     long insert(GatewayRoute gatewayRoute);
 
-    @Delete("delete from \"gateway_route\" where id=#{id}")
+    @Update("update gateway_routes set deleted='Y' where id=#{id}")
     void delete(long id);
 
-    @Update("update \"gateway_route\" set name=#{name},description=#{description},updated_by=#{updatedBy},updated_time=now()" +
+    @Update("update gateway_routes set uri=#{uri},predicates=#{predicates},filters=#{filters},description=#{description},updated_by=#{updatedBy},updated_time=now()" +
             " where id=#{id}")
     void update(GatewayRoute gatewayRoute);
 
-    @Select("select " + PUBLIC_COLUMN + " from \"gateway_route\" where id=#{id}")
+    @Select("select " + PUBLIC_COLUMN + " from gateway_routes where id=#{id}")
     GatewayRoute select(long id);
-
-    @Select("select " + PUBLIC_COLUMN + " from \"gateway_route\" where parent_id=#{id}")
-    List<GatewayRoute> queryByParentId(long id);
 
     @Select("<script>" +
             "select " + PUBLIC_COLUMN +
-            " from \"gateway_route\"" +
-            " where name=#{name}" +
+            " from gateway_route" +
+            " where uri=#{uri}" +
             "<if test='createdTimeStart!=null'>" +
             " and <![CDATA[created_time>#{createdTimeStart}]]>" +
             "</if>" +

@@ -30,13 +30,6 @@ public interface IGatewayRouteService {
     List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam);
 
     /**
-     * 根据父id查询网关路由
-     *
-     * @return
-     */
-    List<GatewayRoute> queryByParentId(long id);
-
-    /**
      * 更新网关路由信息
      *
      * @param gatewayRoute

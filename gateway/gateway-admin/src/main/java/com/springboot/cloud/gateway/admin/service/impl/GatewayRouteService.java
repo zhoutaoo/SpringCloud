@@ -25,19 +25,19 @@ public class GatewayRouteService implements IGatewayRouteService {
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#id")
+    @CacheEvict(value = "gatewayRoute", key = "#root.targetClass.name+'-'+#id")
     public void delete(long id) {
         gatewayRouteMapper.delete(id);
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#group.id")
+    @CacheEvict(value = "gatewayRoute", key = "#root.targetClass.name+'-'+#group.id")
     public void update(GatewayRoute gatewayRoute) {
         gatewayRouteMapper.update(gatewayRoute);
     }
 
     @Override
-    @Cacheable(value = "group", key = "#root.targetClass.name+'-'+#id")
+    @Cacheable(value = "gatewayRoute", key = "#root.targetClass.name+'-'+#id")
     public GatewayRoute get(long id) {
         return gatewayRouteMapper.select(id);
     }
@@ -45,10 +45,5 @@ public class GatewayRouteService implements IGatewayRouteService {
     @Override
     public List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
         return gatewayRouteMapper.query(gatewayRouteQueryParam);
-    }
-
-    @Override
-    public List<GatewayRoute> queryByParentId(long id) {
-        return gatewayRouteMapper.queryByParentId(id);
     }
 }
