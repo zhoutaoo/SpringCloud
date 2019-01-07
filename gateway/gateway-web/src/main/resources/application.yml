@@ -35,11 +35,11 @@ spring:
         signingKey: 123456
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
       default-filters:
+      - name: Retry
+        args:
+          retries: 3
+          statuses: BAD_GATEWAY
       - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       - name: RequestRateLimiter
         args:
@@ -47,20 +47,7 @@ spring:
           redis-rate-limiter.burstCapacity: 1  #流速 每秒
           rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
           key-resolver: "#{@remoteAddressKeyResolver}" #SPEL表达式去的对应的bean
-      routes:
-      # =====================================
-      - id: authorization-server
-        uri: lb://authorization-server
-        predicates:
-        - Path=/authorization-server/**
-        filters:
-        - PrefixPath=/test-server
-        - StripPrefix=2
-        - AddResponseHeader=foo, bar
-        - name: Retry
-          args:
-            retries: 3
-            statuses: BAD_GATEWAY
+
 #网关白名单，无需要签权url
 gate:
   ignore:

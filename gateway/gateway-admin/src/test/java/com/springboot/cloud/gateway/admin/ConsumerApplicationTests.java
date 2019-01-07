@@ -1,4 +1,4 @@
-package com.springboot.zuul;
+package com.springboot.cloud.gateway.admin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

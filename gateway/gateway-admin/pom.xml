@@ -4,29 +4,22 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.springboot.cloud</groupId>
-    <artifactId>gateway-zuul</artifactId>
+    <artifactId>gateway-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>zuul</name>
-    <description>Demo project for Spring Cloud API Zuul</description>
+    <name>gateway-admin</name>
+    <description>Demo Gateway Admin project for Spring Cloud</description>
 
     <parent>
+        <artifactId>webapp-parent</artifactId>
         <groupId>com.springboot.cloud</groupId>
-        <artifactId>gateway</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../webapps/webapp-parent/pom.xml</relativePath>
     </parent>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.didispace</groupId>
-            <artifactId>swagger-butler-core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+
     </dependencies>
 
 </project>

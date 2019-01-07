@@ -15,11 +15,11 @@
     <packaging>pom</packaging>
 
     <name>gateway</name>
-    <description>Demo Gateway project for Spring Boot</description>
+    <description>Demo Gateway project for Spring Cloud</description>
 
     <modules>
         <module>gateway-web</module>
-        <module>gateway-zuul</module>
+        <module>gateway-admin</module>
     </modules>
 
     <dependencies>
