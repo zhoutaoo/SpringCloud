@@ -11,27 +11,30 @@ import java.util.List;
 @Repository
 public interface GatewayRouteMapper {
 
-    String PUBLIC_COLUMN = "id,uri,predicates,filters,description,updated_time,created_time,updated_by,created_by";
+    String PUBLIC_COLUMN = "id,uri,predicates,filters,status,description,updated_time,created_time,updated_by,created_by";
 
     @Options(useGeneratedKeys = true)
     @Insert("insert into gateway_routes(uri,predicates,filters,description,updated_time,created_time,updated_by,created_by)" +
             " values(#{uri},#{predicates},#{filters},#{description},now(),now(),#{updatedBy},#{createdBy})")
     long insert(GatewayRoute gatewayRoute);
 
-    @Update("update gateway_routes set deleted='Y' where id=#{id}")
+    @Update("update gateway_routes set status='N' where id=#{id}")
     void delete(long id);
 
-    @Update("update gateway_routes set uri=#{uri},predicates=#{predicates},filters=#{filters},description=#{description},updated_by=#{updatedBy},updated_time=now()" +
+    @Update("update gateway_routes set uri=#{uri},predicates=#{predicates},filters=#{filters},description=#{description},status='Y',updated_by=#{updatedBy},updated_time=now()" +
             " where id=#{id}")
     void update(GatewayRoute gatewayRoute);
 
-    @Select("select " + PUBLIC_COLUMN + " from gateway_routes where id=#{id}")
+    @Select("select " + PUBLIC_COLUMN + " from gateway_routes where id=#{id} and status='Y'")
     GatewayRoute select(long id);
 
     @Select("<script>" +
             "select " + PUBLIC_COLUMN +
-            " from gateway_route" +
-            " where uri=#{uri}" +
+            " from gateway_routes" +
+            " where status='Y'" +
+            "<if test='uri!=null'>" +
+            " and uri=#{uri}" +
+            "</if>" +
             "<if test='createdTimeStart!=null'>" +
             " and <![CDATA[created_time>#{createdTimeStart}]]>" +
             "</if>" +

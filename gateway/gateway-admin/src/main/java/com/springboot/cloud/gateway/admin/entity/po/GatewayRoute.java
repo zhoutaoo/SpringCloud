@@ -13,4 +13,5 @@ public class GatewayRoute extends BasePo {
     private String predicates;
     private String filters;
     private String description;
+    private String status;
 }

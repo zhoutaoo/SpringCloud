@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
@@ -17,7 +16,6 @@ import java.util.Date;
 @Data
 public class GatewayRouteQueryForm extends BaseQueryForm<GatewayRouteQueryParam> {
 
-    @NotBlank(message = "uri不能为空")
     @ApiModelProperty(value = "uri路径", required = true)
     private String uri;
 
