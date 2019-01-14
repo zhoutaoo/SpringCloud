@@ -53,7 +53,7 @@ services:
     networks:
       - sc-net
     ports:
-      - 3306
+      - 3306:3306
     volumes:
       - ./data/config-server/sql:/docker-entrypoint-initdb.d
       - ./data/mysql:/var/lib/mysql
