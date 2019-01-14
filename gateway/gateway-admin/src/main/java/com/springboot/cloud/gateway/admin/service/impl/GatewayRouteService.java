@@ -25,19 +25,19 @@ public class GatewayRouteService implements IGatewayRouteService {
     }
 
     @Override
-    @CacheEvict(value = "gatewayRoute", key = "#root.targetClass.name+'-'+#id")
+    @CacheEvict(value = "gateway_routes", key = "#root.targetClass.name+'-'+#id")
     public void delete(long id) {
         gatewayRouteMapper.delete(id);
     }
 
     @Override
-    @CacheEvict(value = "gatewayRoute", key = "#root.targetClass.name+'-'+#gatewayRoute.id")
+    @CacheEvict(value = "gateway_routes", key = "#root.targetClass.name+'-'+#gatewayRoute.id")
     public void update(GatewayRoute gatewayRoute) {
         gatewayRouteMapper.update(gatewayRoute);
     }
 
     @Override
-    @Cacheable(value = "gatewayRoute", key = "#root.targetClass.name+'-'+#id")
+    @Cacheable(value = "gateway_routes", key = "#root.targetClass.name+'-'+#id")
     public GatewayRoute get(long id) {
         return gatewayRouteMapper.select(id);
     }

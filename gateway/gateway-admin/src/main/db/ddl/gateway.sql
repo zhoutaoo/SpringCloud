@@ -2,21 +2,23 @@
 DROP TABLE IF EXISTS gateway_routes;
 CREATE TABLE gateway_routes
 (
-  id                      SERIAL PRIMARY KEY,
-  uri                     VARCHAR(100) NOT NULL,
-  predicates              VARCHAR(100) NOT NULL,
-  filters                 VARCHAR(200),
-  description             VARCHAR(500),
-  status                  VARCHAR(1) default 'Y',
-  created_time            TIMESTAMP    NOT NULL DEFAULT now(),
-  updated_time            TIMESTAMP    NOT NULL DEFAULT now(),
-  created_by              VARCHAR(100) NOT NULL,
-  updated_by              VARCHAR(100) NOT NULL
+  id           SERIAL PRIMARY KEY,
+  route_id     VARCHAR(100),
+  uri          VARCHAR(100) NOT NULL,
+  predicates   text         NOT NULL,
+  filters      text,
+  description  VARCHAR(500),
+  status       VARCHAR(1)            default 'Y',
+  created_time TIMESTAMP    NOT NULL DEFAULT now(),
+  updated_time TIMESTAMP    NOT NULL DEFAULT now(),
+  created_by   VARCHAR(100) NOT NULL,
+  updated_by   VARCHAR(100) NOT NULL
 );
 CREATE UNIQUE INDEX ux_gateway_routes_uri ON gateway_routes (uri);
 
 COMMENT ON TABLE gateway_routes IS '用户表';
-COMMENT ON COLUMN gateway_routes.id IS '路由id';
+COMMENT ON COLUMN gateway_routes.id IS 'id';
+COMMENT ON COLUMN gateway_routes.route_id IS '路由id';
 COMMENT ON COLUMN gateway_routes.uri IS 'uri路径';
 COMMENT ON COLUMN gateway_routes.predicates IS '判定器';
 COMMENT ON COLUMN gateway_routes.filters IS '过滤器';
