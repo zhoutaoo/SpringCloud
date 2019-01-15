@@ -23,12 +23,12 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
 
     @Override
     public Mono<Void> save(Mono<RouteDefinition> route) {
-        return null;
+        return routeService.save(route);
     }
 
     @Override
     public Mono<Void> delete(Mono<String> routeId) {
-        return null;
+        return routeService.delete(routeId);
     }
 
 }

@@ -4,13 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.gateway.service.IRouteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.route.RouteDefinition;
-import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ScanOptions;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
 import java.io.IOException;
@@ -21,35 +20,48 @@ import java.util.List;
 @Slf4j
 public class RouteService implements IRouteService {
 
-    private static final String GATEWAY_ROUTES = "gateway_routes*";
+    private static final String GATEWAY_ROUTES = "gateway_routes";
 
     @Resource
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
         List<RouteDefinition> routeDefinitions = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        redisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(RouteDefinition.class));
-        HashOperations hashOperations = redisTemplate.opsForHash();
+        stringRedisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(RouteDefinition.class));
 
-        List values = hashOperations.values(GATEWAY_ROUTES);
+        List<String> values = getHashOperations().values(GATEWAY_ROUTES);
 
-        ScanOptions scanOptions = ScanOptions.scanOptions().match(GATEWAY_ROUTES).build();
-        Cursor<Object> curosr = redisTemplate.opsForSet().scan(GATEWAY_ROUTES, scanOptions);
-
-        while (curosr.hasNext()) {
-            System.out.println(curosr.next());
-        }
-
-        values.stream().forEach(routeDefinition -> {
+        values.forEach(routeDefinition -> {
             try {
-                routeDefinitions.add(objectMapper.readValue(routeDefinition.toString(), RouteDefinition.class));
+                routeDefinitions.add(objectMapper.readValue(routeDefinition, RouteDefinition.class));
             } catch (IOException e) {
                 log.error(e.getMessage());
             }
         });
         return Flux.fromIterable(routeDefinitions);
+    }
+
+
+    @Override
+    public Mono<Void> save(Mono<RouteDefinition> routeDefinitionMono) {
+        return routeDefinitionMono.flatMap(routeDefinition -> {
+            getHashOperations().put(GATEWAY_ROUTES, routeDefinition.getId(), routeDefinition.toString());
+            return Mono.empty();
+        });
+    }
+
+    @Override
+    public Mono<Void> delete(Mono<String> routeId) {
+        return routeId.flatMap(id -> {
+            getHashOperations().delete(GATEWAY_ROUTES, id);
+            return Mono.empty();
+        });
+    }
+
+    private HashOperations<String, String, String> getHashOperations() {
+        return stringRedisTemplate.opsForHash();
     }
 }
