@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.gateway.service.IRouteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.route.RouteDefinition;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,26 +13,28 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
 public class RouteService implements IRouteService {
 
-    private static final String GATEWAY_ROUTES = "gateway_routes";
+    private static final String GATEWAY_ROUTES = "gateway_routes::";
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
+
         List<RouteDefinition> routeDefinitions = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
 
-        stringRedisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(RouteDefinition.class));
+        //stringRedisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(RouteDefinition.class));
 
-        List<String> values = getHashOperations().values(GATEWAY_ROUTES);
+        Set<String> routeDefinitionSets = stringRedisTemplate.keys(GATEWAY_ROUTES + "*");
 
-        values.forEach(routeDefinition -> {
+        routeDefinitionSets.forEach(routeDefinition -> {
             try {
                 routeDefinitions.add(objectMapper.readValue(routeDefinition, RouteDefinition.class));
             } catch (IOException e) {
@@ -44,11 +44,10 @@ public class RouteService implements IRouteService {
         return Flux.fromIterable(routeDefinitions);
     }
 
-
     @Override
     public Mono<Void> save(Mono<RouteDefinition> routeDefinitionMono) {
         return routeDefinitionMono.flatMap(routeDefinition -> {
-            getHashOperations().put(GATEWAY_ROUTES, routeDefinition.getId(), routeDefinition.toString());
+            stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES + routeDefinition.getId(), routeDefinition.toString());
             return Mono.empty();
         });
     }
@@ -56,12 +55,8 @@ public class RouteService implements IRouteService {
     @Override
     public Mono<Void> delete(Mono<String> routeId) {
         return routeId.flatMap(id -> {
-            getHashOperations().delete(GATEWAY_ROUTES, id);
+            stringRedisTemplate.delete(GATEWAY_ROUTES);
             return Mono.empty();
         });
-    }
-
-    private HashOperations<String, String, String> getHashOperations() {
-        return stringRedisTemplate.opsForHash();
     }
 }
