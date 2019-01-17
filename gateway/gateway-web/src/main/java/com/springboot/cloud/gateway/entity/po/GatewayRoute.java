@@ -1,4 +1,4 @@
-package com.springboot.cloud.gateway.admin.entity.po;
+package com.springboot.cloud.gateway.entity.po;
 
 import com.springboot.cloud.common.core.entity.po.BasePo;
 import lombok.*;

@@ -24,6 +24,9 @@ public class GatewayRouteForm extends BaseForm<GatewayRoute> {
     @ApiModelProperty(value = "网关uri")
     private String uri;
 
+    @ApiModelProperty(value = "网关路由id")
+    private String routeId;
+
     @ApiModelProperty(value = "网关路由描述信息")
     private String description;
 }
