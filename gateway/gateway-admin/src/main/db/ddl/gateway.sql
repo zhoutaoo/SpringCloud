@@ -5,7 +5,7 @@ CREATE TABLE gateway_routes
   id           SERIAL PRIMARY KEY,
   route_id     VARCHAR(100),
   uri          VARCHAR(100) NOT NULL,
-  predicates   text         NOT NULL,
+  predicates   text          NOT NULL,
   filters      text,
   description  VARCHAR(500),
   status       VARCHAR(1)            default 'Y',
