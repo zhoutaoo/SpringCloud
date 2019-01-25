@@ -28,8 +28,7 @@ public class RouteService implements IRouteService {
     private Map<String, RouteDefinition> routeDefinitionMaps = new HashMap<>();
 
     @PostConstruct
-    private void init() {
-        ObjectMapper objectMapper = new ObjectMapper();
+    private void loadRouteDefinition() {
         Set<String> gatewayKeys = stringRedisTemplate.keys(GATEWAY_ROUTES + "*");
 
         if (CollectionUtils.isEmpty(gatewayKeys)) {
@@ -39,7 +38,7 @@ public class RouteService implements IRouteService {
         List<String> gatewayRoutes = Optional.ofNullable(stringRedisTemplate.opsForValue().multiGet(gatewayKeys)).orElse(Lists.newArrayList());
         gatewayRoutes.forEach(value -> {
             try {
-                RouteDefinition routeDefinition = objectMapper.readValue(value, RouteDefinition.class);
+                RouteDefinition routeDefinition = new ObjectMapper().readValue(value, RouteDefinition.class);
                 routeDefinitionMaps.put(routeDefinition.getId(), routeDefinition);
             } catch (IOException e) {
                 log.error(e.getMessage());
@@ -49,7 +48,7 @@ public class RouteService implements IRouteService {
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
-        log.error("==============================f");
+        loadRouteDefinition();
         return Flux.fromIterable(routeDefinitionMaps.values());
     }
 
