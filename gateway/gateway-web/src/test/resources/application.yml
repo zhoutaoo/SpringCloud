@@ -1,0 +1,34 @@
+server:
+  port: 8443
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
+
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "2MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+
+logging:
+  level:
+    org.springframework.web: info
+    org.apache.ibatis: info
+    java.sql.PreparedStatement: info
+    java.sql.Statement: info
+    Java.sql.Connection: info
+  path: logs/
+  file:
+    max-size: 1GB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
