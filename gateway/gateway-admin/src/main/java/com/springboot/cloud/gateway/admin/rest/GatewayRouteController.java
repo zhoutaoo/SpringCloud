@@ -87,4 +87,13 @@ public class GatewayRouteController {
         return Result.success(gatewayRoutesVo);
     }
 
+    @ApiOperation(value = "重载网关路由", notes = "将所以网关的路由全部重载到redis中")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
+    @PostMapping(value = "/overload")
+    public Result overload() {
+        return Result.success(gatewayRoutService.overload());
+    }
+
 }

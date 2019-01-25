@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +55,16 @@ public class GatewayRouteService implements IGatewayRouteService {
     @Override
     public List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
         return gatewayRouteMapper.query(gatewayRouteQueryParam);
+    }
+
+    @Override
+    public boolean overload() {
+        List<GatewayRoute> gatewayRoutes = gatewayRouteMapper.query(new GatewayRouteQueryParam());
+        ValueOperations<String, String> opsForValue = stringRedisTemplate.opsForValue();
+        gatewayRoutes.forEach(gatewayRoute ->
+                opsForValue.set(GATEWAY_ROUTES + gatewayRoute.getId(), toJson(new GatewayRouteVo(gatewayRoute)))
+        );
+        return true;
     }
 
     /**

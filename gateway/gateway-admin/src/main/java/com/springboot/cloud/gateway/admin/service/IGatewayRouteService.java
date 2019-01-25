@@ -42,4 +42,10 @@ public interface IGatewayRouteService {
      * @param id
      */
     void delete(long id);
+
+    /**
+     * 重新加载网关路由配置到redis
+     * @return 成功返回true
+     */
+    boolean overload();
 }
