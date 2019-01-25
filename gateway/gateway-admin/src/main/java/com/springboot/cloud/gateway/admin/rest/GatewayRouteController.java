@@ -55,7 +55,7 @@ public class GatewayRouteController {
         return Result.success();
     }
 
-    @ApiOperation(value = "获取网关路由", notes = "获取指定网关路由信息")
+    @ApiOperation(value = "获取网关路由", notes = "根据id获取指定网关路由信息")
     @ApiImplicitParam(paramType = "path", name = "id", value = "网关路由ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable long id) {
@@ -63,16 +63,15 @@ public class GatewayRouteController {
         return Result.success(new GatewayRouteVo(gatewayRoutService.get(id)));
     }
 
-    @ApiOperation(value = "查询网关路由", notes = "根据条件查询网关路由信息，简单查询")
-    @ApiImplicitParam(paramType = "query", name = "name", value = "网关路由名称", required = true, dataType = "string")
+    @ApiOperation(value = "根据uri获取网关路由", notes = "根据uri获取网关路由信息，简单查询")
+    @ApiImplicitParam(paramType = "query", name = "name", value = "网关路由路径", required = true, dataType = "string")
     @ApiResponses(
             @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     )
     @GetMapping
-    public Result query(@RequestParam String uri) {
-        GatewayRouteQueryParam gatewayRoutQueryParam = new GatewayRouteQueryParam(uri);
-        List<GatewayRouteVo> gatewayRoutesVo = gatewayRoutService.query(gatewayRoutQueryParam).stream().map(GatewayRouteVo::new).collect(Collectors.toList());
-        return Result.success(gatewayRoutesVo);
+    public Result get(@RequestParam String uri) {
+        List<GatewayRouteVo> gatewayRoutesVo = gatewayRoutService.query(new GatewayRouteQueryParam(uri)).stream().map(GatewayRouteVo::new).collect(Collectors.toList());
+        return Result.success(gatewayRoutesVo.stream().findFirst());
     }
 
     @ApiOperation(value = "搜索网关路由", notes = "根据条件查询网关路由信息")
