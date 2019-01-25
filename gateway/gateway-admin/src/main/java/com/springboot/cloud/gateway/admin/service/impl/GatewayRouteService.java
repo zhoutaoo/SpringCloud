@@ -1,13 +1,16 @@
 package com.springboot.cloud.gateway.admin.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.gateway.admin.dao.GatewayRouteMapper;
+import com.springboot.cloud.gateway.admin.entity.ov.GatewayRouteVo;
 import com.springboot.cloud.gateway.admin.entity.param.GatewayRouteQueryParam;
 import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.service.IGatewayRouteService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,28 +19,34 @@ import java.util.List;
 @Slf4j
 public class GatewayRouteService implements IGatewayRouteService {
 
+    private static final String GATEWAY_ROUTES = "gateway_routes::";
+
     @Autowired
     private GatewayRouteMapper gatewayRouteMapper;
 
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
     @Override
     public long add(GatewayRoute gatewayRoute) {
-        return gatewayRouteMapper.insert(gatewayRoute);
+        long gatewayId = gatewayRouteMapper.insert(gatewayRoute);
+        stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES + gatewayRoute.getId(), toJson(new GatewayRouteVo(gatewayRoute)));
+        return gatewayId;
     }
 
     @Override
-    @CacheEvict(value = "gateway_routes", key = "#id")
     public void delete(long id) {
         gatewayRouteMapper.delete(id);
+        stringRedisTemplate.delete(GATEWAY_ROUTES + id);
     }
 
     @Override
-    @CacheEvict(value = "gateway_routes", key = "#gatewayRoute.id")
     public void update(GatewayRoute gatewayRoute) {
-        gatewayRouteMapper.update(gatewayRoute);
+        stringRedisTemplate.delete(GATEWAY_ROUTES + gatewayRoute.getId());
+        stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES, toJson(new GatewayRouteVo(get(gatewayRoute.getId()))));
     }
 
     @Override
-    @Cacheable(value = "gateway_routes", key = "#id")
     public GatewayRoute get(long id) {
         return gatewayRouteMapper.select(id);
     }
@@ -45,5 +54,21 @@ public class GatewayRouteService implements IGatewayRouteService {
     @Override
     public List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
         return gatewayRouteMapper.query(gatewayRouteQueryParam);
+    }
+
+    /**
+     * GatewayRoute转换为json
+     *
+     * @param gatewayRouteVo redis需要的vo
+     * @return json string
+     */
+    private String toJson(GatewayRouteVo gatewayRouteVo) {
+        String routeDefinitionJson = Strings.EMPTY;
+        try {
+            routeDefinitionJson = new ObjectMapper().writeValueAsString(gatewayRouteVo);
+        } catch (JsonProcessingException e) {
+            log.error("网关对象序列化为json String", e);
+        }
+        return routeDefinitionJson;
     }
 }

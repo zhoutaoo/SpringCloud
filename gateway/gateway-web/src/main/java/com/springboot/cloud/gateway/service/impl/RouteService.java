@@ -49,6 +49,7 @@ public class RouteService implements IRouteService {
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
+        log.error("==============================f");
         return Flux.fromIterable(routeDefinitionMaps.values());
     }
 

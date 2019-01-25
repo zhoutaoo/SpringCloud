@@ -3,6 +3,7 @@ package com.springboot.cloud.gateway.admin.rest;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.gateway.admin.entity.form.GatewayRouteForm;
 import com.springboot.cloud.gateway.admin.entity.form.GatewayRouteQueryForm;
+import com.springboot.cloud.gateway.admin.entity.ov.GatewayRouteVo;
 import com.springboot.cloud.gateway.admin.entity.param.GatewayRouteQueryParam;
 import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.service.IGatewayRouteService;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/gateway/routes")
@@ -57,7 +60,7 @@ public class GatewayRouteController {
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable long id) {
         log.info("get with id:{}", id);
-        return Result.success(gatewayRoutService.get(id));
+        return Result.success(new GatewayRouteVo(gatewayRoutService.get(id)));
     }
 
     @ApiOperation(value = "查询网关路由", notes = "根据条件查询网关路由信息，简单查询")
@@ -67,10 +70,9 @@ public class GatewayRouteController {
     )
     @GetMapping
     public Result query(@RequestParam String uri) {
-        log.info("query with name:{}", uri);
-        GatewayRouteQueryParam gatewayRoutQueryParam = new GatewayRouteQueryParam();
-        gatewayRoutQueryParam.setUri(uri);
-        return Result.success(gatewayRoutService.query(gatewayRoutQueryParam));
+        GatewayRouteQueryParam gatewayRoutQueryParam = new GatewayRouteQueryParam(uri);
+        List<GatewayRouteVo> gatewayRoutesVo = gatewayRoutService.query(gatewayRoutQueryParam).stream().map(GatewayRouteVo::new).collect(Collectors.toList());
+        return Result.success(gatewayRoutesVo);
     }
 
     @ApiOperation(value = "搜索网关路由", notes = "根据条件查询网关路由信息")
@@ -80,8 +82,9 @@ public class GatewayRouteController {
     )
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody GatewayRouteQueryForm gatewayRouteQueryForm) {
-        log.info("search with gatewayRouteQueryForm:", gatewayRouteQueryForm);
-        return Result.success(gatewayRoutService.query(gatewayRouteQueryForm.toParam(GatewayRouteQueryParam.class)));
+        List<GatewayRoute> gatewayRoutes = gatewayRoutService.query(gatewayRouteQueryForm.toParam(GatewayRouteQueryParam.class));
+        List<GatewayRouteVo> gatewayRoutesVo = gatewayRoutes.stream().map(GatewayRouteVo::new).collect(Collectors.toList());
+        return Result.success(gatewayRoutesVo);
     }
 
 }
