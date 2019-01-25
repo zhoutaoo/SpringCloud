@@ -32,10 +32,6 @@ services:
     ports:
       - 8888:8888
     environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
       - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=config-server1 -Dpinpoint.applicationName=config-server
     depends_on:
       - eureka-server
@@ -51,14 +47,28 @@ services:
       - sc-net
     ports:
       - 8443:8443
+    env_file: .env
     environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
       - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=gateway-web1 -Dpinpoint.applicationName=gateway-web
+    depends_on:
+      - eureka-server
+      - authorization-server
+      - authentication-server
+
+  gateway-admin:
+    image: cike/gateway-admin
+    container_name: sc-gateway-web
+    restart: always
+    volumes:
+      - ./data/gateway-admin/logs:/var/logs
+      - ./data/pinpoint-agent:/pinpoint-agent
+    networks:
+      - sc-net
+    ports:
+      - 8445:8445
+    env_file: .env
+    environment:
+      - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=gateway-admin1 -Dpinpoint.applicationName=gateway-admin
     depends_on:
       - eureka-server
       - authorization-server
@@ -75,20 +85,8 @@ services:
       - sc-net
     ports:
       - 8000:8000
+    env_file: .env
     environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=123456
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=postgres
       - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=authorization-server1 -Dpinpoint.applicationName=authorization-server
     depends_on:
       - eureka-server
@@ -105,20 +103,8 @@ services:
       - sc-net
     ports:
       - 8001:8001
+    env_file: .env
     environment:
-      - RABBIT_MQ_HOST=rabbitmq
-      - RABBIT_MQ_PORT=5672
-      - RABBIT_MQ_USERNAME=guest
-      - RABBIT_MQ_PASSWORD=guest
-      - EUREKA_ZONE_HOST=eureka-server
-      - EUREKA_ZONE_PORT=8761
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - REDIS_PASSWORD=123456
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=postgres
       - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=authentication-server1 -Dpinpoint.applicationName=authentication-server
     depends_on:
       - eureka-server
