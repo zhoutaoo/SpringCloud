@@ -11,7 +11,7 @@ spring:
     druid:
       web-stat-filter:
         enabled: false
-    url: jdbc:h2:mem:spring_cloud;MODE=PostgreSQL;INIT=RUNSCRIPT FROM '../db/ddl/oauth2_ddl.sql'\;RUNSCRIPT FROM '../db/ddl/users_ddl.sql'\;RUNSCRIPT FROM '../db/dml/oauth2_dml.sql'\;RUNSCRIPT FROM '../db/dml/users_dml.sql'
+    url: jdbc:h2:mem:sc_auth;MODE=PostgreSQL;INIT=RUNSCRIPT FROM '../db/ddl/oauth2_ddl.sql'\;RUNSCRIPT FROM '../db/ddl/users_ddl.sql'\;RUNSCRIPT FROM '../db/dml/oauth2_dml.sql'\;RUNSCRIPT FROM '../db/dml/users_dml.sql'
     username: sa
     password:
     driver-class-name: org.h2.Driver
