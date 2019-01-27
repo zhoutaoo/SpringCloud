@@ -62,6 +62,8 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         //配置token的数据源、自定义的tokenServices等信息,配置身份认证器，配置认证方式，TokenStore，TokenGranter，OAuth2RequestFactory
         endpoints.tokenStore(tokenStore())
+                .authorizationCodeServices(authorizationCodeServices())
+                .approvalStore(approvalStore())
                 .tokenEnhancer(tokenEnhancerChain())
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
