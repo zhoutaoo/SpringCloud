@@ -151,8 +151,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 | oauth_client_token      |   用户客户端存储从服务端获取的token| 未使用，本例中均为服务端                  |
 | oauth_access_token      |   access_token的持久表          |  未使用，本例中使用了jwt,无需持久化到服务器中|
 | oauth_refresh_token     |   refresh_token的持久化表       |  本例中使用了jwt                         |
-| oauth_approvals         |   授权码模式code持久化表         |  未调试实现                              |
-| oauth_code              |   授权码模式code持久化表         |  未调试实现                              |
+| oauth_approvals         |   授权码模式授权信息持久化表      |  用户授权记录                             |
+| oauth_code              |   授权码模式code持久化表         |  code临时存放，code使用过就删除            |
 
 具体表结构请参考[spring-oauth-server 数据库表说明](http://andaily.com/spring-oauth-server/db_table_description.html)
 

@@ -1,6 +1,7 @@
 package com.springboot.auth.authorization.config;
 
 import com.springboot.auth.authorization.config.custom.CustomTokenEnhancer;
+import com.springboot.auth.authorization.exception.CustomWebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,7 @@ import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
@@ -62,20 +64,36 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         //配置token的数据源、自定义的tokenServices等信息,配置身份认证器，配置认证方式，TokenStore，TokenGranter，OAuth2RequestFactory
         endpoints.tokenStore(tokenStore())
+                .authorizationCodeServices(authorizationCodeServices())
+                .approvalStore(approvalStore())
+                .exceptionTranslator(customExceptionTranslator())
                 .tokenEnhancer(tokenEnhancerChain())
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService);
     }
 
+    /**
+     * 自定义OAuth2异常处理
+     * @return CustomWebResponseExceptionTranslator
+     */
+    @Bean
+    public WebResponseExceptionTranslator customExceptionTranslator() {
+        return new CustomWebResponseExceptionTranslator();
+    }
+
+    /**
+     * 授权信息持久化实现
+     * @return JdbcApprovalStore
+     */
     @Bean
     public ApprovalStore approvalStore() {
         return new JdbcApprovalStore(dataSource);
     }
 
     /**
-     * 授权码模式持久名授权码
+     * 授权码模式持久化授权码code
      *
-     * @return
+     * @return JdbcAuthorizationCodeServices
      */
     @Bean
     protected AuthorizationCodeServices authorizationCodeServices() {
@@ -86,7 +104,7 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     /**
      * token的持久化
      *
-     * @return
+     * @return JwtTokenStore
      */
     @Bean
     public TokenStore tokenStore() {
@@ -96,7 +114,7 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
     /**
      * 自定义token
      *
-     * @return
+     * @return tokenEnhancerChain
      */
     @Bean
     public TokenEnhancerChain tokenEnhancerChain() {

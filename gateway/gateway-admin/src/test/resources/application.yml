@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 8445
 
 eureka:
   client:
@@ -11,7 +11,7 @@ spring:
     druid:
       web-stat-filter:
         enabled: false
-    url: jdbc:h2:mem:sc_auth;MODE=PostgreSQL;INIT=RUNSCRIPT FROM '../db/ddl/oauth2_ddl.sql'\;RUNSCRIPT FROM '../db/ddl/users_ddl.sql'\;RUNSCRIPT FROM '../db/dml/oauth2_dml.sql'\;RUNSCRIPT FROM '../db/dml/users_dml.sql'
+    url: jdbc:h2:mem:sc_gateway;MODE=PostgreSQL;INIT=RUNSCRIPT FROM './src/main/db/ddl/gateway.sql'
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -26,9 +26,6 @@ spring:
   flyway:
     locations: classpath:.
     baseline-on-migrate: true
-  devtools:
-    livereload:
-      enabled: true
 
 logging:
   level:
@@ -46,4 +43,3 @@ management:
     web:
       exposure:
         include: '*'
-

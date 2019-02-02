@@ -53,11 +53,12 @@
 |----------|---------------------------|-----------|-------------------------|------|
 |  center  | eureka-server             | 注册中心   |  http://localhost:8761  |      |
 |  center  | bus-server                | 消息中心   |  http://localhost:8071  |      |
-|  center  | config-server             | 配置中心   |  http://localhost:8888  | [配置中心文档](./center/config-server)      |
+|  center  | config-server             | 配置中心   |  http://localhost:8888  | [配置中心文档](./center/config)      |
 |  auth    | authorization-server      | 授权服务   |  http://localhost:8000  | [权限服务文档](./auth) 、[授权Server文档](./auth/authorization-server)     |
 |  auth    | authentication-server     | 签权服务   |  http://localhost:8001  | [认证Server文档](./auth/authentication-server)    |
 |  auth    | authentication-client     | 签权客户端  |  jar包引入              |      |
 |  gateway | gateway                   | 网关       |  http://localhost:8443 |      |
+|  gateway | gateway-admin             | 网关管理    |  http://localhost:8445 |      |
 |  monitor | admin                     | 总体监控    |  http://localhost:8022 |      |
 |  monitor | hystrix-dashboard         | 性能指标展示 |  http://localhost:8021 |      |
 |  monitor | turbine                   | 性能指标收集 |  http://localhost:8031 |      |
@@ -89,27 +90,30 @@
 │   ├── web                --WEB核心类库
 │   └── pom.xml          
 ├── data                 --server及服务数据存储目录
-│   ├── logs               --日志存储位置
+│   ├── elasticsearch      --elasticsearch配置数据存储位置
 │   ├── postgres           --postgres数据库文件存储目录 
 │   ├── rabbitmq           --rabbitmq数据文件存储目录
 │   └── redis              --redis数据文件存储目录
 ├── gateway              --网关子项目  
 │   ├── gateway-web        --基于springcloud gateway的网关
-│   ├── gateway-zuul       --基于netflix zuul的网关
+│   ├── gateway-admin      --springcloud gateway的网关管理模块
 │   └── pom.xml
 ├── monitor              --监控、日志及服务管理子项目
 │   ├── admin              --springcloud admin管理
 │   ├── hystrix-dashboard  --hystrix监控
 │   ├── turbine            --turbine监控聚集 
 │   └── pom.xml
-├── services             --业务服务子项目
+├── demos                --demos子项目
 │   ├── consumer-feign     --消费者服务 feign demo
 │   ├── consumer-ribbon    --消费者服务 ribbon demo 
 │   ├── producer           --服务提供者，产品服务
 │   ├── producer-jpa       --服务提供者，产品服务,jpa和hateoas
 │   └── pom.xml
 ├── readme.md            --readme文档入口
-├── docker-compose.yml   --docker compose配置文件 
+├── docker-compose.yml            --docker compose配置文件，基础组件如数据库、运维组件 
+├── docker-compose.override.yml   --docker compose配置文件，注册中心、网关、授权认证服务等 
+├── docker-compose.apps.yml       --docker compose配置文件，应用demo 
+├── docker-compose.config.yml     --docker compose配置文件，apollo配置中心 
 └── pom.xml              --业务服务子项目
 ```
 
@@ -137,7 +141,7 @@
 │   │   │   │   ├── form           --rest表单校验
 │   │   │   │   ├── param          --dao参数，可以由form转化来
 │   │   │   │   ├── po             --实体类
-│   │   │   │   └── vo             --rest返回对象
+│   │   │   │   └── vo             --视图对象
 │   │   │   ├── events           --事件或消息处理类
 │   │   │   ├── config           --配置类
 │   │   │   ├── exception        --异常处理相关类
@@ -164,7 +168,7 @@
 |  服务     | 使用技术                 |   进度        |    备注   |
 |----------|-------------------------|---------------|-----------|
 |  注册中心 | Eureka                  |   ✅          |           |
-|  配置中心 | SpringCloud Config      |   ✅          |  Appollo🏗|
+|  配置中心 | Appollo                 |   ✅          |           |
 |  消息总线 | SpringCloud Bus+Rabbitmq|   ✅          |           |
 |  灰度分流 | OpenResty + lua         |   🏗          |           |
 |  动态网关 | SpringCloud Gateway     |   🏗          |  多种维度的流量控制（服务、IP、用户等），后端可配置化🏗          |

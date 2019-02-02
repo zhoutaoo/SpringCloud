@@ -19,7 +19,7 @@ spring:
     port: ${REDIS_PORT:6379}
     ##password: ${REDIS_PASSWORD:}
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/spring_cloud
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/sc_auth
     username: ${POSTGRES_USERNAME:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
@@ -31,6 +31,10 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+
   #jwt的密钥
   security:
     oauth2:

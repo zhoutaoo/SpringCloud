@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.springboot.cloud.gateway.service.IRouteService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -11,8 +12,6 @@ import org.springframework.util.CollectionUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.*;
 
@@ -22,12 +21,11 @@ public class RouteService implements IRouteService {
 
     private static final String GATEWAY_ROUTES = "gateway_routes::";
 
-    @Resource
+    @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     private Map<String, RouteDefinition> routeDefinitionMaps = new HashMap<>();
 
-    @PostConstruct
     private void loadRouteDefinition() {
         Set<String> gatewayKeys = stringRedisTemplate.keys(GATEWAY_ROUTES + "*");
 

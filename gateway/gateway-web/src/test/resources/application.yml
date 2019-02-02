@@ -1,5 +1,5 @@
 server:
-  port: 9001
+  port: 8443
 
 eureka:
   client:
@@ -7,14 +7,6 @@ eureka:
       defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
 
 spring:
-  datasource:
-    druid:
-      web-stat-filter:
-        enabled: false
-    url: jdbc:h2:mem:sc_auth;MODE=PostgreSQL;INIT=RUNSCRIPT FROM '../db/ddl/oauth2_ddl.sql'\;RUNSCRIPT FROM '../db/ddl/users_ddl.sql'\;RUNSCRIPT FROM '../db/dml/oauth2_dml.sql'\;RUNSCRIPT FROM '../db/dml/users_dml.sql'
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
   mvc:
     throw-exception-if-no-handler-found: true
   servlet:
@@ -23,12 +15,6 @@ spring:
       max-file-size: "2MB"
   jackson:
     time-zone: GMT+8
-  flyway:
-    locations: classpath:.
-    baseline-on-migrate: true
-  devtools:
-    livereload:
-      enabled: true
 
 logging:
   level:
@@ -46,4 +32,3 @@ management:
     web:
       exposure:
         include: '*'
-

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.springboot.cloud.common.core.exception.BaseException;
 import com.springboot.cloud.common.core.exception.ErrorType;
+import com.springboot.cloud.common.core.exception.SystemErrorType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -89,7 +90,7 @@ public class Result<T> {
      * @return Result
      */
     public static Result fail() {
-        return new Result(ErrorType.SYSTEM_ERROR);
+        return new Result(SystemErrorType.SYSTEM_ERROR);
     }
 
     /**
@@ -140,7 +141,7 @@ public class Result<T> {
      * @return Result
      */
     public static Result fail(Object data) {
-        return new Result<>(ErrorType.SYSTEM_ERROR, data);
+        return new Result<>(SystemErrorType.SYSTEM_ERROR, data);
     }
 
 

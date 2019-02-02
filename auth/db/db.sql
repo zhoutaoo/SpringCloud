@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS sc_auth;
+CREATE DATABASE sc_auth;
