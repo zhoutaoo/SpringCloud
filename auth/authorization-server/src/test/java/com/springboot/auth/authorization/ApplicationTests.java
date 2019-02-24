@@ -13,9 +13,4 @@ public class ApplicationTests {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         System.out.println(passwordEncoder.encode("test_secret"));
     }
-
-    @Test
-    public void testMethod() {
-        System.out.println(AuthErrorType.valueOf("SYSTEM_NO_PERMISSION").getCode());
-    }
 }

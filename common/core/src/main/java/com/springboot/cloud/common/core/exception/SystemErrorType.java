@@ -6,9 +6,7 @@ import lombok.Getter;
 public enum SystemErrorType implements ErrorType {
 
     SYSTEM_ERROR("-1", "系统异常"),
-
     SYSTEM_BUSY("000001", "系统繁忙,请稍候再试"),
-    SYSTEM_NO_PERMISSION("000002", "无权限"),
 
     GATEWAY_NOT_FOUND_SERVICE("010404", "服务未找到"),
     GATEWAY_ERROR("010500", "网关异常"),
