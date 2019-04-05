@@ -2,9 +2,11 @@ package com.springboot.auth.authorization.entity;
 
 import com.springboot.cloud.common.core.entity.po.BasePo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@EqualsAndHashCode(callSuper = false )
 @NoArgsConstructor
 public class User extends BasePo {
     private String name;

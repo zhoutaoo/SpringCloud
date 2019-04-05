@@ -7,13 +7,13 @@ public class BaseException extends RuntimeException {
     /**
      * 异常对应的错误类型
      */
-    private ErrorType errorType;
+    private final ErrorType errorType;
 
     /**
      * 默认是系统异常
      */
     public BaseException() {
-        this.errorType = ErrorType.SYSTEM_ERROR;
+        this.errorType = SystemErrorType.SYSTEM_ERROR;
     }
 
     public BaseException(ErrorType errorType) {
