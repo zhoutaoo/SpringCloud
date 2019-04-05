@@ -21,7 +21,7 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    @Value("${username}")
+    //@Value("${username}")
     private String value;
 
     @Override
