@@ -19,7 +19,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private String signingKey;
 
     @Override
-    public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) throws Exception {
+    public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) {
         resourceServerSecurityConfigurer
                 .tokenStore(tokenStore())
                 .resourceId("WEBS");
