@@ -1,5 +1,6 @@
 package com.springboot.cloud.gateway.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
@@ -16,7 +17,9 @@ public class DefaultRedisRateLimiter extends RedisRateLimiter {
         return super.getConfig().get("defaultFilters");
     }
 
-    public DefaultRedisRateLimiter(ReactiveRedisTemplate<String, String> redisTemplate, RedisScript<List<Long>> script, Validator validator) {
+    public DefaultRedisRateLimiter(ReactiveRedisTemplate<String, String> redisTemplate,
+                                   RedisScript<List<Long>> script,
+                                   @Qualifier("defaultValidator") Validator validator) {
         super(redisTemplate, script, validator);
     }
 

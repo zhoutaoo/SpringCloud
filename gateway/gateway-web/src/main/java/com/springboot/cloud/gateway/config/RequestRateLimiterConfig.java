@@ -2,6 +2,7 @@ package com.springboot.cloud.gateway.config;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
@@ -18,6 +19,7 @@ public class RequestRateLimiterConfig {
      * @return 限流key
      */
     @Bean
+    @Primary
     public KeyResolver remoteAddressKeyResolver() {
         return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getHostName());
     }
