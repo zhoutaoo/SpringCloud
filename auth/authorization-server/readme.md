@@ -11,6 +11,8 @@
 
 启动应用：`mvn spring-boot:run`
 
+docker镜像打包：`mvn docker:build`
+
 应用地址：`http://localhost:8000`
 
 ## 使用指南

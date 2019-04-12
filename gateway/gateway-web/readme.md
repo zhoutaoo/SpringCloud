@@ -15,6 +15,8 @@
 
 启动命令：`mvn spring-boot:run`
 
+docker镜像打包：`mvn docker:build`
+
 ## 使用指南
 
 网关的路由信息请通过管理端进行添加，只增加数据库是不能生效的。
