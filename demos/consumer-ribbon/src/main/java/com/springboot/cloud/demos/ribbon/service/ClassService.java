@@ -3,7 +3,7 @@ package com.springboot.cloud.demos.ribbon.service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import com.springboot.cloud.common.core.entity.vo.Result;
-import com.springboot.cloud.common.core.exception.ErrorType;
+import com.springboot.cloud.common.core.exception.SystemErrorType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -29,10 +29,10 @@ public class ClassService {
     }
 
     public Result usersFallback(String name) {
-        return Result.fail(ErrorType.SYSTEM_BUSY);
+        return Result.fail(SystemErrorType.SYSTEM_BUSY);
     }
 
     public Result usersFallback(Map map) {
-        return Result.fail(ErrorType.SYSTEM_BUSY);
+        return Result.fail(SystemErrorType.SYSTEM_BUSY);
     }
 }

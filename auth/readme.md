@@ -16,6 +16,12 @@
 | authentication-client     | 签权客户端      |  jar包，简化调用签权服务   |
 | db                        | 授权与签权DB脚本 |  ddl与dml               |
 
+## 架构
+
+服务调用授权与认证时序如下
+
+![网关架构](../docs/auth.png)
+
 ### OAuth2简介:
 
 #### OAuth2的4种模式
