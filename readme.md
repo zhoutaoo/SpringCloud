@@ -45,7 +45,7 @@
 
 路径一般为：子项目/服务名/src/main/db
 
-如：services/producer/src/main/db 下的脚本
+如：demos/producer/src/main/db 下的脚本
 
 * 3.进入相关应用目录，启动应用： `mvn spring-boot:run` 
 
