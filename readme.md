@@ -17,7 +17,7 @@
 
 1. 克隆代码库： `git clone https://gitee.com/toopoo/SpringCloud.git`
 
-2. 生成ide配置： `mvn idea:idea` 并导入对应的ide进行开发,IDE安装lombok插件
+2. 生成ide配置： `mvn idea:idea` 并导入对应的ide进行开发，IDE安装lombok插件
 
 ### 编译 & 启动
 
@@ -43,7 +43,7 @@
 
 **应用脚本**
 
-路径一般为：子项目/服务名/src/main/db
+路径一般为：子项目/应用名/src/main/db
 
 如：demos/producer/src/main/db 下的脚本
 
@@ -51,14 +51,14 @@
 
 | 服务分类  | 服务名                     |   简介     |  应用地址                | 文档 |
 |----------|---------------------------|-----------|-------------------------|------|
-|  center  | eureka-server             | 注册中心   |  http://localhost:8761  |      |
-|  center  | bus-server                | 消息中心   |  http://localhost:8071  |      |
+|  center  | eureka-server             | 注册中心   |  http://localhost:8761  | [注册中心文档](./center/eureka)      |
+|  center  | bus-server                | 消息中心   |  http://localhost:8071  | [消息中心文档](./center/bus)         |
 |  center  | config-server             | 配置中心   |  http://localhost:8888  | [配置中心文档](./center/config)      |
 |  auth    | authorization-server      | 授权服务   |  http://localhost:8000  | [权限服务文档](./auth) 、[授权Server文档](./auth/authorization-server)     |
 |  auth    | authentication-server     | 签权服务   |  http://localhost:8001  | [认证Server文档](./auth/authentication-server)    |
 |  auth    | authentication-client     | 签权客户端  |  jar包引入              |      |
-|  gateway | gateway-web               | WEB网关    |  http://localhost:8443 |      |
-|  gateway | gateway-admin             | 网关管理    |  http://localhost:8445 |      |
+|  gateway | gateway-web               | WEB网关    |  http://localhost:8443 |  [WEB网关文档](./center/eureka)       |
+|  gateway | gateway-admin             | 网关管理    |  http://localhost:8445 |  [网关管理后台文档](./center/eureka)   |
 |  monitor | admin                     | 总体监控    |  http://localhost:8022 |      |
 |  monitor | hystrix-dashboard         | 性能指标展示 |  http://localhost:8021 |      |
 |  monitor | turbine                   | 性能指标收集 |  http://localhost:8031 |      |

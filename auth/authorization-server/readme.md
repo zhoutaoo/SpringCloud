@@ -7,6 +7,13 @@
 
 ## 启动
 
+### 先决条件
+
+- [postgresql](http://www.postgresql.org/)
+- [rabbitmq](http://rabbitmq.io/download)
+
+### 启动命令
+
 部署脚本：启动数据库，部署`auth/db`下的ddl和dml脚本
 
 启动应用：`mvn spring-boot:run`
