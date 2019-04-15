@@ -110,6 +110,20 @@ public class ProductService implements IProductService {
 3. 配置中心通过rabbitmq消息通知各应用。
 4. 各应用接收到配置更新消息信息，主动拉取配置中心最新的配置并更新数据。
 
+## 启动
+
+### 先决条件
+
+- [rabbitmq](http://rabbitmq.io/download)
+
+### 启动命令
+
+进入应用目录
+
+启动命令：`mvn spring-boot:run`
+
+docker镜像打包：`mvn docker:build`
+
 ## 测试
 
 * 刷新缓存

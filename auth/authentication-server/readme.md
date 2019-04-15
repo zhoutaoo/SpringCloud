@@ -13,8 +13,18 @@
 
 ## 启动
 
+### 先决条件
+
+- [postgresql](http://www.postgresql.org/)
+- [rabbitmq](http://rabbitmq.io/download)
+
+### 启动命令
+
 进入应用目录
 
 启动命令：`mvn spring-boot:run`
+
+docker镜像打包：`mvn docker:build`
+
 
 
