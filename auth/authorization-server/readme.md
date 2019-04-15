@@ -11,6 +11,7 @@
 
 - [postgresql](http://www.postgresql.org/)
 - [rabbitmq](http://rabbitmq.io/download)
+- [eureka](../../center/eureka)
 
 ### 启动命令
 
