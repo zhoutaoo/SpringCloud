@@ -1,5 +1,6 @@
 package com.springboot.cloud.demos.producer.config;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,5 +9,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan(basePackageClasses = com.springboot.common.web.interceptor.AuditInterceptor.class)
+@MapperScan("com.springboot.cloud.demos.producer.dao")
 public class MybatisConfig {
 }

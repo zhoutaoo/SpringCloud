@@ -46,8 +46,15 @@ spring:
 
 logging:
   level:
-    org.springframework.cloud.sleuth: debug
-    java.sql.PreparedStatement: debug
+    java:
+      sql:
+        PreparedStatement: debug
+    com:
+      springboot:
+        cloud:
+          demos:
+            producer:
+              dao: debug
   path: logs/
   file:
     max-size: 1GB

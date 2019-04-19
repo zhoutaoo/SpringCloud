@@ -15,7 +15,7 @@ public class ProductServiceTests {
     private IProductService productService;
 
     @Test
-    public void add() throws Exception {
+    public void add() {
         Product product = new Product("海报", "我是海报");
         Assert.assertEquals(1, productService.add(product));
     }
