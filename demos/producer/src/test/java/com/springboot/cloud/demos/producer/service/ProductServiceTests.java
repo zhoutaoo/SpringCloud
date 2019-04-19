@@ -16,7 +16,7 @@ public class ProductServiceTests {
 
     @Test
     public void add() {
-        Product product = new Product("海报", "我是海报");
+        Product product = new Product("海报", "我是海报", "N");
         Assert.assertEquals(1, productService.add(product));
     }
 
