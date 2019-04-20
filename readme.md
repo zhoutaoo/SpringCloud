@@ -222,4 +222,4 @@
 
 EMail：zhoutaoo@foxmail.com
 
-![wechat](docs/wechat.png)
+![wechat](docs/0B6D3C52-17AA-40F3-8E65-F3A40D9ACF3F.jpeg)
