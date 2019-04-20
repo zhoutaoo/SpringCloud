@@ -50,11 +50,7 @@ logging:
       sql:
         PreparedStatement: debug
     com:
-      springboot:
-        cloud:
-          demos:
-            producer:
-              dao: debug
+      springboot: debug
   path: logs/
   file:
     max-size: 1GB
