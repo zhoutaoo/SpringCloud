@@ -29,7 +29,7 @@ public class DefaultGlobalExceptionHandlerAdvice {
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public Result serviceException(MethodArgumentNotValidException ex) {
         log.error("service exception:{}", ex.getMessage());
-        return Result.fail(SystemErrorType.ARGUMENT_NOT_VALID);
+        return Result.fail(SystemErrorType.ARGUMENT_NOT_VALID, ex.getBindingResult().getFieldError().getDefaultMessage());
     }
 
     @ExceptionHandler(value = {BaseException.class})

@@ -47,7 +47,7 @@ spring:
 
 logging:
   level:
-    org.springframework.web: debug
+    com.springboot.cloud: debug
     java.sql.PreparedStatement: debug
   path: logs/
   file:

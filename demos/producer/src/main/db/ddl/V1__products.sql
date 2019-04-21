@@ -2,13 +2,13 @@ DROP TABLE IF EXISTS product;
 CREATE TABLE product
 (
   id           SERIAL PRIMARY KEY,
-  name         VARCHAR(200)            NOT NULL,
+  name         VARCHAR(200)             NOT NULL,
   description  VARCHAR(500),
-  deleted      VARCHAR(1)              NOT NULL,
-  created_time TIMESTAMP DEFAULT now() NOT NULL,
-  updated_time TIMESTAMP DEFAULT now() NOT NULL,
-  created_by   VARCHAR(100)            NOT NULL,
-  updated_by   VARCHAR(100)            NOT NULL
+  deleted      VARCHAR(1) DEFAULT 'N'   NOT NULL,
+  created_time TIMESTAMP  DEFAULT now() NOT NULL,
+  updated_time TIMESTAMP  DEFAULT now() NOT NULL,
+  created_by   VARCHAR(100)             NOT NULL,
+  updated_by   VARCHAR(100)             NOT NULL
 );
 
 COMMENT ON COLUMN product.id IS '编号';

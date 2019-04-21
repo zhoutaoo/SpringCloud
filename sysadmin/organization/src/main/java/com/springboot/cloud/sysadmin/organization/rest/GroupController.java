@@ -26,7 +26,7 @@ public class GroupController {
     @ApiImplicitParam(name = "groupForm", value = "新增用户组form表单", required = true, dataType = "GroupForm")
     @PostMapping
     public Result add(@Valid @RequestBody GroupForm groupForm) {
-        log.info("name:", groupForm);
+        log.debug("name:{}", groupForm);
         Group group = groupForm.toPo(Group.class);
         return Result.success(groupService.add(group));
     }
@@ -56,7 +56,7 @@ public class GroupController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable long id) {
-        log.info("get with id:{}", id);
+        log.debug("get with id:{}", id);
         return Result.success(groupService.get(id));
     }
 
@@ -67,7 +67,7 @@ public class GroupController {
     )
     @GetMapping
     public Result query(@RequestParam String name) {
-        log.info("query with name:{}", name);
+        log.debug("query with name:{}", name);
         GroupQueryParam groupQueryParam = new GroupQueryParam();
         groupQueryParam.setName(name);
         return Result.success(groupService.query(groupQueryParam));
@@ -80,7 +80,7 @@ public class GroupController {
     )
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody GroupQueryForm groupQueryForm) {
-        log.info("search with groupQueryForm:", groupQueryForm);
+        log.debug("search with groupQueryForm:{}", groupQueryForm);
         return Result.success(groupService.query(groupQueryForm.toParam(GroupQueryParam.class)));
     }
 
@@ -88,7 +88,7 @@ public class GroupController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组父ID", required = true, dataType = "long")
     @GetMapping(value = "/parent/{id}")
     public Result search(@PathVariable long id) {
-        log.info("query with parent id:", id);
+        log.debug("query with parent id:{}", id);
         return Result.success(groupService.queryByParentId(id));
     }
 }
