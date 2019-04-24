@@ -13,6 +13,8 @@
 - [redis](http://redis.io/download)
 - [rabbitmq](http://rabbitmq.io/download)
 
+建议先学习了解springboot和springcloud基础知识。
+
 ### 开发环境
 
 1. 克隆代码库： `git clone https://gitee.com/toopoo/SpringCloud.git`
@@ -222,4 +224,6 @@
 
 EMail：zhoutaoo@foxmail.com
 
-![wechat](docs/wechat.png)
+群1满，请加群2，如下
+
+![wechat](docs/wechat.jpeg)

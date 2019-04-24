@@ -26,7 +26,7 @@ public class ProductController {
     @ApiImplicitParam(name = "productForm", value = "新增产品form表单", required = true, dataType = "ProductForm")
     @PostMapping
     public Result add(@Valid @RequestBody ProductForm productForm) {
-        log.info("name:", productForm);
+        log.info("name:{}", productForm);
         Product product = productForm.toPo(Product.class);
         return Result.success(productService.add(product));
     }
@@ -80,7 +80,7 @@ public class ProductController {
     )
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody ProductQueryForm productQueryForm) {
-        log.info("search with productQueryForm:", productQueryForm);
+        log.info("search with productQueryForm:{}", productQueryForm);
         return Result.success(productService.query(productQueryForm.toParam(ProductQueryParam.class)));
     }
 }
