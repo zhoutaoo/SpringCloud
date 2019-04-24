@@ -1,35 +1,21 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: BUG提交
+about: 提交缺陷
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**BUG描述**
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+清晰的BUG描述，有助于判断问题，请按如下步骤
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+ 1.说明操作的背景，使用了哪个模块什么功能？
+  
+ 2.怎么输入或操作的得到了什么结果？
+ 
+ 3.预期结果与实际有什么差异？     
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**截图**
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+**环境**
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+操作系统、组件版本、数据库等

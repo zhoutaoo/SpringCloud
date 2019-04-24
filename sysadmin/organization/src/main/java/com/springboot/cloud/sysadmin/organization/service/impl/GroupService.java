@@ -1,5 +1,6 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.springboot.cloud.sysadmin.organization.dao.GroupMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.GroupQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Group;
@@ -27,28 +28,32 @@ public class GroupService implements IGroupService {
     @Override
     @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#id")
     public void delete(long id) {
-        groupMapper.delete(id);
+        groupMapper.deleteById(id);
     }
 
     @Override
     @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#group.id")
     public void update(Group group) {
-        groupMapper.update(group);
+        groupMapper.updateById(group);
     }
 
     @Override
     @Cacheable(value = "group", key = "#root.targetClass.name+'-'+#id")
     public Group get(long id) {
-        return groupMapper.select(id);
+        return groupMapper.selectById(id);
     }
 
     @Override
     public List<Group> query(GroupQueryParam groupQueryParam) {
-        return groupMapper.query(groupQueryParam);
+        QueryWrapper<Group> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge(null != groupQueryParam.getCreatedTimeStart(), "created_time", groupQueryParam.getCreatedTimeStart());
+        queryWrapper.le(null != groupQueryParam.getCreatedTimeEnd(), "created_time", groupQueryParam.getCreatedTimeEnd());
+        queryWrapper.eq("name", groupQueryParam.getName());
+        return groupMapper.selectList(queryWrapper);
     }
 
     @Override
     public List<Group> queryByParentId(long id) {
-        return groupMapper.queryByParentId(id);
+        return groupMapper.selectList(new QueryWrapper<Group>().eq("parent_id", id));
     }
 }
