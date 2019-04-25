@@ -1,6 +1,6 @@
 --用户组表
-DROP TABLE IF EXISTS "group";
-CREATE TABLE "group"
+DROP TABLE IF EXISTS groups;
+CREATE TABLE groups
 (
   id           SERIAL PRIMARY KEY,
   parent_id    INT          NOT NULL,
@@ -12,16 +12,16 @@ CREATE TABLE "group"
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-COMMENT ON TABLE "group" IS '用户组表';
-COMMENT ON COLUMN "group".id IS '用户组id';
-COMMENT ON COLUMN "group".parent_id IS '用户组父id';
-COMMENT ON COLUMN "group".name IS '用户组名称';
-COMMENT ON COLUMN "group".description IS '用户组简介';
-COMMENT ON COLUMN "group".deleted IS '是否已删除Y：已删除，N：未删除';
-COMMENT ON COLUMN "group".created_time IS '创建时间';
-COMMENT ON COLUMN "group".updated_time IS '更新时间';
-COMMENT ON COLUMN "group".created_by IS '创建人';
-COMMENT ON COLUMN "group".updated_by IS '更新人';
+COMMENT ON TABLE groups IS '用户组表';
+COMMENT ON COLUMN groups.id IS '用户组id';
+COMMENT ON COLUMN groups.parent_id IS '用户组父id';
+COMMENT ON COLUMN groups.name IS '用户组名称';
+COMMENT ON COLUMN groups.description IS '用户组简介';
+COMMENT ON COLUMN groups.deleted IS '是否已删除Y：已删除，N：未删除';
+COMMENT ON COLUMN groups.created_time IS '创建时间';
+COMMENT ON COLUMN groups.updated_time IS '更新时间';
+COMMENT ON COLUMN groups.created_by IS '创建人';
+COMMENT ON COLUMN groups.updated_by IS '更新人';
 
 --岗位表
 DROP TABLE IF EXISTS position;
