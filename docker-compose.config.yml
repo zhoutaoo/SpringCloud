@@ -23,6 +23,7 @@ services:
       DEV_URL: http://apollo-config:8080
     depends_on:
       - apollo-db
+      - apollo-config
 
   apollo-config:
     image: idoop/docker-apollo:latest

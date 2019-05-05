@@ -54,7 +54,7 @@ spring:
 
 ### 客户端使用
 
-客户端引用配置如下代码，具体请参考 [producer](../../services/producer)子模块，配置中心客户端在启动时会从配置中心拉取相关配置文件 
+客户端引用配置如下代码，具体请参考 [producer](../../demos/producer)子模块，配置中心客户端在启动时会从配置中心拉取相关配置文件 
 
 * 引入依赖包
 
@@ -115,6 +115,7 @@ public class ProductService implements IProductService {
 ### 先决条件
 
 - [rabbitmq](http://rabbitmq.io/download)
+- [eureka](../../center/eureka)
 
 ### 启动命令
 

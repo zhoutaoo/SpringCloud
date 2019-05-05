@@ -19,7 +19,7 @@ services:
     container_name: sc-rabbitmq
     restart: always
     volumes:
-      - ./data/rabbitmq:/var/lib/rabbitmq
+      - ./data/rabbitmq:/var/lib/rabbitmq/mnesia
     networks:
       - sc-net
     ports:

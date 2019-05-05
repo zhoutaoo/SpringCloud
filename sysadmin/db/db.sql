@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS sc_admin;
+CREATE DATABASE sc_admin;

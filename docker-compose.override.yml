@@ -20,22 +20,6 @@ services:
     depends_on:
       - rabbitmq
 
-  config-server:
-    image: cike/config-server
-    container_name: sc-config-server
-    restart: always
-    volumes:
-      - ./data/config-server/logs:/var/logs
-      - ./data/pinpoint-agent:/pinpoint-agent
-    networks:
-      - sc-net
-    ports:
-      - 8888:8888
-    environment:
-      - JAVA_OPTS=-javaagent:${PINPOINT_AGENT_JAR} -Dpinpoint.agentId=config-server1 -Dpinpoint.applicationName=config-server
-    depends_on:
-      - eureka-server
-
   gateway:
     image: cike/gateway-web
     container_name: sc-gateway-web

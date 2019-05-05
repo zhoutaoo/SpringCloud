@@ -5,7 +5,8 @@ CREATE TABLE "group"
   id           SERIAL PRIMARY KEY,
   parent_id    INT          NOT NULL,
   name         VARCHAR(200),
-  description   VARCHAR(500),
+  description  VARCHAR(500),
+  deleted      VARCHAR(1)   NOT NULL DEFAULT 'N',
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -16,6 +17,7 @@ COMMENT ON COLUMN "group".id IS '用户组id';
 COMMENT ON COLUMN "group".parent_id IS '用户组父id';
 COMMENT ON COLUMN "group".name IS '用户组名称';
 COMMENT ON COLUMN "group".description IS '用户组简介';
+COMMENT ON COLUMN "group".deleted IS '是否已删除Y：已删除，N：未删除';
 COMMENT ON COLUMN "group".created_time IS '创建时间';
 COMMENT ON COLUMN "group".updated_time IS '更新时间';
 COMMENT ON COLUMN "group".created_by IS '创建人';
@@ -27,7 +29,8 @@ CREATE TABLE position
 (
   id           SERIAL PRIMARY KEY,
   name         VARCHAR(200),
-  description   VARCHAR(500),
+  description  VARCHAR(500),
+  deleted      VARCHAR(1)   NOT NULL DEFAULT 'N',
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -37,6 +40,7 @@ COMMENT ON TABLE position IS '岗位表';
 COMMENT ON COLUMN position.id IS '岗位id';
 COMMENT ON COLUMN position.name IS '岗位名称';
 COMMENT ON COLUMN position.description IS '岗位简介';
+COMMENT ON COLUMN position.deleted IS '是否已删除Y：已删除，N：未删除';
 COMMENT ON COLUMN position.created_time IS '创建时间';
 COMMENT ON COLUMN position.updated_time IS '更新时间';
 COMMENT ON COLUMN position.created_by IS '创建人';
@@ -52,7 +56,7 @@ CREATE TABLE menu
   href         VARCHAR(200),
   icon         VARCHAR(200),
   name         VARCHAR(200),
-  description   VARCHAR(500),
+  description  VARCHAR(500),
   order_num    INTEGER,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
