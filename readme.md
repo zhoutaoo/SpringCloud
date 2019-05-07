@@ -96,7 +96,7 @@ authentication-server为签权应用，若有新增接口，请初使化相关�
 
 gateway-admin可动态调整gateway-web的路由策略，测试前请先配置网关的转发策略，[路由策略配置](https://github.com/zhoutaoo/SpringCloud/tree/master/gateway/gateway-admin#%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)。
 
-[示意图](https://www.processon.com/diagraming/5cc05ff9e4b06bcc138a9ae7)
+[示意图](https://www.processon.com/view/link/5cc05ff9e4b059e20a06e3c4)
 
 ### 测试
 
