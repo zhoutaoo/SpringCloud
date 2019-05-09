@@ -82,27 +82,36 @@ services:
       - 9200:9200
       - 9300:9300
 
-  skywalking:
-    image: wutang/skywalking-docker:5.x
-    container_name: skywalking
-    privileged: true
+  skywalking-oap:
+    image: wutang/skywalking-oap:6.1.0
+    container_name: skywalking-oap
     networks:
       - sc-net
-    environment:
-      - ES_CLUSTER_NAME=elasticsearch
-      - ES_ADDRESSES=elasticsearch:9300
-      - BIND_HOST=127.0.0.1
-      - AGENT_JETTY_BIND_HOST=127.0.0.1
-      - NAMING_BIND_HOST=127.0.0.1
-      - UI_JETTY_BIND_HOST=0.0.0.0
     depends_on:
       - elasticsearch
-    command: ["/wait-for-it.sh", "elasticsearch:9300", "-t", "20"]
+    links:
+      - elasticsearch
+    restart: always
     ports:
-      - 8080:8080
-      - 10800:10800
       - 11800:11800
       - 12800:12800
+    volumes:
+      - ./data/skywalking/config:/apache-skywalking-apm-incubating/config:ro
+
+  skywalking-ui:
+    image: wutang/skywalking-ui:6.1.0
+    container_name: skywalking-ui
+    networks:
+      - sc-net
+    depends_on:
+      - skywalking-oap
+    links:
+      - skywalking-oap
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      collector.ribbon.listOfServers: skywalking-oap:12800
 
   kibana:
     image: kibana
