@@ -1,7 +1,7 @@
 package com.springboot.cloud.sysadmin.organization.entity.form;
 
 import com.springboot.cloud.common.core.entity.form.BaseQueryForm;
-import com.springboot.cloud.sysadmin.organization.entity.param.GroupQueryParam;
+import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,10 +13,14 @@ import java.util.Date;
 
 @ApiModel
 @Data
-public class GroupQueryForm extends BaseQueryForm<GroupQueryParam> {
+public class RoleQueryForm extends BaseQueryForm<RoleQueryParam> {
 
-    @NotBlank(message = "用户组名称不能为空")
-    @ApiModelProperty(value = "用户组名称", required = true)
+    @NotBlank(message = "角色编码不能为空")
+    @ApiModelProperty(value = "角色编码", required = true)
+    private String code;
+
+    @NotBlank(message = "角色名称不能为空")
+    @ApiModelProperty(value = "角色名称", required = true)
     private String name;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

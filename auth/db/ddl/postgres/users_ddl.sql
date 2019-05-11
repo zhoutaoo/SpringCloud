@@ -7,6 +7,7 @@ CREATE TABLE users
   password                VARCHAR(100) NOT NULL,
   name                    VARCHAR(200),
   mobile                  VARCHAR(20),
+  deleted                 VARCHAR(1)   NOT NULL DEFAULT 'N',
   enabled                 BOOLEAN,
   account_non_expired     BOOLEAN,
   credentials_non_expired BOOLEAN,
@@ -26,6 +27,7 @@ COMMENT ON COLUMN users.username IS '用户名';
 COMMENT ON COLUMN users.password IS '用户密码密文';
 COMMENT ON COLUMN users.name IS '用户姓名';
 COMMENT ON COLUMN users.mobile IS '用户手机';
+COMMENT ON COLUMN users.deleted IS '是否已删除Y：已删除，N：未删除';
 COMMENT ON COLUMN users.enabled IS '是否有效用户';
 COMMENT ON COLUMN users.account_non_expired IS '账号是否未过期';
 COMMENT ON COLUMN users.credentials_non_expired IS '密码是否未过期';
