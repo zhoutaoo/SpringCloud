@@ -60,7 +60,7 @@ CREATE TABLE user_group_relation
 ) COMMENT '用户和组关系表';
 
 
--- 用户和角色系表
+-- 用户和岗位系表
 DROP TABLE IF EXISTS user_position_relation;
 CREATE TABLE user_position_relation
 (
@@ -71,7 +71,7 @@ CREATE TABLE user_position_relation
   updated_time DATETIME     NOT NULL DEFAULT now() COMMENT '更新时间',
   created_by   VARCHAR(100) NOT NULL COMMENT '创建人',
   updated_by   VARCHAR(100) NOT NULL COMMENT '更新人'
-) COMMENT '用户和角色关系表';
+) COMMENT '用户和岗位关系表';
 
 
 -- 角色和菜单关系表
