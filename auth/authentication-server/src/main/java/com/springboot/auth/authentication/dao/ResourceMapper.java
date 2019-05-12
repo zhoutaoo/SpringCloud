@@ -12,15 +12,14 @@ import java.util.Set;
 @Repository
 public interface ResourceMapper {
 
-    @Select("SELECT id,code,type,name,url,method,description,created_time,updated_time,created_by,updated_by" +
-            " FROM resources")
+    @Select("SELECT id,code,type,name,url,method,description,created_time,updated_time,created_by,updated_by FROM resource")
     Set<Resource> findAll();
 
     @Select("<script>" +
             "SELECT DISTINCT rs.code,rs.url,rs.name,rs.type,rs.method,rs.description" +
             " FROM roles r" +
             " INNER JOIN roles_resources_relation rrr ON r.id = rrr.role_id" +
-            " INNER JOIN resources rs ON rs.id = rrr.resource_id" +
+            " INNER JOIN resource rs ON rs.id = rrr.resource_id" +
             " WHERE r.code IN " +
             " <foreach collection='roleCodes' item='roleCode' index='index' open='(' close=')' separator=',' >" +
             "    #{roleCode}" +

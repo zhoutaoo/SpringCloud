@@ -5,7 +5,7 @@ CREATE TABLE users
   id                      SERIAL PRIMARY KEY,
   username                VARCHAR(100) NOT NULL,
   password                VARCHAR(100) NOT NULL,
-  name                    VARCHAR(200),
+  name                    VARCHAR(200) NOT NULL,
   mobile                  VARCHAR(20),
   deleted                 VARCHAR(1)   NOT NULL DEFAULT 'N',
   description             VARCHAR(500),
@@ -44,7 +44,7 @@ CREATE TABLE roles
 (
   id           SERIAL PRIMARY KEY,
   code         VARCHAR(100) NOT NULL,
-  name         VARCHAR(200),
+  name         VARCHAR(200) NOT NULL,
   description  VARCHAR(500),
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
@@ -62,31 +62,35 @@ COMMENT ON COLUMN roles.created_by IS '创建人';
 COMMENT ON COLUMN roles.updated_by IS '更新人';
 
 --资源表
-DROP TABLE IF EXISTS resources;
-CREATE TABLE resources
+DROP TABLE IF EXISTS resource;
+CREATE TABLE resource
 (
   id           SERIAL PRIMARY KEY,
-  code         VARCHAR(100),
-  type         VARCHAR(100),
-  name         VARCHAR(200),
-  url          VARCHAR(200),
-  method       VARCHAR(20),
+  code         VARCHAR(100) NOT NULL,
+  type         VARCHAR(100) NOT NULL,
+  name         VARCHAR(200) NOT NULL,
+  url          VARCHAR(200) NOT NULL,
+  method       VARCHAR(20)  NOT NULL,
   description  VARCHAR(500),
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-CREATE UNIQUE INDEX ux_resources_code
-  ON resources (code);
-COMMENT ON TABLE resources IS '资源表';
-COMMENT ON COLUMN resources.id IS '资源id';
-COMMENT ON COLUMN resources.name IS '资源名称';
-COMMENT ON COLUMN resources.description IS '资源简介';
-COMMENT ON COLUMN resources.created_time IS '创建时间';
-COMMENT ON COLUMN resources.updated_time IS '更新时间';
-COMMENT ON COLUMN resources.created_by IS '创建人';
-COMMENT ON COLUMN resources.updated_by IS '更新人';
+CREATE UNIQUE INDEX ux_resource_code
+  ON resource (code);
+COMMENT ON TABLE resource IS '资源表';
+COMMENT ON COLUMN resource.id IS '资源id';
+COMMENT ON COLUMN resource.name IS '资源名称';
+COMMENT ON COLUMN resource.code IS '资源编码';
+COMMENT ON COLUMN resource.type IS '资源类型';
+COMMENT ON COLUMN resource.url IS '资源路径';
+COMMENT ON COLUMN resource.method IS '资源方法';
+COMMENT ON COLUMN resource.description IS '资源简介';
+COMMENT ON COLUMN resource.created_time IS '创建时间';
+COMMENT ON COLUMN resource.updated_time IS '更新时间';
+COMMENT ON COLUMN resource.created_by IS '创建人';
+COMMENT ON COLUMN resource.updated_by IS '更新人';
 
 --用户和角色关系表
 DROP TABLE IF EXISTS users_roles_relation;

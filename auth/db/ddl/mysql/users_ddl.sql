@@ -38,23 +38,23 @@ CREATE TABLE roles
 ) COMMENT '角色表';
 
 -- 资源表
-DROP TABLE IF EXISTS resources;
-CREATE TABLE resources
+DROP TABLE IF EXISTS resource;
+CREATE TABLE resource
 (
   id           BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '资源id',
-  code         VARCHAR(100) COMMENT '资源code',
-  type         VARCHAR(100) COMMENT '资源类型',
-  name         VARCHAR(200) COMMENT '资源名称',
-  url          VARCHAR(200) COMMENT '资源url',
-  method       VARCHAR(20) COMMENT '资源方法',
+  code         VARCHAR(100) NOT NULL COMMENT '资源code',
+  type         VARCHAR(100) NOT NULL COMMENT '资源类型',
+  name         VARCHAR(200) NOT NULL COMMENT '资源名称',
+  url          VARCHAR(200) NOT NULL COMMENT '资源url',
+  method       VARCHAR(20)  NOT NULL COMMENT '资源方法',
   description  VARCHAR(500) COMMENT '简介',
   created_time DATETIME     NOT NULL DEFAULT now() COMMENT '创建时间',
   updated_time DATETIME     NOT NULL DEFAULT now() COMMENT '更新时间',
   created_by   VARCHAR(100) NOT NULL COMMENT '创建人',
   updated_by   VARCHAR(100) NOT NULL COMMENT '更新人'
 ) COMMENT '资源表';
-CREATE UNIQUE INDEX ux_resources_code
-  ON resources (code);
+CREATE UNIQUE INDEX ux_resource_code
+  ON resource (code);
 
 -- 用户和角色关系表
 DROP TABLE IF EXISTS users_roles_relation;
