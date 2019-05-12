@@ -18,6 +18,7 @@ public class User extends BasePo {
     private String mobile;
     private String username;
     private String password;
+    private String description;
     private Boolean enabled;
     private Boolean accountNonExpired;
     private Boolean credentialsNonExpired;

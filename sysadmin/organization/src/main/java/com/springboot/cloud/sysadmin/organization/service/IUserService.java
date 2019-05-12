@@ -15,6 +15,13 @@ public interface IUserService {
     User get(long id);
 
     /**
+     * 根据用户名获取用户信息
+     * @param username
+     * @return
+     */
+    User getByUsername(String username);
+
+    /**
      * 新增用户
      *
      * @param user
@@ -42,4 +49,5 @@ public interface IUserService {
      * @param id
      */
     void delete(long id);
+
 }

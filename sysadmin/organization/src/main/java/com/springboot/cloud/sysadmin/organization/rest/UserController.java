@@ -60,17 +60,15 @@ public class UserController {
         return Result.success(userService.get(id));
     }
 
-    @ApiOperation(value = "查询用户", notes = "根据条件查询用户信息，简单查询")
-    @ApiImplicitParam(paramType = "query", name = "name", value = "用户名称", required = true, dataType = "string")
+    @ApiOperation(value = "查询用户", notes = "根据用户名查询用户信息，简单查询")
+    @ApiImplicitParam(paramType = "query", name = "username", value = "用户名", required = true, dataType = "string")
     @ApiResponses(
             @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     )
     @GetMapping
-    public Result query(@RequestParam String name) {
-        log.debug("query with name:{}", name);
-        UserQueryParam userQueryParam = new UserQueryParam();
-        userQueryParam.setName(name);
-        return Result.success(userService.query(userQueryParam));
+    public Result query(@RequestParam String username) {
+        log.debug("query with username:{}", username);
+        return Result.success(userService.getByUsername(username));
     }
 
     @ApiOperation(value = "搜索用户", notes = "根据条件查询用户信息")
