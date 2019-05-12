@@ -16,11 +16,11 @@ import java.util.Date;
 public class UserQueryForm extends BaseQueryForm<UserQueryParam> {
 
     @NotBlank(message = "用户名不能为空")
-    @ApiModelProperty(value = "角色编码", required = true)
+    @ApiModelProperty(value = "用户账号", required = true)
     private String username;
 
     @NotBlank(message = "姓名不能为空")
-    @ApiModelProperty(value = "角色名称", required = true)
+    @ApiModelProperty(value = "用户姓名", required = true)
     private String name;
 
     @NotBlank(message = "手机号不能为空")
