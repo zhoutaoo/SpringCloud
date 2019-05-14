@@ -255,6 +255,6 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 EMail：zhoutaoo@foxmail.com
 
-群1满，请加群2，如下
+群1、2已满，请加群3，如下
 
 ![wechat](docs/wechat.jpeg)
