@@ -59,6 +59,17 @@ public class RoleController {
         return Result.success(roleService.get(id));
     }
 
+    @ApiOperation(value = "查询角色", notes = "根据用户id查询用户所拥有的角色信息")
+    @ApiImplicitParam(paramType = "path", name = "userId", value = "用户id", required = true, dataType = "long")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
+    @GetMapping(value = "/user/{userId}")
+    public Result query(@PathVariable long userId) {
+        log.debug("query with userId:{}", userId);
+        return Result.success(roleService.query(userId));
+    }
+
     @ApiOperation(value = "查询角色", notes = "根据条件查询角色信息，简单查询")
     @ApiImplicitParam(paramType = "query", name = "name", value = "角色名称", required = true, dataType = "string")
     @ApiResponses(

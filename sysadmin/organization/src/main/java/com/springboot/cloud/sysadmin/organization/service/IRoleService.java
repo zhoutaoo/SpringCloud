@@ -30,6 +30,13 @@ public interface IRoleService {
     List<Role> query(RoleQueryParam roleQueryParam);
 
     /**
+     * 根据用户id查询用户拥有的角色
+     *
+     * @return
+     */
+    List<Role> query(long userId);
+
+    /**
      * 更新角色信息
      *
      * @param role
