@@ -95,7 +95,7 @@ services:
       - 11800:11800
       - 12800:12800
     volumes:
-      - ./data/skywalking/config:/apache-skywalking-apm-incubating/config:ro
+      - ./data/skywalking/config:/apache-skywalking-apm-bin/config:ro
 
   skywalking-ui:
     image: wutang/skywalking-ui:6.1.0
