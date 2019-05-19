@@ -62,6 +62,7 @@ public class ResourceService implements IResourceService {
         return this.resourceConfigAttributes;
     }
 
+    @Override
     public ConfigAttribute findConfigAttributesByUrl(HttpServletRequest authRequest) {
         return this.resourceConfigAttributes.keySet().stream()
                 .filter(requestMatcher -> requestMatcher.matches(authRequest))
