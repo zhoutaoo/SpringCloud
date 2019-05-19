@@ -1,11 +1,14 @@
 package com.springboot.auth.authentication.service.impl;
 
 import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.auth.authentication.rest.HttpServletRequestAuthWrapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.security.access.ConfigAttribute;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Set;
@@ -15,14 +18,29 @@ import static org.hamcrest.Matchers.greaterThan;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ResourceServiceTest {
+
+/*    private Map<RequestMatcher, ConfigAttribute> resourceConfigAttributes = new HashMap() {
+        {
+            MvcRequestMatcher mvcRequestMatcher1 = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/users");
+            mvcRequestMatcher1.setMethod(HttpMethod.resolve("POST"));
+            MvcRequestMatcher mvcRequestMatcher2 = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/users/{id}");
+            mvcRequestMatcher2.setMethod(HttpMethod.resolve("PUT"));
+            MvcRequestMatcher mvcRequestMatcher3 = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/users/{id}");
+            mvcRequestMatcher3.setMethod(HttpMethod.resolve("DELETE"));
+            MvcRequestMatcher mvcRequestMatcher4 = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/users/{id}");
+            mvcRequestMatcher4.setMethod(HttpMethod.resolve("GET"));
+            MvcRequestMatcher mvcRequestMatcher5 = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/users/{id}/order");
+            mvcRequestMatcher5.setMethod(HttpMethod.resolve("GET"));
+            put(mvcRequestMatcher1, new SecurityConfig("user_manager:btn_add"));
+            put(mvcRequestMatcher2, new SecurityConfig("user_manager:btn_edit"));
+            put(mvcRequestMatcher3, new SecurityConfig("user_manager:btn_del"));
+            put(mvcRequestMatcher4, new SecurityConfig("user_manager:view"));
+            put(mvcRequestMatcher5, new SecurityConfig("user_order:view"));
+        }
+    };*/
+
     @Autowired
     private ResourceService resourceService;
-
-    @Test
-    public void testFindAll_假如已配置有资源_当获取所有时_那么可以获取到所有资源集合() {
-        Set<Resource> resources = resourceService.findAll();
-        Assert.assertThat(resources.size(), greaterThan(2));
-    }
 
     @Test
     public void testQueryByRoleCodes_假如存在角色ADMIN_当传入ADMIN时_那么可以获取到角色拥有的资源集合() {
@@ -34,5 +52,26 @@ public class ResourceServiceTest {
     public void testQueryByRoleCodes_假如不存在角色NOTHING_当传入NOTHING时_那么获取不到资源信息() {
         Set<Resource> resources = resourceService.queryByRoleCodes(new String[]{"NOTHING"});
         Assert.assertEquals(0, resources.size());
+    }
+
+    @Test
+    public void testGetConfigAttributesByUrl_假如存在如上资源信息_当请求不存在method的资源时_那么返回NONEXISTENT_URL() {
+        ConfigAttribute attributesByUrl = resourceService
+                .findConfigAttributesByUrl(new HttpServletRequestAuthWrapper(new MockHttpServletRequest(), "/users/1/order", "POST"));
+        Assert.assertEquals("NONEXISTENT_URL", attributesByUrl.getAttribute());
+    }
+
+    @Test
+    public void testGetConfigAttributesByUrl_假如存在如上资源信息_当请求url存在参数时_那么返回匹配的资源信息() {
+        ConfigAttribute attributesByUrl = resourceService
+                .findConfigAttributesByUrl(new HttpServletRequestAuthWrapper(new MockHttpServletRequest(), "/users/1/order", "GET"));
+        Assert.assertEquals("NONEXISTENT_URL", attributesByUrl.getAttribute());
+    }
+
+    @Test
+    public void testGetConfigAttributesByUrl_假如存在如上资源信息_当请求存在的资源时_那么返回url和method都匹配的资源信息() {
+        ConfigAttribute attributesByUrl = resourceService
+                .findConfigAttributesByUrl(new HttpServletRequestAuthWrapper(new MockHttpServletRequest(), "/users", "POST"));
+        Assert.assertEquals("user_manager:btn_add", attributesByUrl.getAttribute());
     }
 }

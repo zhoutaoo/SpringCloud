@@ -70,6 +70,15 @@ public class ResourceController {
         return Result.success(resourceService.query(userId));
     }
 
+    @ApiOperation(value = "查询所有资源", notes = "查询所有资源信息")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
+    @GetMapping(value = "/all")
+    public Result queryAll() {
+        return Result.success(resourceService.query(new ResourceQueryParam()));
+    }
+
     @ApiOperation(value = "查询资源", notes = "根据条件查询资源信息，简单查询")
     @ApiImplicitParam(paramType = "query", name = "name", value = "资源名称", required = true, dataType = "string")
     @ApiResponses(

@@ -5,16 +5,13 @@ import com.springboot.auth.authentication.service.IAuthenticationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,21 +28,6 @@ public class AuthenticationService implements IAuthenticationService {
     private ResourceService resourceService;
 
     /**
-     * 系统中所有权限集合
-     */
-    Map<RequestMatcher, ConfigAttribute> resourceConfigAttributes;
-
-    /**
-     * 从数据库中加载注入
-     *
-     * @param resourceConfigAttributes
-     */
-    @Autowired
-    public AuthenticationService(Map<RequestMatcher, ConfigAttribute> resourceConfigAttributes) {
-        this.resourceConfigAttributes = resourceConfigAttributes;
-    }
-
-    /**
      * @param authRequest 访问的url,method
      * @return 有权限true, 无权限或全局资源中未找到请求url返回否
      */
@@ -55,7 +37,7 @@ public class AuthenticationService implements IAuthenticationService {
         //获取用户认证信息
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //获取此url，method访问对应的权限资源信息
-        ConfigAttribute urlConfigAttribute = findConfigAttributesByUrl(authRequest);
+        ConfigAttribute urlConfigAttribute = resourceService.findConfigAttributesByUrl(authRequest);
         if (NONEXISTENT_URL.equals(urlConfigAttribute.getAttribute()))
             log.debug("url未在资源池中找到，拒绝访问");
         //获取此访问用户所有角色拥有的权限资源
@@ -73,21 +55,6 @@ public class AuthenticationService implements IAuthenticationService {
      */
     public boolean isMatch(ConfigAttribute urlConfigAttribute, Set<Resource> userResources) {
         return userResources.stream().anyMatch(resource -> resource.getCode().equals(urlConfigAttribute.getAttribute()));
-    }
-
-    /**
-     * 根据url和method查询到对应的权限信息
-     *
-     * @param authRequest
-     * @return
-     */
-    public ConfigAttribute findConfigAttributesByUrl(HttpServletRequest authRequest) {
-        return this.resourceConfigAttributes.keySet().stream()
-                .filter(requestMatcher -> requestMatcher.matches(authRequest))
-                .map(requestMatcher -> this.resourceConfigAttributes.get(requestMatcher))
-                .peek(urlConfigAttribute -> log.debug("url在资源池中配置：{}", urlConfigAttribute.getAttribute()))
-                .findFirst()
-                .orElse(new SecurityConfig(NONEXISTENT_URL));
     }
 
     /**
