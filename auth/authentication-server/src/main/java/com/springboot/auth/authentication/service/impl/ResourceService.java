@@ -3,9 +3,11 @@ package com.springboot.auth.authentication.service.impl;
 import com.springboot.auth.authentication.dao.ResourceMapper;
 import com.springboot.auth.authentication.entity.Resource;
 import com.springboot.auth.authentication.service.IResourceService;
+import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Set;
 
 @Service
@@ -20,6 +22,9 @@ public class ResourceService implements IResourceService {
 
     @Override
     public Set<Resource> queryByRoleCodes(String[] roleCodes) {
-        return resourceMapper.queryByRoleCodes(roleCodes);
+        if (ArrayUtils.isNotEmpty(roleCodes)) {
+            return resourceMapper.queryByRoleCodes(roleCodes);
+        }
+        return Collections.emptySet();
     }
 }
