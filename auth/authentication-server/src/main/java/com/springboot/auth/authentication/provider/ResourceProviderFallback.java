@@ -1,16 +1,19 @@
 package com.springboot.auth.authentication.provider;
 
+import com.springboot.auth.authentication.entity.Resource;
 import com.springboot.cloud.common.core.entity.vo.Result;
-import com.springboot.cloud.common.core.exception.SystemErrorType;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class ResourceProviderFallback implements ResourceProvider {
     @Override
-    public Result resources() {
-        return Result.fail(SystemErrorType.SYSTEM_BUSY);
+    public Result<Set<Resource>> resources() {
+        return Result.success(new HashSet<Resource>());
     }
 
     @Override
-    public Result resources(long userId) {
-        return Result.fail(SystemErrorType.SYSTEM_BUSY);
+    public Result<Set<Resource>> resources(String username) {
+        return Result.success(new HashSet<Resource>());
     }
 }

@@ -7,6 +7,7 @@ import com.springboot.cloud.sysadmin.organization.entity.param.ResourceQueryPara
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import com.springboot.cloud.sysadmin.organization.entity.po.Role;
 import com.springboot.cloud.sysadmin.organization.entity.po.RoleResource;
+import com.springboot.cloud.sysadmin.organization.entity.po.User;
 import com.springboot.cloud.sysadmin.organization.service.IResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class ResourceService implements IResourceService {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public long add(Resource resource) {
@@ -66,9 +70,10 @@ public class ResourceService implements IResourceService {
     }
 
     @Override
-    public List<Resource> query(long userId) {
+    public List<Resource> query(String username) {
         //根据用户id查询到用户所拥有的角色
-        List<Role> roles = roleService.query(userId);
+        User user = userService.getByUsername(username);
+        List<Role> roles = roleService.query(user.getId());
         //提取用户所拥有角色的id列表
         List<Long> roleIds = roles.stream().map(role -> role.getId()).collect(Collectors.toList());
         //根据角色列表查询到角色的资源的关联

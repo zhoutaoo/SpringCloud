@@ -13,14 +13,6 @@ import java.util.Set;
 public interface IResourceService {
 
     /**
-     * 根据角色code查询到角色把对应的资源定义
-     *
-     * @param roleCodes
-     * @return
-     */
-    Set<Resource> queryByRoleCodes(String[] roleCodes);
-
-    /**
      * 动态新增权限
      *
      * @param resource
@@ -39,4 +31,12 @@ public interface IResourceService {
      * @return
      */
     ConfigAttribute findConfigAttributesByUrl(HttpServletRequest authRequest);
+
+    /**
+     * 根据用户名查询 该用户所拥有的角色对应的资源信息
+     *
+     * @param username
+     * @return
+     */
+    Set<Resource> queryByUsername(String username);
 }

@@ -30,11 +30,11 @@ public interface IResourceService {
     List<Resource> query(ResourceQueryParam resourceQueryParam);
 
     /**
-     * 根据userId查询角色拥有的资源
+     * 根据username查询角色拥有的资源
      *
      * @return
      */
-    List<Resource> query(long userId);
+    List<Resource> query(String username);
 
     /**
      * 更新资源信息

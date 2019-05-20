@@ -1,6 +1,5 @@
 package com.springboot.auth.authentication.service.impl;
 
-import com.springboot.auth.authentication.dao.ResourceMapper;
 import com.springboot.auth.authentication.entity.Resource;
 import com.springboot.auth.authentication.provider.ResourceProvider;
 import com.springboot.auth.authentication.service.IResourceService;
@@ -27,20 +26,12 @@ public class ResourceService implements IResourceService {
     private HandlerMappingIntrospector mvcHandlerMappingIntrospector;
 
     @Autowired
-    private ResourceMapper resourceMapper;
-
-    @Autowired
     private ResourceProvider resourceProvider;
 
     /**
      * 系统中所有权限集合
      */
     private Map<RequestMatcher, ConfigAttribute> resourceConfigAttributes;
-
-    @Override
-    public Set<Resource> queryByRoleCodes(String[] roleCodes) {
-        return resourceMapper.queryByRoleCodes(roleCodes);
-    }
 
     @Override
     public void addResource(Resource resource) {
@@ -70,6 +61,11 @@ public class ResourceService implements IResourceService {
                 .peek(urlConfigAttribute -> log.debug("url在资源池中配置：{}", urlConfigAttribute.getAttribute()))
                 .findFirst()
                 .orElse(new SecurityConfig("NONEXISTENT_URL"));
+    }
+
+    @Override
+    public Set<Resource> queryByUsername(String username) {
+        return resourceProvider.resources(username).getData();
     }
 
     /**

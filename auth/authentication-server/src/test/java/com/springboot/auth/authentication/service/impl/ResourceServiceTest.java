@@ -1,6 +1,5 @@
 package com.springboot.auth.authentication.service.impl;
 
-import com.springboot.auth.authentication.entity.Resource;
 import com.springboot.auth.authentication.rest.HttpServletRequestAuthWrapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,10 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Set;
-
-import static org.hamcrest.Matchers.greaterThan;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -41,18 +36,6 @@ public class ResourceServiceTest {
 
     @Autowired
     private ResourceService resourceService;
-
-    @Test
-    public void testQueryByRoleCodes_假如存在角色ADMIN_当传入ADMIN时_那么可以获取到角色拥有的资源集合() {
-        Set<Resource> resources = resourceService.queryByRoleCodes(new String[]{"ADMIN"});
-        Assert.assertThat(resources.size(), greaterThan(2));
-    }
-
-    @Test
-    public void testQueryByRoleCodes_假如不存在角色NOTHING_当传入NOTHING时_那么获取不到资源信息() {
-        Set<Resource> resources = resourceService.queryByRoleCodes(new String[]{"NOTHING"});
-        Assert.assertEquals(0, resources.size());
-    }
 
     @Test
     public void testGetConfigAttributesByUrl_假如存在如上资源信息_当请求不存在method的资源时_那么返回NONEXISTENT_URL() {
