@@ -1,6 +1,7 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.springboot.cloud.sysadmin.organization.config.BusConfig;
 import com.springboot.cloud.sysadmin.organization.dao.ResourceMapper;
 import com.springboot.cloud.sysadmin.organization.dao.RoleResourceMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.ResourceQueryParam;
@@ -8,6 +9,7 @@ import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import com.springboot.cloud.sysadmin.organization.entity.po.Role;
 import com.springboot.cloud.sysadmin.organization.entity.po.RoleResource;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
+import com.springboot.cloud.sysadmin.organization.events.EventSender;
 import com.springboot.cloud.sysadmin.organization.service.IResourceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +36,12 @@ public class ResourceService implements IResourceService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private EventSender eventSender;
+
     @Override
     public long add(Resource resource) {
+        eventSender.send(BusConfig.QUEUE_NAME, resource);
         return resourceMapper.insert(resource);
     }
 

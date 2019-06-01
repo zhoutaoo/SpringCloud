@@ -1,6 +1,6 @@
 package com.springboot.auth.authentication.service;
 
-import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
@@ -13,11 +13,18 @@ import java.util.Set;
 public interface IResourceService {
 
     /**
-     * 动态新增权限
+     * 动态新增更新权限
      *
      * @param resource
      */
-    void addResource(Resource resource);
+    void saveResource(Resource resource);
+
+    /**
+     * 动态删除权限
+     *
+     * @param resource
+     */
+    void removeResource(Resource resource);
 
     /**
      * 加载权限资源数据

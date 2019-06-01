@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication.entity;
+package com.springboot.cloud.sysadmin.organization.entity.po;
 
 import com.springboot.cloud.common.core.entity.po.BasePo;
 import lombok.Data;

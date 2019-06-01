@@ -1,7 +1,7 @@
 package com.springboot.auth.authentication.service.impl;
 
 import com.google.common.collect.Sets;
-import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.security.access.SecurityConfig;

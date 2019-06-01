@@ -1,11 +1,11 @@
 package com.springboot.auth.authentication.service.impl;
 
-import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import com.springboot.auth.authentication.provider.ResourceProvider;
 import com.springboot.auth.authentication.service.IResourceService;
+import com.springboot.auth.authentication.service.NewMvcRequestMatcher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
@@ -34,11 +34,18 @@ public class ResourceService implements IResourceService {
     private Map<RequestMatcher, ConfigAttribute> resourceConfigAttributes;
 
     @Override
-    public void addResource(Resource resource) {
+    public void saveResource(Resource resource) {
         resourceConfigAttributes.put(
                 this.newMvcRequestMatcher(resource.getUrl(), resource.getMethod()),
                 new SecurityConfig(resource.getCode())
         );
+        log.info("resourceConfigAttributes size:{}", this.resourceConfigAttributes.size());
+    }
+
+    @Override
+    public void removeResource(Resource resource) {
+        resourceConfigAttributes.remove(this.newMvcRequestMatcher(resource.getUrl(), resource.getMethod()));
+        log.info("resourceConfigAttributes size:{}", this.resourceConfigAttributes.size());
     }
 
     @Override
@@ -76,8 +83,6 @@ public class ResourceService implements IResourceService {
      * @return
      */
     private MvcRequestMatcher newMvcRequestMatcher(String url, String method) {
-        MvcRequestMatcher mvcRequestMatcher = new MvcRequestMatcher(mvcHandlerMappingIntrospector, url);
-        mvcRequestMatcher.setMethod(HttpMethod.resolve(method));
-        return mvcRequestMatcher;
+        return new NewMvcRequestMatcher(mvcHandlerMappingIntrospector, url, method);
     }
 }
