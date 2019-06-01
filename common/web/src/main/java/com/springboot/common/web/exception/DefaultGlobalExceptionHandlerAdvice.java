@@ -4,6 +4,7 @@ import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.BaseException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -30,6 +31,12 @@ public class DefaultGlobalExceptionHandlerAdvice {
     public Result serviceException(MethodArgumentNotValidException ex) {
         log.error("service exception:{}", ex.getMessage());
         return Result.fail(SystemErrorType.ARGUMENT_NOT_VALID, ex.getBindingResult().getFieldError().getDefaultMessage());
+    }
+
+    @ExceptionHandler(value = {DuplicateKeyException.class})
+    public Result duplicateKeyException(DuplicateKeyException ex) {
+        log.error("primary key duplication exception:{}", ex.getMessage());
+        return Result.fail(SystemErrorType.DUPLICATE_PRIMARY_KEY);
     }
 
     @ExceptionHandler(value = {BaseException.class})
