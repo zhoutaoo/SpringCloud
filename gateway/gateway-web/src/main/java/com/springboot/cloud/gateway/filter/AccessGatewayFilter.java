@@ -25,7 +25,7 @@ public class AccessGatewayFilter implements GlobalFilter {
 
     private final static String X_CLIENT_TOKEN_USER = "x-client-token-user";
     private final static String X_CLIENT_TOKEN = "x-client-token";
-    private static final String BEARER = "bearer";
+    private static final String BEARER = "Bearer";
     /**
      * 由authentication-client模块提供签权的feign客户端
      */
@@ -52,7 +52,7 @@ public class AccessGatewayFilter implements GlobalFilter {
             return chain.filter(exchange);
         }
         // 如果请求未携带token信息, 直接跳出
-        if (StringUtils.isBlank(authentication) || !authentication.contains(BEARER)) {
+        if (StringUtils.isBlank(authentication) || !authentication.startsWith(BEARER)) {
             log.debug("url:{},method:{},headers:{}, 请求未携带token信息", url, method, request.getHeaders());
             return unauthorized(exchange);
         }
