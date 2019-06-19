@@ -89,7 +89,7 @@ Token基本内容如下
 | access_token | JWT Access Token，过期时间，默认12小时  |
 | refresh_token| JWT Refresh Token，过期时间，默认30天   |
 | expires_in   | 过期时间，单位秒     |
-| token_type   | Bearer和OAuth2     |
+| token_type   | Bearer和Mac        |
 | scope        | read和write        |
 
 #### JWT(JSON Web Tokens)简介
