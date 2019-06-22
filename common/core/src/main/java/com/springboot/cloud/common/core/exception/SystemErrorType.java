@@ -13,7 +13,9 @@ public enum SystemErrorType implements ErrorType {
     GATEWAY_CONNECT_TIME_OUT("010002", "网关超时"),
 
     ARGUMENT_NOT_VALID("020000", "请求参数校验不通过"),
-    UPLOAD_FILE_SIZE_LIMIT("020001", "上传文件大小超过限制");
+    UPLOAD_FILE_SIZE_LIMIT("020001", "上传文件大小超过限制"),
+
+    DUPLICATE_PRIMARY_KEY("030000","唯一键冲突");
 
     /**
      * 错误类型码

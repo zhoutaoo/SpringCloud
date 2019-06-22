@@ -72,19 +72,21 @@
 
 根据自己需要，启动相应服务进行测试，cd 进入相关应用目录，执行命令： `mvn spring-boot:run` 
 
-| 服务分类  | 服务名                     |  依赖基础组件                      |   简介       |  应用地址                | 文档                    |
-|----------|---------------------------|----------------------------------|-------------|-------------------------|-------------------------|
-|  center  | eureka-server             | rabbitmq                         |  注册中心    |  http://localhost:8761  | [注册中心文档](./center/eureka)      |
-|  center  | bus-server                | rabbitmq、eureka-server           |  消息中心    |  http://localhost:8071  | [消息中心文档](./center/bus)         |
-|  center  | config-server             | rabbitmq、eureka-server           |  配置中心    |  http://localhost:8888  | [配置中心文档](./center/config)      |
-|  auth    | authorization-server      | rabbitmq、postgres、eureka-server |  授权服务    |  http://localhost:8000  | [权限服务文档](./auth) 、[授权Server文档](./auth/authorization-server)     |
-|  auth    | authentication-server     | rabbitmq、postgres、eureka-server |  签权服务    |  http://localhost:8001  | [认证Server文档](./auth/authentication-server)    |
-|  auth    | authentication-client     | 无                                |  签权客户端  |  jar包引入              |      |
-|  gateway | gateway-web               | rabbitmq、eureka-server、redis            |  WEB网关    |  http://localhost:8443 |  [WEB网关文档](./center/eureka)       |
-|  gateway | gateway-admin             | rabbitmq、postgres、eureka-server、redis  |  网关管理    |  http://localhost:8445 |  [网关管理后台文档](./center/eureka)   |
-|  monitor | admin                     | rabbitmq、eureka-server                   |  总体监控    |  http://localhost:8022 |      |
-|  monitor | hystrix-dashboard         | rabbitmq、eureka-server                   |  性能指标展示 |  http://localhost:8021 |      |
-|  monitor | turbine                   | rabbitmq、eureka-server                   |  性能指标收集 |  http://localhost:8031 |      |
+以下应用都依赖于rabbitmq、eureka-server，启动服务前请先启动mq和注册中心
+
+| 服务分类  | 服务名                     |  依赖基础组件             |   简介      |  应用地址                | 文档                    |
+|----------|---------------------------|-------------------------|-------------|-------------------------|-------------------------|
+|  center  | eureka-server             | 无                      |  注册中心    |  http://localhost:8761  | [注册中心文档](./center/eureka)      |
+|  center  | bus-server                |                         |  消息中心    |  http://localhost:8071  | [消息中心文档](./center/bus)         |
+|  center  | config-server             |                         |  配置中心    |  http://localhost:8888  | [配置中心文档](./center/config)      |
+|  auth    | authorization-server      | postgres                |  授权服务    |  http://localhost:8000  | [权限服务简介](./auth) 、[授权server文档](./auth/authorization-server)     |
+|  auth    | authentication-server     | postgres                |  认证服务    |  http://localhost:8001  | [认证server文档](./auth/authentication-server)    |
+|  auth    | authentication-client     | 无                      |  认证客户端  |  jar包引入               |      |
+|  gateway | gateway-web               | redis                   |  WEB网关    |  http://localhost:8443  | [WEB网关简介](./gateway)  [WEB网关文档](./gateway/gateway-web)       |
+|  gateway | gateway-admin             | postgres、redis         |  网关管理    |  http://localhost:8445  | [网关管理后台文档](./gateway/gateway-admin)   |
+|  monitor | admin                     |                         |  总体监控    |  http://localhost:8022  |      |
+|  monitor | hystrix-dashboard         |                         |  性能指标展示 |  http://localhost:8021  |      |
+|  monitor | turbine                   |                         |  性能指标收集 |  http://localhost:8031  |      |
 
 * 5.案例示意图
 
@@ -137,10 +139,17 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 │   ├── gateway-web        --基于springcloud gateway的网关
 │   ├── gateway-admin      --springcloud gateway的网关管理模块
 │   └── pom.xml
+├── sysadmin             --系统管理子项目
+│   ├── db                 --系统管理子项目数据库脚本
+│   ├── organization       --组织管理应用，包括用户、角色、资源、菜单、组织架构的管理
+│   └── pom.xml
 ├── monitor              --监控、日志及服务管理子项目
 │   ├── admin              --springboot admin管理
 │   ├── hystrix-dashboard  --hystrix监控
 │   ├── turbine            --turbine监控聚集 
+│   └── pom.xml
+├── webapps              --web项目的基础父工程，定义常用依赖等
+│   ├── webapp-parent      --web项目的父工程，新建业务应用父工程
 │   └── pom.xml
 ├── demos                --demos子项目
 │   ├── consumer-feign     --消费者服务 feign demo
@@ -236,7 +245,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 |  服务     | 使用技术                 |   进度         |    备注   |
 |----------|-------------------------|---------------|-----------|
 |  服务监控 | Spring Boot Admin       |   ✅          |           |
-|  链路追踪 | Pinpoint、SkyWalking    |   🏗          |           |
+|  链路追踪 | SkyWalking              |   ✅          |           |
 |  操作审计 |                         |   🏗          |  系统关键操作日志记录和查询         |
 |  日志管理 | ES + Kibana、Zipkin     |   ✅          |           |
 |  监控告警 | Grafana                 |   ✅          |           |
@@ -255,6 +264,6 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 EMail：zhoutaoo@foxmail.com
 
-群1、2已满，请加群3，如下
+群1、2、3已满，请加群4，如下
 
 ![wechat](docs/wechat.jpeg)

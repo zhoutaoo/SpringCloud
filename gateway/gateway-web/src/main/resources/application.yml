@@ -1,5 +1,5 @@
 server:
-  port: 8443
+  port: ${SERVER_PORT:8443}
 
 eureka:
   client:
@@ -8,7 +8,7 @@ eureka:
 
 spring:
   application:
-    name: gateway
+    name: ${GATEWAY_NAME:gateway-web}
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}

@@ -1,6 +1,11 @@
 package com.springboot.auth.authentication;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,6 +25,20 @@ public class ApplicationTests {
         SimpleGrantedAuthority user = new SimpleGrantedAuthority("USER");
         authorities = Lists.newArrayList(admin, user);
         authorities.stream().map(authority -> authority.getAuthority()).collect(Collectors.toList());
+    }
+
+    @Test
+    public void testMethod1() throws JsonProcessingException {
+
+        Resource resource = new Resource();
+        resource.setCode("user_manager:all");
+        resource.setMethod("GET");
+        resource.setUrl("/users/a");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+
+        System.out.println(objectMapper.writeValueAsString(resource));
     }
 
     @Test

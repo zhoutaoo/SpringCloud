@@ -1,6 +1,6 @@
 -- 用户组表
-DROP TABLE IF EXISTS `group`;
-CREATE TABLE `group`
+DROP TABLE IF EXISTS groups;
+CREATE TABLE groups
 (
   id           SERIAL PRIMARY KEY COMMENT 'id',
   parent_id    INT          NOT NULL COMMENT '用户组父id',

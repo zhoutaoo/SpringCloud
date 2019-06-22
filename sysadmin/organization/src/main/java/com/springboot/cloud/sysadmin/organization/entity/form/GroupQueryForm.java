@@ -15,8 +15,8 @@ import java.util.Date;
 @Data
 public class GroupQueryForm extends BaseQueryForm<GroupQueryParam> {
 
-    @NotBlank(message = "名称不能为空")
-    @ApiModelProperty(value = "产品名称", required = true)
+    @NotBlank(message = "用户组名称不能为空")
+    @ApiModelProperty(value = "用户组名称", required = true)
     private String name;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

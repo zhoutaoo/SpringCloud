@@ -1,24 +1,49 @@
 package com.springboot.auth.authentication.service;
 
-import com.springboot.auth.authentication.entity.Resource;
+import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 import java.util.Set;
 
 @Service
 public interface IResourceService {
-    /**
-     * 返回所有的资源定义内容，resources表中
-     *
-     * @return
-     */
-    Set<Resource> findAll();
 
     /**
-     * 根据角色code查询到角色把对应的资源定义
+     * 动态新增更新权限
      *
-     * @param roleCodes
+     * @param resource
+     */
+    void saveResource(Resource resource);
+
+    /**
+     * 动态删除权限
+     *
+     * @param resource
+     */
+    void removeResource(Resource resource);
+
+    /**
+     * 加载权限资源数据
+     */
+    Map<RequestMatcher, ConfigAttribute> loadResource();
+
+    /**
+     * 根据url和method查询到对应的权限信息
+     *
+     * @param authRequest
      * @return
      */
-    Set<Resource> queryByRoleCodes(String[] roleCodes);
+    ConfigAttribute findConfigAttributesByUrl(HttpServletRequest authRequest);
+
+    /**
+     * 根据用户名查询 该用户所拥有的角色对应的资源信息
+     *
+     * @param username
+     * @return
+     */
+    Set<Resource> queryByUsername(String username);
 }
