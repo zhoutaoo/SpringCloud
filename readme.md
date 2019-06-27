@@ -30,7 +30,7 @@
 
 在启动应用之前，需要先启动数据库、缓存、MQ等中间件，可根据自己需要启动的应用选择启动某些基础组件，一般来说启动数据库、redis、rabbitmq即可，其它组件若有需要，根据如下命令启动即可。
 
-该步骤使用了docker快速搭建相应的基础环境，需要你对docker、docker-compose有一定了解和使用经验。
+该步骤使用了docker快速搭建相应的基础环境，需要你对docker、docker-compose有一定了解和使用经验。（注：请使用阿里的docker镜像）
 
 如你需要使用mysql，请自行搭建即可。
 
@@ -79,8 +79,9 @@
 |  center  | eureka-server             | 无                      |  注册中心    |  http://localhost:8761  | [注册中心文档](./center/eureka)      |
 |  center  | bus-server                |                         |  消息中心    |  http://localhost:8071  | [消息中心文档](./center/bus)         |
 |  center  | config-server             |                         |  配置中心    |  http://localhost:8888  | [配置中心文档](./center/config)      |
-|  auth    | authorization-server      | postgres                |  授权服务    |  http://localhost:8000  | [权限服务简介](./auth) 、[授权server文档](./auth/authorization-server)     |
-|  auth    | authentication-server     | postgres                |  认证服务    |  http://localhost:8001  | [认证server文档](./auth/authentication-server)    |
+|  sysadmin| organization              | postgres、redis         |  用户组织应用 |  http://localhost:8010  | 待完善      |
+|  auth    | authorization-server      | postgres、organization  |  授权服务    |  http://localhost:8000  | [权限服务简介](./auth) 、[授权server文档](./auth/authorization-server)     |
+|  auth    | authentication-server     | postgres、organization  |  认证服务    |  http://localhost:8001  | [认证server文档](./auth/authentication-server)    |
 |  auth    | authentication-client     | 无                      |  认证客户端  |  jar包引入               |      |
 |  gateway | gateway-web               | redis                   |  WEB网关    |  http://localhost:8443  | [WEB网关简介](./gateway)  [WEB网关文档](./gateway/gateway-web)       |
 |  gateway | gateway-admin             | postgres、redis         |  网关管理    |  http://localhost:8445  | [网关管理后台文档](./gateway/gateway-admin)   |
@@ -99,6 +100,12 @@ authentication-server为签权应用，若有新增接口，请初使化相关�
 gateway-admin可动态调整gateway-web的路由策略，测试前请先配置网关的转发策略，[路由策略配置](https://github.com/zhoutaoo/SpringCloud/tree/master/gateway/gateway-admin#%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)。
 
 [示意图](https://www.processon.com/view/link/5cc05ff9e4b059e20a06e3c4)
+
+* 6.前端项目
+
+确保gateway-web、organization、authorization-server、authentication-server服务启动，然后启动
+
+[前端项目](https://github.com/zhoutaoo/SpringCloud-Admin)（该项目目前还在开发中）
 
 ### 测试
 
