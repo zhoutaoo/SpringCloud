@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
@@ -15,16 +14,13 @@ import java.util.Date;
 @Data
 public class UserQueryForm extends BaseQueryForm<UserQueryParam> {
 
-    @NotBlank(message = "用户名不能为空")
-    @ApiModelProperty(value = "用户账号", required = true)
+    @ApiModelProperty(value = "用户名")
     private String username;
 
-    @NotBlank(message = "姓名不能为空")
-    @ApiModelProperty(value = "用户姓名", required = true)
+    @ApiModelProperty(value = "用户姓名")
     private String name;
 
-    @NotBlank(message = "手机号不能为空")
-    @ApiModelProperty(value = "手机号", required = true)
+    @ApiModelProperty(value = "手机号")
     private String mobile;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
