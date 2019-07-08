@@ -26,7 +26,7 @@
 
 ### 编译 & 启动
 
-* 1.启动基础服务：`docker-compose -f docker-compose.yml` 或单个启动`docker-compose up 服务名`
+* 1.启动基础服务：`docker-compose -f docker-compose.yml up 服务名` 或单个启动`docker-compose up 服务名`
 
 在启动应用之前，需要先启动数据库、缓存、MQ等中间件，可根据自己需要启动的应用选择启动某些基础组件，一般来说启动数据库、redis、rabbitmq即可，其它组件若有需要，根据如下命令启动即可。
 
