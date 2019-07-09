@@ -1,9 +1,9 @@
 package com.springboot.cloud.sysadmin.organization.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
-
-import java.util.List;
 
 public interface IUserService {
     /**
@@ -16,6 +16,7 @@ public interface IUserService {
 
     /**
      * 根据用户名获取用户信息
+     *
      * @param username
      * @return
      */
@@ -34,7 +35,7 @@ public interface IUserService {
      *
      * @return
      */
-    List<User> query(UserQueryParam userQueryParam);
+    IPage<User> query(Page<User> page, UserQueryParam userQueryParam);
 
     /**
      * 更新用户信息
