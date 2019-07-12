@@ -58,7 +58,7 @@ services:
       - rabbitmq
 
   elasticsearch:
-    image: elasticsearch:alpine
+    image: elasticsearch:5.6-alpine
     container_name: sc-elasticsearch
     restart: always
     environment:
