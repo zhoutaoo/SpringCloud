@@ -1,0 +1,42 @@
+version: '3'
+services:
+  redis: 
+    image: redis:alpine
+    container_name: sc-redis
+    restart: always
+    volumes:
+      - ../data/redis:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    networks:
+      - sc-net
+    ports:
+      - 6379:6379
+
+  rabbitmq:
+    image: rabbitmq:alpine
+    container_name: sc-rabbitmq
+    restart: always
+    volumes:
+      - ../data/rabbitmq:/var/lib/rabbitmq/mnesia
+    networks:
+      - sc-net
+    ports:
+      - 5672:5672
+
+  postgres:
+    image: postgres:9.6-alpine
+    container_name: sc-postgres
+    restart: always
+    volumes:
+      - ../data/postgres:/var/lib/postgresql
+    networks:
+      - sc-net
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+networks:
+  sc-net:
+    external: false

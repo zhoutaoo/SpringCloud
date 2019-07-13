@@ -13,7 +13,7 @@ services:
     ports:
       - 8070:8070
     volumes:
-      - ./data/config-server/logs:/opt
+      - ../data/config-server/logs:/opt
     environment:
       # 开启Portal,默认端口: 8070
       PORTAL_DB: jdbc:mysql://apollo-db:3306/ApolloPortalDB?characterEncoding=utf8
@@ -38,7 +38,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./data/config-server/logs:/opt
+      - ../data/config-server/logs:/opt
     environment:
       # 开启dev环境, 默认端口: config 8080, admin 8090 , 只用开config服务
       DEV_DB: jdbc:mysql://apollo-db:3306/ApolloConfigDB?characterEncoding=utf8
@@ -56,8 +56,8 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./data/config-server/sql:/docker-entrypoint-initdb.d
-      - ./data/mysql:/var/lib/mysql
+      - ./apollo/sql:/docker-entrypoint-initdb.d
+      - ../data/mysql:/var/lib/mysql
     environment:
       TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: root123
