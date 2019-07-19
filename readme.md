@@ -294,4 +294,6 @@ EMail：zhoutaoo@foxmail.com
 
 3. 哪里不明白或有什么疑问 ？
 
-![微信群二维码](http://124.250.83.57:9090/wechat/wechat.jpeg)
+<p align="center">
+  <img width="120" src="http://124.250.83.57:9090/wechat/wechat.jpeg">
+</p>
