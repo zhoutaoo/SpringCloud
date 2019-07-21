@@ -26,7 +26,7 @@
 
 ### 编译 & 启动
 
-* 1.启动基础服务：`docker-compose -f docker-compose.yml up 服务名` 或单个启动`docker-compose up 服务名`
+* 1.启动基础服务：进入docker-compose目录，执行`docker-compose -f docker-compose.yml up 服务名` 或单个启动`docker-compose up 服务名`
 
 在启动应用之前，需要先启动数据库、缓存、MQ等中间件，可根据自己需要启动的应用选择启动某些基础组件，一般来说启动数据库、redis、rabbitmq即可，其它组件若有需要，根据如下命令启动即可。
 
@@ -44,7 +44,7 @@
 |  日志分析工具    |   kibana        |  5601     |  共用    |
 |  数据可视化工具  |   grafana       |  3000     |  共用    |
 
-* 2.启动配置中心：`docker-compose -f docker-compose.yml -f docker-compose.config.yml up apollo-portal`
+* 2.启动配置中心：进入docker-compose目录，执行`docker-compose -f docker-compose.yml -f docker-compose.config.yml up apollo-portal`
 
 该步骤不是必须，若你想使用apollo为配置中心，通过以上命令启动即可。目前仅demos/producer应用使用了apollo作为配置中心
 
@@ -141,12 +141,6 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 │   ├── test               --测试工具类库
 │   ├── web                --WEB核心类库
 │   └── pom.xml          
-├── docs                 --文档及资源文件
-├── data                 --server及服务数据存储目录
-│   ├── elasticsearch      --elasticsearch配置数据存储位置
-│   ├── postgres           --postgres数据库文件存储目录 
-│   ├── rabbitmq           --rabbitmq数据文件存储目录
-│   └── redis              --redis数据文件存储目录
 ├── gateway              --网关子项目  
 │   ├── gateway-web        --基于springcloud gateway的网关
 │   ├── gateway-admin      --springcloud gateway的网关管理模块
@@ -163,18 +157,29 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 ├── webapps              --web项目的基础父工程，定义常用依赖等
 │   ├── webapp-parent      --web项目的父工程，新建业务应用父工程
 │   └── pom.xml
-├── demos                --demos子项目
+├── docs                 --文档及资源文件
+├── data                 --server及服务数据存储目录
+│   ├── elasticsearch      --elasticsearch配置数据存储位置
+│   ├── postgres           --postgres数据库文件存储目录 
+│   ├── rabbitmq           --rabbitmq数据文件存储目录
+│   └── redis              --redis数据文件存储目录
+├── demos                --demos子项目，常用的解决方案案例
 │   ├── consumer-feign     --消费者服务 feign demo
 │   ├── consumer-ribbon    --消费者服务 ribbon demo 
 │   ├── producer           --服务提供者，产品服务
-│   ├── producer-jpa       --服务提供者，产品服务,jpa和hateoas
+│   ├── producer-jpa       --服务提供者，产品服务，jpa和hateoas
 │   └── pom.xml
-├── .env                 --docker-compose环境变量配置文件
+├── docker-compose       --基础服务docker快速启动方案
+│   ├── .env                          --docker-compose环境变量配置文件
+│   ├── apollo                        --apollo配置中心配置文件等
+│   ├── devops                        --devops组件的相关配置文件目录
+│   ├── nacos                         --macos组件配置文件目录
+│   ├── docker-compose.yml            --docker compose配置文件，基础组件如数据库、redis、mq等组件 
+│   ├── docker-compose.devops.yml     --docker compose配置文件，es、apm等devops组件 
+│   ├── docker-compose.gateway.yml    --docker compose配置文件，网关相关组件
+│   ├── docker-compose.nacos.yml      --docker compose配置文件，springcloud alibaba相关组件
+│   └── docker-compose.config.yml     --docker compose配置文件，apollo配置中心 
 ├── readme.md            --readme文档入口
-├── docker-compose.yml            --docker compose配置文件，基础组件如数据库、运维组件 
-├── docker-compose.override.yml   --docker compose配置文件，注册中心、网关、授权认证服务等 
-├── docker-compose.apps.yml       --docker compose配置文件，应用demo 
-├── docker-compose.config.yml     --docker compose配置文件，apollo配置中心 
 └── pom.xml              --业务服务子项目
 ```
 
