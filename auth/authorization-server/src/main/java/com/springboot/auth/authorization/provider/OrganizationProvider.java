@@ -18,4 +18,13 @@ public interface OrganizationProvider {
 
     @GetMapping(value = "/role/user/{userId}")
     Result<Set<Role>> queryRolesByUserId(@PathVariable("userId") long userId);
+    
+    
+    /**
+     * @author joe_chen
+     * @param value
+     * @return
+     */
+    @GetMapping(value = "/user/queryByUsernameOrMobile")
+    Result<User> getUserByUsernameOrMobile(@RequestParam("value") String value);
 }
