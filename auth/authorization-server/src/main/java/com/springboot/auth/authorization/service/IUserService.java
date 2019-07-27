@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IUserService {
 
-    @Cacheable(value = "#id")
-    User getByUsername(String username);
+	@Cacheable(value = "#id")
+	User getByUsername(String username);
+
+	@Cacheable(value = "#id")
+	User getUserByUsernameOrMobile(String value);
+
 }
