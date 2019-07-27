@@ -6,57 +6,49 @@ import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
 
 public interface IUserService {
-	/**
-	 * 获取用户
-	 *
-	 * @param id
-	 * @return
-	 */
-	User get(long id);
+    /**
+     * 获取用户
+     *
+     * @param id
+     * @return
+     */
+    User get(long id);
 
-	/**
-	 * 根据用户名获取用户信息
-	 *
-	 * @param username
-	 * @return
-	 */
-	User getByUsername(String username);
+    /**
+     * 根据用户唯一标识获取用户信息
+     * 目前用户标识不用户名或mobile
+     *
+     * @param uniqueId
+     * @return
+     */
+    User getByUniqueId(String uniqueId);
 
-	/**
-	 * 新增用户
-	 *
-	 * @param user
-	 * @return
-	 */
-	long add(User user);
+    /**
+     * 新增用户
+     *
+     * @param user
+     * @return
+     */
+    long add(User user);
 
-	/**
-	 * 查询用户
-	 *
-	 * @return
-	 */
-	IPage<User> query(Page<User> page, UserQueryParam userQueryParam);
+    /**
+     * 查询用户
+     *
+     * @return
+     */
+    IPage<User> query(Page<User> page, UserQueryParam userQueryParam);
 
-	/**
-	 * 更新用户信息
-	 *
-	 * @param user
-	 */
-	void update(User user);
+    /**
+     * 更新用户信息
+     *
+     * @param user
+     */
+    void update(User user);
 
-	/**
-	 * 根据id删除用户
-	 *
-	 * @param id
-	 */
-	void delete(long id);
-
-	/**
-	 * @author joe_chen
-	 * 根据用户名或者电话号码查询用户信息
-	 *
-	 * @param id
-	 */
-	public User getByUsernameOrMobile(String value);
-
+    /**
+     * 根据id删除用户
+     *
+     * @param id
+     */
+    void delete(long id);
 }

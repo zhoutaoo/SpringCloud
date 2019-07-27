@@ -77,8 +77,8 @@ public class ResourceService implements IResourceService {
 
     @Override
     public List<Resource> query(String username) {
-        //根据用户id查询到用户所拥有的角色
-        User user = userService.getByUsername(username);
+        //根据用户名查询到用户所拥有的角色
+        User user = userService.getByUniqueId(username);
         List<Role> roles = roleService.query(user.getId());
         //提取用户所拥有角色的id列表
         List<Long> roleIds = roles.stream().map(role -> role.getId()).collect(Collectors.toList());
