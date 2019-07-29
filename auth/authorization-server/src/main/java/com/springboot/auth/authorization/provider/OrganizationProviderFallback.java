@@ -9,19 +9,13 @@ import java.util.Set;
 
 public class OrganizationProviderFallback implements OrganizationProvider {
 
-	@Override
-	public Result<User> getUserByUsername(String username) {
-		return Result.success(new User());
-	}
+    @Override
+    public Result<User> getUserByUniqueId(String uniqueId) {
+        return Result.success(new User());
+    }
 
-	@Override
-	public Result<Set<Role>> queryRolesByUserId(long userId) {
-		return Result.success(new HashSet<Role>());
-	}
-
-	@Override
-	public Result<User> getUserByUsernameOrMobile(String value) {
-		// TODO Auto-generated method stub
-		return Result.success(new User());
-	}
+    @Override
+    public Result<Set<Role>> queryRolesByUserId(long userId) {
+        return Result.success(new HashSet<Role>());
+    }
 }

@@ -1,4 +1,4 @@
-package com.springboot.auth.authorization.config.custom;
+package com.springboot.auth.authorization.oauth2.enhancer;
 
 import com.google.common.collect.Maps;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;

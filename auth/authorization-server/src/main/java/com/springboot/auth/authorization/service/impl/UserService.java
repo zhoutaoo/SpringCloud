@@ -9,17 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService {
 
-	@Autowired
-	private OrganizationProvider organizationProvider;
+    @Autowired
+    private OrganizationProvider organizationProvider;
 
-	@Override
-	public User getByUsername(String username) {
-		return organizationProvider.getUserByUsername(username).getData();
-	}
-
-	@Override
-	public User getUserByUsernameOrMobile(String value) {
-		// TODO Auto-generated method stub
-		return organizationProvider.getUserByUsernameOrMobile(value).getData();
-	}
+    @Override
+    public User getByUniqueId(String uniqueId) {
+        return organizationProvider.getUserByUniqueId(uniqueId).getData();
+    }
 }
