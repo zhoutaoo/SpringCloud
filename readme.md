@@ -300,5 +300,5 @@ EMail：zhoutaoo@foxmail.com
 3. 哪里不明白或有什么疑问 ？
 
 <p align="left">
-  <img width="300" src="http://124.250.83.57:9090/wechat/wechat.png">
+  <img width="300" src="docs/wechat.png">
 </p>
