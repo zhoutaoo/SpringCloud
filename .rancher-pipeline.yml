@@ -1,8 +1,2 @@
-stages:
-- name: Compile
-  steps:
-  - runScriptConfig:
-      image: java:8
-      shellScript: mvn compile
 timeout: 60
 notification: {}
