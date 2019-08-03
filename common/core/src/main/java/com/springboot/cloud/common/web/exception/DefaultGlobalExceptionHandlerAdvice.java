@@ -1,4 +1,4 @@
-package web.exception;
+package com.springboot.cloud.common.web.exception;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.BaseException;

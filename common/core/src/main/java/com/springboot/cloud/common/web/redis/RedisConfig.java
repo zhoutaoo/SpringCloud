@@ -1,4 +1,4 @@
-package web.redis;
+package com.springboot.cloud.common.web.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

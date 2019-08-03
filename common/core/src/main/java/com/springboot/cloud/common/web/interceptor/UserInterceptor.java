@@ -1,4 +1,4 @@
-package web.interceptor;
+package com.springboot.cloud.common.web.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.common.core.util.UserContextHolder;
