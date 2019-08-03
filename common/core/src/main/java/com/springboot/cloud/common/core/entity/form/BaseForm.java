@@ -10,7 +10,9 @@ import org.springframework.beans.BeanUtils;
 @Slf4j
 @Data
 public class BaseForm<T extends BasePo> {
-
+    /**
+     * 用户名
+     */
     private String username;
 
     /**
