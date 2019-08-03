@@ -1,4 +1,4 @@
-package com.springboot.common.web.exception;
+package com.springboot.cloud.common.web.exception;
 
 import org.junit.Test;
 
