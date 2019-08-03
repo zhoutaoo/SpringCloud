@@ -1,6 +1,5 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.sysadmin.organization.entity.form.UserForm;
 import com.springboot.cloud.sysadmin.organization.entity.form.UserQueryForm;
@@ -74,6 +73,6 @@ public class UserController {
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody UserQueryForm userQueryForm) {
         log.debug("search with userQueryForm:{}", userQueryForm);
-        return Result.success(userService.query(new Page<User>(), userQueryForm.toParam(UserQueryParam.class)));
+        return Result.success(userService.query(userQueryForm.getPage(), userQueryForm.toParam(UserQueryParam.class)));
     }
 }
