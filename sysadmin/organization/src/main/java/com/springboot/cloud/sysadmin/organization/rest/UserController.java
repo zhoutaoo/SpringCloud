@@ -58,7 +58,7 @@ public class UserController {
         return Result.success(userService.get(id));
     }
 
-    @ApiOperation(value = "查询用户", notes = "根据用户唯一标识（username or mobile）查询用户信息，简单查询")
+    @ApiOperation(value = "获取用户", notes = "根据用户唯一标识（username or mobile）获取用户信息")
     @ApiImplicitParam(paramType = "query", name = "uniqueId", value = "用户唯一标识", required = true, dataType = "string")
     @ApiResponses(@ApiResponse(code = 200, message = "处理成功", response = Result.class))
     @GetMapping
