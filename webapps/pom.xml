@@ -29,7 +29,7 @@
         <!--web基础类库-->
         <dependency>
             <groupId>com.springboot.cloud</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--数据库-->

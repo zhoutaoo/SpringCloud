@@ -1,4 +1,4 @@
-package com.springboot.cloud.common.core.entity.form;
+package com.springboot.cloud.common.web.entity.form;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.common.core.entity.param.BaseParam;

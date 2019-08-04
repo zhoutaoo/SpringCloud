@@ -13,6 +13,7 @@
 
     <modules>
         <module>core</module>
+        <module>web</module>
         <module>test</module>
     </modules>
 

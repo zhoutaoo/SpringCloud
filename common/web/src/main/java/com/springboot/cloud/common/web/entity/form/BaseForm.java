@@ -1,4 +1,4 @@
-package com.springboot.cloud.common.core.entity.form;
+package com.springboot.cloud.common.web.entity.form;
 
 import com.springboot.cloud.common.core.entity.po.BasePo;
 import io.swagger.annotations.ApiModel;
