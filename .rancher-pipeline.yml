@@ -2,7 +2,7 @@ stages:
 - name: Compile
   steps:
   - runScriptConfig:
-      image: java:8
+      image: maven
       shellScript: mvn compile
 timeout: 60
 notification: {}
