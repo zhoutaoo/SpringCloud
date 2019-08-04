@@ -2,6 +2,7 @@ package com.springboot.cloud.sysadmin.organization.rest;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.sysadmin.organization.entity.form.RoleForm;
+import com.springboot.cloud.sysadmin.organization.entity.form.RoleQueryForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Role;
 import com.springboot.cloud.sysadmin.organization.service.IRoleService;
@@ -70,16 +71,14 @@ public class RoleController {
         return Result.success(roleService.query(userId));
     }
 
-    @ApiOperation(value = "查询角色", notes = "根据条件查询角色信息，简单查询")
-    @ApiImplicitParam(paramType = "query", name = "name", value = "角色名称", required = true, dataType = "string")
+    @ApiOperation(value = "搜索角色", notes = "根据条件搜索角色信息")
+    @ApiImplicitParam(name = "roleQueryForm", value = "角色查询参数", required = true, dataType = "RoleQueryForm")
     @ApiResponses(
             @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     )
-    @GetMapping
-    public Result query(@RequestParam String name) {
-        log.debug("query with name:{}", name);
-        RoleQueryParam roleQueryParam = new RoleQueryParam();
-        roleQueryParam.setName(name);
-        return Result.success(roleService.query(roleQueryParam));
+    @PostMapping(value = "/conditions")
+    public Result query(@Valid @RequestBody RoleQueryForm roleQueryForm) {
+        log.debug("query with name:{}", roleQueryForm);
+        return Result.success(roleService.query(roleQueryForm.getPage(), roleQueryForm.toParam(RoleQueryParam.class)));
     }
 }
