@@ -43,8 +43,8 @@ spring:
       - AddResponseHeader=X-Response-Default-Foo, Default-Bar
       - name: RequestRateLimiter
         args:
-          redis-rate-limiter.replenishRate: 10  #令牌桶的容积
-          redis-rate-limiter.burstCapacity: 1  #流速 每秒
+          redis-rate-limiter.replenishRate: 2  #流速 每秒
+          redis-rate-limiter.burstCapacity: 10   #令牌桶的容积
           rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
           key-resolver: "#{@apiKeyResolver}" #SPEL表达式去的对应的bean
 
