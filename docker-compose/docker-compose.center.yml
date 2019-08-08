@@ -1,0 +1,40 @@
+version: '3'
+services:
+  #注册中心
+  eureka-server:
+    image: cike/eureka-server:latest
+    container_name: sc-eureka
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8761:8761
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+
+  #配置中心
+  config-server:
+    image: cike/config-server:latest
+    container_name: sc-config
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8888:8888
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+
+  #消息中心
+  bug-server:
+    image: cike/bus-server:latest
+    container_name: sc-bus
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8071:8071
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
