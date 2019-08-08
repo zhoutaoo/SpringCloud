@@ -13,7 +13,7 @@ public class UserService implements IUserService {
     private OrganizationProvider organizationProvider;
 
     @Override
-    public User getByUsername(String username) {
-        return organizationProvider.getUserByUsername(username).getData();
+    public User getByUniqueId(String uniqueId) {
+        return organizationProvider.getUserByUniqueId(uniqueId).getData();
     }
 }

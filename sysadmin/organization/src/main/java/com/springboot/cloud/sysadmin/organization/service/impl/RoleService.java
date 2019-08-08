@@ -1,6 +1,8 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.sysadmin.organization.dao.RoleMapper;
 import com.springboot.cloud.sysadmin.organization.dao.UserRoleMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
@@ -8,6 +10,7 @@ import com.springboot.cloud.sysadmin.organization.entity.po.Role;
 import com.springboot.cloud.sysadmin.organization.entity.po.UserRole;
 import com.springboot.cloud.sysadmin.organization.service.IRoleService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -56,11 +59,11 @@ public class RoleService implements IRoleService {
     }
 
     @Override
-    public List<Role> query(RoleQueryParam roleQueryParam) {
+    public IPage<Role> query(Page page, RoleQueryParam roleQueryParam) {
         QueryWrapper<Role> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(null != roleQueryParam.getName(), "name", roleQueryParam.getName());
-        queryWrapper.eq(null != roleQueryParam.getCode(), "code", roleQueryParam.getCode());
-        return roleMapper.selectList(queryWrapper);
+        queryWrapper.eq(StringUtils.isNotBlank(roleQueryParam.getName()), "name", roleQueryParam.getName());
+        queryWrapper.eq(StringUtils.isNotBlank(roleQueryParam.getCode()), "code", roleQueryParam.getCode());
+        return roleMapper.selectPage(page, queryWrapper);
     }
 
 }

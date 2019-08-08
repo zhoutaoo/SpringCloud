@@ -12,6 +12,7 @@ services:
       - sc-net
     ports:
       - 6379:6379
+    env_file: .env
 
   rabbitmq:
     image: rabbitmq:alpine
@@ -23,6 +24,7 @@ services:
       - sc-net
     ports:
       - 5672:5672
+    env_file: .env
 
   postgres:
     image: postgres:9.6-alpine
@@ -34,6 +36,7 @@ services:
       - sc-net
     ports:
       - 5432:5432
+    env_file: .env
     environment:
       - POSTGRES_PASSWORD=postgres
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import reactor.core.publisher.Mono;
 /**
  * 请求url权限校验
  */
-//@Configuration
+@Configuration
 @ComponentScan(basePackages = "com.springboot.cloud.auth.client")
 @Slf4j
 public class AccessGatewayFilter implements GlobalFilter {

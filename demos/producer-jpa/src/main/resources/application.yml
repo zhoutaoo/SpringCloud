@@ -26,10 +26,10 @@ spring:
     port: ${REDIS_PORT:6379}
     ##password: ${REDIS_PASSWORD:}
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${DB_NAME}
-    username: ${POSTGRES_USERNAME:postgres}
-    password: ${POSTGRES_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:${DATASOURCE_DB:postgresql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:5432}/sc_product
+    username: ${DATASOURCE_USERNAME:postgres}
+    password: ${DATASOURCE_PASSWORD:postgres}
+    driver-class-name: ${DATASOURCE_DRIVER:org.postgresql.Driver}
 
   zipkin:
     enabled: true

@@ -1,6 +1,5 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.sysadmin.organization.entity.form.UserForm;
 import com.springboot.cloud.sysadmin.organization.entity.form.UserQueryForm;
@@ -41,10 +40,8 @@ public class UserController {
     }
 
     @ApiOperation(value = "修改用户", notes = "修改指定用户信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "long"),
-            @ApiImplicitParam(name = "userForm", value = "用户实体", required = true, dataType = "UserForm")
-    })
+    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "userForm", value = "用户实体", required = true, dataType = "UserForm")})
     @PutMapping(value = "/{id}")
     public Result update(@PathVariable long id, @Valid @RequestBody UserForm userForm) {
         User user = userForm.toPo(User.class);
@@ -61,25 +58,21 @@ public class UserController {
         return Result.success(userService.get(id));
     }
 
-    @ApiOperation(value = "查询用户", notes = "根据用户名查询用户信息，简单查询")
-    @ApiImplicitParam(paramType = "query", name = "username", value = "用户名", required = true, dataType = "string")
-    @ApiResponses(
-            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
-    )
+    @ApiOperation(value = "获取用户", notes = "根据用户唯一标识（username or mobile）获取用户信息")
+    @ApiImplicitParam(paramType = "query", name = "uniqueId", value = "用户唯一标识", required = true, dataType = "string")
+    @ApiResponses(@ApiResponse(code = 200, message = "处理成功", response = Result.class))
     @GetMapping
-    public Result query(@RequestParam String username) {
-        log.debug("query with username:{}", username);
-        return Result.success(userService.getByUsername(username));
+    public Result query(@RequestParam String uniqueId) {
+        log.debug("query with username or mobile:{}", uniqueId);
+        return Result.success(userService.getByUniqueId(uniqueId));
     }
 
     @ApiOperation(value = "搜索用户", notes = "根据条件查询用户信息")
     @ApiImplicitParam(name = "userQueryForm", value = "用户查询参数", required = true, dataType = "UserQueryForm")
-    @ApiResponses(
-            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
-    )
+    @ApiResponses(@ApiResponse(code = 200, message = "处理成功", response = Result.class))
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody UserQueryForm userQueryForm) {
         log.debug("search with userQueryForm:{}", userQueryForm);
-        return Result.success(userService.query(new Page<User>(), userQueryForm.toParam(UserQueryParam.class)));
+        return Result.success(userService.query(userQueryForm.getPage(), userQueryForm.toParam(UserQueryParam.class)));
     }
 }

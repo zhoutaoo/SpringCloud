@@ -1,6 +1,6 @@
 package com.springboot.cloud.sysadmin.organization.config;
 
-import com.springboot.common.web.interceptor.UserInterceptor;
+import com.springboot.cloud.common.web.interceptor.UserInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;

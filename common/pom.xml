@@ -13,8 +13,8 @@
 
     <modules>
         <module>core</module>
-        <module>test</module>
         <module>web</module>
+        <module>test</module>
     </modules>
 
     <dependencies>

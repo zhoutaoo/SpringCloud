@@ -15,12 +15,13 @@ public interface IUserService {
     User get(long id);
 
     /**
-     * 根据用户名获取用户信息
+     * 根据用户唯一标识获取用户信息
+     * 目前用户标识不用户名或mobile
      *
-     * @param username
+     * @param uniqueId
      * @return
      */
-    User getByUsername(String username);
+    User getByUniqueId(String uniqueId);
 
     /**
      * 新增用户
@@ -50,5 +51,4 @@ public interface IUserService {
      * @param id
      */
     void delete(long id);
-
 }

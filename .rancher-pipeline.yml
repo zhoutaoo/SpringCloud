@@ -1,0 +1,8 @@
+stages:
+- name: Compile
+  steps:
+  - runScriptConfig:
+      image: maven
+      shellScript: mvn compile
+timeout: 60
+notification: {}
