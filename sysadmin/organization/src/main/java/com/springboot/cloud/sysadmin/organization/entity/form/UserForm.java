@@ -8,6 +8,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @ApiModel
 @Data
@@ -33,6 +34,9 @@ public class UserForm extends BaseForm<User> {
 
     @ApiModelProperty(value = "用户描述")
     private String description;
+
+    @ApiModelProperty(value = "用户拥有的角色id列表")
+    private Set<Long> roleIds;
 
     @ApiModelProperty(value = "用户状态，true为可用")
     private Boolean enabled = true;

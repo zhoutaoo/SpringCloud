@@ -2,6 +2,7 @@ package com.springboot.cloud.sysadmin.organization.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.sysadmin.organization.dao.UserMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -26,15 +28,22 @@ public class UserService implements IUserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserRoleService userRoleService;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
+    @Transactional
     public long add(User user) {
         user.setPassword(passwordEncoder().encode(user.getPassword()));
-        return userMapper.insert(user);
+        long inserts = userMapper.insert(user);
+        if (CollectionUtils.isNotEmpty(user.getRoleIds()))
+            userRoleService.saveBatch(user.getId(), user.getRoleIds());
+        return inserts;
     }
 
     @Override
@@ -44,9 +53,12 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional
     @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#user.id")
     public void update(User user) {
         userMapper.updateById(user);
+        if (CollectionUtils.isNotEmpty(user.getRoleIds()))
+            userRoleService.saveOrUpdateBatch(user.getId(), user.getRoleIds());
     }
 
     @Override
@@ -66,14 +78,13 @@ public class UserService implements IUserService {
     @Override
     public IPage<UserVo> query(Page page, UserQueryParam userQueryParam) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(null != userQueryParam.getCreatedTimeStart(), "created_time",
-                userQueryParam.getCreatedTimeStart());
+        queryWrapper.ge(null != userQueryParam.getCreatedTimeStart(), "created_time", userQueryParam.getCreatedTimeStart());
         queryWrapper.le(null != userQueryParam.getCreatedTimeEnd(), "created_time", userQueryParam.getCreatedTimeEnd());
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getName()), "name", userQueryParam.getName());
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getUsername()), "username", userQueryParam.getUsername());
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getMobile()), "mobile", userQueryParam.getMobile());
         // 转换成VO
-        IPage iPage = userMapper.selectPage(page, queryWrapper).convert((user) -> {
+        IPage<UserVo> iPage = userMapper.selectPage(page, queryWrapper).convert((user) -> {
             UserVo userVo = new UserVo();
             BeanUtils.copyProperties(user, userVo);
             return userVo;

@@ -17,6 +17,13 @@ public interface IRoleService {
     Role get(long id);
 
     /**
+     * 获取所有角色
+     *
+     * @return
+     */
+    List<Role> get();
+
+    /**
      * 新增角色
      *
      * @param role
