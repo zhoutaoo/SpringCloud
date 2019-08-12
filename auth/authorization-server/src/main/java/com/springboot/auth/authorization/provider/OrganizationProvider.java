@@ -14,17 +14,8 @@ import java.util.Set;
 public interface OrganizationProvider {
 
     @GetMapping(value = "/user")
-    Result<User> getUserByUsername(@RequestParam("username") String username);
+    Result<User> getUserByUniqueId(@RequestParam("uniqueId") String uniqueId);
 
     @GetMapping(value = "/role/user/{userId}")
     Result<Set<Role>> queryRolesByUserId(@PathVariable("userId") long userId);
-    
-    
-    /**
-     * @author joe_chen
-     * @param value
-     * @return
-     */
-    @GetMapping(value = "/user/queryByUsernameOrMobile")
-    Result<User> getUserByUsernameOrMobile(@RequestParam("value") String value);
 }

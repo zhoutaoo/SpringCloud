@@ -1,13 +1,12 @@
 package com.springboot.cloud.sysadmin.organization.entity.form;
 
-import com.springboot.cloud.common.core.entity.form.BaseQueryForm;
+import com.springboot.cloud.common.web.entity.form.BaseQueryForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
@@ -15,12 +14,10 @@ import java.util.Date;
 @Data
 public class RoleQueryForm extends BaseQueryForm<RoleQueryParam> {
 
-    @NotBlank(message = "角色编码不能为空")
-    @ApiModelProperty(value = "角色编码", required = true)
+    @ApiModelProperty(value = "角色编码")
     private String code;
 
-    @NotBlank(message = "角色名称不能为空")
-    @ApiModelProperty(value = "角色名称", required = true)
+    @ApiModelProperty(value = "角色名称")
     private String name;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

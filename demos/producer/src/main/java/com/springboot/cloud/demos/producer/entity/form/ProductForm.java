@@ -1,6 +1,6 @@
 package com.springboot.cloud.demos.producer.entity.form;
 
-import com.springboot.cloud.common.core.entity.form.BaseForm;
+import com.springboot.cloud.common.web.entity.form.BaseForm;
 import com.springboot.cloud.demos.producer.entity.po.Product;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

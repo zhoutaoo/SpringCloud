@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 @Configuration
-@ComponentScan(basePackageClasses = com.springboot.common.web.interceptor.AuditInterceptor.class)
+@ComponentScan(basePackageClasses = com.springboot.cloud.common.web.interceptor.AuditInterceptor.class)
 public class MybatisConfig {
     /**
      * 初使化Mybatis审计字段自动赋值的interceptor

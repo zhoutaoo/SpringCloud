@@ -12,9 +12,13 @@
 - [java8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 
 - [maven](http://maven.apache.org/) 
 
-### 开发环境
+### 开发环境搭建
 
-1. 克隆代码库： `git clone https://gitee.com/toopoo/SpringCloud.git`
+可在项目根目录下执行 `./install.sh` 快速搭建开发环境。如要了解具体的步骤，请看如下文档。
+
+**具体步骤如下：**
+
+1. 克隆代码库： `git clone https://github.com/zhoutaoo/SpringCloud.git`
 
 2. 安装公共库到本地仓库： 
 
@@ -281,7 +285,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 EMail：zhoutaoo@foxmail.com
 
-群1、2、3、4、5已满，请加群6
+群1、2、3、4、5、6已满，请加群7，加群[请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki)
 
   此些群仅为技术交流群，请大家不要讨论政治、发广告等与技术无关的东西。大家如若有问题可以在群里直接发问，我会抽空答复。
 
@@ -298,7 +302,3 @@ EMail：zhoutaoo@foxmail.com
 2. 怎么输入或操作的得到了什么结果？ 截图，日志
 
 3. 哪里不明白或有什么疑问 ？
-
-<p align="left">
-  <img width="300" src="http://124.250.83.57:9090/wechat/wechat.png">
-</p>

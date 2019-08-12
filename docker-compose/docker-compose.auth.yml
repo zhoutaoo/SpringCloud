@@ -1,0 +1,44 @@
+version: '3'
+services:
+  #授权服务
+  authorization-server:
+    image: cike/authorization-server:latest
+    container_name: sc-authorization-server
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8000:8000
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+    depends_on:
+      - authentication-server
+
+  #认证服务
+  authentication-server:
+    image: cike/authentication-server:latest
+    container_name: sc-authentication-server
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8001:8001
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+    depends_on:
+      - organization
+
+  #组织服务
+  organization:
+    image: cike/organization:latest
+    container_name: sc-organization
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8010:8010
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai

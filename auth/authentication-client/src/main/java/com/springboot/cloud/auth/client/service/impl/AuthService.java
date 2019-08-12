@@ -57,6 +57,7 @@ public class AuthService implements IAuthService {
 
     @Override
     public boolean hasPermission(Result authResult) {
+        log.debug("签权结果:", authResult);
         return authResult.isSuccess() && (boolean) authResult.getData();
     }
 
