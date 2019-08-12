@@ -21,4 +21,20 @@ public interface IUserRoleService {
      * @return
      */
     boolean saveOrUpdateBatch(long userId, Set<Long> roleIds);
+
+    /**
+     * 删除用户拥有的角色
+     *
+     * @param userId
+     * @return
+     */
+    boolean removeByUserId(long userId);
+
+    /**
+     * 查询用户拥有角色id
+     *
+     * @param userId
+     * @return
+     */
+    Set<Long> queryByUserId(long userId);
 }

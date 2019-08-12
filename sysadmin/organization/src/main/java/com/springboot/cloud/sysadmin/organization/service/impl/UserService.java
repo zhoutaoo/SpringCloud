@@ -2,7 +2,6 @@ package com.springboot.cloud.sysadmin.organization.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.springboot.cloud.sysadmin.organization.dao.UserMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
@@ -41,15 +40,16 @@ public class UserService implements IUserService {
     public long add(User user) {
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         long inserts = userMapper.insert(user);
-        if (CollectionUtils.isNotEmpty(user.getRoleIds()))
-            userRoleService.saveBatch(user.getId(), user.getRoleIds());
+        userRoleService.saveBatch(user.getId(), user.getRoleIds());
         return inserts;
     }
 
     @Override
+    @Transactional
     @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#id")
     public void delete(long id) {
         userMapper.deleteById(id);
+        userRoleService.removeByUserId(id);
     }
 
     @Override
@@ -57,22 +57,25 @@ public class UserService implements IUserService {
     @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#user.id")
     public void update(User user) {
         userMapper.updateById(user);
-        if (CollectionUtils.isNotEmpty(user.getRoleIds()))
-            userRoleService.saveOrUpdateBatch(user.getId(), user.getRoleIds());
+        userRoleService.saveOrUpdateBatch(user.getId(), user.getRoleIds());
     }
 
     @Override
     @Cacheable(value = "user", key = "#root.targetClass.name+'-'+#id")
     public User get(long id) {
-        return userMapper.selectById(id);
+        User user = userMapper.selectById(id);
+        user.setRoleIds(userRoleService.queryByUserId(id));
+        return user;
     }
 
     @Override
     public User getByUniqueId(String uniqueId) {
-        return userMapper.selectOne(new QueryWrapper<User>()
+        User user = userMapper.selectOne(new QueryWrapper<User>()
                 .eq("username", uniqueId)
                 .or()
                 .eq("mobile", uniqueId));
+        user.setRoleIds(userRoleService.queryByUserId(user.getId()));
+        return user;
     }
 
     @Override

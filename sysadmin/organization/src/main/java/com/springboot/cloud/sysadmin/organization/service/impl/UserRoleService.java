@@ -1,5 +1,7 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.dao.UserRoleMapper;
 import com.springboot.cloud.sysadmin.organization.entity.po.UserRole;
@@ -7,6 +9,7 @@ import com.springboot.cloud.sysadmin.organization.service.IUserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,13 +19,32 @@ public class UserRoleService extends ServiceImpl<UserRoleMapper, UserRole> imple
 
     @Override
     public boolean saveBatch(long userId, Set<Long> roleIds) {
+        if (CollectionUtils.isEmpty(roleIds))
+            return false;
         Set<UserRole> userRoles = roleIds.stream().map(roleId -> new UserRole(userId, roleId)).collect(Collectors.toSet());
         return saveBatch(userRoles);
     }
 
     @Override
     public boolean saveOrUpdateBatch(long userId, Set<Long> roleIds) {
+        if (CollectionUtils.isEmpty(roleIds))
+            return false;
         Set<UserRole> userRoles = roleIds.stream().map(roleId -> new UserRole(userId, roleId)).collect(Collectors.toSet());
         return saveOrUpdateBatch(userRoles);
+    }
+
+    @Override
+    public boolean removeByUserId(long userId) {
+        QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
+        queryWrapper.lambda().eq(UserRole::getUserId, userId);
+        return remove(queryWrapper);
+    }
+
+    @Override
+    public Set<Long> queryByUserId(long userId) {
+        QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", userId);
+        List<UserRole> userRoleList = list(queryWrapper);
+        return userRoleList.stream().map(UserRole::getRoleId).collect(Collectors.toSet());
     }
 }
