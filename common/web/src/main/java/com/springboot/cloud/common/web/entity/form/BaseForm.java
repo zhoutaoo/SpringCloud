@@ -22,15 +22,8 @@ public class BaseForm<T extends BasePo> {
      * @return
      */
     public T toPo(Class<T> clazz) {
-        T t = null;
-        try {
-            t = clazz.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            log.error("Po NewInstance Error");
-        }
+        T t = BeanUtils.instantiateClass(clazz);
         BeanUtils.copyProperties(this, t);
         return t;
     }
-
-
 }
