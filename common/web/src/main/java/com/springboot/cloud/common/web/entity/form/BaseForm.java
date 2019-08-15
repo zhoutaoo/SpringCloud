@@ -1,6 +1,6 @@
 package com.springboot.cloud.common.web.entity.form;
 
-import com.springboot.cloud.common.core.entity.po.BasePo;
+import com.springboot.cloud.common.web.entity.po.BasePo;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

@@ -1,5 +1,7 @@
-package com.springboot.cloud.common.core.entity.po;
+package com.springboot.cloud.common.web.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,7 +11,8 @@ import java.util.Date;
 @Data
 public class BasePo implements Serializable {
     public final static String DEFAULT_USERNAME = "system";
-    private Long id = 0L;
+    @TableId(type = IdType.ID_WORKER_STR)
+    private String id;
     private String createdBy = DEFAULT_USERNAME;
     private String updatedBy = DEFAULT_USERNAME;
     private Date createdTime = Date.from(ZonedDateTime.now().toInstant());

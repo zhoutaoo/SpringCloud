@@ -1,6 +1,6 @@
 package com.springboot.cloud.common.web.exception;
 
-import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.common.web.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.BaseException;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import lombok.extern.slf4j.Slf4j;
