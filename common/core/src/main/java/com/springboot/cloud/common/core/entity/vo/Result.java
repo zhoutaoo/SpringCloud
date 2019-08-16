@@ -1,4 +1,4 @@
-package com.springboot.cloud.common.web.entity.vo;
+package com.springboot.cloud.common.core.entity.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
