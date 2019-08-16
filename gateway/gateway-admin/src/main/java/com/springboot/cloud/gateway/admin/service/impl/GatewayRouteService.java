@@ -36,7 +36,7 @@ public class GatewayRouteService implements IGatewayRouteService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(String id) {
         gatewayRouteMapper.delete(id);
         stringRedisTemplate.delete(GATEWAY_ROUTES + id);
     }
@@ -49,7 +49,7 @@ public class GatewayRouteService implements IGatewayRouteService {
     }
 
     @Override
-    public GatewayRoute get(long id) {
+    public GatewayRoute get(String id) {
         return gatewayRouteMapper.select(id);
     }
 

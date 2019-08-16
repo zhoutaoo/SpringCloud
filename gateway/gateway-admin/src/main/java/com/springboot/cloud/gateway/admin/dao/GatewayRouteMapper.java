@@ -19,14 +19,14 @@ public interface GatewayRouteMapper {
     long insert(GatewayRoute gatewayRoute);
 
     @Update("delete from gateway_routes where id=#{id}")
-    void delete(long id);
+    void delete(String id);
 
     @Update("update gateway_routes set route_id=#{routeId},uri=#{uri},predicates=#{predicates},filters=#{filters},description=#{description},orders=#{orders},status='Y',updated_by=#{updatedBy},updated_time=now()" +
             " where id=#{id}")
     void update(GatewayRoute gatewayRoute);
 
     @Select("select " + PUBLIC_COLUMN + " from gateway_routes where id=#{id} and status='Y'")
-    GatewayRoute select(long id);
+    GatewayRoute select(String id);
 
     @Select("<script>" +
             "select " + PUBLIC_COLUMN +
