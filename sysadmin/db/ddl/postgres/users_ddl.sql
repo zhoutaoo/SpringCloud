@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE users
 (
-  id                      SERIAL PRIMARY KEY,
+  id                      VARCHAR(20) PRIMARY KEY,
   username                VARCHAR(100) NOT NULL,
   password                VARCHAR(100) NOT NULL,
   name                    VARCHAR(200) NOT NULL,
@@ -42,7 +42,7 @@ COMMENT ON COLUMN users.updated_by IS '更新人';
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   code         VARCHAR(100) NOT NULL,
   name         VARCHAR(200) NOT NULL,
   description  VARCHAR(500),
@@ -65,7 +65,7 @@ COMMENT ON COLUMN roles.updated_by IS '更新人';
 DROP TABLE IF EXISTS resource;
 CREATE TABLE resource
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   code         VARCHAR(100) NOT NULL,
   type         VARCHAR(100) NOT NULL,
   name         VARCHAR(200) NOT NULL,
@@ -96,7 +96,7 @@ COMMENT ON COLUMN resource.updated_by IS '更新人';
 DROP TABLE IF EXISTS users_roles_relation;
 CREATE TABLE users_roles_relation
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   user_id      INT          NOT NULL,
   role_id      INT          NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
@@ -117,7 +117,7 @@ COMMENT ON COLUMN users_roles_relation.updated_by IS '更新人';
 DROP TABLE IF EXISTS roles_resources_relation;
 CREATE TABLE roles_resources_relation
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   resource_id  INT          NOT NULL,
   role_id      INT          NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),

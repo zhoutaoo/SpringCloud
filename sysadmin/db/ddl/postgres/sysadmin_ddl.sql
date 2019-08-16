@@ -2,8 +2,8 @@
 DROP TABLE IF EXISTS groups;
 CREATE TABLE groups
 (
-  id           SERIAL PRIMARY KEY,
-  parent_id    INT          NOT NULL,
+  id           VARCHAR(20) PRIMARY KEY,
+  parent_id    VARCHAR(20)  NOT NULL,
   name         VARCHAR(200),
   description  VARCHAR(500),
   deleted      VARCHAR(1)   NOT NULL DEFAULT 'N',
@@ -27,7 +27,7 @@ COMMENT ON COLUMN groups.updated_by IS '更新人';
 DROP TABLE IF EXISTS position;
 CREATE TABLE position
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   name         VARCHAR(200),
   description  VARCHAR(500),
   deleted      VARCHAR(1)   NOT NULL DEFAULT 'N',
@@ -50,8 +50,8 @@ COMMENT ON COLUMN position.updated_by IS '更新人';
 DROP TABLE IF EXISTS menu;
 CREATE TABLE menu
 (
-  id           SERIAL PRIMARY KEY,
-  parent_id    INT          NOT NULL,
+  id           VARCHAR(20) PRIMARY KEY,
+  parent_id    VARCHAR(20)  NOT NULL,
   type         VARCHAR(100),
   href         VARCHAR(200),
   icon         VARCHAR(200),
@@ -80,9 +80,9 @@ COMMENT ON COLUMN menu.updated_by IS '更新人';
 DROP TABLE IF EXISTS user_group_relation;
 CREATE TABLE user_group_relation
 (
-  id           SERIAL PRIMARY KEY,
-  user_id      INT          NOT NULL,
-  group_id     INT          NOT NULL,
+  id           VARCHAR(20) PRIMARY KEY,
+  user_id      VARCHAR(20)  NOT NULL,
+  group_id     VARCHAR(20)  NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -101,9 +101,9 @@ COMMENT ON COLUMN user_group_relation.updated_by IS '更新人';
 DROP TABLE IF EXISTS user_position_relation;
 CREATE TABLE user_position_relation
 (
-  id           SERIAL PRIMARY KEY,
-  user_id      INT          NOT NULL,
-  position_id  INT          NOT NULL,
+  id           VARCHAR(20) PRIMARY KEY,
+  user_id      VARCHAR(20)  NOT NULL,
+  position_id  VARCHAR(20)  NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -122,9 +122,9 @@ COMMENT ON COLUMN user_position_relation.updated_by IS '更新人';
 DROP TABLE IF EXISTS role_menu_relation;
 CREATE TABLE role_menu_relation
 (
-  id           SERIAL PRIMARY KEY,
-  menu_id      INT          NOT NULL,
-  role_id      INT          NOT NULL,
+  id           VARCHAR(20) PRIMARY KEY,
+  menu_id      VARCHAR(20)  NOT NULL,
+  role_id      VARCHAR(20)  NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
