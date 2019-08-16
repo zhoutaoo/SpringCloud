@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class RoleResourceService extends ServiceImpl<RoleResourceMapper, RoleResource> implements IRoleResourceService {
 
     @Override
-    public boolean saveBatch(long roleId, Set<Long> resourceIds) {
+    public boolean saveBatch(String roleId, Set<String> resourceIds) {
         if (CollectionUtils.isEmpty(resourceIds))
             return false;
         Set<RoleResource> userRoles = resourceIds.stream().map(resourceId -> new RoleResource(roleId, resourceId)).collect(Collectors.toSet());
@@ -26,7 +26,7 @@ public class RoleResourceService extends ServiceImpl<RoleResourceMapper, RoleRes
     }
 
     @Override
-    public boolean saveOrUpdateBatch(long roleId, Set<Long> resourceIds) {
+    public boolean saveOrUpdateBatch(String roleId, Set<String> resourceIds) {
         if (CollectionUtils.isEmpty(resourceIds))
             return false;
         Set<RoleResource> userRoles = resourceIds.stream().map(resourceId -> new RoleResource(roleId, resourceId)).collect(Collectors.toSet());
@@ -34,14 +34,14 @@ public class RoleResourceService extends ServiceImpl<RoleResourceMapper, RoleRes
     }
 
     @Override
-    public boolean removeByRoleId(long roleId) {
+    public boolean removeByRoleId(String roleId) {
         QueryWrapper<RoleResource> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(RoleResource::getRoleId, roleId);
         return remove(queryWrapper);
     }
 
     @Override
-    public Set<Long> queryByRoleId(long roleId) {
+    public Set<String> queryByRoleId(String roleId) {
         QueryWrapper<RoleResource> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("role_id", roleId);
         List<RoleResource> userRoleList = list(queryWrapper);

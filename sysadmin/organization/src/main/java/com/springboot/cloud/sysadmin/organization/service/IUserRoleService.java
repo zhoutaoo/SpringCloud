@@ -11,7 +11,7 @@ public interface IUserRoleService {
      * @param roleIds
      * @return
      */
-    boolean saveBatch(long userId, Set<Long> roleIds);
+    boolean saveBatch(String userId, Set<String> roleIds);
 
     /**
      * 给用户添加角色
@@ -20,7 +20,7 @@ public interface IUserRoleService {
      * @param roleIds
      * @return
      */
-    boolean saveOrUpdateBatch(long userId, Set<Long> roleIds);
+    boolean saveOrUpdateBatch(String userId, Set<String> roleIds);
 
     /**
      * 删除用户拥有的角色
@@ -28,7 +28,7 @@ public interface IUserRoleService {
      * @param userId
      * @return
      */
-    boolean removeByUserId(long userId);
+    boolean removeByUserId(String userId);
 
     /**
      * 查询用户拥有角色id
@@ -36,5 +36,5 @@ public interface IUserRoleService {
      * @param userId
      * @return
      */
-    Set<Long> queryByUserId(long userId);
+    Set<String> queryByUserId(String userId);
 }

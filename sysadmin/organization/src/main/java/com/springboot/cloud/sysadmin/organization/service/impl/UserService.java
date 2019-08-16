@@ -10,7 +10,6 @@ import com.springboot.cloud.sysadmin.organization.entity.vo.UserVo;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -38,7 +37,8 @@ public class UserService implements IUserService {
     @Override
     @Transactional
     public long add(User user) {
-        user.setPassword(passwordEncoder().encode(user.getPassword()));
+        if (StringUtils.isNotBlank(user.getPassword()))
+            user.setPassword(passwordEncoder().encode(user.getPassword()));
         long inserts = userMapper.insert(user);
         userRoleService.saveBatch(user.getId(), user.getRoleIds());
         return inserts;
@@ -47,7 +47,7 @@ public class UserService implements IUserService {
     @Override
     @Transactional
     @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#id")
-    public void delete(long id) {
+    public void delete(String id) {
         userMapper.deleteById(id);
         userRoleService.removeByUserId(id);
     }
@@ -56,16 +56,18 @@ public class UserService implements IUserService {
     @Transactional
     @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#user.id")
     public void update(User user) {
+        if (StringUtils.isNotBlank(user.getPassword()))
+            user.setPassword(passwordEncoder().encode(user.getPassword()));
         userMapper.updateById(user);
         userRoleService.saveOrUpdateBatch(user.getId(), user.getRoleIds());
     }
 
     @Override
     @Cacheable(value = "user", key = "#root.targetClass.name+'-'+#id")
-    public User get(long id) {
+    public UserVo get(String id) {
         User user = userMapper.selectById(id);
         user.setRoleIds(userRoleService.queryByUserId(id));
-        return user;
+        return new UserVo(user);
     }
 
     @Override
@@ -87,11 +89,8 @@ public class UserService implements IUserService {
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getUsername()), "username", userQueryParam.getUsername());
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getMobile()), "mobile", userQueryParam.getMobile());
         // 转换成VO
-        IPage<UserVo> iPage = userMapper.selectPage(page, queryWrapper).convert((user) -> {
-            UserVo userVo = new UserVo();
-            BeanUtils.copyProperties(user, userVo);
-            return userVo;
-        });
+        IPage<User> iPageUser = userMapper.selectPage(page, queryWrapper);
+        IPage<UserVo> iPage = iPageUser.convert(user -> new UserVo(user));
         return iPage;
     }
 }

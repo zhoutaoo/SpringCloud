@@ -1,24 +1,27 @@
 package com.springboot.cloud.sysadmin.organization.entity.vo;
 
-import com.springboot.cloud.common.core.entity.vo.BaseVo;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.springboot.cloud.common.web.entity.vo.BaseVo;
+import com.springboot.cloud.sysadmin.organization.entity.po.User;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
+import java.util.Set;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserVo extends BaseVo {
-    private Long id = 0L;
+public class UserVo extends BaseVo<User> {
+
+    public UserVo(User user) {
+        super();
+        BeanUtils.copyProperties(user, this);
+    }
+
     private String name;
     private String mobile;
     private String username;
     private String description;
     private String deleted;
+    private Set<String> roleIds;
     private String createdBy;
     private String updatedBy;
     private Date createdTime;

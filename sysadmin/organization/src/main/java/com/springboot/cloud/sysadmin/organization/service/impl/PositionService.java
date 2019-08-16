@@ -27,7 +27,7 @@ public class PositionService implements IPositionService {
 
     @Override
     @CacheEvict(value = "position", key = "#root.targetClass.name+'-'+#id")
-    public void delete(long id) {
+    public void delete(String id) {
         positionMapper.deleteById(id);
     }
 
@@ -39,7 +39,7 @@ public class PositionService implements IPositionService {
 
     @Override
     @Cacheable(value = "position", key = "#root.targetClass.name+'-'+#id")
-    public Position get(long id) {
+    public Position get(String id) {
         return positionMapper.selectById(id);
     }
 
