@@ -1,7 +1,7 @@
 package com.springboot.cloud.demos.producer.interceptor;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.springboot.cloud.common.core.entity.po.BasePo;
+import com.springboot.cloud.common.web.entity.po.BasePo;
 import com.springboot.cloud.common.core.util.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
