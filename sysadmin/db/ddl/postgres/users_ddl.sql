@@ -97,8 +97,8 @@ DROP TABLE IF EXISTS users_roles_relation;
 CREATE TABLE users_roles_relation
 (
   id           VARCHAR(20) PRIMARY KEY,
-  user_id      INT          NOT NULL,
-  role_id      INT          NOT NULL,
+  user_id      VARCHAR(20)  NOT NULL,
+  role_id      VARCHAR(20)  NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
@@ -118,8 +118,8 @@ DROP TABLE IF EXISTS roles_resources_relation;
 CREATE TABLE roles_resources_relation
 (
   id           VARCHAR(20) PRIMARY KEY,
-  resource_id  INT          NOT NULL,
-  role_id      INT          NOT NULL,
+  resource_id  VARCHAR(20)  NOT NULL,
+  role_id      VARCHAR(20)  NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
