@@ -8,6 +8,6 @@ import java.util.Set;
 @Service
 public interface IRoleService {
 
-    Set<Role> queryUserRolesByUserId(long userId);
+    Set<Role> queryUserRolesByUserId(String userId);
 
 }

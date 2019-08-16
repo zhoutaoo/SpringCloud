@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.springboot.cloud</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--oauth2认证-->
