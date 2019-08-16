@@ -2,14 +2,14 @@
 DROP TABLE IF EXISTS gateway_routes;
 CREATE TABLE gateway_routes
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   route_id     VARCHAR(100) NOT NULL,
   uri          VARCHAR(100) NOT NULL,
-  predicates   TEXT          NOT NULL,
+  predicates   TEXT         NOT NULL,
   filters      TEXT,
   orders       INT,
   description  VARCHAR(500),
-  status       VARCHAR(1)             DEFAULT 'Y',
+  status       VARCHAR(1)            DEFAULT 'Y',
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
