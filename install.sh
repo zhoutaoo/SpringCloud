@@ -134,7 +134,7 @@ case $gwDbConfirm in
 esac
 
 #如果需要可以初使化默认的网关转发数据到redis中(可选)
-redis-cli -h 127.0.0.1 -p 6380 -a '123456' --eval ./src/main/db/gateway.lua
+#redis-cli -h 127.0.0.1 -p 6379 -a '123456' --eval ./src/main/db/gateway.lua
 
 #回到根目录
 cd -
