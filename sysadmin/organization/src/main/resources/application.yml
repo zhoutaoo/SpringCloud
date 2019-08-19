@@ -59,12 +59,11 @@ management:
       exposure:
         include: '*'
 
-mybatis:
+mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
-mybatis-plus:
   global-config:
     db-config:
-      id-type: 0 # 0为AUTO
+      id-type: 0 # 0为AUTO数据库生成，3为全局数字id
       logic-delete-value: "Y" # 逻辑已删除值(默认为 Y)
       logic-not-delete-value: "N" # 逻辑未删除值(默认为 N)

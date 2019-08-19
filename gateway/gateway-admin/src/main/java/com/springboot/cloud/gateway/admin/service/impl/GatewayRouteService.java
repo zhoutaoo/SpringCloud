@@ -43,6 +43,7 @@ public class GatewayRouteService implements IGatewayRouteService {
 
     @Override
     public void update(GatewayRoute gatewayRoute) {
+        gatewayRouteMapper.update(gatewayRoute);
         stringRedisTemplate.delete(GATEWAY_ROUTES + gatewayRoute.getId());
         stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES, toJson(new GatewayRouteVo(get(gatewayRoute.getId()))));
     }

@@ -60,6 +60,12 @@ public class RoleController {
         return Result.success(roleService.get(id));
     }
 
+    @ApiOperation(value = "获取所有角色", notes = "获取所有角色")
+    @GetMapping(value = "/all")
+    public Result get() {
+        return Result.success(roleService.get());
+    }
+
     @ApiOperation(value = "查询角色", notes = "根据用户id查询用户所拥有的角色信息")
     @ApiImplicitParam(paramType = "path", name = "userId", value = "用户id", required = true, dataType = "long")
     @ApiResponses(

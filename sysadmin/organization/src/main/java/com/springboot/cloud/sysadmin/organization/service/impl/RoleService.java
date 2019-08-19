@@ -53,6 +53,11 @@ public class RoleService implements IRoleService {
     }
 
     @Override
+    public List<Role> get() {
+        return roleMapper.selectList(null);
+    }
+
+    @Override
     public List<Role> query(long userId) {
         List<UserRole> userRoles = userRoleMapper.selectList(new QueryWrapper<UserRole>().eq("user_id", userId));
         return roleMapper.selectBatchIds(userRoles.stream().map(userRole -> userRole.getRoleId()).collect(Collectors.toList()));
