@@ -36,6 +36,7 @@ spring:
   cloud:
     gateway:
       default-filters:
+      - SwaggerHeaderFilter
       - name: Retry
         args:
           retries: 3
@@ -52,7 +53,12 @@ spring:
 gate:
   ignore:
     authentication:
-      startWith: /oauth,/open
+      startWith: /oauth,/open,/v2
+
+#网关swagger配置
+swagger:
+  server:
+    resource: gateway-admin,organization,producer
 
 management:
   endpoints:
