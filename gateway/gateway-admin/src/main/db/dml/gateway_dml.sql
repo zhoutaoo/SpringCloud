@@ -1,4 +1,4 @@
--- 用户
+--用户
 INSERT INTO gateway_routes (id, route_id, uri, predicates, filters, orders, description, status, created_time, updated_time, created_by, updated_by)
 VALUES
   (101,
@@ -16,28 +16,5 @@ VALUES
    '[{"name":"StripPrefix","args":{"parts":"1"}}]',
    100,
    '签权服务网关注册',
-   'Y', now(), now(), 'system', 'system'),
-   ( 103,
-   'gateway-admin',
-   'lb://gateway-admin:8445',
-   '[{\"name\":\"Path\",\"args\":{\"pattern\":\"/gateway-admin/**\"}}]',
-   '[{\"name\":\"StripPrefix\",\"args\":{\"parts\":\"1\"}}]',
-   100, '网关路由服务',
-   'Y',  now(), now(), 'system', 'system' ),
-   ( 104,
-   'organization',
-   'lb://organization:8010',
-   '[{\"name\":\"Path\",\"args\":{\"pattern\":\"/organization/**\"}}]',
-   '[{\"name\":\"StripPrefix\",\"args\":{\"parts\":\"1\"}}]',
-   100,
-   '组织服务路由',
-   'Y',  now(), now(), 'system', 'system' ),
-   ( 105,
-   'producer',
-   'lb://producer:9001',
-   '[{\"name\":\"Path\",\"args\":{\"pattern\":\"/producer/**\"}}]',
-   '[{\"name\":\"StripPrefix\",\"args\":{\"parts\":\"1\"}}]',
-   100,
-   '商品服务路由',
-   'Y',now(), now(), 'system', 'system' );
+   'Y', now(), now(), 'system', 'system')
 
