@@ -57,8 +57,8 @@ CREATE UNIQUE INDEX ux_resource_code
   ON resource (code);
 
 -- 用户和角色关系表
-DROP TABLE IF EXISTS users_roles_relation;
-CREATE TABLE users_roles_relation
+DROP TABLE IF EXISTS user_role_relation;
+CREATE TABLE user_role_relation
 (
   id           VARCHAR(20) PRIMARY KEY COMMENT '关系id',
   user_id      VARCHAR(20)  NOT NULL COMMENT '用户id',
@@ -70,8 +70,8 @@ CREATE TABLE users_roles_relation
 ) COMMENT '用户和角色关系表';
 
 -- 角色和资源关系表
-DROP TABLE IF EXISTS roles_resources_relation;
-CREATE TABLE roles_resources_relation
+DROP TABLE IF EXISTS role_resource_relation;
+CREATE TABLE role_resource_relation
 (
   id           VARCHAR(20) PRIMARY KEY COMMENT '关系id',
   resource_id  VARCHAR(20)  NOT NULL COMMENT '角色id',

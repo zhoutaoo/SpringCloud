@@ -19,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class UserService implements IUserService {
@@ -66,11 +68,13 @@ public class UserService implements IUserService {
     @Cacheable(value = "user", key = "#root.targetClass.name+'-'+#id")
     public UserVo get(String id) {
         User user = userMapper.selectById(id);
-        user.setRoleIds(userRoleService.queryByUserId(id));
+        if (Optional.ofNullable(user).isPresent())
+            user.setRoleIds(userRoleService.queryByUserId(id));
         return new UserVo(user);
     }
 
     @Override
+    @Cacheable(value = "user", key = "#root.targetClass.name+'-'+#uniqueId")
     public User getByUniqueId(String uniqueId) {
         User user = userMapper.selectOne(new QueryWrapper<User>()
                 .eq("username", uniqueId)
