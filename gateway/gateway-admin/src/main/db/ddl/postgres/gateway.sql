@@ -1,6 +1,6 @@
 --网关路由表
-DROP TABLE IF EXISTS gateway_routes;
-CREATE TABLE gateway_routes
+DROP TABLE IF EXISTS gateway_route;
+CREATE TABLE gateway_route
 (
   id           VARCHAR(20) PRIMARY KEY,
   route_id     VARCHAR(100) NOT NULL,

@@ -1,5 +1,5 @@
 --用户
-INSERT INTO gateway_routes (id, route_id, uri, predicates, filters, orders, description, status, created_time, updated_time, created_by, updated_by)
+INSERT INTO gateway_route (id, route_id, uri, predicates, filters, orders, description, status, created_time, updated_time, created_by, updated_by)
 VALUES
   (101,
    'authorization-server',
