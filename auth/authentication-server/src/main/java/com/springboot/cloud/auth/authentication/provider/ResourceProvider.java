@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication.provider;
+package com.springboot.cloud.auth.authentication.provider;
 
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import com.springboot.cloud.common.core.entity.vo.Result;

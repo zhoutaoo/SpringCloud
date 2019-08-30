@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication;
+package com.springboot.cloud.auth.authentication;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

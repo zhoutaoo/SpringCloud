@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication.service;
+package com.springboot.cloud.auth.authentication.service;
 
 import org.springframework.stereotype.Service;
 

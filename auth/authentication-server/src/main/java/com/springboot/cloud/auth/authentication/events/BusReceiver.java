@@ -1,6 +1,6 @@
-package com.springboot.auth.authentication.events;
+package com.springboot.cloud.auth.authentication.events;
 
-import com.springboot.auth.authentication.service.impl.ResourceService;
+import com.springboot.cloud.auth.authentication.service.impl.ResourceService;
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

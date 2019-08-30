@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication.rest;
+package com.springboot.cloud.auth.authentication.rest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

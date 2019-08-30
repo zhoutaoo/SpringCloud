@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication.service;
+package com.springboot.cloud.auth.authentication.service;
 
 import com.google.common.base.Objects;
 import lombok.Getter;

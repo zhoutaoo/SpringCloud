@@ -1,7 +1,7 @@
-package com.springboot.auth.authentication.service.impl;
+package com.springboot.cloud.auth.authentication.service.impl;
 
-import com.springboot.auth.authentication.provider.ResourceProvider;
-import com.springboot.auth.authentication.rest.HttpServletRequestAuthWrapper;
+import com.springboot.cloud.auth.authentication.provider.ResourceProvider;
+import com.springboot.cloud.auth.authentication.rest.HttpServletRequestAuthWrapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;

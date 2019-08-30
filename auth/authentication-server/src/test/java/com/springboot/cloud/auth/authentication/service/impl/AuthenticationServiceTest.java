@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication.service.impl;
+package com.springboot.cloud.auth.authentication.service.impl;
 
 import com.google.common.collect.Sets;
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;

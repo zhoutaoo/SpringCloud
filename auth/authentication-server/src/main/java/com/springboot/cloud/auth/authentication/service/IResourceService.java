@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication.service;
+package com.springboot.cloud.auth.authentication.service;
 
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import org.springframework.security.access.ConfigAttribute;

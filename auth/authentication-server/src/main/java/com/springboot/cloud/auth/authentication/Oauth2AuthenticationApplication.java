@@ -1,4 +1,4 @@
-package com.springboot.auth.authentication;
+package com.springboot.cloud.auth.authentication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

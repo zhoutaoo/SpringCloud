@@ -1,9 +1,9 @@
-package com.springboot.auth.authentication.config;
+package com.springboot.cloud.auth.authentication.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.auth.authentication.events.BusReceiver;
+import com.springboot.cloud.auth.authentication.events.BusReceiver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

@@ -1,6 +1,6 @@
-package com.springboot.auth.authentication.config;
+package com.springboot.cloud.auth.authentication.config;
 
-import com.springboot.auth.authentication.service.IResourceService;
+import com.springboot.cloud.auth.authentication.service.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.ConfigAttribute;
