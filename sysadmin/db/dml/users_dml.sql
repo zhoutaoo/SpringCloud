@@ -1,3 +1,5 @@
+USE sc_admin;
+
 -- 用户
 INSERT INTO users (id, username, password, deleted, enabled, account_non_expired, credentials_non_expired, account_non_locked, name, mobile, created_time, updated_time, created_by, updated_by)
 VALUES

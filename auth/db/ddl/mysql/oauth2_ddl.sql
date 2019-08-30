@@ -1,3 +1,5 @@
+USE sc_auth;
+
 -- access_token存储表
 DROP TABLE IF EXISTS oauth_access_token;
 CREATE TABLE oauth_access_token

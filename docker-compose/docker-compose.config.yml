@@ -22,7 +22,6 @@ services:
       # 指定远程DEV地址
       DEV_URL: http://apollo-config:8080
     depends_on:
-      - apollo-db
       - apollo-config
 
   apollo-config:
@@ -44,20 +43,14 @@ services:
       DEV_DB: jdbc:mysql://apollo-db:3306/ApolloConfigDB?characterEncoding=utf8
       DEV_DB_USER: root
       DEV_DB_PWD: root123
-    depends_on:
-      - apollo-db
 
-  apollo-db:
+  apollo-db-init:
     image: mysql:5.7
-    container_name: sc-apollo-db
-    restart: always
+    command: /init-db.sh
     networks:
       - sc-net
-    ports:
-      - 3306:3306
     volumes:
-      - ./apollo/sql:/docker-entrypoint-initdb.d
-      - ../data/mysql:/var/lib/mysql
+      - ./apollo/sql:/sql
+      - ./init-db.sh:/init-db.sh
     environment:
-      TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: root123

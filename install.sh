@@ -21,9 +21,9 @@ esac
 
 echo '==================1.3清理当前脚本启动的容器和产生的镜像(可选的)=============='
 #清理当前脚本启动的容器和产生的镜像(可选的)
-#docker stop sc-rabbitmq sc-redis sc-postgres
-#docker rm sc-rabbitmq sc-redis sc-postgres
-#docker image rm rabbitmq:alpine redis:alpine postgres:9.6-alpine
+#docker stop sc-rabbitmq sc-redis sc-mysql
+#docker rm sc-rabbitmq sc-redis sc-mysql
+#docker image rm rabbitmq:alpine redis:alpine mysql:9.6-alpine
 
 #docker stop sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-apollo-portal-server sc-apollo-config-server sc-apollo-db sc-eureka sc-gateway-admin sc-gateway-web
 #docker rm sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-apollo-portal-server sc-apollo-config-server sc-apollo-db sc-eureka sc-gateway-admin sc-gateway-web
@@ -54,8 +54,8 @@ cat ./.env
 echo ''
 
 #按需要开启公共服务
-echo '==================4.2启动 postgres or redis or rabbitmq ========'
-docker-compose -f docker-compose.yml up -d postgres
+echo '==================4.2启动 mysql or redis or rabbitmq ========'
+docker-compose -f docker-compose.yml up -d mysql
 docker-compose -f docker-compose.yml up -d redis
 docker-compose -f docker-compose.yml up -d rabbitmq
 

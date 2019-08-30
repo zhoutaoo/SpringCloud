@@ -1,3 +1,5 @@
+USE sc_admin;
+
 --  用户表
 DROP TABLE IF EXISTS users;
 CREATE TABLE users

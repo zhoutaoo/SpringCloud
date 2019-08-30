@@ -26,19 +26,32 @@ services:
       - 5672:5672
     env_file: .env
 
-  postgres:
-    image: postgres:9.6-alpine
-    container_name: sc-postgres
+  mysql:
+    image: mysql:5.7
+    container_name: sc-mysql
     restart: always
-    volumes:
-      - ../data/postgres:/var/lib/postgresql
     networks:
       - sc-net
     ports:
-      - 5432:5432
-    env_file: .env
+      - 3306:3306
+    volumes:
+      - ../data/mysql:/var/lib/mysql
     environment:
-      - POSTGRES_PASSWORD=postgres
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root123
+
+  mysql-init:
+    image: mysql:5.7
+    command: /init-db.sh
+    networks:
+      - sc-net
+    volumes:
+      - ../auth/db:/sql/auth
+      - ../gateway/gateway-admin/src/main/db:/sql/gateway
+      - ../sysadmin/db:/sql/sysadmin
+      - ./init-db.sh:/init-db.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
 
 networks:
   sc-net:

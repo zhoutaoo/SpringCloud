@@ -1,3 +1,4 @@
+USE sc_admin;
 -- 用户组表
 DROP TABLE IF EXISTS groups;
 CREATE TABLE groups

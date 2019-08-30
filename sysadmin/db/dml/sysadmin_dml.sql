@@ -1,3 +1,4 @@
+USE sc_admin;
 -- 岗位
 INSERT INTO position (id, name, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, '首席执行官', '公司CEO，负责公司整体运转', now(), now(), 'system', 'system'),
