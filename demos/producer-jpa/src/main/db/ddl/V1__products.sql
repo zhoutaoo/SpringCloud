@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS product;
 CREATE TABLE product
 (
-  id           VARCHAR(20) PRIMARY KEY,
+  id           VARCHAR(50) PRIMARY KEY,
   name         VARCHAR(200)            NOT NULL,
   description  VARCHAR(500),
   created_time TIMESTAMP DEFAULT now() NOT NULL,
