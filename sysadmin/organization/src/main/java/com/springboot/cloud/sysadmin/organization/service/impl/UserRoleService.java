@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class UserRoleService extends ServiceImpl<UserRoleMapper, UserRole> implements IUserRoleService {
 
     @Override
-    public boolean saveBatch(long userId, Set<Long> roleIds) {
+    public boolean saveBatch(String userId, Set<String> roleIds) {
         if (CollectionUtils.isEmpty(roleIds))
             return false;
         Set<UserRole> userRoles = roleIds.stream().map(roleId -> new UserRole(userId, roleId)).collect(Collectors.toSet());
@@ -26,7 +26,7 @@ public class UserRoleService extends ServiceImpl<UserRoleMapper, UserRole> imple
     }
 
     @Override
-    public boolean saveOrUpdateBatch(long userId, Set<Long> roleIds) {
+    public boolean saveOrUpdateBatch(String userId, Set<String> roleIds) {
         if (CollectionUtils.isEmpty(roleIds))
             return false;
         Set<UserRole> userRoles = roleIds.stream().map(roleId -> new UserRole(userId, roleId)).collect(Collectors.toSet());
@@ -34,14 +34,14 @@ public class UserRoleService extends ServiceImpl<UserRoleMapper, UserRole> imple
     }
 
     @Override
-    public boolean removeByUserId(long userId) {
+    public boolean removeByUserId(String userId) {
         QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(UserRole::getUserId, userId);
         return remove(queryWrapper);
     }
 
     @Override
-    public Set<Long> queryByUserId(long userId) {
+    public Set<String> queryByUserId(String userId) {
         QueryWrapper<UserRole> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", userId);
         List<UserRole> userRoleList = list(queryWrapper);

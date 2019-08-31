@@ -36,7 +36,7 @@ public class UserForm extends BaseForm<User> {
     private String description;
 
     @ApiModelProperty(value = "用户拥有的角色id列表")
-    private Set<Long> roleIds;
+    private Set<String> roleIds;
 
     @ApiModelProperty(value = "用户状态，true为可用")
     private Boolean enabled = true;

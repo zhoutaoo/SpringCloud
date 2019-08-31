@@ -1,9 +1,10 @@
+USE sc_admin;
 -- 用户组表
 DROP TABLE IF EXISTS groups;
 CREATE TABLE groups
 (
-  id           SERIAL PRIMARY KEY COMMENT 'id',
-  parent_id    INT          NOT NULL COMMENT '用户组父id',
+  id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
+  parent_id    VARCHAR(20)  NOT NULL COMMENT '用户组父id',
   name         VARCHAR(200) COMMENT '用户组名称',
   description  VARCHAR(500) COMMENT '描述',
   deleted      VARCHAR(1)   NOT NULL DEFAULT 'N' COMMENT '是否已删除Y：已删除，N：未删除',
@@ -17,7 +18,7 @@ CREATE TABLE groups
 DROP TABLE IF EXISTS position;
 CREATE TABLE position
 (
-  id           SERIAL PRIMARY KEY COMMENT 'id',
+  id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
   name         VARCHAR(200) COMMENT '岗位名称',
   description  VARCHAR(500) COMMENT '描述',
   deleted      VARCHAR(1)   NOT NULL DEFAULT 'N' COMMENT '是否已删除Y：已删除，N：未删除',
@@ -31,8 +32,8 @@ CREATE TABLE position
 DROP TABLE IF EXISTS menu;
 CREATE TABLE menu
 (
-  id           SERIAL PRIMARY KEY COMMENT 'id',
-  parent_id    INT          NOT NULL COMMENT '父菜单id',
+  id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
+  parent_id    VARCHAR(20)  NOT NULL COMMENT '父菜单id',
   type         VARCHAR(100) COMMENT '菜单类型',
   href         VARCHAR(200) COMMENT '菜单路径',
   icon         VARCHAR(200) COMMENT '菜单图标',
@@ -50,9 +51,9 @@ CREATE TABLE menu
 DROP TABLE IF EXISTS user_group_relation;
 CREATE TABLE user_group_relation
 (
-  id           SERIAL PRIMARY KEY COMMENT 'id',
-  user_id      INT          NOT NULL COMMENT '用户id',
-  group_id     INT          NOT NULL COMMENT '用户组id',
+  id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
+  user_id      VARCHAR(20)  NOT NULL COMMENT '用户id',
+  group_id     VARCHAR(20)  NOT NULL COMMENT '用户组id',
   created_time DATETIME     NOT NULL DEFAULT now() COMMENT '创建时间',
   updated_time DATETIME     NOT NULL DEFAULT now() COMMENT '更新时间',
   created_by   VARCHAR(100) NOT NULL COMMENT '创建人',
@@ -64,9 +65,9 @@ CREATE TABLE user_group_relation
 DROP TABLE IF EXISTS user_position_relation;
 CREATE TABLE user_position_relation
 (
-  id           SERIAL PRIMARY KEY COMMENT 'id',
-  user_id      INT          NOT NULL COMMENT '用户id',
-  position_id  INT          NOT NULL COMMENT '角色id',
+  id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
+  user_id      VARCHAR(20)  NOT NULL COMMENT '用户id',
+  position_id  VARCHAR(20)  NOT NULL COMMENT '角色id',
   created_time DATETIME     NOT NULL DEFAULT now() COMMENT '创建时间',
   updated_time DATETIME     NOT NULL DEFAULT now() COMMENT '更新时间',
   created_by   VARCHAR(100) NOT NULL COMMENT '创建人',
@@ -78,9 +79,9 @@ CREATE TABLE user_position_relation
 DROP TABLE IF EXISTS role_menu_relation;
 CREATE TABLE role_menu_relation
 (
-  id           SERIAL PRIMARY KEY COMMENT 'id',
-  menu_id      INT          NOT NULL COMMENT '菜单id',
-  role_id      INT          NOT NULL COMMENT '角色id',
+  id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
+  menu_id      VARCHAR(20)  NOT NULL COMMENT '菜单id',
+  role_id      VARCHAR(20)  NOT NULL COMMENT '角色id',
   created_time DATETIME     NOT NULL DEFAULT now() COMMENT '创建时间',
   updated_time DATETIME     NOT NULL DEFAULT now() COMMENT '更新时间',
   created_by   VARCHAR(100) NOT NULL COMMENT '创建人',

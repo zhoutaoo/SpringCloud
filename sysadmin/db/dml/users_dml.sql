@@ -1,3 +1,5 @@
+USE sc_admin;
+
 -- 用户
 INSERT INTO users (id, username, password, deleted, enabled, account_non_expired, credentials_non_expired, account_non_locked, name, mobile, created_time, updated_time, created_by, updated_by)
 VALUES
@@ -27,12 +29,12 @@ VALUES (101, '新增用户', 'user_manager:btn_add', 'button', '/user', 'POST', 
   (207, '搜索角色', 'role_manager:query', 'url', '/role/conditions', 'POST', '根据条件查询角色', now(), now(), 'system', 'system');
 
 -- 用户关系授权
-INSERT INTO users_roles_relation (id, user_id, role_id, created_time, updated_time, created_by, updated_by)
+INSERT INTO user_role_relation (id, user_id, role_id, created_time, updated_time, created_by, updated_by)
 VALUES (101, 101, 101, now(), now(), 'system', 'system'),
   (102, 102, 101, now(), now(), 'system', 'system'),
   (103, 102, 103, now(), now(), 'system', 'system');
 -- 角色与资源关系表
-INSERT INTO roles_resources_relation (id, role_id, resource_id, created_time, updated_time, created_by, updated_by)
+INSERT INTO role_resource_relation (id, role_id, resource_id, created_time, updated_time, created_by, updated_by)
 VALUES (101, 101, 101, now(), now(), 'system', 'system'),
   (102, 101, 102, now(), now(), 'system', 'system'),
   (103, 101, 103, now(), now(), 'system', 'system'),

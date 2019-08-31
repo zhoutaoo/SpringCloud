@@ -27,7 +27,7 @@ public class MenuService implements IMenuService {
 
     @Override
     @CacheEvict(value = "menu", key = "#root.targetClass.name+'-'+#id")
-    public void delete(long id) {
+    public void delete(String id) {
         menuMapper.deleteById(id);
     }
 
@@ -39,7 +39,7 @@ public class MenuService implements IMenuService {
 
     @Override
     @Cacheable(value = "menu", key = "#root.targetClass.name+'-'+#id")
-    public Menu get(long id) {
+    public Menu get(String id) {
         return menuMapper.selectById(id);
     }
 

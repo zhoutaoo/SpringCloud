@@ -167,8 +167,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 | 表名        |   简介        |  备注                    |
 |------------|---------------|-------------------------|
 | users      |   用户表       |  使用应用的用户           |
-| groups     |   组织表       |  通过users_groups_relation与users关联，多对多     |
-| positions  |   岗位表       |  通过users_positions_relation与users关联，多对多  |
-| roles      |   角色表       |  通过users_roles_relation与users关联，多对多      |
-| menus      |   菜单表       |  通过roles_menus_relation与roles关联，多对多      |
-| resources  |   资源表       |  通过roles_resources_relation与roles关联，多对多  |
+| groups     |   组织表       |  通过user_group_relation与users关联，多对多     |
+| position   |   岗位表       |  通过user_position_relation与users关联，多对多  |
+| roles      |   角色表       |  通过user_role_relation与users关联，多对多      |
+| menu       |   菜单表       |  通过role_menu_relation与roles关联，多对多      |
+| resource   |   资源表       |  通过role_resource_relation与roles关联，多对多  |

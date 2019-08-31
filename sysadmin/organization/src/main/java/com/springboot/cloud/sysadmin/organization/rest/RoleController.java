@@ -34,7 +34,7 @@ public class RoleController {
     @ApiOperation(value = "删除角色", notes = "根据url的id来指定删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "角色ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
-    public Result delete(@PathVariable long id) {
+    public Result delete(@PathVariable String id) {
         roleService.delete(id);
         return Result.success();
     }
@@ -45,7 +45,7 @@ public class RoleController {
             @ApiImplicitParam(name = "roleForm", value = "角色实体", required = true, dataType = "RoleForm")
     })
     @PutMapping(value = "/{id}")
-    public Result update(@PathVariable long id, @Valid @RequestBody RoleForm roleForm) {
+    public Result update(@PathVariable String id, @Valid @RequestBody RoleForm roleForm) {
         Role role = roleForm.toPo(Role.class);
         role.setId(id);
         roleService.update(role);
@@ -55,7 +55,7 @@ public class RoleController {
     @ApiOperation(value = "获取角色", notes = "获取指定角色信息")
     @ApiImplicitParam(paramType = "path", name = "id", value = "角色ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
-    public Result get(@PathVariable long id) {
+    public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);
         return Result.success(roleService.get(id));
     }
@@ -72,7 +72,7 @@ public class RoleController {
             @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     )
     @GetMapping(value = "/user/{userId}")
-    public Result query(@PathVariable long userId) {
+    public Result query(@PathVariable String userId) {
         log.debug("query with userId:{}", userId);
         return Result.success(roleService.query(userId));
     }

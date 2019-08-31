@@ -47,7 +47,7 @@ public class ResourceService implements IResourceService {
 
     @Override
     @CacheEvict(value = "resource", key = "#root.targetClass.name+'-'+#id")
-    public void delete(long id) {
+    public void delete(String id) {
         resourceMapper.deleteById(id);
     }
 
@@ -59,7 +59,7 @@ public class ResourceService implements IResourceService {
 
     @Override
     @Cacheable(value = "resource", key = "#root.targetClass.name+'-'+#id")
-    public Resource get(long id) {
+    public Resource get(String id) {
         return resourceMapper.selectById(id);
     }
 
@@ -81,7 +81,7 @@ public class ResourceService implements IResourceService {
         User user = userService.getByUniqueId(username);
         List<Role> roles = roleService.query(user.getId());
         //提取用户所拥有角色的id列表
-        List<Long> roleIds = roles.stream().map(role -> role.getId()).collect(Collectors.toList());
+        List<String> roleIds = roles.stream().map(role -> role.getId()).collect(Collectors.toList());
         //根据角色列表查询到角色的资源的关联
         List<RoleResource> roleResources = roleResourceMapper.selectList(new QueryWrapper<RoleResource>().in("role_id", roleIds));
         //根据资源列表查询出所有资源对象

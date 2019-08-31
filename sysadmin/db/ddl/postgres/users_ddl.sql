@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS users;
 CREATE TABLE users
 (
-  id                      SERIAL PRIMARY KEY,
+  id                      VARCHAR(20) PRIMARY KEY,
   username                VARCHAR(100) NOT NULL,
   password                VARCHAR(100) NOT NULL,
   name                    VARCHAR(200) NOT NULL,
@@ -42,7 +42,7 @@ COMMENT ON COLUMN users.updated_by IS '更新人';
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   code         VARCHAR(100) NOT NULL,
   name         VARCHAR(200) NOT NULL,
   description  VARCHAR(500),
@@ -65,7 +65,7 @@ COMMENT ON COLUMN roles.updated_by IS '更新人';
 DROP TABLE IF EXISTS resource;
 CREATE TABLE resource
 (
-  id           SERIAL PRIMARY KEY,
+  id           VARCHAR(20) PRIMARY KEY,
   code         VARCHAR(100) NOT NULL,
   type         VARCHAR(100) NOT NULL,
   name         VARCHAR(200) NOT NULL,
@@ -93,43 +93,43 @@ COMMENT ON COLUMN resource.created_by IS '创建人';
 COMMENT ON COLUMN resource.updated_by IS '更新人';
 
 --用户和角色关系表
-DROP TABLE IF EXISTS users_roles_relation;
-CREATE TABLE users_roles_relation
+DROP TABLE IF EXISTS user_role_relation;
+CREATE TABLE user_role_relation
 (
-  id           SERIAL PRIMARY KEY,
-  user_id      INT          NOT NULL,
-  role_id      INT          NOT NULL,
+  id           VARCHAR(20) PRIMARY KEY,
+  user_id      VARCHAR(20)  NOT NULL,
+  role_id      VARCHAR(20)  NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-COMMENT ON TABLE users_roles_relation IS '用户和角色关系表';
-COMMENT ON COLUMN users_roles_relation.id IS '关系id';
-COMMENT ON COLUMN users_roles_relation.user_id IS '用户id';
-COMMENT ON COLUMN users_roles_relation.role_id IS '角色id';
-COMMENT ON COLUMN users_roles_relation.created_time IS '创建时间';
-COMMENT ON COLUMN users_roles_relation.updated_time IS '更新时间';
-COMMENT ON COLUMN users_roles_relation.created_by IS '创建人';
-COMMENT ON COLUMN users_roles_relation.updated_by IS '更新人';
+COMMENT ON TABLE user_role_relation IS '用户和角色关系表';
+COMMENT ON COLUMN user_role_relation.id IS '关系id';
+COMMENT ON COLUMN user_role_relation.user_id IS '用户id';
+COMMENT ON COLUMN user_role_relation.role_id IS '角色id';
+COMMENT ON COLUMN user_role_relation.created_time IS '创建时间';
+COMMENT ON COLUMN user_role_relation.updated_time IS '更新时间';
+COMMENT ON COLUMN user_role_relation.created_by IS '创建人';
+COMMENT ON COLUMN user_role_relation.updated_by IS '更新人';
 
 --角色和资源关系表
-DROP TABLE IF EXISTS roles_resources_relation;
-CREATE TABLE roles_resources_relation
+DROP TABLE IF EXISTS role_resource_relation;
+CREATE TABLE role_resource_relation
 (
-  id           SERIAL PRIMARY KEY,
-  resource_id  INT          NOT NULL,
-  role_id      INT          NOT NULL,
+  id           VARCHAR(20) PRIMARY KEY,
+  resource_id  VARCHAR(20)  NOT NULL,
+  role_id      VARCHAR(20)  NOT NULL,
   created_time TIMESTAMP    NOT NULL DEFAULT now(),
   updated_time TIMESTAMP    NOT NULL DEFAULT now(),
   created_by   VARCHAR(100) NOT NULL,
   updated_by   VARCHAR(100) NOT NULL
 );
-COMMENT ON TABLE roles_resources_relation IS '角色和资源关系表';
-COMMENT ON COLUMN roles_resources_relation.id IS '关系id';
-COMMENT ON COLUMN roles_resources_relation.role_id IS '角色id';
-COMMENT ON COLUMN roles_resources_relation.resource_id IS '资源id';
-COMMENT ON COLUMN roles_resources_relation.created_time IS '创建时间';
-COMMENT ON COLUMN roles_resources_relation.updated_time IS '更新时间';
-COMMENT ON COLUMN roles_resources_relation.created_by IS '创建人';
-COMMENT ON COLUMN roles_resources_relation.updated_by IS '更新人';
+COMMENT ON TABLE role_resource_relation IS '角色和资源关系表';
+COMMENT ON COLUMN role_resource_relation.id IS '关系id';
+COMMENT ON COLUMN role_resource_relation.role_id IS '角色id';
+COMMENT ON COLUMN role_resource_relation.resource_id IS '资源id';
+COMMENT ON COLUMN role_resource_relation.created_time IS '创建时间';
+COMMENT ON COLUMN role_resource_relation.updated_time IS '更新时间';
+COMMENT ON COLUMN role_resource_relation.created_by IS '创建人';
+COMMENT ON COLUMN role_resource_relation.updated_by IS '更新人';

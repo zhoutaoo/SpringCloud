@@ -3,7 +3,7 @@ package com.springboot.cloud.sysadmin.organization.entity.po;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.springboot.cloud.common.core.entity.po.BasePo;
+import com.springboot.cloud.common.web.entity.po.BasePo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +27,7 @@ public class User extends BasePo {
     private Boolean credentialsNonExpired;
     private Boolean accountNonLocked;
     @TableField(exist = false)
-    private Set<Long> roleIds;
+    private Set<String> roleIds;
     @TableLogic
     private String deleted = "N";
 }

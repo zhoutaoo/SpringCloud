@@ -1,7 +1,7 @@
 package com.springboot.cloud.common.web.entity.form;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.springboot.cloud.common.core.entity.param.BaseParam;
+import com.springboot.cloud.common.web.entity.param.BaseParam;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -27,12 +27,7 @@ public class BaseQueryForm<P extends BaseParam> extends BaseForm {
      * @return
      */
     public P toParam(Class<P> clazz) {
-        P p = null;
-        try {
-            p = clazz.newInstance();
-        } catch (InstantiationException | IllegalAccessException e) {
-            log.error("Param NewInstance Error");
-        }
+        P p = BeanUtils.instantiateClass(clazz);
         BeanUtils.copyProperties(this, p);
         return p;
     }

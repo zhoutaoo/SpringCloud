@@ -2,7 +2,7 @@ package com.springboot.cloud.gateway.admin.entity.ov;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.cloud.common.core.entity.vo.BaseVo;
+import com.springboot.cloud.common.web.entity.vo.BaseVo;
 import com.springboot.cloud.gateway.admin.entity.po.FilterDefinition;
 import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.entity.po.PredicateDefinition;
@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @Slf4j
 public class GatewayRouteVo extends BaseVo {
-    private Long id;
+    private String id;
     private String uri;
     private Integer order;
     private List<FilterDefinition> filters = new ArrayList<>();
