@@ -34,7 +34,7 @@ public class MenuController {
     @ApiOperation(value = "删除菜单", notes = "根据url的id来指定删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "菜单ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
-    public Result delete(@PathVariable long id) {
+    public Result delete(@PathVariable String id) {
         menuService.delete(id);
         return Result.success();
     }
@@ -45,7 +45,7 @@ public class MenuController {
             @ApiImplicitParam(name = "menuForm", value = "菜单实体", required = true, dataType = "MenuForm")
     })
     @PutMapping(value = "/{id}")
-    public Result update(@PathVariable long id, @Valid @RequestBody MenuForm menuForm) {
+    public Result update(@PathVariable String id, @Valid @RequestBody MenuForm menuForm) {
         Menu menu = menuForm.toPo(Menu.class);
         menu.setId(id);
         menuService.update(menu);
@@ -55,7 +55,7 @@ public class MenuController {
     @ApiOperation(value = "获取菜单", notes = "获取指定菜单信息")
     @ApiImplicitParam(paramType = "path", name = "id", value = "菜单ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
-    public Result get(@PathVariable long id) {
+    public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);
         return Result.success(menuService.get(id));
     }

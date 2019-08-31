@@ -34,7 +34,7 @@ public class GroupController {
     @ApiOperation(value = "删除用户组", notes = "根据url的id来指定删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
-    public Result delete(@PathVariable long id) {
+    public Result delete(@PathVariable String id) {
         groupService.delete(id);
         return Result.success();
     }
@@ -45,7 +45,7 @@ public class GroupController {
             @ApiImplicitParam(name = "groupForm", value = "用户组实体", required = true, dataType = "GroupForm")
     })
     @PutMapping(value = "/{id}")
-    public Result update(@PathVariable long id, @Valid @RequestBody GroupForm groupForm) {
+    public Result update(@PathVariable String id, @Valid @RequestBody GroupForm groupForm) {
         Group group = groupForm.toPo(Group.class);
         group.setId(id);
         groupService.update(group);
@@ -55,7 +55,7 @@ public class GroupController {
     @ApiOperation(value = "获取用户组", notes = "获取指定用户组信息")
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
-    public Result get(@PathVariable long id) {
+    public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);
         return Result.success(groupService.get(id));
     }
@@ -87,7 +87,7 @@ public class GroupController {
     @ApiOperation(value = "根据父id查询用户组", notes = "根据父id查询用户组列表")
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组父ID", required = true, dataType = "long")
     @GetMapping(value = "/parent/{id}")
-    public Result search(@PathVariable long id) {
+    public Result search(@PathVariable String id) {
         log.debug("query with parent id:{}", id);
         return Result.success(groupService.queryByParentId(id));
     }

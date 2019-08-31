@@ -1,8 +1,8 @@
 -- 网关路由表
-DROP TABLE IF EXISTS gateway_routes;
-CREATE TABLE gateway_routes
+DROP TABLE IF EXISTS gateway_route;
+CREATE TABLE gateway_route
 (
-  id           BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT 'id',
+  id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
   route_id     VARCHAR(100) NOT NULL COMMENT '路由id',
   uri          VARCHAR(100) NOT NULL COMMENT 'uri路径',
   predicates   TEXT         NOT NULL COMMENT '判定器',

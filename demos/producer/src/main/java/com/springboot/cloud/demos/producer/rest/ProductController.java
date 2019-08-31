@@ -45,7 +45,7 @@ public class ProductController {
             @ApiImplicitParam(name = "productForm", value = "产品实体", required = true, dataType = "ProductForm")
     })
     @PutMapping(value = "/{id}")
-    public Result update(@PathVariable long id, @Valid @RequestBody ProductForm productForm) {
+    public Result update(@PathVariable String id, @Valid @RequestBody ProductForm productForm) {
         Product product = productForm.toPo(Product.class);
         product.setId(id);
         productService.update(product);

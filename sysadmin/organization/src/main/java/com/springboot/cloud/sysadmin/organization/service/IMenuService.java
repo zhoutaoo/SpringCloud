@@ -12,7 +12,7 @@ public interface IMenuService {
      * @param id
      * @return
      */
-    Menu get(long id);
+    Menu get(String id);
 
     /**
      * 新增菜单
@@ -48,5 +48,5 @@ public interface IMenuService {
      *
      * @param id
      */
-    void delete(long id);
+    void delete(String id);
 }

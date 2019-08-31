@@ -20,10 +20,10 @@ spring:
         max-active: 300
     #password: ${REDIS_PASSWORD:123456}
   datasource:
-    url: jdbc:${DATASOURCE_DB:postgresql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:5432}/sc_product
-    username: ${DATASOURCE_USERNAME:postgres}
-    password: ${DATASOURCE_PASSWORD:postgres}
-    driver-class-name: ${DATASOURCE_DRIVER:org.postgresql.Driver}
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_product?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:root123}
 
   zipkin:
     enabled: true

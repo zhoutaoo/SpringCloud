@@ -34,7 +34,7 @@ public class UserController {
     @ApiOperation(value = "删除用户", notes = "根据url的id来指定删除对象，逻辑删除")
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
-    public Result delete(@PathVariable long id) {
+    public Result delete(@PathVariable String id) {
         userService.delete(id);
         return Result.success();
     }
@@ -43,7 +43,7 @@ public class UserController {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "long"),
             @ApiImplicitParam(name = "userForm", value = "用户实体", required = true, dataType = "UserForm")})
     @PutMapping(value = "/{id}")
-    public Result update(@PathVariable long id, @Valid @RequestBody UserForm userForm) {
+    public Result update(@PathVariable String id, @Valid @RequestBody UserForm userForm) {
         User user = userForm.toPo(User.class);
         user.setId(id);
         userService.update(user);
@@ -53,7 +53,7 @@ public class UserController {
     @ApiOperation(value = "获取用户", notes = "获取指定用户信息")
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
-    public Result get(@PathVariable long id) {
+    public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);
         return Result.success(userService.get(id));
     }

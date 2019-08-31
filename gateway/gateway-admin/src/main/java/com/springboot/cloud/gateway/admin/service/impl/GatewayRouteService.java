@@ -1,5 +1,6 @@
 package com.springboot.cloud.gateway.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.gateway.admin.dao.GatewayRouteMapper;
@@ -8,6 +9,7 @@ import com.springboot.cloud.gateway.admin.entity.param.GatewayRouteQueryParam;
 import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.service.IGatewayRouteService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -36,30 +38,35 @@ public class GatewayRouteService implements IGatewayRouteService {
     }
 
     @Override
-    public void delete(long id) {
-        gatewayRouteMapper.delete(id);
+    public void delete(String id) {
+        gatewayRouteMapper.deleteById(id);
         stringRedisTemplate.delete(GATEWAY_ROUTES + id);
     }
 
     @Override
     public void update(GatewayRoute gatewayRoute) {
+        gatewayRouteMapper.updateById(gatewayRoute);
         stringRedisTemplate.delete(GATEWAY_ROUTES + gatewayRoute.getId());
         stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES, toJson(new GatewayRouteVo(get(gatewayRoute.getId()))));
     }
 
     @Override
-    public GatewayRoute get(long id) {
-        return gatewayRouteMapper.select(id);
+    public GatewayRoute get(String id) {
+        return gatewayRouteMapper.selectById(id);
     }
 
     @Override
     public List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
-        return gatewayRouteMapper.query(gatewayRouteQueryParam);
+        QueryWrapper<GatewayRoute> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge(null != gatewayRouteQueryParam.getCreatedTimeStart(), "created_time", gatewayRouteQueryParam.getCreatedTimeStart());
+        queryWrapper.le(null != gatewayRouteQueryParam.getCreatedTimeEnd(), "created_time", gatewayRouteQueryParam.getCreatedTimeEnd());
+        queryWrapper.eq(StringUtils.isNotBlank(gatewayRouteQueryParam.getUri()), "uri", gatewayRouteQueryParam.getUri());
+        return gatewayRouteMapper.selectList(queryWrapper);
     }
 
     @Override
     public boolean overload() {
-        List<GatewayRoute> gatewayRoutes = gatewayRouteMapper.query(new GatewayRouteQueryParam());
+        List<GatewayRoute> gatewayRoutes = gatewayRouteMapper.selectList(new QueryWrapper<>());
         ValueOperations<String, String> opsForValue = stringRedisTemplate.opsForValue();
         gatewayRoutes.forEach(gatewayRoute ->
                 opsForValue.set(GATEWAY_ROUTES + gatewayRoute.getId(), toJson(new GatewayRouteVo(gatewayRoute)))

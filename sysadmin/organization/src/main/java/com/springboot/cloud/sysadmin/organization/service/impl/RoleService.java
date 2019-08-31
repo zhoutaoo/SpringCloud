@@ -36,7 +36,7 @@ public class RoleService implements IRoleService {
 
     @Override
     @CacheEvict(value = "role", key = "#root.targetClass.name+'-'+#id")
-    public void delete(long id) {
+    public void delete(String id) {
         roleMapper.deleteById(id);
     }
 
@@ -48,12 +48,17 @@ public class RoleService implements IRoleService {
 
     @Override
     @Cacheable(value = "role", key = "#root.targetClass.name+'-'+#id")
-    public Role get(long id) {
+    public Role get(String id) {
         return roleMapper.selectById(id);
     }
 
     @Override
-    public List<Role> query(long userId) {
+    public List<Role> get() {
+        return roleMapper.selectList(null);
+    }
+
+    @Override
+    public List<Role> query(String userId) {
         List<UserRole> userRoles = userRoleMapper.selectList(new QueryWrapper<UserRole>().eq("user_id", userId));
         return roleMapper.selectBatchIds(userRoles.stream().map(userRole -> userRole.getRoleId()).collect(Collectors.toList()));
     }

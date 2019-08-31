@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.springboot.cloud</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--oauth2认证-->
@@ -36,7 +36,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>1.2.0</version>
                 <configuration>
                     <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
                     <imageName>cike/${project.artifactId}</imageName>

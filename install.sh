@@ -21,9 +21,9 @@ esac
 
 echo '==================1.3清理当前脚本启动的容器和产生的镜像(可选的)=============='
 #清理当前脚本启动的容器和产生的镜像(可选的)
-#docker stop sc-rabbitmq sc-redis sc-postgres
-#docker rm sc-rabbitmq sc-redis sc-postgres
-#docker image rm rabbitmq:alpine redis:alpine postgres:9.6-alpine
+#docker stop sc-rabbitmq sc-redis sc-mysql
+#docker rm sc-rabbitmq sc-redis sc-mysql
+#docker image rm rabbitmq:alpine redis:alpine mysql:9.6-alpine
 
 #docker stop sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-apollo-portal-server sc-apollo-config-server sc-apollo-db sc-eureka sc-gateway-admin sc-gateway-web
 #docker rm sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-apollo-portal-server sc-apollo-config-server sc-apollo-db sc-eureka sc-gateway-admin sc-gateway-web
@@ -54,8 +54,8 @@ cat ./.env
 echo ''
 
 #按需要开启公共服务
-echo '==================4.2启动 postgres or redis or rabbitmq ========'
-docker-compose -f docker-compose.yml up -d postgres
+echo '==================4.2启动 mysql or redis or rabbitmq ========'
+docker-compose -f docker-compose.yml up -d mysql
 docker-compose -f docker-compose.yml up -d redis
 docker-compose -f docker-compose.yml up -d rabbitmq
 
@@ -99,7 +99,7 @@ docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d eureka-s
 docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d config-server
 
 #启动消息中心
-docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d bud-server
+docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d bus-server
 
 #回到根目录
 cd -
@@ -117,7 +117,6 @@ cd ./gateway/gateway-admin
 mvn package && mvn docker:build
 
 #确认初始化网关服务的DB:./gateway/gateway-admin/src/main/db
-#确认环境信息准备就绪
 echo '你可以立即去部署网关服务的DB(脚本路径:./gateway/gateway-admin/src/main/db),然后回来继续...'
 read -r -p "确认网关服务的DB部署好了吗? [Y/n] " gwDbConfirm
 case $gwDbConfirm in
@@ -133,6 +132,9 @@ case $gwDbConfirm in
 		exit 1
 		;;
 esac
+
+#如果需要可以初使化默认的网关转发数据到redis中(可选)
+#redis-cli -h 127.0.0.1 -p 6379 -a '123456' --eval ./src/main/db/gateway.lua
 
 #回到根目录
 cd -
@@ -155,7 +157,6 @@ cd ./sysadmin/organization
 mvn package && mvn docker:build
 
 #确认初始化授权/认证服务的DB:./sysadmin/db
-#确认环境信息准备就绪
 echo '你可以立即去部署组织服务的DB(脚本路径:./sysadmin/db),然后回来继续...'
 read -r -p "确认部署组织服务的DB部署好了吗? [Y/n] " orgDbConfirm
 case $orgDbConfirm in
@@ -197,7 +198,6 @@ cd ./auth/authorization-server
 mvn package && mvn docker:build
 
 #确认初始化授权/认证服务的DB:./auth/db
-#确认环境信息准备就绪
 echo '你可以立即去部署授权/认证服务的DB(脚本路径:./auth/db),然后回来继续...'
 read -r -p "确认部署授权/认证服务的DB部署好了吗? [Y/n] " authDbConfirm
 case $authDbConfirm in
@@ -242,3 +242,6 @@ cd docker-compose
 
 #启动网关服务
 docker-compose -f docker-compose.yml -f docker-compose.monitor.yml up -d monitor-admin
+
+#回到根目录
+cd -

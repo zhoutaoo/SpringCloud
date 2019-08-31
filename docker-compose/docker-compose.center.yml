@@ -27,7 +27,7 @@ services:
       TZ: Asia/Shanghai
 
   #消息中心
-  bug-server:
+  bus-server:
     image: cike/bus-server:latest
     container_name: sc-bus
     restart: always

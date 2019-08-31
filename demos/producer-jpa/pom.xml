@@ -59,9 +59,9 @@
         </dependency>
         <!--数据库-->
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.4-1203-jdbc4</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.39</version>
         </dependency>
         <!--Swagger2 - RESTful API文档-->
         <dependency>
@@ -115,7 +115,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <version>1.2.0</version>
                 <configuration>
                     <!-- 注意imageName一定要是符合正则[a-z0-9-_.]的，否则构建不会成功 -->
                     <imageName>cike/${project.artifactId}</imageName>

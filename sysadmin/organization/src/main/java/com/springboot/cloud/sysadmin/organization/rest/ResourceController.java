@@ -33,7 +33,7 @@ public class ResourceController {
     @ApiOperation(value = "删除资源", notes = "根据url的id来指定删除对象")
     @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
-    public Result delete(@PathVariable long id) {
+    public Result delete(@PathVariable String id) {
         resourceService.delete(id);
         return Result.success();
     }
@@ -44,7 +44,7 @@ public class ResourceController {
             @ApiImplicitParam(name = "resourceForm", value = "资源实体", required = true, dataType = "ResourceForm")
     })
     @PutMapping(value = "/{id}")
-    public Result update(@PathVariable long id, @Valid @RequestBody ResourceForm resourceForm) {
+    public Result update(@PathVariable String id, @Valid @RequestBody ResourceForm resourceForm) {
         Resource resource = resourceForm.toPo(Resource.class);
         resource.setId(id);
         resourceService.update(resource);
@@ -54,7 +54,7 @@ public class ResourceController {
     @ApiOperation(value = "获取资源", notes = "获取指定资源信息")
     @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "long")
     @GetMapping(value = "/{id}")
-    public Result get(@PathVariable long id) {
+    public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);
         return Result.success(resourceService.get(id));
     }
