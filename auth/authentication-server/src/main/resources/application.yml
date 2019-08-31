@@ -32,6 +32,10 @@ spring:
     sampler:
       probability: 1.0
 
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+  #jwt的密钥
   security:
     oauth2:
       jwt:
