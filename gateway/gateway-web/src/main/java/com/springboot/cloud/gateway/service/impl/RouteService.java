@@ -9,7 +9,6 @@ import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
@@ -45,9 +44,9 @@ public class RouteService implements IRouteService {
     }
 
     @Override
-    public Flux<RouteDefinition> getRouteDefinitions() {
+    public Collection<RouteDefinition> getRouteDefinitions() {
         loadRouteDefinition();
-        return Flux.fromIterable(routeDefinitionMaps.values());
+        return routeDefinitionMaps.values();
     }
 
     @Override
