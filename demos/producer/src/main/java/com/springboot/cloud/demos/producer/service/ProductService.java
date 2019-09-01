@@ -50,11 +50,8 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> query(ProductQueryParam productQueryParam) {
-        QueryWrapper<Product> queryWrapper = new QueryWrapper<>();
-        queryWrapper
-                .ge(null != productQueryParam.getCreatedTimeStart(), "created_time", productQueryParam.getCreatedTimeStart())
-                .le(null != productQueryParam.getCreatedTimeEnd(), "created_time", productQueryParam.getCreatedTimeEnd())
-                .eq("name", productQueryParam.getName());
+        QueryWrapper<Product> queryWrapper = productQueryParam.build();
+        queryWrapper.eq("name", productQueryParam.getName());
         return productMapper.selectList(queryWrapper);
     }
 }

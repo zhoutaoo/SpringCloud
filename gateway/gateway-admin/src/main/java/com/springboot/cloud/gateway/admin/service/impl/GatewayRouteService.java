@@ -57,9 +57,7 @@ public class GatewayRouteService implements IGatewayRouteService {
 
     @Override
     public List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
-        QueryWrapper<GatewayRoute> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(null != gatewayRouteQueryParam.getCreatedTimeStart(), "created_time", gatewayRouteQueryParam.getCreatedTimeStart());
-        queryWrapper.le(null != gatewayRouteQueryParam.getCreatedTimeEnd(), "created_time", gatewayRouteQueryParam.getCreatedTimeEnd());
+        QueryWrapper<GatewayRoute> queryWrapper = gatewayRouteQueryParam.build();
         queryWrapper.eq(StringUtils.isNotBlank(gatewayRouteQueryParam.getUri()), "uri", gatewayRouteQueryParam.getUri());
         return gatewayRouteMapper.selectList(queryWrapper);
     }
