@@ -7,6 +7,7 @@ import com.springboot.cloud.sysadmin.organization.dao.UserMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
 import com.springboot.cloud.sysadmin.organization.entity.vo.UserVo;
+import com.springboot.cloud.sysadmin.organization.service.IUserRoleService;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -29,7 +30,7 @@ public class UserService implements IUserService {
     private UserMapper userMapper;
 
     @Autowired
-    private UserRoleService userRoleService;
+    private IUserRoleService userRoleService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -86,9 +87,7 @@ public class UserService implements IUserService {
 
     @Override
     public IPage<UserVo> query(Page page, UserQueryParam userQueryParam) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(null != userQueryParam.getCreatedTimeStart(), "created_time", userQueryParam.getCreatedTimeStart());
-        queryWrapper.le(null != userQueryParam.getCreatedTimeEnd(), "created_time", userQueryParam.getCreatedTimeEnd());
+        QueryWrapper<User> queryWrapper = userQueryParam.build();
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getName()), "name", userQueryParam.getName());
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getUsername()), "username", userQueryParam.getUsername());
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getMobile()), "mobile", userQueryParam.getMobile());

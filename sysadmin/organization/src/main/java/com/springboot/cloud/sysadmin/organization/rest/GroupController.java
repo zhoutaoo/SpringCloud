@@ -27,8 +27,7 @@ public class GroupController {
     @PostMapping
     public Result add(@Valid @RequestBody GroupForm groupForm) {
         log.debug("name:{}", groupForm);
-        Group group = groupForm.toPo(Group.class);
-        return Result.success(groupService.add(group));
+        return Result.success(groupService.add(groupForm.toPo(Group.class)));
     }
 
     @ApiOperation(value = "删除用户组", notes = "根据url的id来指定删除对象")

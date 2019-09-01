@@ -65,9 +65,7 @@ public class ResourceService implements IResourceService {
 
     @Override
     public List<Resource> query(ResourceQueryParam resourceQueryParam) {
-        QueryWrapper<Resource> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(null != resourceQueryParam.getCreatedTimeStart(), "created_time", resourceQueryParam.getCreatedTimeStart());
-        queryWrapper.le(null != resourceQueryParam.getCreatedTimeEnd(), "created_time", resourceQueryParam.getCreatedTimeEnd());
+        QueryWrapper<Resource> queryWrapper = resourceQueryParam.build();
         queryWrapper.eq(null != resourceQueryParam.getName(), "name", resourceQueryParam.getName());
         queryWrapper.eq(null != resourceQueryParam.getType(), "type", resourceQueryParam.getType());
         queryWrapper.eq(null != resourceQueryParam.getUrl(), "url", resourceQueryParam.getUrl());
