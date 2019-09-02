@@ -34,8 +34,7 @@ public class GroupController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户组ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
-        groupService.delete(id);
-        return Result.success();
+        return Result.success(groupService.delete(id));
     }
 
     @ApiOperation(value = "修改用户组", notes = "修改指定用户组信息")
@@ -47,8 +46,7 @@ public class GroupController {
     public Result update(@PathVariable String id, @Valid @RequestBody GroupForm groupForm) {
         Group group = groupForm.toPo(Group.class);
         group.setId(id);
-        groupService.update(group);
-        return Result.success();
+        return Result.success(groupService.update(group));
     }
 
     @ApiOperation(value = "获取用户组", notes = "获取指定用户组信息")

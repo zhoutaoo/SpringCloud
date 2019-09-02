@@ -34,8 +34,7 @@ public class ResourceController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
-        resourceService.delete(id);
-        return Result.success();
+        return Result.success(resourceService.delete(id));
     }
 
     @ApiOperation(value = "修改资源", notes = "修改指定资源信息")
@@ -47,8 +46,7 @@ public class ResourceController {
     public Result update(@PathVariable String id, @Valid @RequestBody ResourceForm resourceForm) {
         Resource resource = resourceForm.toPo(Resource.class);
         resource.setId(id);
-        resourceService.update(resource);
-        return Result.success();
+        return Result.success(resourceService.update(resource));
     }
 
     @ApiOperation(value = "获取资源", notes = "获取指定资源信息")

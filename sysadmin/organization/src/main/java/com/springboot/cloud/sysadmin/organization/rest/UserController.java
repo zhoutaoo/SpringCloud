@@ -35,8 +35,7 @@ public class UserController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
-        userService.delete(id);
-        return Result.success();
+        return Result.success(userService.delete(id));
     }
 
     @ApiOperation(value = "修改用户", notes = "修改指定用户信息")
@@ -46,8 +45,7 @@ public class UserController {
     public Result update(@PathVariable String id, @Valid @RequestBody UserForm userForm) {
         User user = userForm.toPo(User.class);
         user.setId(id);
-        userService.update(user);
-        return Result.success();
+        return Result.success(userService.update(user));
     }
 
     @ApiOperation(value = "获取用户", notes = "获取指定用户信息")

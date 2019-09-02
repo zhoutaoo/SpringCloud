@@ -29,7 +29,7 @@ public interface IRoleService {
      * @param role
      * @return
      */
-    long add(Role role);
+    boolean add(Role role);
 
     /**
      * 查询角色
@@ -50,12 +50,12 @@ public interface IRoleService {
      *
      * @param role
      */
-    void update(Role role);
+    boolean update(Role role);
 
     /**
      * 根据id删除角色
      *
      * @param id
      */
-    void delete(String id);
+    boolean delete(String id);
 }

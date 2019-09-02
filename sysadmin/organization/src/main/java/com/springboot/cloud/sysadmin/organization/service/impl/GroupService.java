@@ -30,8 +30,8 @@ public class GroupService extends ServiceImpl<GroupMapper, Group> implements IGr
 
     @Override
     @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#group.id")
-    public void update(Group group) {
-        this.updateById(group);
+    public boolean update(Group group) {
+        return this.updateById(group);
     }
 
     @Override

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Menu extends BasePo {
-    private long parentId;
+    private String parentId;
     private String name;
     private String type;
     private String href;

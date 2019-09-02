@@ -42,7 +42,7 @@ public interface IGroupService extends IService<Group> {
      *
      * @param group
      */
-    void update(Group group);
+    boolean update(Group group);
 
     /**
      * 根据id删除用户组

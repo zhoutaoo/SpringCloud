@@ -30,26 +30,26 @@ public interface IUserService {
      * @param user
      * @return
      */
-    long add(User user);
+    boolean add(User user);
 
     /**
      * 查询用户
      *
      * @return
      */
-    IPage<User> query(Page<User> page, UserQueryParam userQueryParam);
+    IPage<UserVo> query(Page<User> page, UserQueryParam userQueryParam);
 
     /**
      * 更新用户信息
      *
      * @param user
      */
-    void update(User user);
+    boolean update(User user);
 
     /**
      * 根据id删除用户
      *
      * @param id
      */
-    void delete(String id);
+    boolean delete(String id);
 }
