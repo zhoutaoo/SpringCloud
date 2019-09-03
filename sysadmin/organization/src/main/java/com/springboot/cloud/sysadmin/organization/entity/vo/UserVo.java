@@ -14,7 +14,6 @@ import java.util.Set;
 public class UserVo extends BaseVo<User> {
 
     public UserVo(User user) {
-        super();
         BeanUtils.copyProperties(user, this);
     }
 

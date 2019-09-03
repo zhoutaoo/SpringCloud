@@ -8,6 +8,7 @@ import com.springboot.cloud.sysadmin.organization.dao.UserMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
 import com.springboot.cloud.sysadmin.organization.entity.vo.UserVo;
+import com.springboot.cloud.sysadmin.organization.exception.UserNotFoundException;
 import com.springboot.cloud.sysadmin.organization.service.IUserRoleService;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -67,8 +68,10 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     @Cacheable(value = "user", key = "#root.targetClass.name+'-'+#id")
     public UserVo get(String id) {
         User user = this.getById(id);
-        if (Optional.ofNullable(user).isPresent())
-            user.setRoleIds(userRoleService.queryByUserId(id));
+        if (Objects.isNull(user)) {
+            throw new UserNotFoundException("user not found with id:" + id);
+        }
+        user.setRoleIds(userRoleService.queryByUserId(id));
         return new UserVo(user);
     }
 
@@ -79,6 +82,9 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
                 .eq("username", uniqueId)
                 .or()
                 .eq("mobile", uniqueId));
+        if (Objects.isNull(user)) {
+            throw new UserNotFoundException("user not found with uniqueId:" + uniqueId);
+        }
         user.setRoleIds(userRoleService.queryByUserId(user.getId()));
         return user;
     }
@@ -91,7 +97,6 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         queryWrapper.eq(StringUtils.isNotBlank(userQueryParam.getMobile()), "mobile", userQueryParam.getMobile());
         // 转换成VO
         IPage<User> iPageUser = this.page(page, queryWrapper);
-        IPage<UserVo> iPage = iPageUser.convert(user -> new UserVo(user));
-        return iPage;
+        return iPageUser.convert(UserVo::new);
     }
 }
