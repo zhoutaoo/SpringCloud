@@ -25,7 +25,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
     @Override
     @CacheEvict(value = "menu", key = "#root.targetClass.name+'-'+#id")
     public boolean delete(String id) {
-        return this.delete(id);
+        return this.removeById(id);
     }
 
     @Override

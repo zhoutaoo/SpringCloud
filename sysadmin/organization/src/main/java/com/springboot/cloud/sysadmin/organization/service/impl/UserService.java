@@ -50,7 +50,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     @Transactional
     @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#id")
     public boolean delete(String id) {
-        this.delete(id);
+        this.removeById(id);
         return userRoleService.removeByUserId(id);
     }
 
@@ -60,8 +60,9 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     public boolean update(User user) {
         if (StringUtils.isNotBlank(user.getPassword()))
             user.setPassword(passwordEncoder().encode(user.getPassword()));
-        this.updateById(user);
-        return userRoleService.saveOrUpdateBatch(user.getId(), user.getRoleIds());
+        boolean isSuccess = this.updateById(user);
+        userRoleService.saveOrUpdateBatch(user.getId(), user.getRoleIds());
+        return isSuccess;
     }
 
     @Override

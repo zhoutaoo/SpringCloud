@@ -49,7 +49,7 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     @Override
     @CacheEvict(value = "resource", key = "#root.targetClass.name+'-'+#id")
     public boolean delete(String id) {
-        return this.delete(id);
+        return this.removeById(id);
     }
 
     @Override

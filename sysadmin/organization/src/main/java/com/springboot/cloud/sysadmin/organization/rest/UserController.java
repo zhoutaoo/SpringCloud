@@ -3,6 +3,7 @@ package com.springboot.cloud.sysadmin.organization.rest;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.sysadmin.organization.entity.form.UserForm;
 import com.springboot.cloud.sysadmin.organization.entity.form.UserQueryForm;
+import com.springboot.cloud.sysadmin.organization.entity.form.UserUpdateForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.UserQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.User;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
@@ -32,24 +33,24 @@ public class UserController {
     }
 
     @ApiOperation(value = "删除用户", notes = "根据url的id来指定删除对象，逻辑删除")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "string")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
         return Result.success(userService.delete(id));
     }
 
     @ApiOperation(value = "修改用户", notes = "修改指定用户信息")
-    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "long"),
-            @ApiImplicitParam(name = "userForm", value = "用户实体", required = true, dataType = "UserForm")})
+    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "string"),
+            @ApiImplicitParam(name = "userUpdateForm", value = "用户实体", required = true, dataType = "UserUpdateForm")})
     @PutMapping(value = "/{id}")
-    public Result update(@PathVariable String id, @Valid @RequestBody UserForm userForm) {
-        User user = userForm.toPo(User.class);
+    public Result update(@PathVariable String id, @Valid @RequestBody UserUpdateForm userUpdateForm) {
+        User user = userUpdateForm.toPo(User.class);
         user.setId(id);
         return Result.success(userService.update(user));
     }
 
     @ApiOperation(value = "获取用户", notes = "获取指定用户信息")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "用户ID", required = true, dataType = "string")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);

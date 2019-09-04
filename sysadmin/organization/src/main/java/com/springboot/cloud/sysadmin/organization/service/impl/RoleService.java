@@ -34,7 +34,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
     @Override
     @CacheEvict(value = "role", key = "#root.targetClass.name+'-'+#id")
     public boolean delete(String id) {
-        return this.delete(id);
+        return this.removeById(id);
     }
 
     @Override

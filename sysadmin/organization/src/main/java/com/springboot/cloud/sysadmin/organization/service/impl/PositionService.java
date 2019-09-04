@@ -26,7 +26,7 @@ public class PositionService extends ServiceImpl<PositionMapper, Position> imple
     @Override
     @CacheEvict(value = "position", key = "#root.targetClass.name+'-'+#id")
     public boolean delete(String id) {
-        return this.delete(id);
+        return this.removeById(id);
     }
 
     @Override
