@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/gateway/routes")
@@ -38,8 +36,7 @@ public class GatewayRouteController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "网关路由ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
-        gatewayRoutService.delete(id);
-        return Result.success();
+        return Result.success(gatewayRoutService.delete(id));
     }
 
     @ApiOperation(value = "修改网关路由", notes = "修改指定网关路由信息")
@@ -51,8 +48,7 @@ public class GatewayRouteController {
     public Result update(@PathVariable String id, @Valid @RequestBody GatewayRouteForm gatewayRoutForm) {
         GatewayRoute gatewayRout = gatewayRoutForm.toPo(GatewayRoute.class);
         gatewayRout.setId(id);
-        gatewayRoutService.update(gatewayRout);
-        return Result.success();
+        return Result.success(gatewayRoutService.update(gatewayRout));
     }
 
     @ApiOperation(value = "获取网关路由", notes = "根据id获取指定网关路由信息")
@@ -70,8 +66,7 @@ public class GatewayRouteController {
     )
     @GetMapping
     public Result getByUri(@RequestParam String uri) {
-        List<GatewayRouteVo> gatewayRoutesVo = gatewayRoutService.query(new GatewayRouteQueryParam(uri)).stream().map(GatewayRouteVo::new).collect(Collectors.toList());
-        return Result.success(gatewayRoutesVo.stream().findFirst());
+        return Result.success(gatewayRoutService.query(new GatewayRouteQueryParam(uri)).stream().findFirst());
     }
 
     @ApiOperation(value = "搜索网关路由", notes = "根据条件查询网关路由信息")
@@ -81,9 +76,7 @@ public class GatewayRouteController {
     )
     @PostMapping(value = "/conditions")
     public Result search(@Valid @RequestBody GatewayRouteQueryForm gatewayRouteQueryForm) {
-        List<GatewayRoute> gatewayRoutes = gatewayRoutService.query(gatewayRouteQueryForm.toParam(GatewayRouteQueryParam.class));
-        List<GatewayRouteVo> gatewayRoutesVo = gatewayRoutes.stream().map(GatewayRouteVo::new).collect(Collectors.toList());
-        return Result.success(gatewayRoutesVo);
+        return Result.success(gatewayRoutService.query(gatewayRouteQueryForm.toParam(GatewayRouteQueryParam.class)));
     }
 
     @ApiOperation(value = "重载网关路由", notes = "将所以网关的路由全部重载到redis中")

@@ -1,6 +1,7 @@
 package com.springboot.cloud.gateway.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.gateway.admin.dao.GatewayRouteMapper;
@@ -17,58 +18,59 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class GatewayRouteService implements IGatewayRouteService {
+public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, GatewayRoute> implements IGatewayRouteService {
 
     private static final String GATEWAY_ROUTES = "gateway_routes::";
-
-    @Autowired
-    private GatewayRouteMapper gatewayRouteMapper;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public long add(GatewayRoute gatewayRoute) {
-        long gatewayId = gatewayRouteMapper.insert(gatewayRoute);
+    public boolean add(GatewayRoute gatewayRoute) {
+        boolean isSuccess = this.save(gatewayRoute);
         stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES + gatewayRoute.getId(), toJson(new GatewayRouteVo(gatewayRoute)));
-        return gatewayId;
+        return isSuccess;
     }
 
     @Override
-    public void delete(String id) {
-        gatewayRouteMapper.deleteById(id);
+    public boolean delete(String id) {
+        boolean isSuccess = this.removeById(id);
         stringRedisTemplate.delete(GATEWAY_ROUTES + id);
+        return isSuccess;
     }
 
     @Override
-    public void update(GatewayRoute gatewayRoute) {
-        gatewayRouteMapper.updateById(gatewayRoute);
+    public boolean update(GatewayRoute gatewayRoute) {
+        boolean isSuccess = this.updateById(gatewayRoute);
         stringRedisTemplate.delete(GATEWAY_ROUTES + gatewayRoute.getId());
         stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES, toJson(new GatewayRouteVo(get(gatewayRoute.getId()))));
+        return isSuccess;
     }
 
     @Override
     public GatewayRoute get(String id) {
-        return gatewayRouteMapper.selectById(id);
+        return this.getById(id);
     }
 
     @Override
-    public List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
+    public List<GatewayRouteVo> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
         QueryWrapper<GatewayRoute> queryWrapper = gatewayRouteQueryParam.build();
         queryWrapper.eq(StringUtils.isNotBlank(gatewayRouteQueryParam.getUri()), "uri", gatewayRouteQueryParam.getUri());
-        return gatewayRouteMapper.selectList(queryWrapper);
+        return this.list(queryWrapper).stream().map(GatewayRouteVo::new).collect(Collectors.toList());
     }
 
     @Override
     public boolean overload() {
-        List<GatewayRoute> gatewayRoutes = gatewayRouteMapper.selectList(new QueryWrapper<>());
+        List<GatewayRoute> gatewayRoutes = this.list(new QueryWrapper<>());
         ValueOperations<String, String> opsForValue = stringRedisTemplate.opsForValue();
         gatewayRoutes.forEach(gatewayRoute ->
                 opsForValue.set(GATEWAY_ROUTES + gatewayRoute.getId(), toJson(new GatewayRouteVo(gatewayRoute)))
         );
+        log.info("全局初使化网关路由成功!");
         return true;
     }
 
