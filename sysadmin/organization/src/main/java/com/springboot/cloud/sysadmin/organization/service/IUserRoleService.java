@@ -31,7 +31,7 @@ public interface IUserRoleService {
     boolean removeByUserId(String userId);
 
     /**
-     * 查询用户拥有角色id
+     * 根据userId查询用户拥有角色id集合
      *
      * @param userId
      * @return

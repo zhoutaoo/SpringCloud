@@ -47,4 +47,11 @@ public class RoleResourceService extends ServiceImpl<RoleResourceMapper, RoleRes
         List<RoleResource> userRoleList = list(queryWrapper);
         return userRoleList.stream().map(RoleResource::getResourceId).collect(Collectors.toSet());
     }
+
+    @Override
+    public List<RoleResource> queryByRoleIds(Set<String> roleIds) {
+        QueryWrapper<RoleResource> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("role_id", roleIds);
+        return this.list(queryWrapper);
+    }
 }

@@ -20,7 +20,7 @@ public interface IMenuService {
      * @param menu
      * @return
      */
-    long add(Menu menu);
+    boolean add(Menu menu);
 
     /**
      * 查询菜单
@@ -34,19 +34,19 @@ public interface IMenuService {
      *
      * @return
      */
-    List<Menu> queryByParentId(long id);
+    List<Menu> queryByParentId(String id);
 
     /**
      * 更新菜单信息
      *
      * @param menu
      */
-    void update(Menu menu);
+    boolean update(Menu menu);
 
     /**
      * 根据id删除菜单
      *
      * @param id
      */
-    void delete(String id);
+    boolean delete(String id);
 }

@@ -52,7 +52,7 @@ spring:
 gate:
   ignore:
     authentication:
-      startWith: /oauth,/open
+      startWith: /oauth,/open,/v2/api-docs
 
 management:
   endpoints:

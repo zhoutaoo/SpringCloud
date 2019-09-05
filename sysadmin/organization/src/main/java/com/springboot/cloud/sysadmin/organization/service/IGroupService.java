@@ -1,11 +1,12 @@
 package com.springboot.cloud.sysadmin.organization.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.springboot.cloud.sysadmin.organization.entity.param.GroupQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Group;
 
 import java.util.List;
 
-public interface IGroupService {
+public interface IGroupService extends IService<Group> {
     /**
      * 获取用户组
      *
@@ -18,9 +19,9 @@ public interface IGroupService {
      * 新增用户组
      *
      * @param group
-     * @return
+     * @return true为新增成功
      */
-    long add(Group group);
+    boolean add(Group group);
 
     /**
      * 查询用户组
@@ -41,12 +42,12 @@ public interface IGroupService {
      *
      * @param group
      */
-    void update(Group group);
+    boolean update(Group group);
 
     /**
      * 根据id删除用户组
      *
      * @param id
      */
-    void delete(String id);
+    boolean delete(String id);
 }
