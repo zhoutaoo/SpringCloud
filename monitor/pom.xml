@@ -19,7 +19,6 @@
 
     <modules>
         <module>admin</module>
-        <module>hystrix-dashboard</module>
     </modules>
 
     <dependencies>
