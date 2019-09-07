@@ -1,14 +1,10 @@
 server:
   port: ${SERVER_PORT:8443}
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
-
 spring:
   application:
     name: ${GATEWAY_NAME:gateway-web}
+
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -34,6 +30,9 @@ spring:
       jwt:
         signingKey: 123456
   cloud:
+    nacos:
+      discovery:
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
     gateway:
       default-filters:
       - name: Retry

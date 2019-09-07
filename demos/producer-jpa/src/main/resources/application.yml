@@ -1,21 +1,14 @@
 server:
-  port: 9001
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
-
-apollo:
-  bootstrap:
-    enabled: true
-  meta: http://${APOLLO_HOST:localhost}:${APOLLO_PORT:8080}
-app:
-  id: ${APP_ID}
+  port: 9002
 
 spring:
   application:
-    name: ${APP_ID}
+    name: producer-jpa
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}

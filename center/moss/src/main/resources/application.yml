@@ -1,20 +1,16 @@
 server:
-  port: 8071
+  port: 8088
 
 spring:
   application:
-    name: bus-server
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
-
+    name: moss-demo
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:guest}
     password: ${RABBIT_MQ_PASSWORD:guest}
 
-logging:
-  level:
-    root: info
+info:
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+  version: @project.version@

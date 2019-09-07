@@ -1,5 +1,5 @@
 target/
-logs/
+!.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
 .apt_generated
@@ -14,3 +14,11 @@ logs/
 *.iws
 *.iml
 *.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
