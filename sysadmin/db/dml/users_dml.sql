@@ -26,7 +26,8 @@ VALUES (101, '新增用户', 'user_manager:btn_add', 'button', '/user', 'POST', 
   (204, '查看角色', 'role_manager:view', 'url', '/role/{id}', 'GET', '根据id获取角色', now(), now(), 'system', 'system'),
   (205, '根据用户id查询角色', 'role_manager:user', 'url', '/role/user/{userId}', 'GET', '根据用户id获取用户所拥有的角色集', now(), now(), 'system', 'system'),
   (206, '获取所有角色', 'role_manager:all', 'url', '/role/all', 'GET', '获取所有角色', now(), now(), 'system', 'system'),
-  (207, '搜索角色', 'role_manager:query', 'url', '/role/conditions', 'POST', '根据条件查询角色', now(), now(), 'system', 'system');
+  (207, '搜索角色', 'role_manager:query', 'url', '/role/conditions', 'POST', '根据条件查询角色', now(), now(), 'system', 'system'),
+  (208, '根据父id查询组', 'group_manager:parent', 'url', '/group/parent/{id}', 'GET', '根据父id查询用户组', now(), now(), 'system', 'system');
 
 -- 用户关系授权
 INSERT INTO user_role_relation (id, user_id, role_id, created_time, updated_time, created_by, updated_by)
@@ -55,6 +56,7 @@ VALUES (101, 101, 101, now(), now(), 'system', 'system'),
   (205, 101, 205, now(), now(), 'system', 'system'),
   (206, 101, 206, now(), now(), 'system', 'system'),
   (207, 101, 207, now(), now(), 'system', 'system'),
+  (208, 101, 208, now(), now(), 'system', 'system'),
   (210, 103, 204, now(), now(), 'system', 'system'),
   (211, 103, 205, now(), now(), 'system', 'system'),
   (212, 103, 207, now(), now(), 'system', 'system'),

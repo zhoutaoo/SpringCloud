@@ -141,7 +141,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 |  灰度分流 | OpenResty + lua         |   🏗          |           |
 |  动态网关 | SpringCloud Gateway     |   ✅          |  多种维度的流量控制（服务、IP、用户等），后端可配置化🏗          |
 |  授权认证 | Spring Security OAuth2  |   ✅          |  Jwt模式   |
-|  服务容错 | SpringCloud Hystrix     |   ✅          |           |
+|  服务容错 | SpringCloud Sentinel    |   ✅          |           |
 |  服务调用 | SpringCloud OpenFeign   |   ✅          |           |
 |  对象存储 | FastDFS                 |   🏗          |           |
 |  任务调度 | Elastic-Job             |   🏗          |           |
