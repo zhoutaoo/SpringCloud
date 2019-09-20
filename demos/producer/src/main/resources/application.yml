@@ -1,7 +1,8 @@
-server:
-  port: 9001
-
 spring:
+  cloud:
+    bus:
+      trace:
+        enabled: true
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}

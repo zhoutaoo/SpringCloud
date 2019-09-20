@@ -12,7 +12,7 @@ public interface IProductService {
      * @param id
      * @return
      */
-    Product get(long id);
+    Product get(String id);
 
     /**
      * 新增用户
@@ -20,7 +20,7 @@ public interface IProductService {
      * @param product
      * @return
      */
-    long add(Product product);
+    boolean add(Product product);
 
     /**
      * 查询用户
@@ -34,12 +34,12 @@ public interface IProductService {
      *
      * @param product
      */
-    void update(Product product);
+    boolean update(Product product);
 
     /**
      * 根据id删除用户
      *
      * @param id
      */
-    void delete(long id);
+    boolean delete(String id);
 }
