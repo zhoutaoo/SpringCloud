@@ -1,17 +1,8 @@
-server:
-  port: 8010
-
 spring:
-  application:
-    name: organization
   cloud:
-    nacos:
-      discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
-    sentinel:
-      transport:
-        dashboard: ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}
-
+    bus:
+      trace:
+        enabled: true
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -29,7 +20,6 @@ spring:
     url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:root123}
-
   zipkin:
     enabled: true
     sender:
