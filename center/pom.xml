@@ -19,6 +19,5 @@
 
     <modules>
         <module>bus</module>
-        <module>config</module>
     </modules>
 </project>
