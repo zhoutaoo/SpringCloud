@@ -41,24 +41,13 @@
 |  数据库         |   mysql         |  3306     |  目前各应用共用1个实例，各应用可建不同的database     |
 |  KV缓存         |   redis         |  6379     |  目前共用，原则上各应用单独实例    |
 |  消息中间件      |   rabbitmq      |  5672     |  共用                          |
-|  注册中心       |    nacos        |  8848     |  [启动和使用文档](./docs/register.md)             |
+|  注册与配置中心  |   nacos         |  8848     |  [启动和使用文档](./docs/register.md)             |
 |  日志收集中间件  |   zipkin-server |  9411     |  共用                          |
 |  搜索引擎中间件  |   elasticsearch |  9200     |  共用    |
 |  日志分析工具    |   kibana        |  5601     |  共用    |
 |  数据可视化工具  |   grafana       |  3000     |  共用    |
 
-* 2.启动配置中心：进入docker-compose目录，执行
-
-1. 数据库初使化：`docker-compose -f docker-compose.yml -f docker-compose.config.yml up apollo-db-init`
-2. 启动配置中心应用：`docker-compose -f docker-compose.yml -f docker-compose.config.yml up apollo-portal`
-
-该步骤不是必须，若你想使用apollo为配置中心，通过以上命令启动即可。目前仅demos/producer应用使用了apollo作为配置中心
-
-|  服务          |   服务名         |  端口     | 备注                                            |
-|---------------|-----------------|-----------|-------------------------------------------------|
-|  apollo配置中心 |   apollo-portal |  8070     |  配置中心管理后台，访问地址http://localhost:8070   |
-
-* 3.创建数据库及表
+* 2.创建数据库及表
 
 只有部分应用有数据库脚本，若启动的应用有数据库的依赖，请初使化表结构和数据后再启动应用。
 
@@ -76,7 +65,7 @@ docker方式脚本初使化：进入docker-compose目录，执行命令 `docker-
 
 如：demos/producer/src/main/db 下的脚本
 
-* 4.启动应用
+* 3.启动应用
 
 根据自己需要，启动相应服务进行测试，cd 进入相关应用目录，执行命令： `mvn spring-boot:run` 
 
@@ -85,7 +74,6 @@ docker方式脚本初使化：进入docker-compose目录，执行命令 `docker-
 | 服务分类  | 服务名                     |  依赖基础组件             |   简介      |  应用地址                | 文档                    |
 |----------|---------------------------|-------------------------|-------------|-------------------------|-------------------------|
 |  center  | bus-server                |                         |  消息中心    |  http://localhost:8071  | [消息中心文档](./center/bus)         |
-|  center  | config-server             |                         |  配置中心    |  http://localhost:8888  | [配置中心文档](./center/config)      |
 |  sysadmin| organization              | mysql、redis            |  用户组织应用 |  http://localhost:8010  | 待完善      |
 |  auth    | authorization-server      | mysql、organization     |  授权服务    |  http://localhost:8000  | [权限服务简介](./auth) 、[授权server文档](./auth/authorization-server)     |
 |  auth    | authentication-server     | mysql、organization     |  认证服务    |  http://localhost:8001  | [认证server文档](./auth/authentication-server)    |
@@ -94,7 +82,7 @@ docker方式脚本初使化：进入docker-compose目录，执行命令 `docker-
 |  gateway | gateway-admin             | mysql、redis            |  网关管理    |  http://localhost:8445  | [网关管理后台文档](./gateway/gateway-admin)   |
 |  monitor | admin                     |                         |  总体监控    |  http://localhost:8022  |      |
 
-* 5.案例示意图
+* 4.案例示意图
 
 以下是一个用户访问的的示意图，用户请求通过gateway-web应用网关访问后端应用，通过authorization-server应用登陆授权换取token，请求通过authentication-server应用进行权限签别后转发到"您的业务应用"中
 
@@ -136,7 +124,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 |  服务     | 使用技术                 |   进度        |    备注   |
 |----------|-------------------------|---------------|-----------|
 |  注册中心 | Nacos                   |   ✅          |           |
-|  配置中心 | Appollo                 |   ✅          |           |
+|  配置中心 | Nacos                   |   ✅          |           |
 |  消息总线 | SpringCloud Bus+Rabbitmq|   ✅          |           |
 |  灰度分流 | OpenResty + lua         |   🏗          |           |
 |  动态网关 | SpringCloud Gateway     |   ✅          |  多种维度的流量控制（服务、IP、用户等），后端可配置化🏗          |
@@ -170,8 +158,8 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 |  服务     | 使用技术     |   进度         |    备注   |
 |----------|-------------|---------------|-----------|
-|  用户管理 | 自开发       |   🏗          |  用户是系统操作者，该功能主要完成系统用户配置。          |
-|  角色管理 | 自开发       |   🏗          |  角色菜单权限分配、设置角色按机构进行数据范围权限划分。   |
+|  用户管理 | 自开发       |   ✅          |  用户是系统操作者，该功能主要完成系统用户配置。          |
+|  角色管理 | 自开发       |   ✅          |  角色菜单权限分配、设置角色按机构进行数据范围权限划分。   |
 |  菜单管理 | 自开发       |   🏗          |  配置系统菜单，操作权限，按钮权限标识等。               |
 |  机构管理 | 自开发       |   🏗          |  配置系统组织机构，树结构展现，可随意调整上下级。        |
 |  网关动态路由 | 自开发    |   🏗          |  网关动态路由管理                                     |
@@ -180,7 +168,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 EMail：zhoutaoo@foxmail.com
 
-群1、2、3、4、5、6、7已满，请加群8，加群[请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki)
+群1、2、3、4、5、6、7、8已满，请加群9，加群[请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki)
 
   此些群仅为技术交流群，请大家不要讨论政治、发广告等与技术无关的东西。大家如若有问题可以在群里直接发问，我会抽空答复。
 

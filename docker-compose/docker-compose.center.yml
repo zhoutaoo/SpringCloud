@@ -1,18 +1,5 @@
 version: '3'
 services:
-  #配置中心
-  config-server:
-    image: cike/config-server:latest
-    container_name: sc-config
-    restart: always
-    networks:
-      - sc-net
-    ports:
-      - 8888:8888
-    env_file: .env
-    environment:
-      TZ: Asia/Shanghai
-
   #消息中心
   bus-server:
     image: cike/bus-server:latest

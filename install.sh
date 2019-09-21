@@ -25,8 +25,8 @@ echo '==================1.3清理当前脚本启动的容器和产生的镜像(�
 #docker rm sc-rabbitmq sc-redis sc-mysql
 #docker image rm rabbitmq:alpine redis:alpine mysql:9.6-alpine
 
-#docker stop sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-apollo-portal-server sc-apollo-config-server sc-apollo-db sc-gateway-admin sc-gateway-web
-#docker rm sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-apollo-portal-server sc-apollo-config-server sc-apollo-db sc-gateway-admin sc-gateway-web
+#docker stop sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-gateway-admin sc-gateway-web
+#docker rm sc-monitor-admin sc-authorization-server sc-authentication-server sc-organization sc-gateway-admin sc-gateway-web
 #docker image rm cike/admin cike/authorization-server:latest cike/authentication-server:latest cike/organization:latest cike/gateway-admin:latest cike/gateway-web:latest
 
 echo '==================2.安装认证公共包到本地maven仓库=================='
@@ -69,13 +69,6 @@ echo '==================4.3.构建镜像: 配置中心, 消息中心========'
 #回到根目录
 cd -
 
-#构建镜像:配置中心
-cd ./center/config
-mvn package && mvn docker:build
-
-#回到根目录
-cd -
-
 #构建镜像:消息中心
 cd ./center/bus
 mvn package && mvn docker:build
@@ -89,11 +82,6 @@ cd docker-compose
 
 #启动注册中心
 docker-compose -f docker-compose.yml -f docker-compose.nacos.yml up -d nacos
-
-#启动配置中心, 消息中心
-#可以使用Spring自带的config, 也可以直接使用apollo
-#docker-compose -f docker-compose.yml -f docker-compose.config.yml up apollo-portal
-docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d config-server
 
 #启动消息中心
 docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d bus-server
