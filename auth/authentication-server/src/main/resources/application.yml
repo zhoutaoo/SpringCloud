@@ -1,17 +1,4 @@
-server:
-  port: 8001
-
 spring:
-  application:
-    name: authentication-server
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
-    sentinel:
-      transport:
-        dashboard: ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}
-
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
