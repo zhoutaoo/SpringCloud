@@ -17,3 +17,7 @@ mysql、redis、rabbitmq
 ## 启动监控类服务，如springboot-admin、sentinel-dashboard
 
 `docker-compose -f docker-compose.yml -f docker-compose.monitor.yml up`
+
+## 启动MOSS
+
+`docker-compose -f docker-compose.yml -f docker-compose.moss.yml up moss`
