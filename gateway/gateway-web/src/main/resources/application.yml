@@ -1,10 +1,4 @@
-server:
-  port: ${SERVER_PORT:8443}
-
 spring:
-  application:
-    name: ${GATEWAY_NAME:gateway-web}
-
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -14,7 +8,9 @@ spring:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
     #password: ${REDIS_PASSWORD:}
-
+    lettuce:
+      pool:
+        max-active: 300
   zipkin:
     enabled: true
     sender:
@@ -30,9 +26,6 @@ spring:
       jwt:
         signingKey: 123456
   cloud:
-    nacos:
-      discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
     gateway:
       default-filters:
       - name: Retry
