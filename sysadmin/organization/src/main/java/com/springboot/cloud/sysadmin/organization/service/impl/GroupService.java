@@ -1,5 +1,8 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.alicp.jetcache.anno.CacheInvalidate;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.dao.GroupMapper;
@@ -23,19 +26,19 @@ public class GroupService extends ServiceImpl<GroupMapper, Group> implements IGr
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#id")
+    @CacheInvalidate(name = "group::", key = "#id")
     public boolean delete(String id) {
         return this.removeById(id);
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#group.id")
+    @CacheInvalidate(name = "group::", key = "#group.id")
     public boolean update(Group group) {
         return this.updateById(group);
     }
 
     @Override
-    @Cacheable(value = "group", key = "#root.targetClass.name+'-'+#id")
+    @Cached(name = "group::", key = "#id", cacheType = CacheType.BOTH)
     public Group get(String id) {
         return this.getById(id);
     }
