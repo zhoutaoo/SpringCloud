@@ -1,5 +1,8 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.alicp.jetcache.anno.CacheInvalidate;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,8 +15,6 @@ import com.springboot.cloud.sysadmin.organization.service.IUserRoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,19 +33,19 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
     }
 
     @Override
-    @CacheEvict(value = "role", key = "#root.targetClass.name+'-'+#id")
+    @CacheInvalidate(name = "role::", key = "#id")
     public boolean delete(String id) {
         return this.removeById(id);
     }
 
     @Override
-    @CacheEvict(value = "role", key = "#root.targetClass.name+'-'+#role.id")
+    @CacheInvalidate(name = "role::", key = "#role.id")
     public boolean update(Role role) {
         return this.updateById(role);
     }
 
     @Override
-    @Cacheable(value = "role", key = "#root.targetClass.name+'-'+#id")
+    @Cached(name = "role::", key = "#id", cacheType = CacheType.BOTH)
     public Role get(String id) {
         return this.getById(id);
     }
@@ -55,7 +56,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
     }
 
     @Override
-    @Cacheable(value = "role4user", key = "#root.targetClass.name+'-'+#userId")
+    @Cached(name = "role4user::", key = "#userId", cacheType = CacheType.BOTH)
     public List<Role> query(String userId) {
         Set<String> roleIds = userRoleService.queryByUserId(userId);
         return (List<Role>) this.listByIds(roleIds);

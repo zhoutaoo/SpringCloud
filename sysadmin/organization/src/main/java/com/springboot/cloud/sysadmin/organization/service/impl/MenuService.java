@@ -1,5 +1,8 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.alicp.jetcache.anno.CacheInvalidate;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.dao.MenuMapper;
@@ -7,8 +10,6 @@ import com.springboot.cloud.sysadmin.organization.entity.param.MenuQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Menu;
 import com.springboot.cloud.sysadmin.organization.service.IMenuService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,19 +24,19 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
     }
 
     @Override
-    @CacheEvict(value = "menu", key = "#root.targetClass.name+'-'+#id")
+    @CacheInvalidate(name = "menu::", key = "#id")
     public boolean delete(String id) {
         return this.removeById(id);
     }
 
     @Override
-    @CacheEvict(value = "menu", key = "#root.targetClass.name+'-'+#menu.id")
+    @CacheInvalidate(name = "menu::", key = "#menu.id")
     public boolean update(Menu menu) {
         return this.updateById(menu);
     }
 
     @Override
-    @Cacheable(value = "menu", key = "#root.targetClass.name+'-'+#id")
+    @Cached(name = "menu::", key = "#id", cacheType = CacheType.BOTH)
     public Menu get(String id) {
         return this.getById(id);
     }

@@ -30,17 +30,36 @@ jetcache:
     default:
       type: caffeine
       keyConvertor: fastjson
-      expireAfterWriteInMillis: 7200000
+      expireAfterWriteInMillis: 3600000
       expireAfterAccessInMillis: 1800000
-    # 5分钟本地缓存，主要用于要求时效较高的配置
-    5minutes:
+    # 長時本地緩存，主要用于要求时效一般
+    longTime:
       type: caffeine
       keyConvertor: fastjson
       expireAfterWriteInMillis: 300000
       expireAfterAccessInMillis: 180000
+    # 短時本地緩存，主要用于要求时效较高的配置
+    shortTime:
+      type: caffeine
+      keyConvertor: fastjson
+      expireAfterWriteInMillis: 60000
+      expireAfterAccessInMillis: 40000
   remote:
     # 默认2小时的远程缓存
     default:
+      type: redis
+      expireAfterWriteInMillis: 43200000
+      keyConvertor: fastjson
+      valueEncoder: kryo
+      valueDecoder: kryo
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+    # 长时远程緩存，主要用于要求时效要求一般的集中式缓存
+    longTime:
       type: redis
       expireAfterWriteInMillis: 7200000
       keyConvertor: fastjson
@@ -52,10 +71,10 @@ jetcache:
         maxTotal: 50
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
-    # 24小时的redis缓存
-    1day:
+    # 短時远程緩存，主要用于要求时效较高的集中式缓存
+    shortTime:
       type: redis
-      expireAfterWriteInMillis: 86400000
+      expireAfterWriteInMillis: 300000
       keyConvertor: fastjson
       valueEncoder: kryo
       valueDecoder: kryo

@@ -10,8 +10,6 @@ import com.springboot.cloud.sysadmin.organization.entity.param.GroupQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Group;
 import com.springboot.cloud.sysadmin.organization.service.IGroupService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
