@@ -1,12 +1,12 @@
 package com.springboot.cloud.gateway.admin.service.impl;
 
 import com.alicp.jetcache.Cache;
-import com.alicp.jetcache.anno.CacheInvalidate;
 import com.alicp.jetcache.anno.CacheType;
-import com.alicp.jetcache.anno.Cached;
 import com.alicp.jetcache.anno.CreateCache;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.gateway.admin.dao.GatewayRouteMapper;
 import com.springboot.cloud.gateway.admin.entity.ov.GatewayRouteVo;
 import com.springboot.cloud.gateway.admin.entity.param.GatewayRouteQueryParam;
@@ -14,8 +14,14 @@ import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.service.IGatewayRouteService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.cloud.gateway.filter.FilterDefinition;
+import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
+import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,34 +31,54 @@ public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, Gateway
 
     private static final String GATEWAY_ROUTES = "gateway_routes::";
 
-    @CreateCache(cacheType = CacheType.REMOTE)
-    private Cache<String, GatewayRouteVo> gatewayRouteCache;
+    @CreateCache(name = GATEWAY_ROUTES, cacheType = CacheType.REMOTE)
+    private Cache<String, RouteDefinition> gatewayRouteCache;
 
     @Override
     public boolean add(GatewayRoute gatewayRoute) {
         boolean isSuccess = this.save(gatewayRoute);
-        gatewayRouteCache.put(GATEWAY_ROUTES + gatewayRoute.getId(), new GatewayRouteVo(gatewayRoute));
+        gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute));
         return isSuccess;
     }
 
     @Override
-    @CacheInvalidate(name = GATEWAY_ROUTES, key = "#id")
     public boolean delete(String id) {
-        boolean isSuccess = this.removeById(id);
-        gatewayRouteCache.remove(GATEWAY_ROUTES + id);
-        return isSuccess;
+        GatewayRoute gatewayRoute = this.getById(id);
+        gatewayRouteCache.remove(gatewayRoute.getRouteId());
+        return this.removeById(id);
     }
 
     @Override
-    @CacheInvalidate(name = GATEWAY_ROUTES, key = "#gatewayRoute.id")
     public boolean update(GatewayRoute gatewayRoute) {
         boolean isSuccess = this.updateById(gatewayRoute);
-        gatewayRouteCache.put(GATEWAY_ROUTES + gatewayRoute.getId(), new GatewayRouteVo(gatewayRoute));
+        gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute));
         return isSuccess;
     }
 
+    /**
+     * 将数据库中json对象转换为网关需要的RouteDefinition对象
+     *
+     * @param gatewayRoute
+     * @return RouteDefinition
+     */
+    private RouteDefinition gatewayRouteToRouteDefinition(GatewayRoute gatewayRoute) {
+        RouteDefinition routeDefinition = new RouteDefinition();
+        routeDefinition.setId(gatewayRoute.getRouteId());
+        routeDefinition.setOrder(gatewayRoute.getOrders());
+        routeDefinition.setUri(URI.create(gatewayRoute.getUri()));
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            routeDefinition.setFilters(objectMapper.readValue(gatewayRoute.getFilters(), new TypeReference<List<FilterDefinition>>() {
+            }));
+            routeDefinition.setPredicates(objectMapper.readValue(gatewayRoute.getPredicates(), new TypeReference<List<PredicateDefinition>>() {
+            }));
+        } catch (IOException e) {
+            log.error("网关路由对象转换失败", e);
+        }
+        return routeDefinition;
+    }
+
     @Override
-    @Cached(name = GATEWAY_ROUTES, key = "#id", cacheType = CacheType.REMOTE)
     public GatewayRoute get(String id) {
         return this.getById(id);
     }
@@ -65,10 +91,11 @@ public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, Gateway
     }
 
     @Override
+    @PostConstruct
     public boolean overload() {
         List<GatewayRoute> gatewayRoutes = this.list(new QueryWrapper<>());
         gatewayRoutes.forEach(gatewayRoute ->
-                gatewayRouteCache.put(GATEWAY_ROUTES + gatewayRoute.getId(), new GatewayRouteVo(gatewayRoute))
+                gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute))
         );
         log.info("全局初使化网关路由成功!");
         return true;

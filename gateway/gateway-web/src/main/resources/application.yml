@@ -11,6 +11,12 @@ spring:
     lettuce:
       pool:
         max-active: 300
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_gateway?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:root123}
+
   zipkin:
     enabled: true
     sender:
@@ -39,6 +45,29 @@ spring:
           redis-rate-limiter.burstCapacity: 10   #令牌桶的容积
           rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
           key-resolver: "#{@apiKeyResolver}" #SPEL表达式去的对应的bean
+
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  hidePackages: com.springboot.cloud
+  local:
+    # 默认2小时本地缓存
+    default:
+      type: caffeine
+      keyConvertor: fastjson
+  remote:
+    # 默认2小时的远程缓存
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: kryo
+      valueDecoder: kryo
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
 
 #网关白名单，无需要签权url
 gate:
