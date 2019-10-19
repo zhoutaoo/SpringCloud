@@ -26,7 +26,7 @@
 
 `cd auth/authentication-client && mvn install`
 
-3. 生成ide配置： `mvn idea:idea` 并导入对应的ide进行开发，IDE安装lombok插件（很重要，否则IDE会显示编译报错）
+3. 生成ide配置： `mvn idea:idea`或`mvn eclipse:eclipse` 并导入对应的ide进行开发，IDE安装lombok插件（很重要，否则IDE会显示编译报错）
 
 ### 编译 & 启动
 
@@ -34,7 +34,7 @@
 
 在启动应用之前，需要先启动数据库、缓存、MQ等中间件，可根据自己需要启动的应用选择启动某些基础组件，一般来说启动数据库、redis、rabbitmq即可，其它组件若有需要，根据如下命令启动即可。
 
-该步骤使用了docker快速搭建相应的基础环境，需要你对docker、docker-compose有一定了解和使用经验。（注：请使用阿里的docker镜像）
+该步骤使用了docker快速搭建相应的基础环境，需要你对docker、docker-compose有一定了解和使用经验。也可以不使用docker，自行搭建以下服务即可。
 
 |  服务           |   服务名         |  端口     | 备注                                            |
 |----------------|-----------------|-----------|-------------------------------------------------|
@@ -168,7 +168,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 EMail：zhoutaoo@foxmail.com
 
-群1、2、3、4、5、6、7、8已满，请加群9，加群[请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki)
+群1、2、3、4、5、6、7、8、9已满，请加群10，加群[请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki)
 
   此些群仅为技术交流群，请大家不要讨论政治、发广告等与技术无关的东西。大家如若有问题可以在群里直接发问，我会抽空答复。
 
