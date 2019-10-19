@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @TableName("groups")
 public class Group extends BasePo {
     private String name;
-    private long parentId;
+    private String parentId;
     private String description;
     @TableLogic
     private String deleted = "N";

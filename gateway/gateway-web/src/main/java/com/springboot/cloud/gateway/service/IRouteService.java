@@ -1,11 +1,12 @@
 package com.springboot.cloud.gateway.service;
 
 import org.springframework.cloud.gateway.route.RouteDefinition;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Collection;
+
 public interface IRouteService {
-    Flux<RouteDefinition> getRouteDefinitions();
+    Collection<RouteDefinition> getRouteDefinitions();
 
     Mono<Void> save(Mono<RouteDefinition> routeDefinitionMono);
 

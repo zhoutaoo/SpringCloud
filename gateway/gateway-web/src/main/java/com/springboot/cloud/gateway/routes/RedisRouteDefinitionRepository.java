@@ -18,7 +18,7 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
-        return routeService.getRouteDefinitions();
+        return Flux.fromIterable(routeService.getRouteDefinitions());
     }
 
     @Override

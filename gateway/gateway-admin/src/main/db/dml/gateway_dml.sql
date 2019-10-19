@@ -1,4 +1,4 @@
---用户
+-- 用户
 INSERT INTO gateway_route (id, route_id, uri, predicates, filters, orders, description, status, created_time, updated_time, created_by, updated_by)
 VALUES
   (101,
@@ -16,5 +16,13 @@ VALUES
    '[{"name":"StripPrefix","args":{"parts":"1"}}]',
    100,
    '签权服务网关注册',
+   'Y', now(), now(), 'system', 'system'),
+   (103,
+   'organization',
+   'lb://organization:8010',
+   '[{"name":"Path","args":{"pattern":"/organization/**"}}]',
+   '[{"name":"StripPrefix","args":{"parts":"1"}}]',
+   100,
+   '系统管理相关接口',
    'Y', now(), now(), 'system', 'system')
 
