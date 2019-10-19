@@ -16,4 +16,4 @@ CREATE TABLE gateway_route
   updated_by   VARCHAR(100) NOT NULL COMMENT '更新人'
 ) COMMENT '网关路由表';
 
-CREATE UNIQUE INDEX ux_gateway_routes_uri ON gateway_routes (uri);
+CREATE UNIQUE INDEX ux_gateway_routes_uri ON gateway_route (uri);
