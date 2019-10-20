@@ -26,15 +26,15 @@
 
 `cd auth/authentication-client && mvn install`
 
-3. 生成ide配置： `mvn idea:idea` 并导入对应的ide进行开发，IDE安装lombok插件（很重要，否则IDE会显示编译报错）
+3. 生成ide配置： `mvn idea:idea`或`mvn eclipse:eclipse` 并导入对应的ide进行开发，IDE安装lombok插件（很重要，否则IDE会显示编译报错）
 
 ### 编译 & 启动
 
 * 1.启动基础服务：进入docker-compose目录，执行`docker-compose -f docker-compose.yml up` 或单个启动`docker-compose up 服务名`, 服务名如下
 
-在启动应用之前，需要先启动数据库、缓存、MQ等中间件，可根据自己需要启动的应用选择启动某些基础组件，一般来说启动数据库、redis、rabbitmq即可，其它组件若有需要，根据如下命令启动即可。
+在启动应用之前，需要先启动数据库、缓存、MQ等中间件，可根据自己需要启动的应用选择启动某些基础组件，一般来说启动mysql、redis、rabbitmq即可，其它组件若有需要，根据如下命令启动即可。
 
-该步骤使用了docker快速搭建相应的基础环境，需要你对docker、docker-compose有一定了解和使用经验。（注：请使用阿里的docker镜像）
+该步骤使用了docker快速搭建相应的基础环境，需要你对docker、docker-compose有一定了解和使用经验。也可以不使用docker，自行搭建以下服务即可。
 
 |  服务           |   服务名         |  端口     | 备注                                            |
 |----------------|-----------------|-----------|-------------------------------------------------|
@@ -69,7 +69,7 @@ docker方式脚本初使化：进入docker-compose目录，执行命令 `docker-
 
 根据自己需要，启动相应服务进行测试，cd 进入相关应用目录，执行命令： `mvn spring-boot:run` 
 
-以下应用都依赖于rabbitmq、eureka-server，启动服务前请先启动mq和注册中心
+以下应用都依赖于rabbitmq、nacos，启动服务前请先启动mq和注册中心
 
 | 服务分类  | 服务名                     |  依赖基础组件             |   简介      |  应用地址                | 文档                    |
 |----------|---------------------------|-------------------------|-------------|-------------------------|-------------------------|
@@ -96,7 +96,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 * 6.前端项目
 
-确保gateway-web、organization、authorization-server、authentication-server服务启动，然后启动
+确确保gateway-web、organization、authorization-server、authentication-server服务启动，然后启动
 
 [前端项目](https://github.com/zhoutaoo/SpringCloud-Admin)（该项目目前还在开发中）
 
@@ -109,7 +109,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 运行 `mvn test` 启动测试.
 
-## 架构
+## 架构与开发
 
 [架构](https://www.processon.com/view/link/597ffa52e4b06a973c4d86ba)
 
@@ -117,9 +117,26 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 [开发指南](docs/development.md)
 
-## 功能特性
+## 功能与特性
 
-### 基础平台
+### 功能预览
+
+**用户管理**
+ [用户管理](https://user-images.githubusercontent.com/3946731/67155765-93d5ca00-f347-11e9-8114-44ac5ba3d05b.png)
+ 
+ **角色管理**
+ [角色管理](https://user-images.githubusercontent.com/3946731/67155755-7c96dc80-f347-11e9-9b0a-e13b51167422.png)
+ 
+ **服务容错**
+ [服务容错](https://user-images.githubusercontent.com/3946731/67155757-88829e80-f347-11e9-8750-d5c4eef7730e.png)
+ 
+ **API文档**
+ [API文档](https://user-images.githubusercontent.com/3946731/67155763-8e787f80-f347-11e9-8347-ab2aeda6f7d6.png)
+ 
+ **组织架构管理**
+ [组织架构管理](https://user-images.githubusercontent.com/3946731/67155751-69840c80-f347-11e9-8d88-e6fa4d6b7d23.png)
+
+### 基础服务
 
 |  服务     | 使用技术                 |   进度        |    备注   |
 |----------|-------------------------|---------------|-----------|
@@ -131,28 +148,10 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 |  授权认证 | Spring Security OAuth2  |   ✅          |  Jwt模式   |
 |  服务容错 | SpringCloud Sentinel    |   ✅          |           |
 |  服务调用 | SpringCloud OpenFeign   |   ✅          |           |
-|  对象存储 | FastDFS                 |   🏗          |           |
+|  对象存储 | FastDFS/Minio           |   🏗          |           |
 |  任务调度 | Elastic-Job             |   🏗          |           |
 |  分库分表 | Mycat                   |   🏗          |           |
 |  数据权限 |                         |   🏗          |  使用mybatis对原查询做增强，业务代码不用控制，即可实现。         |
-
-### 开发管理
-
-|  服务     | 使用技术                 |   进度         |    备注   |
-|----------|-------------------------|---------------|-----------|
-|  代码生成 |                         |   🏗          |  前后端代码的生成，支持Vue         |
-|  测试管理 |                         |   🏗          |           |
-|  文档管理 | Swagger2                |   ✅          |           |
-
-### 运维监控
-
-|  服务     | 使用技术                 |   进度         |    备注   |
-|----------|-------------------------|---------------|-----------|
-|  服务监控 | Spring Boot Admin       |   ✅          |           |
-|  链路追踪 | SkyWalking              |   ✅          |           |
-|  操作审计 |                         |   🏗          |  系统关键操作日志记录和查询         |
-|  日志管理 | ES + Kibana、Zipkin     |   ✅          |           |
-|  监控告警 | Grafana                 |   ✅          |           |
 
 ### 平台功能
 
@@ -164,11 +163,46 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 |  机构管理 | 自开发       |   🏗          |  配置系统组织机构，树结构展现，可随意调整上下级。        |
 |  网关动态路由 | 自开发    |   🏗          |  网关动态路由管理                                     |
 
+### 开发运维
+
+|  服务     | 使用技术                 |   进度         |    备注   |
+|----------|-------------------------|---------------|-----------|
+|  代码生成 |                         |   🏗          |  前后端代码的生成，支持Vue         |
+|  测试管理 |                         |   🏗          |           |
+|  文档管理 | Swagger2                |   ✅          |           |
+|  服务监控 | Spring Boot Admin       |   ✅          |           |
+|  链路追踪 | SkyWalking              |   ✅          |           |
+|  操作审计 |                         |   🏗          |  系统关键操作日志记录和查询         |
+|  日志管理 | ES + Kibana、Zipkin     |   ✅          |           |
+|  监控告警 | Grafana                 |   ✅          |           |
+
+## 更新日志
+
+**2019-10-18：** 
+
+1.使用nacos替代eureka为服务的注册中心
+
+2.使用nacos替代apollo为服务的配置中心
+
+3.引入使用sentinel替换掉hystrix，引入sentinel-dashboard
+
+4.使用jetcache作两级缓存，优化缓存性能
+
+5.网关启动时加载数据库中的路由到redis缓存
+
+6.其它已知bug修复
+
 ## 联系交流
+
+### 加入贡献代码
+
+请入群 [请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki) 加群主微信。
+
+### 学习交流
 
 EMail：zhoutaoo@foxmail.com
 
-群1、2、3、4、5、6、7、8已满，请加群9，加群[请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki)
+群1、2、3、4、5、6、7、8、9已满，请加群10，加群[请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki)
 
   此些群仅为技术交流群，请大家不要讨论政治、发广告等与技术无关的东西。大家如若有问题可以在群里直接发问，我会抽空答复。
 

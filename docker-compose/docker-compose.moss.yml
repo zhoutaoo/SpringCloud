@@ -1,19 +1,15 @@
 version: '3'
 services:
-  #MOSS Mysql数据库
-  moss-db:
+  #MOSS Mysql数据库初使化
+  moss-db-init:
     image: mysql:5.7
-    container_name: moss-db
-    restart: always
+    command: /init-db.sh
     networks:
       - sc-net
-    ports:
-      - 3306:3306
     volumes:
-      - ./moss/mysql:/docker-entrypoint-initdb.d
-      - ./data/mysql:/var/lib/mysql
+      - ./moss/mysql:/sql
+      - ./init-db.sh:/init-db.sh
     environment:
-      TZ: Asia/Shanghai
       MYSQL_ROOT_PASSWORD: root123
 
   #Moss管理中心
@@ -25,8 +21,8 @@ services:
       - sc-net
     ports:
       - 8086:8086
-    env_file: .env-moss
+    env_file: .env
     environment:
       TZ: Asia/Shanghai
     depends_on:
-      - moss-db
+      - moss-db-init
