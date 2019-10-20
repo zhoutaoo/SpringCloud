@@ -21,7 +21,7 @@ services:
       - sc-net
     ports:
       - 8086:8086
-    env_file: .env-moss
+    env_file: .env
     environment:
       TZ: Asia/Shanghai
     depends_on:
