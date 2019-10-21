@@ -1,5 +1,8 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.alicp.jetcache.anno.CacheInvalidate;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -14,8 +17,6 @@ import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -48,7 +49,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
 
     @Override
     @Transactional
-    @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#id")
+    @CacheInvalidate(name = "user::", key = "#id")
     public boolean delete(String id) {
         this.removeById(id);
         return userRoleService.removeByUserId(id);
@@ -56,7 +57,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
 
     @Override
     @Transactional
-    @CacheEvict(value = "user", key = "#root.targetClass.name+'-'+#user.id")
+    @CacheInvalidate(name = "user::", key = "#user.id")
     public boolean update(User user) {
         if (StringUtils.isNotBlank(user.getPassword()))
             user.setPassword(passwordEncoder().encode(user.getPassword()));
@@ -66,7 +67,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     }
 
     @Override
-    @Cacheable(value = "user", key = "#root.targetClass.name+'-'+#id")
+    @Cached(name = "user::", key = "#id", cacheType = CacheType.BOTH)
     public UserVo get(String id) {
         User user = this.getById(id);
         if (Objects.isNull(user)) {
@@ -77,7 +78,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     }
 
     @Override
-    @Cacheable(value = "user", key = "#root.targetClass.name+'-'+#uniqueId")
+    @Cached(name = "user::", key = "#uniqueId", cacheType = CacheType.BOTH)
     public User getByUniqueId(String uniqueId) {
         User user = this.getOne(new QueryWrapper<User>()
                 .eq("username", uniqueId)

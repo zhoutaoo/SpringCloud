@@ -1,5 +1,8 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.alicp.jetcache.anno.CacheInvalidate;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.dao.PositionMapper;
@@ -8,8 +11,6 @@ import com.springboot.cloud.sysadmin.organization.entity.po.Position;
 import com.springboot.cloud.sysadmin.organization.service.IPositionService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,19 +25,19 @@ public class PositionService extends ServiceImpl<PositionMapper, Position> imple
     }
 
     @Override
-    @CacheEvict(value = "position", key = "#root.targetClass.name+'-'+#id")
+    @CacheInvalidate(name = "position::", key = "#id")
     public boolean delete(String id) {
         return this.removeById(id);
     }
 
     @Override
-    @CacheEvict(value = "position", key = "#root.targetClass.name+'-'+#position.id")
+    @CacheInvalidate(name = "position::", key = "#position.id")
     public boolean update(Position position) {
         return this.updateById(position);
     }
 
     @Override
-    @Cacheable(value = "position", key = "#root.targetClass.name+'-'+#id")
+    @Cached(name = "position::", key = "#id", cacheType = CacheType.BOTH)
     public Position get(String id) {
         return this.getById(id);
     }

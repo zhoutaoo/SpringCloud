@@ -1,5 +1,7 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.config.BusConfig;
@@ -16,8 +18,6 @@ import com.springboot.cloud.sysadmin.organization.service.IRoleService;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,19 +47,19 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     }
 
     @Override
-    @CacheEvict(value = "resource", key = "#root.targetClass.name+'-'+#id")
+    @Cached(name = "resource::", key = "#id", cacheType = CacheType.BOTH)
     public boolean delete(String id) {
         return this.removeById(id);
     }
 
     @Override
-    @CacheEvict(value = "resource", key = "#root.targetClass.name+'-'+#resource.id")
+    @Cached(name = "resource::", key = "#resource.id", cacheType = CacheType.BOTH)
     public boolean update(Resource resource) {
         return this.updateById(resource);
     }
 
     @Override
-    @Cacheable(value = "resource", key = "#root.targetClass.name+'-'+#id")
+    @Cached(name = "resource::", key = "#id", cacheType = CacheType.BOTH)
     public Resource get(String id) {
         return this.getById(id);
     }
@@ -75,7 +75,7 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     }
 
     @Override
-    @Cacheable(value = "resource4user", key = "#root.targetClass.name+'-'+#username")
+    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.BOTH)
     public List<Resource> query(String username) {
         //根据用户名查询到用户所拥有的角色
         User user = userService.getByUniqueId(username);

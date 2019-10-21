@@ -19,7 +19,5 @@
 
     <modules>
         <module>bus</module>
-        <module>config</module>
-        <module>eureka</module>
     </modules>
 </project>

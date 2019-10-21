@@ -1,8 +1,8 @@
 server:
-  port: 9001
+  port: ${SERVER_PORT:8445}
 spring:
   application:
-    name: producer
+    name: gateway-admin
   cloud:
     nacos:
       discovery:
@@ -13,6 +13,3 @@ spring:
     sentinel:
       transport:
         dashboard: ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}
-    bus:
-      trace:
-        enabled: true
