@@ -16,7 +16,7 @@
 - [redis](http://redis.io/download)
 - [postgresql](http://www.postgresql.org/)
 - [rabbitmq](http://rabbitmq.io/download)
-- [eureka](../../center/eureka)
+- [nacos](../../docs/register.md)
 
 ### 启动命令
 

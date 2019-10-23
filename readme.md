@@ -14,7 +14,7 @@
 
 ### 开发环境搭建
 
-可在项目根目录下执行 `./install.sh` 快速搭建开发环境。如要了解具体的步骤，请看如下文档。
+linux和mac下可在项目根目录下执行 `./install.sh` 快速搭建开发环境。如要了解具体的步骤，请看如下文档。
 
 **具体步骤如下：**
 
@@ -96,7 +96,7 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 * 6.前端项目
 
-确确保gateway-web、organization、authorization-server、authentication-server服务启动，然后启动
+确确保gateway-admin、gateway-web、organization、authorization-server、authentication-server服务启动，然后启动
 
 [前端项目](https://github.com/zhoutaoo/SpringCloud-Admin)（该项目目前还在开发中）
 
@@ -198,6 +198,16 @@ gateway-admin可动态调整gateway-web的路由策略，测试前请先配置�
 
 请入群 [请戳这里](https://github.com/zhoutaoo/SpringCloud/wiki) 加群主微信。
 
+### 请作者喝饮料
+
+如果你觉的有帮助到您，可以请作者喝饮料，这样更有动力，谢谢。
+
+<p align="left">
+  <img width="300" src="https://user-images.githubusercontent.com/3946731/67401177-58eec300-f5e1-11e9-97e6-9ae29e3523e0.jpeg">
+  
+  <img width="300" src="https://user-images.githubusercontent.com/3946731/67401198-60ae6780-f5e1-11e9-8c30-c12bd598011b.jpeg">
+</p>
+
 ### 学习交流
 
 EMail：zhoutaoo@foxmail.com
@@ -219,3 +229,7 @@ EMail：zhoutaoo@foxmail.com
 2. 怎么输入或操作的得到了什么结果？ 截图，日志
 
 3. 哪里不明白或有什么疑问 ？
+
+## Stargazers over time
+ 
+[![Stargazers over time](https://starchart.cc/zhoutaoo/SpringCloud.svg)](https://starchart.cc/zhoutaoo/SpringCloud)
