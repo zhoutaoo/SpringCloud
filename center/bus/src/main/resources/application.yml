@@ -1,14 +1,4 @@
-server:
-  port: 8071
-
 spring:
-  application:
-    name: bus-server
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
-
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
