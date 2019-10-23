@@ -82,6 +82,7 @@ public class AuthenticationServerConfig extends AuthorizationServerConfigurerAda
                 //update by joe_chen add  granter
                 .tokenGranter(tokenGranter(endpoints));
 
+        endpoints.pathMapping("/oauth/confirm_access", "/custom/confirm_access");
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.springboot.auth.authorization.config;
 
+import com.springboot.auth.authorization.oauth2.config.MobileLoginAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -22,62 +23,72 @@ import lombok.extern.slf4j.Slf4j;
 @EnableWebSecurity
 public class WebServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("userDetailsService")
-    private UserDetailsService userDetailsService;
+  @Autowired
+  @Qualifier("userDetailsService")
+  private UserDetailsService userDetailsService;
 
-    @Autowired
-    @Qualifier("mobileUserDetailsService")
-    private UserDetailsService mobileUserDetailsService;
+  @Autowired
+  @Qualifier("mobileUserDetailsService")
+  private UserDetailsService mobileUserDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.authorizeRequests()
-                .antMatchers("/actuator/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll();
-    }
+  @Autowired
+  private MobileLoginAuthenticationSecurityConfig mobileLoginAuthenticationSecurityConfig;
 
-    /**
-     * 注入自定义的userDetailsService实现，获取用户信息，设置密码加密方式
-     *
-     * @param authenticationManagerBuilder
-     * @throws Exception
-     */
-    @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-        // 设置手机验证码登陆的AuthenticationProvider
-        authenticationManagerBuilder.authenticationProvider(mobileAuthenticationProvider());
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable();
+    http.authorizeRequests()
+        .antMatchers("/actuator/**","/auth/login","/sc/login","/mobile/login")
+        .permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
+        .loginPage("/auth/login")
+        .loginProcessingUrl("/sc/login")
+        .permitAll()
+        .and()
+        .apply(mobileLoginAuthenticationSecurityConfig);
+  }
 
-    /**
-     * 将 AuthenticationManager 注册为 bean , 方便配置 oauth server 的时候使用
-     */
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+  /**
+   * 注入自定义的userDetailsService实现，获取用户信息，设置密码加密方式
+   *
+   * @param authenticationManagerBuilder
+   * @throws Exception
+   */
+  @Override
+  protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder)
+      throws Exception {
+    authenticationManagerBuilder
+        .userDetailsService(userDetailsService)
+        .passwordEncoder(passwordEncoder());
+    // 设置手机验证码登陆的AuthenticationProvider
+    authenticationManagerBuilder.authenticationProvider(mobileAuthenticationProvider());
+  }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  /** 将 AuthenticationManager 注册为 bean , 方便配置 oauth server 的时候使用 */
+  @Bean
+  @Override
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
 
-    /**
-     * 创建手机验证码登陆的AuthenticationProvider
-     *
-     * @return mobileAuthenticationProvider
-     */
-    @Bean
-    public MobileAuthenticationProvider mobileAuthenticationProvider() {
-        MobileAuthenticationProvider mobileAuthenticationProvider = new MobileAuthenticationProvider(this.mobileUserDetailsService);
-        mobileAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        return mobileAuthenticationProvider;
-    }
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
+
+  /**
+   * 创建手机验证码登陆的AuthenticationProvider
+   *
+   * @return mobileAuthenticationProvider
+   */
+  @Bean
+  public MobileAuthenticationProvider mobileAuthenticationProvider() {
+    MobileAuthenticationProvider mobileAuthenticationProvider =
+        new MobileAuthenticationProvider(this.mobileUserDetailsService);
+    mobileAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+    return mobileAuthenticationProvider;
+  }
 }
