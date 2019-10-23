@@ -1,5 +1,7 @@
+SET NAMES utf8;
+
 DROP DATABASE IF EXISTS sc_gateway;
-CREATE DATABASE sc_gateway default charset utf8mb4;
+CREATE DATABASE sc_gateway DEFAULT CHARSET utf8mb4;
 
 USE sc_gateway;
 

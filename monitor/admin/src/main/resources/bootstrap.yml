@@ -1,8 +1,8 @@
 server:
-  port: ${SERVER_PORT:8010}
+  port: ${SERVER_PORT:8022}
 spring:
   application:
-    name: organization
+    name: admin
   cloud:
     nacos:
       discovery:
