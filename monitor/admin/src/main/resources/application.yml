@@ -22,6 +22,11 @@ spring:
     sampler:
       probability: 1.0
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 #日志相关配置
 logging:
   level:
