@@ -1,13 +1,4 @@
-server:
-  port: 8022
-
 spring:
-  application:
-    name: admin
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -30,6 +21,7 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
+
 #日志相关配置
 logging:
   level:
