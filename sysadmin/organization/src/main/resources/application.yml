@@ -20,6 +20,23 @@ spring:
     url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_admin?characterEncoding=UTF-8&useUnicode=true&useSSL=false
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:root123}
+  zipkin:
+    enabled: true
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1.0
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "2MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+#  resources:
+#    add-mappings: false
 
 jetcache:
   statIntervalMinutes: 15
@@ -85,23 +102,11 @@ jetcache:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
 
-  zipkin:
-    enabled: true
-    sender:
-      type: rabbit
-  sleuth:
-    sampler:
-      probability: 1.0
-  mvc:
-    throw-exception-if-no-handler-found: true
-  servlet:
-    multipart:
-      max-request-size: "2MB"
-      max-file-size: "2MB"
-  jackson:
-    time-zone: GMT+8
-#  resources:
-#    add-mappings: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 logging:
   level:
@@ -110,12 +115,6 @@ logging:
   path: logs/
   file:
     max-size: 1GB
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
 
 mybatis-plus:
   configuration:
