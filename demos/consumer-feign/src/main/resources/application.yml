@@ -1,23 +1,9 @@
-server:
-  port: 8041
-
 spring:
-  application:
-    name: feign-consumer
-  cloud:
-    nacos:
-      discovery:
-        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
-    sentinel:
-      transport:
-        dashboard: ${SENTINEL_DASHBOARD_HOST:localhost}:${SENTINEL_DASHBOARD_PORT:8021}
-
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:guest}
     password: ${RABBIT_MQ_PASSWORD:guest}
-
   zipkin:
     sender:
       type: rabbit
@@ -29,7 +15,6 @@ spring:
       enabled: true
       processor:
         enabled: true
-
   mvc:
     throw-exception-if-no-handler-found: true
   servlet:
@@ -45,6 +30,12 @@ logging:
   path: logs/
   file:
     max-size: 1GB
+
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
 
 management:
   endpoints:
