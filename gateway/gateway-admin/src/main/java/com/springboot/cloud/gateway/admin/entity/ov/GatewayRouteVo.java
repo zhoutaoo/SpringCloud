@@ -20,14 +20,14 @@ import java.util.List;
 public class GatewayRouteVo extends BaseVo {
     private String id;
     private String uri;
-    private Integer order;
+    private Integer orders;
     private List<FilterDefinition> filters = new ArrayList<>();
     private List<PredicateDefinition> predicates = new ArrayList<>();
 
     public GatewayRouteVo(GatewayRoute gatewayRoute) {
         this.id = gatewayRoute.getId();
         this.uri = gatewayRoute.getUri();
-        this.order = gatewayRoute.getOrders();
+        this.orders = gatewayRoute.getOrders();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             this.filters = objectMapper.readValue(gatewayRoute.getFilters(), new TypeReference<List<FilterDefinition>>() {
