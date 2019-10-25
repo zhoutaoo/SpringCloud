@@ -1,5 +1,8 @@
 package com.springboot.cloud.sysadmin.organization.service;
 
+import com.springboot.cloud.sysadmin.organization.entity.po.RoleResource;
+
+import java.util.List;
 import java.util.Set;
 
 public interface IRoleResourceService {
@@ -37,4 +40,12 @@ public interface IRoleResourceService {
      * @return 角色拥有的资源id集合
      */
     Set<String> queryByRoleId(String roleId);
+
+    /**
+     * 根据角色id列表查询资源关系
+     *
+     * @param roleIds 角色id集合
+     * @return 角色资源关系集合
+     */
+    List<RoleResource> queryByRoleIds(Set<String> roleIds);
 }

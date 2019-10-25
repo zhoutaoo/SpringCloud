@@ -10,8 +10,6 @@
 │   └── pom.xml                      --子项目maven配置文件
 ├── center               --中心子项目
 │   ├── bus                --消息中心
-│   ├── config             --配置中心
-│   ├── eureka             --注册中心 
 │   └── pom.xml
 ├── common               --通用子项目
 │   ├── core               --核心类库
@@ -70,11 +68,7 @@
 ├── src                      --源码目录
 │   ├── main                   --源文件
 │   │   ├── db                 --服务db脚本目录
-│   │   │   ├── db.sql           --创建库的脚本
-│   │   │   ├── ddl              --建表语句等ddl
-│   │   │   │   ├── mysql          --mysql ddl
-│   │   │   │   └── postgres       --postgres ddl
-│   │   │   └── dml              --基础数据dml
+│   │   │   └── db.sql           --ddl & dml
 │   │   ├── docker             --docker相关配置文件
 │   │   │   └── Dockerfile       --dockerfile
 │   │   ├── docs               --接口文档目录，一般由swagger生成
