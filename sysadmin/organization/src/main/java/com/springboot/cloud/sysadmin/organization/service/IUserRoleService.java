@@ -14,15 +14,6 @@ public interface IUserRoleService {
     boolean saveBatch(String userId, Set<String> roleIds);
 
     /**
-     * 给用户添加角色
-     *
-     * @param userId
-     * @param roleIds
-     * @return
-     */
-    boolean saveOrUpdateBatch(String userId, Set<String> roleIds);
-
-    /**
      * 删除用户拥有的角色
      *
      * @param userId

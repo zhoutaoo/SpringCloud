@@ -17,15 +17,6 @@ public interface IRoleResourceService {
     boolean saveBatch(String roleId, Set<String> resourceIds);
 
     /**
-     * 批量给角色添加资源
-     *
-     * @param roleId      角色id
-     * @param resourceIds 资源id列表
-     * @return 是否操作成功
-     */
-    boolean saveOrUpdateBatch(String roleId, Set<String> resourceIds);
-
-    /**
      * 删除角色拥有的资源
      *
      * @param roleId 角色id
