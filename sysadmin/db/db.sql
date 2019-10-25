@@ -211,7 +211,13 @@ VALUES (101, '新增用户', 'user_manager:btn_add', 'button', '/user', 'POST', 
        (303, '搜索用户组', 'group_manager:query', 'url', '/group/conditions', 'POST', '根据条件查询用户组信息', now(), now(), 'system', 'system'),
        (304, '删除用户组', 'group_manager:del', 'url', '/group/{id}', 'DELETE', '根据用户id删除用户组', now(), now(), 'system', 'system'),
        (305, '编辑用户组', 'group_manager:edit', 'url', '/group/{id}', 'PUT', '修改用户组', now(), now(), 'system', 'system'),
-       (306, '新增用户组', 'group_manager:add', 'url', '/group', 'POST', '新增用户组', now(), now(), 'system', 'system');
+       (306, '新增用户组', 'group_manager:add', 'url', '/group', 'POST', '新增用户组', now(), now(), 'system', 'system'),
+       (307, '新增网关路由', 'gateway_manager:add', 'url', '/gateway/routes', 'POST', '新增网关路由', now(), now(), 'system', 'system'),
+       (308, '修改网关路由', 'gateway_manager:edit', 'url', '/gateway/routes/{id}', 'PUT', '修改网关路由', now(), now(), 'system', 'system'),
+       (309, '删除网关路由', 'gateway_manager:adel', 'url', '/gateway/routes/{id}', 'DELETE', '删除网关路由', now(), now(), 'system', 'system'),
+       (310, '查看网关路由', 'gateway_manager:view', 'url', '/gateway/routes/{id}', 'GET', '查看网关路由', now(), now(), 'system', 'system'),
+       (311, '搜索网关路由', 'gateway_manager:query', 'url', '/gateway/routes/conditions', 'POST', '搜索网关路由', now(), now(), 'system', 'system'),
+       (312, '全局加载路由', 'gateway_manager:overload', 'url', '/gateway/routes/overload', 'POST', '全局加载路由', now(), now(), 'system', 'system');
 
 -- 用户关系授权
 INSERT INTO user_role_relation (id, user_id, role_id, created_time, updated_time, created_by, updated_by)
@@ -257,7 +263,13 @@ VALUES (101, 101, 101, now(), now(), 'system', 'system'),
        (319, 103, 303, now(), now(), 'system', 'system'),
        (320, 103, 304, now(), now(), 'system', 'system'),
        (321, 103, 305, now(), now(), 'system', 'system'),
-       (322, 103, 306, now(), now(), 'system', 'system');
+       (322, 103, 306, now(), now(), 'system', 'system'),
+       (401, 101, 307, now(), now(), 'system', 'system'),
+       (402, 101, 308, now(), now(), 'system', 'system'),
+       (403, 101, 309, now(), now(), 'system', 'system'),
+       (404, 101, 310, now(), now(), 'system', 'system'),
+       (405, 101, 311, now(), now(), 'system', 'system'),
+       (406, 101, 312, now(), now(), 'system', 'system');
 
 -- 岗位
 INSERT INTO position (id, name, description, created_time, updated_time, created_by, updated_by)
