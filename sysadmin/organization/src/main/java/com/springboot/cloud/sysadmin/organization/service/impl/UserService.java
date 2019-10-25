@@ -62,7 +62,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         if (StringUtils.isNotBlank(user.getPassword()))
             user.setPassword(passwordEncoder().encode(user.getPassword()));
         boolean isSuccess = this.updateById(user);
-        userRoleService.saveOrUpdateBatch(user.getId(), user.getRoleIds());
+        userRoleService.saveBatch(user.getId(), user.getRoleIds());
         return isSuccess;
     }
 

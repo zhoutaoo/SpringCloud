@@ -41,6 +41,12 @@ logging:
   file:
     max-size: 1GB
 
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
+
 management:
   endpoints:
     web:

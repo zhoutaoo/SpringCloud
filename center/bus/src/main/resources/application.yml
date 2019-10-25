@@ -5,6 +5,11 @@ spring:
     username: ${RABBIT_MQ_USERNAME:guest}
     password: ${RABBIT_MQ_PASSWORD:guest}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 logging:
   level:
     root: info
