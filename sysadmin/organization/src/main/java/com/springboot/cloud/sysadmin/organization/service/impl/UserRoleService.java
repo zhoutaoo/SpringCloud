@@ -27,6 +27,7 @@ public class UserRoleService extends ServiceImpl<UserRoleMapper, UserRole> imple
 
     @Override
     public boolean saveOrUpdateBatch(String userId, Set<String> roleIds) {
+        removeByUserId(userId);
         if (CollectionUtils.isEmpty(roleIds))
             return false;
         Set<UserRole> userRoles = roleIds.stream().map(roleId -> new UserRole(userId, roleId)).collect(Collectors.toSet());
