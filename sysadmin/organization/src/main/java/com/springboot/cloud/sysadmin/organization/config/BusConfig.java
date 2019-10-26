@@ -20,6 +20,7 @@ public class BusConfig {
 
     public static final String QUEUE_NAME = "event-organization";
     public static final String EXCHANGE_NAME = "spring-boot-exchange";
+    public static final String ROUTING_KEY = "organization-resource";
 
     @Bean
     Queue queue() {
@@ -35,8 +36,8 @@ public class BusConfig {
 
     @Bean
     Binding binding(Queue queue, TopicExchange exchange) {
-        log.info("binding {} to {} with {}", queue, exchange, QUEUE_NAME);
-        return BindingBuilder.bind(queue).to(exchange).with(QUEUE_NAME);
+        log.info("binding {} to {} with {}", queue, exchange, ROUTING_KEY);
+        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
     }
 
     @Bean

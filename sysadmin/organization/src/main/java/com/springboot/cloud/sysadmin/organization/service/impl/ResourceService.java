@@ -17,6 +17,7 @@ import com.springboot.cloud.sysadmin.organization.service.IRoleResourceService;
 import com.springboot.cloud.sysadmin.organization.service.IRoleService;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,7 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
 
     @Override
     public boolean add(Resource resource) {
-        eventSender.send(BusConfig.QUEUE_NAME, resource);
+        eventSender.send(BusConfig.ROUTING_KEY, resource);
         return this.save(resource);
     }
 
@@ -67,10 +68,10 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     @Override
     public List<Resource> query(ResourceQueryParam resourceQueryParam) {
         QueryWrapper<Resource> queryWrapper = resourceQueryParam.build();
-        queryWrapper.eq(null != resourceQueryParam.getName(), "name", resourceQueryParam.getName());
-        queryWrapper.eq(null != resourceQueryParam.getType(), "type", resourceQueryParam.getType());
-        queryWrapper.eq(null != resourceQueryParam.getUrl(), "url", resourceQueryParam.getUrl());
-        queryWrapper.eq(null != resourceQueryParam.getMethod(), "method", resourceQueryParam.getMethod());
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getName()), "name", resourceQueryParam.getName());
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getType()), "type", resourceQueryParam.getType());
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getUrl()), "url", resourceQueryParam.getUrl());
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getMethod()), "method", resourceQueryParam.getMethod());
         return this.list(queryWrapper);
     }
 
@@ -89,5 +90,4 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
         //根据resourceId列表查询出resource对象
         return (List<Resource>) this.listByIds(resourceIds);
     }
-
 }

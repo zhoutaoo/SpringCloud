@@ -1,5 +1,6 @@
 package com.springboot.cloud.sysadmin.organization.events;
 
+import com.springboot.cloud.sysadmin.organization.config.BusConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -25,6 +26,6 @@ public class EventSender {
 
     public void send(String routingKey, Object object) {
         log.info("routingKey:{}=>message:{}", routingKey, object);
-        rabbitTemplate.convertAndSend(routingKey, object);
+        rabbitTemplate.convertAndSend(BusConfig.EXCHANGE_NAME, routingKey, object);
     }
 }
