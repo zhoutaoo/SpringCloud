@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.dao.RoleMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Role;
+import com.springboot.cloud.sysadmin.organization.service.IRoleResourceService;
 import com.springboot.cloud.sysadmin.organization.service.IRoleService;
 import com.springboot.cloud.sysadmin.organization.service.IUserRoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +28,14 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
     @Autowired
     private IUserRoleService userRoleService;
 
+    @Autowired
+    private IRoleResourceService roleResourceService;
+
     @Override
     public boolean add(Role role) {
-        return this.save(role);
+        boolean isSuccess = this.save(role);
+        roleResourceService.saveBatch(role.getId(), role.getResourceIds());
+        return isSuccess;
     }
 
     @Override
@@ -41,7 +47,9 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
     @Override
     @CacheInvalidate(name = "role::", key = "#role.id")
     public boolean update(Role role) {
-        return this.updateById(role);
+        boolean isSuccess = this.updateById(role);
+        roleResourceService.saveBatch(role.getId(), role.getResourceIds());
+        return isSuccess;
     }
 
     @Override
