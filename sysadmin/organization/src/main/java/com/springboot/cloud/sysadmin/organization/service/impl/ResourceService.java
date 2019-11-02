@@ -3,6 +3,8 @@ package com.springboot.cloud.sysadmin.organization.service.impl;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.config.BusConfig;
 import com.springboot.cloud.sysadmin.organization.dao.ResourceMapper;
@@ -66,13 +68,18 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     }
 
     @Override
-    public List<Resource> query(ResourceQueryParam resourceQueryParam) {
+    public IPage<Resource> query(Page page, ResourceQueryParam resourceQueryParam) {
         QueryWrapper<Resource> queryWrapper = resourceQueryParam.build();
         queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getName()), "name", resourceQueryParam.getName());
         queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getType()), "type", resourceQueryParam.getType());
         queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getUrl()), "url", resourceQueryParam.getUrl());
         queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getMethod()), "method", resourceQueryParam.getMethod());
-        return this.list(queryWrapper);
+        return this.page(page, queryWrapper);
+    }
+
+    @Override
+    public List<Resource> queryAll() {
+        return this.list();
     }
 
     @Override
