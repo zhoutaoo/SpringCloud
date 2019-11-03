@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.dao.RoleMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.RoleQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Role;
+import com.springboot.cloud.sysadmin.organization.exception.RoleNotFoundException;
 import com.springboot.cloud.sysadmin.organization.service.IRoleResourceService;
 import com.springboot.cloud.sysadmin.organization.service.IRoleService;
 import com.springboot.cloud.sysadmin.organization.service.IUserRoleService;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -41,6 +43,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
     @Override
     @CacheInvalidate(name = "role::", key = "#id")
     public boolean delete(String id) {
+        roleResourceService.removeByRoleId(id);
         return this.removeById(id);
     }
 
@@ -55,11 +58,16 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
     @Override
     @Cached(name = "role::", key = "#id", cacheType = CacheType.BOTH)
     public Role get(String id) {
-        return this.getById(id);
+        Role role = this.getById(id);
+        if (Objects.isNull(role)) {
+            throw new RoleNotFoundException("role not found with id:" + id);
+        }
+        role.setResourceIds(roleResourceService.queryByRoleId(id));
+        return role;
     }
 
     @Override
-    public List<Role> get() {
+    public List<Role> getAll() {
         return this.list();
     }
 

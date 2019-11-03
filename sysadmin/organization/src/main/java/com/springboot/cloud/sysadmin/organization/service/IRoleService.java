@@ -21,7 +21,7 @@ public interface IRoleService {
      *
      * @return
      */
-    List<Role> get();
+    List<Role> getAll();
 
     /**
      * 新增角色

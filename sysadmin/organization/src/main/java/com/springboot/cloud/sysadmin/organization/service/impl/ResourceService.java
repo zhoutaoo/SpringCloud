@@ -78,7 +78,7 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     }
 
     @Override
-    public List<Resource> queryAll() {
+    public List<Resource> getAll() {
         return this.list();
     }
 

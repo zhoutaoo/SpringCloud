@@ -26,4 +26,18 @@ public class BaseForm<T extends BasePo> {
         BeanUtils.copyProperties(this, t);
         return t;
     }
+
+    /**
+     * From转化为Po，进行后续业务处理
+     *
+     * @param id
+     * @param clazz
+     * @return
+     */
+    public T toPo(String id, Class<T> clazz) {
+        T t = BeanUtils.instantiateClass(clazz);
+        t.setId(id);
+        BeanUtils.copyProperties(this, t);
+        return t;
+    }
 }

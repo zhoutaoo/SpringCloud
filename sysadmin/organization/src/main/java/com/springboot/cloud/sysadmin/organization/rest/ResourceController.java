@@ -45,8 +45,7 @@ public class ResourceController {
     })
     @PutMapping(value = "/{id}")
     public Result update(@PathVariable String id, @Valid @RequestBody ResourceForm resourceForm) {
-        Resource resource = resourceForm.toPo(Resource.class);
-        resource.setId(id);
+        Resource resource = resourceForm.toPo(id, Resource.class);
         return Result.success(resourceService.update(resource));
     }
 
@@ -75,7 +74,7 @@ public class ResourceController {
     )
     @GetMapping(value = "/all")
     public Result queryAll() {
-        return Result.success(resourceService.queryAll());
+        return Result.success(resourceService.getAll());
     }
 
     @ApiOperation(value = "搜索资源", notes = "根据条件搜索资源信息")

@@ -36,7 +36,7 @@ public interface IResourceService {
      *
      * @return
      */
-    List<Resource> queryAll();
+    List<Resource> getAll();
 
     /**
      * 根据username查询角色拥有的资源
