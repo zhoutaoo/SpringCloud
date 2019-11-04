@@ -1,7 +1,11 @@
 package com.springboot.cloud.gateway.admin.service.impl;
 
+import com.alicp.jetcache.Cache;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.CreateCache;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.gateway.admin.dao.GatewayRouteMapper;
 import com.springboot.cloud.gateway.admin.entity.ov.GatewayRouteVo;
@@ -10,83 +14,90 @@ import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.service.IGatewayRouteService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.apache.logging.log4j.util.Strings;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.cloud.gateway.filter.FilterDefinition;
+import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
+import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class GatewayRouteService implements IGatewayRouteService {
+public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, GatewayRoute> implements IGatewayRouteService {
 
     private static final String GATEWAY_ROUTES = "gateway_routes::";
 
-    @Autowired
-    private GatewayRouteMapper gatewayRouteMapper;
-
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    @CreateCache(name = GATEWAY_ROUTES, cacheType = CacheType.REMOTE)
+    private Cache<String, RouteDefinition> gatewayRouteCache;
 
     @Override
-    public long add(GatewayRoute gatewayRoute) {
-        long gatewayId = gatewayRouteMapper.insert(gatewayRoute);
-        stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES + gatewayRoute.getId(), toJson(new GatewayRouteVo(gatewayRoute)));
-        return gatewayId;
+    public boolean add(GatewayRoute gatewayRoute) {
+        boolean isSuccess = this.save(gatewayRoute);
+        gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute));
+        return isSuccess;
     }
 
     @Override
-    public void delete(String id) {
-        gatewayRouteMapper.deleteById(id);
-        stringRedisTemplate.delete(GATEWAY_ROUTES + id);
+    public boolean delete(String id) {
+        GatewayRoute gatewayRoute = this.getById(id);
+        gatewayRouteCache.remove(gatewayRoute.getRouteId());
+        return this.removeById(id);
     }
 
     @Override
-    public void update(GatewayRoute gatewayRoute) {
-        gatewayRouteMapper.updateById(gatewayRoute);
-        stringRedisTemplate.delete(GATEWAY_ROUTES + gatewayRoute.getId());
-        stringRedisTemplate.opsForValue().set(GATEWAY_ROUTES, toJson(new GatewayRouteVo(get(gatewayRoute.getId()))));
+    public boolean update(GatewayRoute gatewayRoute) {
+        boolean isSuccess = this.updateById(gatewayRoute);
+        gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute));
+        return isSuccess;
+    }
+
+    /**
+     * 将数据库中json对象转换为网关需要的RouteDefinition对象
+     *
+     * @param gatewayRoute
+     * @return RouteDefinition
+     */
+    private RouteDefinition gatewayRouteToRouteDefinition(GatewayRoute gatewayRoute) {
+        RouteDefinition routeDefinition = new RouteDefinition();
+        routeDefinition.setId(gatewayRoute.getRouteId());
+        routeDefinition.setOrder(gatewayRoute.getOrders());
+        routeDefinition.setUri(URI.create(gatewayRoute.getUri()));
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            routeDefinition.setFilters(objectMapper.readValue(gatewayRoute.getFilters(), new TypeReference<List<FilterDefinition>>() {
+            }));
+            routeDefinition.setPredicates(objectMapper.readValue(gatewayRoute.getPredicates(), new TypeReference<List<PredicateDefinition>>() {
+            }));
+        } catch (IOException e) {
+            log.error("网关路由对象转换失败", e);
+        }
+        return routeDefinition;
     }
 
     @Override
     public GatewayRoute get(String id) {
-        return gatewayRouteMapper.selectById(id);
+        return this.getById(id);
     }
 
     @Override
-    public List<GatewayRoute> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
-        QueryWrapper<GatewayRoute> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(null != gatewayRouteQueryParam.getCreatedTimeStart(), "created_time", gatewayRouteQueryParam.getCreatedTimeStart());
-        queryWrapper.le(null != gatewayRouteQueryParam.getCreatedTimeEnd(), "created_time", gatewayRouteQueryParam.getCreatedTimeEnd());
+    public List<GatewayRouteVo> query(GatewayRouteQueryParam gatewayRouteQueryParam) {
+        QueryWrapper<GatewayRoute> queryWrapper = gatewayRouteQueryParam.build();
         queryWrapper.eq(StringUtils.isNotBlank(gatewayRouteQueryParam.getUri()), "uri", gatewayRouteQueryParam.getUri());
-        return gatewayRouteMapper.selectList(queryWrapper);
+        return this.list(queryWrapper).stream().map(GatewayRouteVo::new).collect(Collectors.toList());
     }
 
     @Override
+    @PostConstruct
     public boolean overload() {
-        List<GatewayRoute> gatewayRoutes = gatewayRouteMapper.selectList(new QueryWrapper<>());
-        ValueOperations<String, String> opsForValue = stringRedisTemplate.opsForValue();
+        List<GatewayRoute> gatewayRoutes = this.list(new QueryWrapper<>());
         gatewayRoutes.forEach(gatewayRoute ->
-                opsForValue.set(GATEWAY_ROUTES + gatewayRoute.getId(), toJson(new GatewayRouteVo(gatewayRoute)))
+                gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute))
         );
+        log.info("全局初使化网关路由成功!");
         return true;
-    }
-
-    /**
-     * GatewayRoute转换为json
-     *
-     * @param gatewayRouteVo redis需要的vo
-     * @return json string
-     */
-    private String toJson(GatewayRouteVo gatewayRouteVo) {
-        String routeDefinitionJson = Strings.EMPTY;
-        try {
-            routeDefinitionJson = new ObjectMapper().writeValueAsString(gatewayRouteVo);
-        } catch (JsonProcessingException e) {
-            log.error("网关对象序列化为json String", e);
-        }
-        return routeDefinitionJson;
     }
 }

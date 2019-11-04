@@ -1,8 +1,8 @@
 version: '3'
 services:
   nacos:
-    image: nacos/nacos-server:latest
-    container_name: nacos-standalone
+    image: nacos/nacos-server:1.1.3
+    container_name: sc-nacos-standalone
     networks:
       - sc-net
     environment:
@@ -14,7 +14,7 @@ services:
       - "8848:8848"
 
   prometheus:
-    container_name: prometheus
+    container_name: sc-prometheus
     image: prom/prometheus:latest
     networks:
       - sc-net

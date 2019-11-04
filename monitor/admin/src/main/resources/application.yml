@@ -1,19 +1,4 @@
-server:
-  port: 8022
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
-  #spring boot admin设置权限，故需要通过账号密码获取注册信息
-  instance:
-    metadata-map:
-      user.name: admin
-      user.password: 123456
-
 spring:
-  application:
-    name: admin
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -36,6 +21,12 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 #日志相关配置
 logging:
   level:

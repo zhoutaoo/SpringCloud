@@ -34,8 +34,7 @@ public class PositionController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "职位ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
-        positionService.delete(id);
-        return Result.success();
+        return Result.success(positionService.delete(id));
     }
 
     @ApiOperation(value = "修改职位", notes = "修改指定职位信息")
@@ -47,8 +46,7 @@ public class PositionController {
     public Result update(@PathVariable String id, @Valid @RequestBody PositionForm positionForm) {
         Position position = positionForm.toPo(Position.class);
         position.setId(id);
-        positionService.update(position);
-        return Result.success();
+        return Result.success(positionService.update(position));
     }
 
     @ApiOperation(value = "获取职位", notes = "获取指定职位信息")
@@ -67,8 +65,6 @@ public class PositionController {
     @GetMapping
     public Result query(@RequestParam String name) {
         log.debug("query with name:{}", name);
-        PositionQueryParam positionQueryParam = new PositionQueryParam();
-        positionQueryParam.setName(name);
-        return Result.success(positionService.query(positionQueryParam));
+        return Result.success(positionService.query(new PositionQueryParam(name)));
     }
 }

@@ -20,7 +20,7 @@ public interface IResourceService {
      * @param resource
      * @return
      */
-    long add(Resource resource);
+    boolean add(Resource resource);
 
     /**
      * 查询资源
@@ -41,12 +41,12 @@ public interface IResourceService {
      *
      * @param resource
      */
-    void update(Resource resource);
+    boolean update(Resource resource);
 
     /**
      * 根据id删除资源
      *
      * @param id
      */
-    void delete(String id);
+    boolean delete(String id);
 }

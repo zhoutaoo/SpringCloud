@@ -35,8 +35,7 @@ public class RoleController {
     @ApiImplicitParam(paramType = "path", name = "id", value = "角色ID", required = true, dataType = "long")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
-        roleService.delete(id);
-        return Result.success();
+        return Result.success(roleService.delete(id));
     }
 
     @ApiOperation(value = "修改角色", notes = "修改指定角色信息")
@@ -48,8 +47,7 @@ public class RoleController {
     public Result update(@PathVariable String id, @Valid @RequestBody RoleForm roleForm) {
         Role role = roleForm.toPo(Role.class);
         role.setId(id);
-        roleService.update(role);
-        return Result.success();
+        return Result.success(roleService.update(role));
     }
 
     @ApiOperation(value = "获取角色", notes = "获取指定角色信息")

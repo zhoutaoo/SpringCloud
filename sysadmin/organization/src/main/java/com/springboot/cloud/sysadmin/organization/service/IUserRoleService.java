@@ -14,15 +14,6 @@ public interface IUserRoleService {
     boolean saveBatch(String userId, Set<String> roleIds);
 
     /**
-     * 给用户添加角色
-     *
-     * @param userId
-     * @param roleIds
-     * @return
-     */
-    boolean saveOrUpdateBatch(String userId, Set<String> roleIds);
-
-    /**
      * 删除用户拥有的角色
      *
      * @param userId
@@ -31,7 +22,7 @@ public interface IUserRoleService {
     boolean removeByUserId(String userId);
 
     /**
-     * 查询用户拥有角色id
+     * 根据userId查询用户拥有角色id集合
      *
      * @param userId
      * @return

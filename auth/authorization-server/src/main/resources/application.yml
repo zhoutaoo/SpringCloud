@@ -1,14 +1,4 @@
-server:
-  port: 8000
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
-
 spring:
-  application:
-    name: authorization-server
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -50,6 +40,12 @@ logging:
   path: logs/
   file:
     max-size: 1GB
+
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
 
 management:
   endpoints:
