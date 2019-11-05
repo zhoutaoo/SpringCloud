@@ -1,19 +1,13 @@
 package com.springboot.cloud.gateway.filter;
 
 
-
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.List;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.Constants;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
+import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Publisher;
-import org.springframework.boot.json.GsonJsonParser;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -22,16 +16,16 @@ import org.springframework.core.io.buffer.DataBufferFactory;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.core.io.buffer.DefaultDataBufferFactory;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.http.server.reactive.ServerHttpResponseDecorator;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
-
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import springfox.documentation.spring.web.json.Json;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.List;
 
 /**
  * @desc 服务层异常过滤器
