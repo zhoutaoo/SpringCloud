@@ -2,6 +2,7 @@ package com.springboot.common.web.exception;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.BaseException;
+import com.springboot.cloud.common.core.exception.Constants;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
@@ -11,6 +12,12 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartException;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 @Slf4j
 public class DefaultGlobalExceptionHandlerAdvice {
@@ -47,8 +54,19 @@ public class DefaultGlobalExceptionHandlerAdvice {
 
     @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Result exception() {
-        return Result.fail();
+    public void exception(HttpServletResponse resp, Exception ex) {
+        final Writer result = new StringWriter();
+        final PrintWriter printWriter = new PrintWriter(result);
+        ex.fillInStackTrace().printStackTrace(printWriter);
+        //throw unhandled Exception,exception flag in header is Constants.SYSTEM_ERROR_CODE
+        resp.addHeader(Constants.SYSTEM_ERROR_CODE, String.valueOf(SystemErrorType.SYSTEM_ERROR.getCode()));
+        try {
+            resp.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), result.toString());
+        } catch (IOException e) {
+            log.error("Exception:response error",e.getMessage());
+        } finally {
+            printWriter.close();
+        }
     }
 
     @ExceptionHandler(value = {Throwable.class})
