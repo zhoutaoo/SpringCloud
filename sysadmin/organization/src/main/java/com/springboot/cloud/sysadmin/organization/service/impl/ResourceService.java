@@ -3,6 +3,8 @@ package com.springboot.cloud.sysadmin.organization.service.impl;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.config.BusConfig;
 import com.springboot.cloud.sysadmin.organization.dao.ResourceMapper;
@@ -17,6 +19,7 @@ import com.springboot.cloud.sysadmin.organization.service.IRoleResourceService;
 import com.springboot.cloud.sysadmin.organization.service.IRoleService;
 import com.springboot.cloud.sysadmin.organization.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +45,7 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
 
     @Override
     public boolean add(Resource resource) {
-        eventSender.send(BusConfig.QUEUE_NAME, resource);
+        eventSender.send(BusConfig.ROUTING_KEY, resource);
         return this.save(resource);
     }
 
@@ -65,13 +68,18 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     }
 
     @Override
-    public List<Resource> query(ResourceQueryParam resourceQueryParam) {
+    public IPage<Resource> query(Page page, ResourceQueryParam resourceQueryParam) {
         QueryWrapper<Resource> queryWrapper = resourceQueryParam.build();
-        queryWrapper.eq(null != resourceQueryParam.getName(), "name", resourceQueryParam.getName());
-        queryWrapper.eq(null != resourceQueryParam.getType(), "type", resourceQueryParam.getType());
-        queryWrapper.eq(null != resourceQueryParam.getUrl(), "url", resourceQueryParam.getUrl());
-        queryWrapper.eq(null != resourceQueryParam.getMethod(), "method", resourceQueryParam.getMethod());
-        return this.list(queryWrapper);
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getName()), "name", resourceQueryParam.getName());
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getType()), "type", resourceQueryParam.getType());
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getUrl()), "url", resourceQueryParam.getUrl());
+        queryWrapper.eq(StringUtils.isNotBlank(resourceQueryParam.getMethod()), "method", resourceQueryParam.getMethod());
+        return this.page(page, queryWrapper);
+    }
+
+    @Override
+    public List<Resource> getAll() {
+        return this.list();
     }
 
     @Override
@@ -89,5 +97,4 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
         //根据resourceId列表查询出resource对象
         return (List<Resource>) this.listByIds(resourceIds);
     }
-
 }

@@ -83,7 +83,7 @@ management:
 
 logging:
   level:
-    com.springboot.cloud.gateway: debug
+    com.springboot.cloud: debug
     com.jalja.org.spring: debug
   path: logs/
   file:

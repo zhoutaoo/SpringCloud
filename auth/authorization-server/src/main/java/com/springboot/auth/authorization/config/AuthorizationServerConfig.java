@@ -35,7 +35,7 @@ import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthenticationServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     @Qualifier("authenticationManagerBean")

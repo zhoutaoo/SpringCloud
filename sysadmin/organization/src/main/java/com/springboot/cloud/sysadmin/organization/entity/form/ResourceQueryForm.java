@@ -7,7 +7,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
@@ -15,19 +14,15 @@ import java.util.Date;
 @Data
 public class ResourceQueryForm extends BaseQueryForm<ResourceQueryParam> {
 
-    @NotBlank(message = "资源名称不能为空")
     @ApiModelProperty(value = "资源名称")
     private String name;
 
-    @NotBlank(message = "资源编码不能为空")
     @ApiModelProperty(value = "资源编码")
     private String code;
 
-    @NotBlank(message = "资源路径不能为空")
     @ApiModelProperty(value = "资源路径")
     private String url;
 
-    @NotBlank(message = "资源方法不能为空")
     @ApiModelProperty(value = "资源方法")
     private String method;
 
