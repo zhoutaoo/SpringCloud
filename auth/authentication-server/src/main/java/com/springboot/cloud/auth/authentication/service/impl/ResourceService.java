@@ -73,7 +73,7 @@ public class ResourceService implements IResourceService {
     }
 
     @Override
-    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.BOTH)
+    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.LOCAL)
     public Set<Resource> queryByUsername(String username) {
         return resourceProvider.resources(username).getData();
     }
