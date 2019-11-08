@@ -34,6 +34,33 @@ feign:
   okhttp:
     enabled: true
 
+
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  hidePackages: com.springboot.cloud
+  local:
+    # 短時本地緩存，主要用于要求时效较高的配置
+    default:
+      type: caffeine
+      keyConvertor: fastjson
+      expireAfterWriteInMillis: 60000
+      expireAfterAccessInMillis: 40000
+  remote:
+    # 默认2分钟的远程缓存
+    default:
+      type: redis
+      expireAfterWriteInMillis: 120000
+      keyConvertor: fastjson
+      valueEncoder: kryo
+      valueDecoder: kryo
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
 logging:
   level:
     com.springboot.cloud: debug
