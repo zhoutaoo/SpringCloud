@@ -34,29 +34,34 @@ spring:
   cloud:
     gateway:
       default-filters:
-      - name: Retry
-        args:
-          retries: 3
-          statuses: BAD_GATEWAY
-      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-      - name: RequestRateLimiter
-        args:
-          redis-rate-limiter.replenishRate: 2  #流速 每秒
-          redis-rate-limiter.burstCapacity: 10   #令牌桶的容积
-          rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
-          key-resolver: "#{@apiKeyResolver}" #SPEL表达式去的对应的bean
+        - name: Retry
+          args:
+            retries: 3
+            statuses: BAD_GATEWAY
+        - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: 2  #流速 每秒
+            redis-rate-limiter.burstCapacity: 10   #令牌桶的容积
+            rate-limiter: "#{@defaultRedisRateLimiter}"  #SPEL表达式去的对应的bean
+            key-resolver: "#{@apiKeyResolver}" #SPEL表达式去的对应的bean
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
 
 jetcache:
-  statIntervalMinutes: 15
+  statIntervalMinutes: 1
   areaInCacheName: false
   hidePackages: com.springboot.cloud
   local:
-    # 默认2小时本地缓存
+    # 默认永久本地缓存
     default:
       type: caffeine
       keyConvertor: fastjson
   remote:
-    # 默认2小时的远程缓存
+    # 默认永久的远程缓存
     default:
       type: redis
       keyConvertor: fastjson

@@ -15,5 +15,4 @@ public class GatewayApplicationTests {
     public void contextLoads() {
 
     }
-
 }
