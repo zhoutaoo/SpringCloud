@@ -58,7 +58,7 @@ public class ResourceService implements IResourceService {
                         resource -> this.newMvcRequestMatcher(resource.getUrl(), resource.getMethod()),
                         resource -> new SecurityConfig(resource.getCode())
                 ));
-        log.debug("resourceConfigAttributes:{}", this.resourceConfigAttributes);
+        log.debug("init resourceConfigAttributes:{}", this.resourceConfigAttributes);
         return this.resourceConfigAttributes;
     }
 
