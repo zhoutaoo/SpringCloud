@@ -33,7 +33,7 @@ public class GatewayRouteController {
     }
 
     @ApiOperation(value = "删除网关路由", notes = "根据url的id来指定删除对象")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "网关路由ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "网关路由ID", required = true, dataType = "string")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
         return Result.success(gatewayRoutService.delete(id));
@@ -41,7 +41,7 @@ public class GatewayRouteController {
 
     @ApiOperation(value = "修改网关路由", notes = "修改指定网关路由信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "网关路由ID", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "id", value = "网关路由ID", required = true, dataType = "string"),
             @ApiImplicitParam(name = "gatewayRoutForm", value = "网关路由实体", required = true, dataType = "GatewayRouteForm")
     })
     @PutMapping(value = "/{id}")
@@ -52,7 +52,7 @@ public class GatewayRouteController {
     }
 
     @ApiOperation(value = "获取网关路由", notes = "根据id获取指定网关路由信息")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "网关路由ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "网关路由ID", required = true, dataType = "string")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
         log.info("get with id:{}", id);
