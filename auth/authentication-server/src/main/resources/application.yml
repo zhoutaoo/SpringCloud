@@ -9,8 +9,8 @@ spring:
     port: ${REDIS_PORT:6379}
     ##password: ${REDIS_PASSWORD:}
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_auth?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_auth?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=GMT
     username: ${DATASOURCE_USERNAME:root}
     password: ${DATASOURCE_PASSWORD:root123}
   zipkin:
@@ -27,12 +27,28 @@ spring:
     oauth2:
       jwt:
         signingKey: 123456
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 
 feign:
   sentinel:
     enabled: true
   okhttp:
     enabled: true
+
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  hidePackages: com.springboot.cloud
+  local:
+    # 短時本地緩存，主要用于要求时效较高的配置
+    default:
+      type: caffeine
+      keyConvertor: fastjson
+      expireAfterWriteInMillis: 60000
+      expireAfterAccessInMillis: 40000
 
 logging:
   level:

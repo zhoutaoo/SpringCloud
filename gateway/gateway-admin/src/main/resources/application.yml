@@ -33,12 +33,12 @@ jetcache:
   areaInCacheName: false
   hidePackages: com.springboot.cloud
   local:
-    # 默认2小时本地缓存
+    # 默认永久本地缓存
     default:
       type: caffeine
       keyConvertor: fastjson
   remote:
-    # 默认2小时的远程缓存
+    # 默认永久的远程缓存
     default:
       type: redis
       keyConvertor: fastjson

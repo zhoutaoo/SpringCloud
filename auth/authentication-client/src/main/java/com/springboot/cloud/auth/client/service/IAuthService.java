@@ -1,7 +1,8 @@
 package com.springboot.cloud.auth.client.service;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
-import org.springframework.security.jwt.Jwt;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 
 public interface IAuthService {
     /**
@@ -32,14 +33,6 @@ public interface IAuthService {
     boolean hasPermission(Result authResult);
 
     /**
-     * 是否无效authentication
-     *
-     * @param authentication
-     * @return
-     */
-    boolean invalidJwtAccessToken(String authentication);
-
-    /**
      * 调用签权服务，判断用户是否有权限
      *
      * @param authentication
@@ -50,10 +43,18 @@ public interface IAuthService {
     boolean hasPermission(String authentication, String url, String method);
 
     /**
+     * 是否无效authentication
+     *
+     * @param authentication
+     * @return
+     */
+    boolean invalidJwtAccessToken(String authentication);
+
+    /**
      * 从认证信息中提取jwt token 对象
      *
-     * @param authentication 认证信息  Authorization: bearer header.payload.signature
-     * @return Jwt对象
+     * @param jwtToken toke信息 header.payload.signature
+     * @return Jws对象
      */
-    Jwt getJwt(String authentication);
+    Jws<Claims> getJwt(String jwtToken);
 }

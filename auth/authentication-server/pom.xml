@@ -28,6 +28,20 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-security</artifactId>
         </dependency>
+        <!--Swagger2 - RESTful API文档-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <!--jetcache缓存 -->
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-starter-redis</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
