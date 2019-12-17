@@ -1,7 +1,14 @@
 .DS_Store
-.idea/
-*.iml
 data
 logs
 target
 
+# IntelliJ IDEA Files
+*.iml
+*.ipr
+*.iws
+*.idea
+
+# JRebel Files
+**/rebel.xml
+**/rebel-remote.xml
