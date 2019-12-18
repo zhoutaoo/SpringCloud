@@ -83,9 +83,6 @@ cd docker-compose
 #启动注册中心
 docker-compose -f docker-compose.yml -f docker-compose.nacos.yml up -d nacos
 
-#启动消息中心
-docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d bus-server
-
 #回到根目录
 cd -
 
