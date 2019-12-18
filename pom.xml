@@ -12,7 +12,9 @@
     <description>Safe School</description>
 
     <modules>
+        <!-- 认证服务&授权服务 -->
         <module>auth</module>
+        <!-- 认证服务&授权服务 -->
         <module>center</module>
         <module>common</module>
         <module>gateway</module>

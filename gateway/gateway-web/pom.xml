@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.springboot.cloud</groupId>
+    <groupId>com.safechina.safeschool</groupId>
     <artifactId>gateway-web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -12,7 +12,7 @@
     <description>Demo Gateway Api project for Spring Boot</description>
 
     <parent>
-        <groupId>com.springboot.cloud</groupId>
+        <groupId>com.safechina.safeschool</groupId>
         <artifactId>gateway</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -20,7 +20,7 @@
     <dependencies>
         <!--core基础类库-->
         <dependency>
-            <groupId>com.springboot.cloud</groupId>
+            <groupId>com.safechina.safeschool</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -47,7 +47,7 @@
         </dependency>
         <!--网关签权客户端-->
         <dependency>
-            <groupId>com.springboot.cloud</groupId>
+            <groupId>com.safechina.safeschool</groupId>
             <artifactId>authentication-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

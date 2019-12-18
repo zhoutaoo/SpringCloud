@@ -21,7 +21,7 @@ pom.xml
 
 ```
 <dependency>
-    <groupId>com.springboot.cloud</groupId>
+    <groupId>com.safechina.safeschool</groupId>
     <artifactId>test</artifactId>
     <scope>test</scope>
     <version>0.0.1-SNAPSHOT</version>

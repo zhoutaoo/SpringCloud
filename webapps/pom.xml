@@ -12,8 +12,8 @@
     <description>Demo Webapps project for Spring Boot</description>
 
     <parent>
-        <artifactId>cloud</artifactId>
-        <groupId>com.springboot.cloud</groupId>
+        <artifactId>safeschool</artifactId>
+        <groupId>com.safechina.safeschool</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -28,7 +28,7 @@
         </dependency>
         <!--web基础类库-->
         <dependency>
-            <groupId>com.springboot.cloud</groupId>
+            <groupId>com.safechina.safeschool</groupId>
             <artifactId>web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

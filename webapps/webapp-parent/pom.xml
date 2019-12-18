@@ -10,7 +10,7 @@
 
     <parent>
         <artifactId>webapps</artifactId>
-        <groupId>com.springboot.cloud</groupId>
+        <groupId>com.safechina.safeschool</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
