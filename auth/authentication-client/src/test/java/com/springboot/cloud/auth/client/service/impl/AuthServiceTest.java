@@ -22,9 +22,8 @@ public class AuthServiceTest {
     @Mock
     AuthProvider authProvider;
 
-    private static final String VALID_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ6aG91dGFvbyIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiemhvdXRhb28iLCJleHAiOjE1Mjc0NTM5NDQsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiSVQiXSwianRpIjoiZTZiNzM5ZmUtYWEzZC00Y2RmLWIxZjUtNzZkMmVlMjU0ODU1IiwiY2xpZW50X2lkIjoidGVzdF9jbGllbnQifQ.l6PQrs98zT40H6Ad4NHE7NSXyeWnMn-ZhURw3zO-EfE";
-    private static final String BEARER = "bearer ";
-
+    private static final String VALID_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiYWRtaW4iLCJleHAiOjEzNTcyMDIxNjM3LCJhdXRob3JpdGllcyI6WyJBRE1JTiJdLCJqdGkiOiI4MzcyMzI0Ny00ZDA5LTQ0YjYtYTNlOS01OGUzYzZiMGUzYjIiLCJjbGllbnRfaWQiOiJ0ZXN0X2NsaWVudCJ9.IkOtKapS5PJLKU1NfiqVSCgsQngE7qGnIx1NziJMvVA";
+    private static final String BEARER = "Bearer ";
 
     @Before
     public void before() throws NoSuchFieldException, IllegalAccessException {
@@ -43,11 +42,6 @@ public class AuthServiceTest {
     @Test
     public void testInvalidJwtAccessToken_假如授权服务通过给定密钥生成了token_当输入该token组成的authentication_那么返回false表示token有效() {
         Assert.assertFalse(authService.invalidJwtAccessToken(BEARER + VALID_TOKEN));
-    }
-
-    @Test
-    public void testInvalidJwtAccessToken_假如有一正常的token_当输入没有bearer开头的authentication_那么返回true表示token无效() {
-        Assert.assertTrue(authService.invalidJwtAccessToken(VALID_TOKEN));
     }
 
     @Test

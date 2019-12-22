@@ -1,17 +1,16 @@
 package com.springboot.cloud.demos.producer.entity.param;
 
-import com.springboot.cloud.common.core.entity.param.BaseParam;
+import com.springboot.cloud.common.web.entity.param.BaseParam;
+import com.springboot.cloud.demos.producer.entity.po.Product;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductQueryParam extends BaseParam {
+@Builder
+public class ProductQueryParam extends BaseParam<Product> {
     private String name;
-    private Date createdTimeStart;
-    private Date createdTimeEnd;
 }

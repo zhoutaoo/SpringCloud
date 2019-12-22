@@ -1,0 +1,101 @@
+version: '3'
+services:
+  zipkin-server:
+    image: openzipkin/zipkin
+    container_name: sc-zipkin-server
+    restart: always
+    volumes:
+      - ../data/zipkin-server/logs:/var/logs
+    networks:
+      - sc-net
+    ports:
+      - 9411:9411
+    environment:
+      - RABBIT_ADDRESSES=rabbitmq:5672
+      - RABBIT_MQ_PORT=5672
+      - RABBIT_PASSWORD=guest
+      - RABBIT_USER=guest
+      - STORAGE_TYPE=elasticsearch
+      - ES_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - rabbitmq
+
+  elasticsearch:
+    image: elasticsearch:5.6-alpine
+    container_name: sc-elasticsearch
+    restart: always
+    environment:
+      - cluster.name=elasticsearch
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - node.name=elasticsearch_node_1
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ../data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ../data/elasticsearch/logs:/usr/share/elasticsearch/logs
+      - ./devops/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks:
+      - sc-net
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  skywalking-oap:
+    image: wutang/skywalking-oap:6.1.0
+    container_name: skywalking-oap
+    networks:
+      - sc-net
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+    restart: always
+    ports:
+      - 11800:11800
+      - 12800:12800
+    volumes:
+      - ./devops/skywalking/config:/apache-skywalking-apm-bin/config:ro
+
+  skywalking-ui:
+    image: wutang/skywalking-ui:6.1.0
+    container_name: skywalking-ui
+    networks:
+      - sc-net
+    depends_on:
+      - skywalking-oap
+    links:
+      - skywalking-oap
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      collector.ribbon.listOfServers: skywalking-oap:12800
+
+  kibana:
+    image: kibana:5.6.14
+    container_name: sc-kibana
+    restart: always
+    volumes:
+      - ../data/kibana/logs:/var/logs/kibana
+      - ./devops/kibana.yml:/etc/kibana/kibana.yml
+    networks:
+      - sc-net
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+
+  grafana:
+    image: grafana/grafana
+    container_name: sc-grafana
+    restart: always
+    volumes:
+      - ../data/grafana/logs:/var/logs/grafana
+    networks:
+      - sc-net
+    ports:
+      - 3000:3000

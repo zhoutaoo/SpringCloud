@@ -1,20 +1,9 @@
-server:
-  port: 8041
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
-
 spring:
-  application:
-    name: feign-consumer
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
     username: ${RABBIT_MQ_USERNAME:guest}
     password: ${RABBIT_MQ_PASSWORD:guest}
-
   zipkin:
     sender:
       type: rabbit
@@ -26,7 +15,6 @@ spring:
       enabled: true
       processor:
         enabled: true
-
   mvc:
     throw-exception-if-no-handler-found: true
   servlet:
@@ -42,6 +30,12 @@ logging:
   path: logs/
   file:
     max-size: 1GB
+
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
 
 management:
   endpoints:

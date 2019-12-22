@@ -2,7 +2,7 @@ package com.springboot.cloud.gateway.admin.entity.form;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.cloud.common.core.entity.form.BaseForm;
+import com.springboot.cloud.common.web.entity.form.BaseForm;
 import com.springboot.cloud.gateway.admin.entity.po.FilterDefinition;
 import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
 import com.springboot.cloud.gateway.admin.entity.po.PredicateDefinition;

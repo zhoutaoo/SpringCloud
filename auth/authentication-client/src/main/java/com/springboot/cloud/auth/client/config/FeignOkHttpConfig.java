@@ -1,8 +1,6 @@
 package com.springboot.cloud.auth.client.config;
 
 import feign.Feign;
-import okhttp3.ConnectionPool;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.cloud.openfeign.FeignAutoConfiguration;

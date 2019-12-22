@@ -1,59 +1,55 @@
 package com.springboot.cloud.sysadmin.organization.service.impl;
 
+import com.alicp.jetcache.anno.CacheInvalidate;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.springboot.cloud.sysadmin.organization.dao.GroupMapper;
 import com.springboot.cloud.sysadmin.organization.entity.param.GroupQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Group;
 import com.springboot.cloud.sysadmin.organization.service.IGroupService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Slf4j
-public class GroupService implements IGroupService {
-
-    @Autowired
-    private GroupMapper groupMapper;
+public class GroupService extends ServiceImpl<GroupMapper, Group> implements IGroupService {
 
     @Override
-    public long add(Group group) {
-        return groupMapper.insert(group);
+    public boolean add(Group group) {
+        return this.save(group);
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#id")
-    public void delete(long id) {
-        groupMapper.deleteById(id);
+    @CacheInvalidate(name = "group::", key = "#id")
+    public boolean delete(String id) {
+        return this.removeById(id);
     }
 
     @Override
-    @CacheEvict(value = "group", key = "#root.targetClass.name+'-'+#group.id")
-    public void update(Group group) {
-        groupMapper.updateById(group);
+    @CacheInvalidate(name = "group::", key = "#group.id")
+    public boolean update(Group group) {
+        return this.updateById(group);
     }
 
     @Override
-    @Cacheable(value = "group", key = "#root.targetClass.name+'-'+#id")
-    public Group get(long id) {
-        return groupMapper.selectById(id);
+    @Cached(name = "group::", key = "#id", cacheType = CacheType.BOTH)
+    public Group get(String id) {
+        return this.getById(id);
     }
 
     @Override
     public List<Group> query(GroupQueryParam groupQueryParam) {
-        QueryWrapper<Group> queryWrapper = new QueryWrapper<>();
-        queryWrapper.ge(null != groupQueryParam.getCreatedTimeStart(), "created_time", groupQueryParam.getCreatedTimeStart());
-        queryWrapper.le(null != groupQueryParam.getCreatedTimeEnd(), "created_time", groupQueryParam.getCreatedTimeEnd());
+        QueryWrapper<Group> queryWrapper = groupQueryParam.build();
         queryWrapper.eq("name", groupQueryParam.getName());
-        return groupMapper.selectList(queryWrapper);
+        return this.list(queryWrapper);
     }
 
     @Override
-    public List<Group> queryByParentId(long id) {
-        return groupMapper.selectList(new QueryWrapper<Group>().eq("parent_id", id));
+    public List<Group> queryByParentId(String id) {
+        return this.list(new QueryWrapper<Group>().eq("parent_id", id));
     }
 }

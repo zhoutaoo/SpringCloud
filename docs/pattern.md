@@ -5,7 +5,7 @@
 
 1、表名全部小写，单词间通过'_'间隔
 
-2、主键命名为'id'，pg库类型为serial自增长主键，会默认创建名为[表名_id_seq]的序列
+2、主键命名为'id'，varchar(20)，不使用数据库的序列，应用生成全局序列。
 
 3、必须包含4个审计字段且不能为空。created_time、updated_time、created_by、updated_by。
 
@@ -32,7 +32,7 @@
 | 手机电话| varchar |  20  |        |
 | 描述简介| varchar |  500 |        |
 | 网址类  | varchar |  500 | 如url  |
-| 时间类  | timestamp |    |        |
+| 时间类  | datetime |    |        |
     
 
 ## URL和方法命名规范
@@ -46,23 +46,23 @@ CRUD 简单 URI：
 
 |  方法   | URL       |       功能       |
 |--------|-----------|------------------|
-| GET    | /users    | 获取用户列表       |
-| GET    | /users/1  | 获取 id 为 1 的用户|
-| POST   | /users    | 创建一个用户       |
-| PUT    | /users/1  | 替换 id 为 1 的用户|
-| PATCH  | /users/1  | 修改 id 为 1 的用户|
-| DELETE | /users/1  | 删除 id 为 1 的用户|
+| GET    | /user    | 获取用户列表       |
+| GET    | /user/1  | 获取 id 为 1 的用户|
+| POST   | /user    | 创建一个用户       |
+| PUT    | /user/1  | 替换 id 为 1 的用户|
+| PATCH  | /user/1  | 修改 id 为 1 的用户|
+| DELETE | /user/1  | 删除 id 为 1 的用户|
 
 上面是对某一种资源进行操作的 URI，那如果是有关联的资源，或者称为级联的资源，该如何设计 URI 呢？比如某一用户下的产品：
 
 |  方法   | URL                 |             功能                   |
 |--------|---------------------|------------------------------------|
-| GET    | /users/1/products   | 获取 Id 为 1 用户下的产品列表         |
-| GET    | /users/1/products/2 | 获取 Id 为 1 用户下 Id 为 2 的产品    |
-| POST   | /users/1/products   | 在 Id 为 1 用户下，创建一个产品       |
-| PUT    | /users/1/products/2 | 在 Id 为 1 用户下，替换 Id 为 2 的产品|
-| PATCH  | /users/1/products/2 | 修改 Id 为 1 的用户下 Id 为 2 的产品  |
-| DELETE | /users/1/products/2 | 删除 Id 为 1 的用户下 Id 为 2 的产品  |
+| GET    | /user/1/product   | 获取 Id 为 1 用户下的产品列表         |
+| GET    | /user/1/product/2 | 获取 Id 为 1 用户下 Id 为 2 的产品    |
+| POST   | /user/1/product   | 在 Id 为 1 用户下，创建一个产品       |
+| PUT    | /user/1/product/2 | 在 Id 为 1 用户下，替换 Id 为 2 的产品|
+| PATCH  | /user/1/product/2 | 修改 Id 为 1 的用户下 Id 为 2 的产品  |
+| DELETE | /user/1/product/2 | 删除 Id 为 1 的用户下 Id 为 2 的产品  |
 
 ### 方法命名规范
 
@@ -99,10 +99,10 @@ CRUD 简单 URI：
 |  操作   | 例子                |             备注                  |
 |--------|---------------------|----------------------------------|
 |  增加   | add                 |                                  |
-|  获取   | get                 |   获取到单条记录                   |
-|  删除   | remove/delete       |                                  |
-|  更新   | update              |   更新存在的记录                   |
 |  保存   | save                |   更新，不存在则新增                |
+|  删除   | remove/delete       |                                  |
+|  获取   | get                 |   获取到单条记录                   |
+|  更新   | update              |   更新存在的记录                   |
 |  查询   | query               |   根据id等简单条件查询              |
 |  搜索   | search              |   根据时间范围或模糊搜索            |
 

@@ -1,0 +1,59 @@
+version: '3'
+services:
+  redis: 
+    image: redis:alpine
+    container_name: sc-redis
+    restart: always
+    volumes:
+      - ../data/redis:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    networks:
+      - sc-net
+    ports:
+      - 6379:6379
+    env_file: .env
+
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    container_name: sc-rabbitmq
+    restart: always
+    volumes:
+      - ../data/rabbitmq:/var/lib/rabbitmq/mnesia
+    networks:
+      - sc-net
+    ports:
+      - 5672:5672
+      - 15672:15672
+    env_file: .env
+
+  mysql:
+    image: mysql:5.7
+    container_name: sc-mysql
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 3306:3306
+    volumes:
+      - ../data/mysql:/var/lib/mysql
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: root123
+
+  mysql-init:
+    image: mysql:5.7
+    command: /init-db.sh
+    networks:
+      - sc-net
+    volumes:
+      - ../auth/db:/sql/auth
+      - ../gateway/gateway-admin/src/main/db:/sql/gateway
+      - ../sysadmin/db:/sql/sysadmin
+      - ./init-db.sh:/init-db.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+
+networks:
+  sc-net:
+    external: false

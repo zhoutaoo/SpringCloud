@@ -13,8 +13,8 @@
 
     <modules>
         <module>core</module>
-        <module>test</module>
         <module>web</module>
+        <module>test</module>
     </modules>
 
     <dependencies>
@@ -32,7 +32,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
+            <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
         <!--测试-->

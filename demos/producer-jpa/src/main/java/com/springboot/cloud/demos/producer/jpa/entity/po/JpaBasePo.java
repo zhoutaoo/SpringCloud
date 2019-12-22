@@ -1,16 +1,18 @@
 package com.springboot.cloud.demos.producer.jpa.entity.po;
 
-import com.springboot.cloud.common.core.entity.po.BasePo;
 import lombok.Data;
 
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Data
 @MappedSuperclass
-public class JpaBasePo extends BasePo {
-    private String createdBy = super.getCreatedBy();
-    private String updatedBy = super.getUpdatedBy();
-    private Date createdTime = super.getCreatedTime();
-    private Date updatedTime = super.getUpdatedTime();
+public class JpaBasePo implements Serializable {
+    public final static String DEFAULT_USERNAME = "system";
+    private String createdBy = DEFAULT_USERNAME;
+    private String updatedBy = DEFAULT_USERNAME;
+    private Date createdTime = Date.from(ZonedDateTime.now().toInstant());
+    private Date updatedTime = Date.from(ZonedDateTime.now().toInstant());
 }

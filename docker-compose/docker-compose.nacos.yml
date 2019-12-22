@@ -1,0 +1,27 @@
+version: '3'
+services:
+  nacos:
+    image: nacos/nacos-server:1.1.3
+    container_name: sc-nacos-standalone
+    networks:
+      - sc-net
+    environment:
+      - PREFER_HOST_MODE=hostname
+      - MODE=standalone
+    volumes:
+      - ../data/nacos-server/logs/:/home/nacos/logs
+    ports:
+      - "8848:8848"
+
+  prometheus:
+    container_name: sc-prometheus
+    image: prom/prometheus:latest
+    networks:
+      - sc-net
+    volumes:
+      - ./nacos/prometheus.yaml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - nacos
+    restart: on-failure

@@ -1,0 +1,24 @@
+version: '3'
+services:
+  #监控管理台服务
+  monitor-admin:
+    image: cike/admin:latest
+    container_name: sc-monitor-admin
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8022:8022
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+
+  sentinel-dashboard:
+    image: cike/sentinel-dashboard-docker:latest
+    container_name: sc-sentinel-dashboard
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8021:8021
+    env_file: .env

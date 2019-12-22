@@ -18,17 +18,22 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
-        return routeService.getRouteDefinitions();
+        return Flux.fromIterable(routeService.getRouteDefinitions());
     }
 
     @Override
     public Mono<Void> save(Mono<RouteDefinition> route) {
-        return routeService.save(route);
+        return route.flatMap(routeDefinition -> {
+            routeService.save(routeDefinition);
+            return Mono.empty();
+        });
     }
 
     @Override
     public Mono<Void> delete(Mono<String> routeId) {
-        return routeService.delete(routeId);
+        return routeId.flatMap(id -> {
+            routeService.delete(id);
+            return Mono.empty();
+        });
     }
-
 }

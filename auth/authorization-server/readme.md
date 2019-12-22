@@ -11,7 +11,7 @@
 
 - [postgresql](http://www.postgresql.org/)
 - [rabbitmq](http://rabbitmq.io/download)
-- [eureka](../../center/eureka)
+- [nacos](../../docs/register.md)
 
 ### 启动命令
 
@@ -62,6 +62,8 @@ password: `password`
 #### 密码模式，grant_type=password
 
 用途：可用于用户通过前端应用登陆、使用应用，如app，web等终端
+
+![postman](../../docs/auth/oauth2_password_token_auth.png)
 
 ![postman](../../docs/auth/oauth2_password_token.png)
 
@@ -198,6 +200,36 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0g
   "scope": "read",
   "organization": "admin",
   "jti": "23408d38-8cdc-4460-beac-24c76dc7629a"
+}
+```
+
+#### 自定义手机验证码模式，grant_type=mobile
+
+用途：可用于用户通过手机和验证码在前端应用登陆、使用应用
+
+![postman](../../docs/auth/oauth2_mobile_token.png)
+
+请求报文
+
+```
+POST /oauth/token HTTP/1.1
+Host: localhost:8000
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+username=15619841xxxx&password=123456&client_id=test_client&client_secret=test_secret&scope=read&grant_type=mobile
+```
+响应报文
+
+```
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ6aG91dGFvbyIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiemhvdXRhb28iLCJleHAiOjE1MzE5NzM4MTgsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiSVQiXSwianRpIjoiNTFiODY4ZDEtMGNlMS00ZmI4LTkwMWQtOWM3YmZmYzBhZGJiIiwiY2xpZW50X2lkIjoidGVzdF9jbGllbnQifQ.BlIryRbSL414rDv5EfzZSjpjvWybcX3hEJy3fV8l6Wo",
+  "token_type": "bearer",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ6aG91dGFvbyIsInNjb3BlIjpbInJlYWQiXSwib3JnYW5pemF0aW9uIjoiemhvdXRhb28iLCJhdGkiOiI1MWI4NjhkMS0wY2UxLTRmYjgtOTAxZC05YzdiZmZjMGFkYmIiLCJleHAiOjE1MzQ1MjI2MTgsImF1dGhvcml0aWVzIjpbIkFETUlOIiwiSVQiXSwianRpIjoiMGU2N2Q5MDEtOThlMC00ZTk3LTkwNzgtODllMTBmZTRjOGI2IiwiY2xpZW50X2lkIjoidGVzdF9jbGllbnQifQ.zNtWWG8xxPsjTZKghOjyGNDjnhHqnPvikfqN1uynh3U",
+  "expires_in": 43199,
+  "scope": "read",
+  "organization": "15619841xxxx",
+  "jti": "51b868d1-0ce1-4fb8-901d-9c7bffc0adbb"
 }
 ```
 

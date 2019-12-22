@@ -1,0 +1,28 @@
+version: '3'
+services:
+  #MOSS Mysql数据库初使化
+  moss-db-init:
+    image: mysql:5.7
+    command: /init-db.sh
+    networks:
+      - sc-net
+    volumes:
+      - ./moss/mysql:/sql
+      - ./init-db.sh:/init-db.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+
+  #Moss管理中心
+  moss:
+    image: w304807481/moss-web:latest
+    container_name: moss
+    restart: always
+    networks:
+      - sc-net
+    ports:
+      - 8086:8086
+    env_file: .env
+    environment:
+      TZ: Asia/Shanghai
+    depends_on:
+      - moss-db-init

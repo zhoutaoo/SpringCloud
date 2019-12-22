@@ -57,7 +57,7 @@
 Token基本内容如下
 
 * access_token：表示访问令牌，必选项。
-* token_type：表示令牌类型，该值大小写不敏感，必选项，可以是Bearer类型或OAuth2类型。
+* token_type：表示令牌类型，该值大小写不敏感，必选项，可以是Bearer类型或其它类型。
 * expires_in：表示过期时间，单位为秒。如果省略该参数，必须其他方式设置过期时间。
 * refresh_token：表示更新令牌，用来获取下一次的访问令牌，可选项。
 * scope：表示权限范围，如果与客户端申请的范围一致，此项可省略。
@@ -89,7 +89,7 @@ Token基本内容如下
 | access_token | JWT Access Token，过期时间，默认12小时  |
 | refresh_token| JWT Refresh Token，过期时间，默认30天   |
 | expires_in   | 过期时间，单位秒     |
-| token_type   | Bearer和OAuth2     |
+| token_type   | Bearer和Mac        |
 | scope        | read和write        |
 
 #### JWT(JSON Web Tokens)简介
@@ -167,8 +167,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbiIsInNjb3BlIjpbInJ
 | 表名        |   简介        |  备注                    |
 |------------|---------------|-------------------------|
 | users      |   用户表       |  使用应用的用户           |
-| groups     |   组织表       |  通过users_groups_relation与users关联，多对多     |
-| positions  |   岗位表       |  通过users_positions_relation与users关联，多对多  |
-| roles      |   角色表       |  通过users_roles_relation与users关联，多对多      |
-| menus      |   菜单表       |  通过roles_menus_relation与roles关联，多对多      |
-| resources  |   资源表       |  通过roles_resources_relation与roles关联，多对多  |
+| groups     |   组织表       |  通过user_group_relation与users关联，多对多     |
+| position   |   岗位表       |  通过user_position_relation与users关联，多对多  |
+| roles      |   角色表       |  通过user_role_relation与users关联，多对多      |
+| menu       |   菜单表       |  通过role_menu_relation与roles关联，多对多      |
+| resource   |   资源表       |  通过role_resource_relation与roles关联，多对多  |

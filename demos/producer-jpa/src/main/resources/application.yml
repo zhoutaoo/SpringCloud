@@ -1,21 +1,4 @@
-server:
-  port: 9001
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
-
-apollo:
-  bootstrap:
-    enabled: true
-  meta: http://${APOLLO_HOST:localhost}:${APOLLO_PORT:8080}
-app:
-  id: ${APP_ID}
-
 spring:
-  application:
-    name: ${APP_ID}
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
@@ -26,11 +9,10 @@ spring:
     port: ${REDIS_PORT:6379}
     ##password: ${REDIS_PASSWORD:}
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${DB_NAME}
-    username: ${POSTGRES_USERNAME:postgres}
-    password: ${POSTGRES_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
-
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:${DATASOURCE_DBTYPE:mysql}://${DATASOURCE_HOST:localhost}:${DATASOURCE_PORT:3306}/sc_product?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:root123}
   zipkin:
     enabled: true
     sender:
@@ -38,7 +20,6 @@ spring:
   sleuth:
     sampler:
       probability: 1.0
-
   mvc:
     throw-exception-if-no-handler-found: true
   servlet:

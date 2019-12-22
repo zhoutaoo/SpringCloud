@@ -1,17 +1,12 @@
 server:
   port: 9001
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_ZONE_HOST:localhost}:${EUREKA_ZONE_PORT:8761}/eureka/
-
 spring:
   datasource:
     druid:
       web-stat-filter:
         enabled: false
-    url: jdbc:h2:mem:sc_product;MODE=PostgreSQL;INIT=RUNSCRIPT FROM './src/main/db/ddl/V1__products.sql'
+    url: jdbc:h2:mem:sc_product;MODE=mysql;INIT=RUNSCRIPT FROM './src/main/db/db.sql'
     username: sa
     password:
     driver-class-name: org.h2.Driver

@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  konga:
+    image: pantsel/konga
+    container_name: sc-konga
+    depends_on:
+      - kong
+    networks:
+      - sc-net
+    env_file: .env
+    ports:
+      - 1337:1337/tcp
+
+  kong:
+    image: kong:latest
+    container_name: sc-kong
+    env_file: .env
+    volumes:
+      - ../data/kong:/usr/local/kong
+    networks:
+      - sc-net
+    ports:
+      - 18000:8000/tcp
+      - 18443:8443/tcp
+      - 18001:8001/tcp
+      - 8444:8444/tcp
+    depends_on:
+      - postgres
