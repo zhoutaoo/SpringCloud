@@ -66,9 +66,6 @@ cd -
 
 echo '==================4.3.构建镜像: 配置中心, 消息中心========'
 
-#回到根目录
-cd -
-
 #构建镜像:消息中心
 cd ./center/bus
 mvn package && mvn docker:build
