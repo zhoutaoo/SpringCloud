@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Slf4j
 public class SwaggerProvider implements SwaggerResourcesProvider {
-    private static final String API_URI = "/v2/api-docs";
+    public static final String API_URI = "/v2/api-docs";
 
     @Autowired
     private final RouteService routeService;
@@ -38,8 +38,8 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
     private SwaggerResource swaggerResource(String name, String location) {
         SwaggerResource swaggerResource = new SwaggerResource();
         swaggerResource.setName(name);
-        swaggerResource.setLocation(location);
         swaggerResource.setSwaggerVersion("2.0");
+        swaggerResource.setUrl(location);
         return swaggerResource;
     }
 }
