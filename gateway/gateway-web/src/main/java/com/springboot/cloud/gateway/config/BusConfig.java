@@ -1,9 +1,9 @@
-package com.springboot.cloud.auth.authentication.config;
+package com.springboot.cloud.gateway.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.cloud.auth.authentication.events.BusReceiver;
+import com.springboot.cloud.gateway.events.BusReceiver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 public class BusConfig {
 
     private static final String EXCHANGE_NAME = "spring-boot-exchange";
-    private static final String ROUTING_KEY = "organization-resource";
+    private static final String ROUTING_KEY = "gateway-route";
 
     @Value("${spring.application.name}")
     private String appName;
@@ -47,7 +47,7 @@ public class BusConfig {
 
     @Bean
     SimpleMessageListenerContainer simpleMessageListenerContainer(ConnectionFactory connectionFactory, MessageListenerAdapter messageListenerAdapter, Queue queue) {
-        log.info("init simpleMessageListenerContainer {}", queue.getName());
+        log.info("init simpleMessageListenerContainer: {}", queue.getName());
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
         container.setQueueNames(queue.getName());
         container.setMessageListener(messageListenerAdapter);

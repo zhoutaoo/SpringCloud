@@ -7,13 +7,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.springboot.cloud.gateway.admin.config.BusConfig;
 import com.springboot.cloud.gateway.admin.dao.GatewayRouteMapper;
 import com.springboot.cloud.gateway.admin.entity.ov.GatewayRouteVo;
 import com.springboot.cloud.gateway.admin.entity.param.GatewayRouteQueryParam;
 import com.springboot.cloud.gateway.admin.entity.po.GatewayRoute;
+import com.springboot.cloud.gateway.admin.events.EventSender;
 import com.springboot.cloud.gateway.admin.service.IGatewayRouteService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.FilterDefinition;
 import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -34,24 +37,35 @@ public class GatewayRouteService extends ServiceImpl<GatewayRouteMapper, Gateway
     @CreateCache(name = GATEWAY_ROUTES, cacheType = CacheType.REMOTE)
     private Cache<String, RouteDefinition> gatewayRouteCache;
 
+    @Autowired
+    private EventSender eventSender;
+
     @Override
     public boolean add(GatewayRoute gatewayRoute) {
         boolean isSuccess = this.save(gatewayRoute);
-        gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute));
+        // 转化为gateway需要的类型，缓存到redis, 并事件通知各网关应用
+        RouteDefinition routeDefinition = gatewayRouteToRouteDefinition(gatewayRoute);
+        gatewayRouteCache.put(gatewayRoute.getRouteId(), routeDefinition);
+        eventSender.send(BusConfig.ROUTING_KEY, routeDefinition);
         return isSuccess;
     }
 
     @Override
     public boolean delete(String id) {
         GatewayRoute gatewayRoute = this.getById(id);
+        // 删除redis缓存, 并事件通知各网关应用
         gatewayRouteCache.remove(gatewayRoute.getRouteId());
+        eventSender.send(BusConfig.ROUTING_KEY, gatewayRouteToRouteDefinition(gatewayRoute));
         return this.removeById(id);
     }
 
     @Override
     public boolean update(GatewayRoute gatewayRoute) {
         boolean isSuccess = this.updateById(gatewayRoute);
-        gatewayRouteCache.put(gatewayRoute.getRouteId(), gatewayRouteToRouteDefinition(gatewayRoute));
+        // 转化为gateway需要的类型，缓存到redis, 并事件通知各网关应用
+        RouteDefinition routeDefinition = gatewayRouteToRouteDefinition(gatewayRoute);
+        gatewayRouteCache.put(gatewayRoute.getRouteId(), routeDefinition);
+        eventSender.send(BusConfig.ROUTING_KEY, routeDefinition);
         return isSuccess;
     }
 

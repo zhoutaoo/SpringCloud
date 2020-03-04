@@ -2,6 +2,9 @@ package com.springboot.cloud.gateway.exception;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureException;
 import io.netty.channel.ConnectTimeoutException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.support.NotFoundException;
@@ -32,6 +35,27 @@ public class GateWayExceptionHandlerAdvice {
     public Result handle(NotFoundException ex) {
         log.error("not found exception:{}", ex.getMessage());
         return Result.fail(SystemErrorType.GATEWAY_NOT_FOUND_SERVICE);
+    }
+
+    @ExceptionHandler(value = {ExpiredJwtException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Result handle(ExpiredJwtException ex) {
+        log.error("ExpiredJwtException:{}", ex.getMessage());
+        return Result.fail(SystemErrorType.INVALID_TOKEN);
+    }
+
+    @ExceptionHandler(value = {SignatureException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Result handle(SignatureException ex) {
+        log.error("SignatureException:{}", ex.getMessage());
+        return Result.fail(SystemErrorType.INVALID_TOKEN);
+    }
+
+    @ExceptionHandler(value = {MalformedJwtException.class})
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public Result handle(MalformedJwtException ex) {
+        log.error("MalformedJwtException:{}", ex.getMessage());
+        return Result.fail(SystemErrorType.INVALID_TOKEN);
     }
 
     @ExceptionHandler(value = {RuntimeException.class})

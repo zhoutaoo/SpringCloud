@@ -1,9 +1,11 @@
 package com.springboot.cloud.auth.authentication.service.impl;
 
-import com.springboot.cloud.auth.authentication.service.IResourceService;
-import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
+import com.alicp.jetcache.anno.CacheType;
+import com.alicp.jetcache.anno.Cached;
 import com.springboot.cloud.auth.authentication.provider.ResourceProvider;
+import com.springboot.cloud.auth.authentication.service.IResourceService;
 import com.springboot.cloud.auth.authentication.service.NewMvcRequestMatcher;
+import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
@@ -56,7 +58,7 @@ public class ResourceService implements IResourceService {
                         resource -> this.newMvcRequestMatcher(resource.getUrl(), resource.getMethod()),
                         resource -> new SecurityConfig(resource.getCode())
                 ));
-        log.debug("resourceConfigAttributes:{}", this.resourceConfigAttributes);
+        log.debug("init resourceConfigAttributes:{}", this.resourceConfigAttributes);
         return this.resourceConfigAttributes;
     }
 
@@ -71,6 +73,7 @@ public class ResourceService implements IResourceService {
     }
 
     @Override
+    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.LOCAL)
     public Set<Resource> queryByUsername(String username) {
         return resourceProvider.resources(username).getData();
     }

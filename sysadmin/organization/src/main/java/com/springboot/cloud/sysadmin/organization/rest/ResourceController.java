@@ -2,6 +2,7 @@ package com.springboot.cloud.sysadmin.organization.rest;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
 import com.springboot.cloud.sysadmin.organization.entity.form.ResourceForm;
+import com.springboot.cloud.sysadmin.organization.entity.form.ResourceQueryForm;
 import com.springboot.cloud.sysadmin.organization.entity.param.ResourceQueryParam;
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import com.springboot.cloud.sysadmin.organization.service.IResourceService;
@@ -44,8 +45,7 @@ public class ResourceController {
     })
     @PutMapping(value = "/{id}")
     public Result update(@PathVariable String id, @Valid @RequestBody ResourceForm resourceForm) {
-        Resource resource = resourceForm.toPo(Resource.class);
-        resource.setId(id);
+        Resource resource = resourceForm.toPo(id, Resource.class);
         return Result.success(resourceService.update(resource));
     }
 
@@ -74,19 +74,17 @@ public class ResourceController {
     )
     @GetMapping(value = "/all")
     public Result queryAll() {
-        return Result.success(resourceService.query(new ResourceQueryParam()));
+        return Result.success(resourceService.getAll());
     }
 
-    @ApiOperation(value = "查询资源", notes = "根据条件查询资源信息，简单查询")
-    @ApiImplicitParam(paramType = "query", name = "name", value = "资源名称", required = true, dataType = "string")
+    @ApiOperation(value = "搜索资源", notes = "根据条件搜索资源信息")
+    @ApiImplicitParam(name = "resourceQueryForm", value = "资源查询参数", required = true, dataType = "RoleQueryForm")
     @ApiResponses(
             @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     )
-    @GetMapping
-    public Result query(@RequestParam String name) {
-        log.debug("query with name:{}", name);
-        ResourceQueryParam resourceQueryParam = new ResourceQueryParam();
-        resourceQueryParam.setName(name);
-        return Result.success(resourceService.query(resourceQueryParam));
+    @PostMapping(value = "/conditions")
+    public Result query(@Valid @RequestBody ResourceQueryForm resourceQueryForm) {
+        log.debug("query with name:{}", resourceQueryForm);
+        return Result.success(resourceService.query(resourceQueryForm.getPage(), resourceQueryForm.toParam(ResourceQueryParam.class)));
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import reactor.core.publisher.Mono;
 
 import javax.annotation.PostConstruct;
 import java.net.URI;
@@ -68,24 +67,16 @@ public class RouteService implements IRouteService {
     }
 
     @Override
-    public Mono<Void> save(Mono<RouteDefinition> routeDefinitionMono) {
-        return routeDefinitionMono.flatMap(routeDefinition -> {
-            routeDefinitionMaps.put(routeDefinition.getId(), routeDefinition);
-            gatewayRouteCache.put(routeDefinition.getId(), routeDefinition);
-            log.info("新增路由1条：{}", routeDefinition);
-            log.info("目前路由共{}条：", routeDefinitionMaps.size());
-            return Mono.empty();
-        });
+    public boolean save(RouteDefinition routeDefinition) {
+        routeDefinitionMaps.put(routeDefinition.getId(), routeDefinition);
+        log.info("新增路由1条：{},目前路由共{}条", routeDefinition, routeDefinitionMaps.size());
+        return true;
     }
 
     @Override
-    public Mono<Void> delete(Mono<String> routeId) {
-        return routeId.flatMap(id -> {
-            routeDefinitionMaps.remove(id);
-            gatewayRouteCache.remove(id);
-            log.info("删除路由1条：{}", routeId);
-            log.info("目前路由共{}条：", routeDefinitionMaps.size());
-            return Mono.empty();
-        });
+    public boolean delete(String routeId) {
+        routeDefinitionMaps.remove(routeId);
+        log.info("删除路由1条：{},目前路由共{}条", routeId, routeDefinitionMaps.size());
+        return true;
     }
 }
