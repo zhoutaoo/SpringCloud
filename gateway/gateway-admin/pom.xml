@@ -14,7 +14,7 @@
         <artifactId>webapp-parent</artifactId>
         <groupId>com.springboot.cloud</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../webapps/webapp-parent/pom.xml</relativePath>
+        <relativePath>../../webapps/pom.xml</relativePath>
     </parent>
 
     <dependencies>
