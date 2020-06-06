@@ -52,7 +52,7 @@ services:
     volumes:
       - ../data/nacos-server/logs/:/home/nacos/logs
     ports:
-      - "8848:8848"
+      - 8848:8848
 
   mysql-init:
     image: mysql:5.7
