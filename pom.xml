@@ -13,6 +13,7 @@
 
     <modules>
         <module>common-core</module>
+        <module>common-web</module>
         <module>auth</module>
         <module>base-organization</module>
         <module>base-authentication</module>
