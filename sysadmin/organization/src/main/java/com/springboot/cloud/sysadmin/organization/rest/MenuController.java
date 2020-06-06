@@ -32,7 +32,7 @@ public class MenuController {
     }
 
     @ApiOperation(value = "删除菜单", notes = "根据url的id来指定删除对象")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "菜单ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "菜单ID", required = true, dataType = "string")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
         return Result.success(menuService.delete(id));
@@ -40,7 +40,7 @@ public class MenuController {
 
     @ApiOperation(value = "修改菜单", notes = "修改指定菜单信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "id", value = "菜单ID", required = true, dataType = "string"),
             @ApiImplicitParam(name = "menuForm", value = "菜单实体", required = true, dataType = "MenuForm")
     })
     @PutMapping(value = "/{id}")
@@ -51,7 +51,7 @@ public class MenuController {
     }
 
     @ApiOperation(value = "获取菜单", notes = "获取指定菜单信息")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "菜单ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "菜单ID", required = true, dataType = "string")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);
@@ -82,7 +82,7 @@ public class MenuController {
     }
 
     @ApiOperation(value = "根据父id查询菜单", notes = "根据父id查询菜单列表")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "菜单父ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "菜单父ID", required = true, dataType = "string")
     @GetMapping(value = "/parent/{id}")
     public Result search(@PathVariable String id) {
         log.debug("query with parent id:{}", id);
