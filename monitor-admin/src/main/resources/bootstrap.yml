@@ -2,7 +2,7 @@ server:
   port: ${SERVER_PORT:8022}
 spring:
   application:
-    name: admin
+    name: monitor-admin
   cloud:
     nacos:
       discovery:
