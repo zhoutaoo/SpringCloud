@@ -20,7 +20,6 @@
     <modules>
         <module>authentication-server</module>
         <module>authentication-client</module>
-        <module>authorization-server</module>
     </modules>
 
     <dependencies>
