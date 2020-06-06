@@ -12,6 +12,7 @@
     <description>Demo project for Spring Cloud</description>
 
     <modules>
+        <module>common-core</module>
         <module>auth</module>
         <module>base-organization</module>
         <module>base-authentication</module>

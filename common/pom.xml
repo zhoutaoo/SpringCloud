@@ -12,7 +12,6 @@
     <description>Demo Common project for Spring Boot</description>
 
     <modules>
-        <module>core</module>
         <module>web</module>
         <module>test</module>
     </modules>
