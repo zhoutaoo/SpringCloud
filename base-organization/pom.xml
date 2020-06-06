@@ -12,9 +12,10 @@
     <description>Demo Organization project for Spring Boot</description>
 
     <parent>
-        <artifactId>sysadmin</artifactId>
+        <artifactId>webapps</artifactId>
         <groupId>com.springboot.cloud</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../webapps/pom.xml</relativePath>
     </parent>
 
     <dependencies>
