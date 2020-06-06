@@ -15,7 +15,6 @@
         <module>common-core</module>
         <module>common-web</module>
         <module>common-test</module>
-        <module>auth</module>
         <module>base-organization</module>
         <module>base-authentication</module>
         <module>base-authorization</module>

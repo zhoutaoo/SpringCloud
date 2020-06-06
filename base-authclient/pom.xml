@@ -55,12 +55,6 @@
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-okhttp</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>RELEASE</version>
-            <scope>provided</scope>
-        </dependency>
         <!--oauth2认证-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
