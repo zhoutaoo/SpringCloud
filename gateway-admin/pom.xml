@@ -11,10 +11,10 @@
     <description>Demo Gateway Admin project for Spring Cloud</description>
 
     <parent>
-        <artifactId>webapp-parent</artifactId>
+        <artifactId>webapps</artifactId>
         <groupId>com.springboot.cloud</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../webapps/pom.xml</relativePath>
+        <relativePath>../webapps/pom.xml</relativePath>
     </parent>
 
     <dependencies>

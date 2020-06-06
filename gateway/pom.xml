@@ -19,7 +19,6 @@
 
     <modules>
         <module>gateway-web</module>
-        <module>gateway-admin</module>
     </modules>
 
     <dependencies>

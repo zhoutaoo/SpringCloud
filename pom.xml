@@ -17,6 +17,7 @@
         <module>center</module>
         <module>common</module>
         <module>gateway</module>
+        <module>gateway-admin</module>
         <module>webapps</module>
         <module>monitor</module>
         <module>demos</module>
