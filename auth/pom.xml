@@ -18,7 +18,6 @@
     </parent>
 
     <modules>
-        <module>authentication-server</module>
         <module>authentication-client</module>
     </modules>
 
