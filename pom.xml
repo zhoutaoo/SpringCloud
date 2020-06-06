@@ -14,7 +14,7 @@
     <modules>
         <module>auth</module>
         <module>base-organization</module>
-        <module>center</module>
+        <module>center-bus</module>
         <module>common</module>
         <module>gateway-web</module>
         <module>gateway-admin</module>
