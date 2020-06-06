@@ -14,14 +14,14 @@
     <modules>
         <module>common-core</module>
         <module>common-web</module>
+        <module>common-test</module>
         <module>auth</module>
         <module>base-organization</module>
         <module>base-authentication</module>
         <module>base-authorization</module>
-        <module>center-bus</module>
-        <module>common</module>
         <module>gateway-web</module>
         <module>gateway-admin</module>
+        <module>center-bus</module>
         <module>webapps</module>
         <module>monitor-admin</module>
         <module>demos</module>
