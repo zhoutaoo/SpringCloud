@@ -14,7 +14,7 @@ public class ResourceProviderFallback implements ResourceProvider {
     @Override
     public Result<Set<Resource>> resources() {
         log.error("认证服务启动时加载资源异常！未加载到资源");
-        return Result.success(new HashSet<Resource>());
+        return Result.fail();
     }
 
     @Override

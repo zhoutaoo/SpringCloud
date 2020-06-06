@@ -29,7 +29,7 @@ public interface IResourceService {
     /**
      * 加载权限资源数据
      */
-    Map<RequestMatcher, ConfigAttribute> loadResource();
+    void loadResource();
 
     /**
      * 根据url和method查询到对应的权限信息

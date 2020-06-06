@@ -66,9 +66,6 @@ cd -
 
 echo '==================4.3.构建镜像: 配置中心, 消息中心========'
 
-#回到根目录
-cd -
-
 #构建镜像:消息中心
 cd ./center/bus
 mvn package && mvn docker:build
@@ -82,9 +79,6 @@ cd docker-compose
 
 #启动注册中心
 docker-compose -f docker-compose.yml -f docker-compose.nacos.yml up -d nacos
-
-#启动消息中心
-docker-compose -f docker-compose.yml -f docker-compose.center.yml up -d bus-server
 
 #回到根目录
 cd -
