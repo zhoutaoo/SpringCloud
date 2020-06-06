@@ -5,3 +5,9 @@ data
 logs
 target
 
+.settings/
+
+.classpath
+.project
+.factorypath
+
