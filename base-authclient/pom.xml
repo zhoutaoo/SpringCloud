@@ -8,6 +8,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <parent>
+        <groupId>com.springboot.cloud</groupId>
+        <artifactId>cloud</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
     <name>authentication-client</name>
     <description>Demo Oauth2 project for Spring Cloud Oauth2 Authentication Client</description>
 
