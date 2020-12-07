@@ -73,5 +73,12 @@
             <artifactId>mockito-core</artifactId>
             <version>1.10.19</version>
         </dependency>
+        <!--使用 lombok 简化 Java 代码-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>
