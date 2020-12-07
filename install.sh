@@ -31,7 +31,13 @@ echo '==================1.3清理当前脚本启动的容器和产生的镜像(�
 
 echo '==================2.安装认证公共包到本地maven仓库=================='
 #安装认证公共包到本地maven仓库
-cd common && mvn install
+cd common-core && mvn install
+echo '当前目录:' && pwd
+
+#回到根目录
+cd -
+
+cd common-web && mvn install
 echo '当前目录:' && pwd
 
 #回到根目录
@@ -39,7 +45,7 @@ cd -
 
 echo '==================3.安装认证客户端到本地maven仓库=================='
 #安装认证客户端到本地maven仓库
-cd auth/authentication-client && mvn install
+cd base-authclient && mvn install
 echo '当前目录:' && pwd
 
 #回到根目录
@@ -54,63 +60,52 @@ cat ./.env
 echo ''
 
 #按需要开启公共服务
-echo '==================4.2启动 mysql or redis or rabbitmq ========'
+echo '==================4.2启动 mysql or redis or rabbitmq or 注册中心========'
+#启动mysql
 docker-compose -f docker-compose.yml up -d mysql
+#启动redis
 docker-compose -f docker-compose.yml up -d redis
+#启动rabbitmq
 docker-compose -f docker-compose.yml up -d rabbitmq
+#启动注册中心、配置中心
+docker-compose -f docker-compose.yml up -d nacos
 
 echo '当前目录:' && pwd
 
 #回到根目录
 cd -
 
-echo '==================4.3.构建镜像: 配置中心, 消息中心========'
+#数据库初始化
+echo '==================4.3初始化 mysql ========'
+#去docker-compose目录
+cd docker-compose
+docker-compose -f docker-compose.yml up mysql-init
 
-#构建镜像:消息中心
-cd ./center/bus
-mvn package && mvn docker:build
+echo '当前目录:' && pwd
 
 #回到根目录
 cd -
 
-echo '==================4.4.启动注册中心, 配置中心, 消息中心============'
-#去docker-compose目录
-cd docker-compose
+echo '==================4.4.构建镜像: 消息中心========'
 
-#启动注册中心
-docker-compose -f docker-compose.yml -f docker-compose.nacos.yml up -d nacos
+#构建镜像:消息中心
+cd center-bus
+mvn package && mvn docker:build
 
 #回到根目录
 cd -
 
 echo '==================5.构建镜像并启动网关(gateway)相关服务==============='
 #构建镜像:网关服务
-cd ./gateway/gateway-web
+cd gateway-web
 mvn package && mvn docker:build
 
 #回到根目录
 cd -
 
 #构建镜像:网关管理服务
-cd ./gateway/gateway-admin
+cd gateway-admin
 mvn package && mvn docker:build
-
-#确认初始化网关服务的DB:./gateway/gateway-admin/src/main/db
-echo '你可以立即去部署网关服务的DB(脚本路径:./gateway/gateway-admin/src/main/db),然后回来继续...'
-read -r -p "确认网关服务的DB部署好了吗? [Y/n] " gwDbConfirm
-case $gwDbConfirm in
-    [yY][eE][sS]|[yY])
-		echo "Yes 继续执行"
-		;;
-    [nN][oO]|[nN])
-		echo "No 终止执行"
-		exit 1
-       	;;
-    *)
-		echo "Invalid input... 终止执行"
-		exit 1
-		;;
-esac
 
 #回到根目录
 cd -
