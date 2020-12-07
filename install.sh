@@ -103,6 +103,8 @@ mvn package && mvn docker:build
 #回到根目录
 cd -
 
+echo '请自行根据需通过dokcer要启动 gateway-web'
+
 #构建镜像:网关管理服务
 cd gateway-admin
 mvn package && mvn docker:build
@@ -110,109 +112,44 @@ mvn package && mvn docker:build
 #回到根目录
 cd -
 
-#去docker-compose目录
-cd docker-compose
-
-#启动网关服务
-docker-compose -f docker-compose.yml -f docker-compose.spring-gateway.yml up -d gateway-web
-
-#启动网关管理服务
-docker-compose -f docker-compose.yml -f docker-compose.spring-gateway.yml up -d gateway-admin
-
-#回到根目录
-cd -
+echo '请自行根据需通过dokcer要启动 gateway-admin'
 
 echo '==================6.构建镜像并启动组织(organization)相关服务=================='
 #构建镜像:组织服务
-cd ./sysadmin/organization
+cd base-organization
 mvn package && mvn docker:build
 
-#确认初始化授权/认证服务的DB:./sysadmin/db
-echo '你可以立即去部署组织服务的DB(脚本路径:./sysadmin/db),然后回来继续...'
-read -r -p "确认部署组织服务的DB部署好了吗? [Y/n] " orgDbConfirm
-case $orgDbConfirm in
-    [yY][eE][sS]|[yY])
-		echo "Yes 继续执行"
-		;;
-    [nN][oO]|[nN])
-		echo "No 终止执行"
-		exit 1
-       	;;
-    *)
-		echo "Invalid input... 终止执行"
-		exit 1
-		;;
-esac
-
 #回到根目录
 cd -
 
-#去docker-compose目录
-cd docker-compose
-
-#启动组织服务
-docker-compose -f docker-compose.yml -f docker-compose.auth.yml up -d organization
-
-#回到根目录
-cd -
+echo '请自行根据需通过dokcer要启动 organization'
 
 echo '==================7.构建镜像并启动认证(auth)相关服务=================='
 #构建镜像:认证服务
-cd ./auth/authentication-server
+cd base-authentication
 mvn package && mvn docker:build
 
 #回到根目录
 cd -
+
+echo '请自行根据需通过dokcer要启动 authentication-server'
 
 #构建镜像:授权服务
-cd ./auth/authorization-server
+cd base-authorization
 mvn package && mvn docker:build
 
-#确认初始化授权/认证服务的DB:./auth/db
-echo '你可以立即去部署授权/认证服务的DB(脚本路径:./auth/db),然后回来继续...'
-read -r -p "确认部署授权/认证服务的DB部署好了吗? [Y/n] " authDbConfirm
-case $authDbConfirm in
-    [yY][eE][sS]|[yY])
-		echo "Yes 继续执行"
-		;;
-    [nN][oO]|[nN])
-		echo "No 终止执行"
-		exit 1
-       	;;
-    *)
-		echo "Invalid input... 终止执行"
-		exit 1
-		;;
-esac
-
 #回到根目录
 cd -
 
-#去docker-compose目录
-cd docker-compose
-
-#启动网关服务
-docker-compose -f docker-compose.yml -f docker-compose.auth.yml up -d authorization-server
-
-#启动网关管理服务
-docker-compose -f docker-compose.yml -f docker-compose.auth.yml up -d authentication-server
-
-#回到根目录
-cd -
+echo '请自行根据需通过dokcer要启动 authorization-server'
 
 echo '==================8.构建镜像并启动监控(monitor)相关服务==============='
 #构建镜像:管理台服务
-cd ./monitor/admin
+cd monitor-admin
 mvn package && mvn docker:build
 
 #回到根目录
 cd -
 
-#去docker-compose目录
-cd docker-compose
+echo '请自行根据需通过dokcer要启动 Admin'
 
-#启动网关服务
-docker-compose -f docker-compose.yml -f docker-compose.monitor.yml up -d monitor-admin
-
-#回到根目录
-cd -
