@@ -40,10 +40,17 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     @Override
     @Transactional
     public boolean add(User user) {
-        if (StringUtils.isNotBlank(user.getPassword()))
+        if (StringUtils.isNotBlank(user.getPassword())) {
             user.setPassword(passwordEncoder().encode(user.getPassword()));
-        boolean inserts = this.save(user);
-        userRoleService.saveBatch(user.getId(), user.getRoleIds());
+        }
+        boolean inserts = false;
+        try {
+            inserts = this.save(user);
+            userRoleService.saveBatch(user.getId(), user.getRoleIds());
+        } catch (Exception e) {
+            log.info("新增用户插入数据异常");
+            return inserts;
+        }
         return inserts;
     }
 
