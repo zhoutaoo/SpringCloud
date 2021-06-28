@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/zhoutaoo/SpringCloud.svg?branch=master)](https://travis-ci.org/zhoutaoo/SpringCloud)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![codecov](https://codecov.io/gh/zhoutaoo/SpringCloud/branch/master/graph/badge.svg)](https://codecov.io/gh/zhoutaoo/SpringCloud)
+[![Maintainability](https://cloud.quality-gate.com/dashboard/api/badge?projectName=zhoutaoo_SpringCloud&branchName=master)](https://cloud.quality-gate.com/dashboard/branches/397344#overview)
 
 ## 快速开始
 
