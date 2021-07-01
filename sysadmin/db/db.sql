@@ -5,8 +5,8 @@ CREATE DATABASE sc_admin DEFAULT CHARSET utf8mb4;
 USE sc_admin;
 
 -- 用户组表
-DROP TABLE IF EXISTS groups;
-CREATE TABLE groups
+DROP TABLE IF EXISTS t_groups;
+CREATE TABLE t_groups
 (
     id           VARCHAR(20) PRIMARY KEY COMMENT 'id',
     parent_id    VARCHAR(20)  NOT NULL COMMENT '用户组父id',
