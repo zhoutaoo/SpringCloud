@@ -1,0 +1,12 @@
+server:
+  port: ${SERVER_PORT:8011}
+spring:
+  application:
+    name: file-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+      config:
+        server-addr: ${REGISTER_HOST:localhost}:${REGISTER_PORT:8848}
+        file-extension: yml
