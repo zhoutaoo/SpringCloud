@@ -270,7 +270,7 @@ VALUES (101, '首席执行官', '公司CEO，负责公司整体运转', now(), n
        (102, '首席运营官', '公司COO，负责公司整体运营', now(), now(), 'system', 'system'),
        (103, '首席技术官', '公司CTO，负责公司整体运营', now(), now(), 'system', 'system');
 -- 用户组
-INSERT INTO groups (id, parent_id, name, description, created_time, updated_time, created_by, updated_by)
+INSERT INTO t_groups (id, parent_id, name, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, -1, '总公司', '总公司', now(), now(), 'system', 'system'),
        (102, 101, '上海分公司', '上海分公司', now(), now(), 'system', 'system'),
        (103, 102, '研发部门', '负责产品研发', now(), now(), 'system', 'system'),
