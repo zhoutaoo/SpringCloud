@@ -22,7 +22,7 @@ linux和mac下可在项目根目录下执行 `./install.sh` 快速搭建开发�
 
 2. 安装公共库到本地仓库： 
 
-`mvn -pl ./common,./auth/authentication-client install -DskipTests`
+`mvn -pl ./common,./auth/authentication-client install`
 
 3. 生成ide配置： `mvn idea:idea`或`mvn eclipse:eclipse` 并导入对应的ide进行开发，IDE安装lombok插件（很重要，否则IDE会显示编译报错）
 
