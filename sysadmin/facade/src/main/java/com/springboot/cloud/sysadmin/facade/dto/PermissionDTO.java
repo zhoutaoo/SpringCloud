@@ -1,13 +1,15 @@
-package com.springboot.cloud.sysadmin.organization.entity.po;
+package com.springboot.cloud.sysadmin.facade.dto;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.springboot.cloud.common.web.entity.po.BasePo;
-import lombok.*;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
- * 数据权限资源
+ * 数据权限资源传输类
  *
  * @author wayne
  * @date 2021/09/06
@@ -16,9 +18,9 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "expireDate",callSuper = false)
-public class Permission extends BasePo {
+public class PermissionDTO implements Serializable {
 
+    private static final long serialVersionUID = -6735224067139655403L;
     /**
      * 资源类型：hive，hdfs
      */
@@ -43,12 +45,4 @@ public class Permission extends BasePo {
      * 资源操作位：读，写，查询
      */
     private String operationBit;
-
-    /**
-     * 过期日期
-     */
-    private Date expireDate;
-
-    @TableLogic
-    private String deleted = "N";
 }

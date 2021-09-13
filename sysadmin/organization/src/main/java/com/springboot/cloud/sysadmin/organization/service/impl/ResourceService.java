@@ -45,7 +45,7 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
 
     @Override
     public boolean add(Resource resource) {
-        eventSender.send(BusConfig.ROUTING_KEY, resource);
+        eventSender.send(BusConfig.RESOURCE_ROUTING_KEY, resource);
         return this.save(resource);
     }
 

@@ -19,5 +19,6 @@
 
     <modules>
         <module>organization</module>
+        <module>facade</module>
     </modules>
 </project>

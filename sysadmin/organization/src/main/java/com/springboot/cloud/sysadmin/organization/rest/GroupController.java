@@ -70,6 +70,17 @@ public class GroupController {
         return Result.success(groupService.query(groupQueryParam));
     }
 
+    @ApiOperation(value = "根据用户名查询用户组列表", notes = "根据用户名查询用户组列表")
+    @ApiImplicitParam(paramType = "query", name = "name", value = "用户名称", required = true, dataType = "string")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
+    @GetMapping(value = "/user/{username}")
+    public Result queryByUsername(@PathVariable String username) {
+        log.debug("query with username:{}", username);
+        return Result.success(groupService.queryByUserName(username));
+    }
+
     @ApiOperation(value = "搜索用户组", notes = "根据条件查询用户组信息")
     @ApiImplicitParam(name = "groupQueryForm", value = "用户组查询参数", required = true, dataType = "GroupQueryForm")
     @ApiResponses(

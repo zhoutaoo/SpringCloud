@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ResourceService implements IResourceService {
 
+
+
     @Autowired
     private HandlerMappingIntrospector mvcHandlerMappingIntrospector;
 
@@ -83,6 +85,7 @@ public class ResourceService implements IResourceService {
     public Set<Resource> queryByUsername(String username) {
         return resourceProvider.resources(username).getData();
     }
+
 
     /**
      * 创建RequestMatcher

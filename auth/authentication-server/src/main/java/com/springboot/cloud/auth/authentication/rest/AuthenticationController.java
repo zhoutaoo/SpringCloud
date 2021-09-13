@@ -2,6 +2,7 @@ package com.springboot.cloud.auth.authentication.rest;
 
 import com.springboot.cloud.auth.authentication.service.IAuthenticationService;
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,19 @@ public class AuthenticationController {
     @PostMapping(value = "/auth/permission")
     public Result decide(@RequestParam String url, @RequestParam String method, HttpServletRequest request) {
         boolean decide = authenticationService.decide(new HttpServletRequestAuthWrapper(request, url, method));
+        return Result.success(decide);
+    }
+
+
+    @ApiOperation(value = "权限验证", notes = "根据用户token，访问的url和method判断用户是否有权限访问")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "groupCode", value = "用户所在的应用组", required = true, dataType = "string"),
+            @ApiImplicitParam(paramType = "query", name = "permissionDto", value = "用户需要的权限", required = true, dataType = "PermissionDto")
+    })
+    @ApiResponses(@ApiResponse(code = 200, message = "处理成功", response = Result.class))
+    @PostMapping(value = "/auth/data/permission")
+    public Result dataDecide(@RequestParam String groupCode, @RequestParam PermissionDTO permissionDTO) {
+        boolean decide = authenticationService.dataDecide(groupCode, permissionDTO);
         return Result.success(decide);
     }
 

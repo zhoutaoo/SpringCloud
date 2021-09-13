@@ -38,6 +38,13 @@ public interface IGroupService extends IService<Group> {
     List<Group> queryByParentId(String id);
 
     /**
+     * 根据userName查询所属的组
+     *
+     * @return
+     */
+    List<Group> queryByUserName(String userName);
+
+    /**
      * 更新用户组信息
      *
      * @param group
