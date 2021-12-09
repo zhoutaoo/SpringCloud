@@ -1,5 +1,6 @@
 package com.springboot.cloud.sysadmin.organization.service;
 
+import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
 import com.springboot.cloud.sysadmin.organization.entity.po.Permission;
 
 import java.util.List;
@@ -7,13 +8,12 @@ import java.util.List;
 public interface IPermissionService {
 
     /**
-     * 查询组
-     * 由集团代码查询权限
+     * 查询条件
      *
-     * @param groupList 组列表
+     * @param permissionDTO 许可dto
      * @return {@link List<Permission>}
      */
-    List<Permission> queryByGroups(List<String> groupList);
+    List<Permission> queryByConditions(PermissionDTO permissionDTO);
 
     /**
      * 新增资源

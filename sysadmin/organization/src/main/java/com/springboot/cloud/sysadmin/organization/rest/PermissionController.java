@@ -1,15 +1,12 @@
 package com.springboot.cloud.sysadmin.organization.rest;
 
-import com.google.common.collect.Lists;
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
 import com.springboot.cloud.sysadmin.organization.service.impl.PermissionService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/permission")
@@ -25,9 +22,9 @@ public class PermissionController {
     @ApiResponses(
             @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     )
-    @GetMapping(value = "/group/{groupCode}")
-    public Result queryByUsername(@PathVariable String groupCode) {
-        log.debug("query with groupCode:{}", groupCode);
-        return Result.success(permissionService.queryByGroups(Lists.newArrayList(groupCode)));
+    @PostMapping(value = "/group")
+    public Result queryByUsername(@RequestBody PermissionDTO permissionDTO) {
+        log.debug("query with groupCode:{}", permissionDTO.getGroupCode());
+        return Result.success(permissionService.queryByConditions(permissionDTO));
     }
 }

@@ -3,7 +3,6 @@ package com.springboot.cloud.auth.authentication.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springboot.cloud.auth.authentication.events.PermissionBusReceiver;
 import com.springboot.cloud.auth.authentication.events.ResourceBusReceiver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
@@ -24,8 +23,6 @@ public class BusConfig {
 
     private static final String EXCHANGE_NAME = "spring-boot-exchange";
     private static final String RESOURCE_ROUTING_KEY = "organization-resource";
-    private static final String PERMISSION_ROUTING_KEY = "organization-permission";
-    private static final String PERMISSION_QUEUE_SUFFIX = "permission";
     private static final String RESOURCE_QUEUE_SUFFIX = "resource";
 
     @Value("${spring.application.name}")
@@ -38,12 +35,6 @@ public class BusConfig {
         return new Queue(queueName, false);
     }
 
-    @Bean
-    Queue permissionQueue() {
-        String queueName = new Base64UrlNamingStrategy(appName + ".").generateName() + PERMISSION_QUEUE_SUFFIX;
-        log.info("permission queue name:{}", queueName);
-        return new Queue(queueName, false);
-    }
 
     /**
      * 交换机
@@ -70,25 +61,14 @@ public class BusConfig {
         return BindingBuilder.bind(queue).to(exchange).with(RESOURCE_ROUTING_KEY);
     }
 
-    /**
-     * 绑定权限更新的队列
-     *
-     * @param queue    队列
-     * @param exchange 交换机
-     * @return {@link Binding}
-     */
-    @Bean
-    Binding permissionBinding(@Qualifier("permissionQueue") Queue queue, TopicExchange exchange) {
-        log.info("binding {} to {} with {}", queue, exchange, PERMISSION_ROUTING_KEY);
-        return BindingBuilder.bind(queue).to(exchange).with(PERMISSION_ROUTING_KEY);
-    }
+
 
 
     ////////////////////
     ////////////////////  资源更新相关配置
     ////////////////////
     @Bean
-    SimpleMessageListenerContainer resourceMessageListenerContainer(ConnectionFactory connectionFactory, @Qualifier("permissionMessageListenerAdapter") MessageListenerAdapter messageListenerAdapter, @Qualifier("resourceQueue") Queue queue) {
+    SimpleMessageListenerContainer resourceMessageListenerContainer(ConnectionFactory connectionFactory, @Qualifier("resourceMessageListenerAdapter") MessageListenerAdapter messageListenerAdapter, @Qualifier("resourceQueue") Queue queue) {
         log.info("init resourceMessageListenerContainer {}", queue.getName());
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
         container.setQueueNames(queue.getName());
@@ -98,7 +78,7 @@ public class BusConfig {
 
 
     @Bean
-    MessageListenerAdapter resourceMessageListenerAdapter(ResourceBusReceiver resourceBusReceiver, @Qualifier("permissionMessageConverter") MessageConverter messageConverter) {
+    MessageListenerAdapter resourceMessageListenerAdapter(ResourceBusReceiver resourceBusReceiver, @Qualifier("resourceMessageConverter") MessageConverter messageConverter) {
         log.info("new listener");
         return new MessageListenerAdapter(resourceBusReceiver, messageConverter);
     }
@@ -111,28 +91,5 @@ public class BusConfig {
     }
 
 
-    ////////////////////
-    ////////////////////  权限更新相关配置
-    ////////////////////
-    @Bean
-    SimpleMessageListenerContainer permissionMessageListenerContainer(ConnectionFactory connectionFactory, @Qualifier("permissionMessageListenerAdapter") MessageListenerAdapter messageListenerAdapter, @Qualifier("permissionQueue") Queue queue) {
-        log.info("init permissionMessageListenerContainer {}", queue.getName());
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
-        container.setQueueNames(queue.getName());
-        container.setMessageListener(messageListenerAdapter);
-        return container;
-    }
 
-    @Bean
-    MessageListenerAdapter permissionMessageListenerAdapter(PermissionBusReceiver permissionBusReceiver, @Qualifier("permissionMessageConverter") MessageConverter messageConverter) {
-        log.info("new listener");
-        return new MessageListenerAdapter(permissionBusReceiver, messageConverter);
-    }
-
-    @Bean
-    public MessageConverter permissionMessageConverter() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        return new ContentTypeDelegatingMessageConverter(new Jackson2JsonMessageConverter(objectMapper));
-    }
 }

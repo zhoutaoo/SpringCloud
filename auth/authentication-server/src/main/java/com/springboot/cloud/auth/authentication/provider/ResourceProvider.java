@@ -5,8 +5,7 @@ import com.springboot.cloud.sysadmin.facade.dto.GroupDTO;
 import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -20,8 +19,8 @@ public interface ResourceProvider {
     @GetMapping(value = "/resource/user/{username}")
     Result<Set<Resource>> resources(@PathVariable("username") String username);
 
-    @GetMapping(value = "/permission/group/{groupCode}")
-    Result<List<PermissionDTO>> permissions(@PathVariable("groupCode") String groupCode);
+    @PostMapping(value = "/permission/group")
+    Result<List<PermissionDTO>> permissions(@RequestBody PermissionDTO permissionDTO);
 
     @GetMapping(value = "/group/user/{username}")
     Result<List<GroupDTO>> groups(@PathVariable("username") String username);

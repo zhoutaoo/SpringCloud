@@ -3,10 +3,7 @@ package com.springboot.cloud.sysadmin.organization.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.springboot.cloud.sysadmin.facade.constant.PermissionChangeTypeEnum;
-import com.springboot.cloud.sysadmin.facade.dto.PermissionChangeDTO;
 import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
-import com.springboot.cloud.sysadmin.organization.config.BusConfig;
 import com.springboot.cloud.sysadmin.organization.dao.GroupMapper;
 import com.springboot.cloud.sysadmin.organization.dao.GroupPermissionMapper;
 import com.springboot.cloud.sysadmin.organization.dao.PermissionMapper;
@@ -16,10 +13,11 @@ import com.springboot.cloud.sysadmin.organization.entity.po.GroupPermission;
 import com.springboot.cloud.sysadmin.organization.entity.po.Permission;
 import com.springboot.cloud.sysadmin.organization.events.EventSender;
 import com.springboot.cloud.sysadmin.organization.service.IPermissionService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,33 +40,35 @@ public class PermissionService extends ServiceImpl<PermissionMapper, Permission>
     GroupMapper groupMapper;
 
     @Override
-    public List<Permission> queryByGroups(List<String> groupIdList) {
+    public List<Permission> queryByConditions(PermissionDTO permissionDTO) {
         //get permission Id by groupIds
         LambdaQueryWrapper<GroupPermission> groupPermissionQueryWrapper = new LambdaQueryWrapper<>();
-        groupPermissionQueryWrapper.in(GroupPermission::getGroupId,groupIdList);
+        groupPermissionQueryWrapper.in(GroupPermission::getGroupId,permissionDTO.getGroupCode());
         List<GroupPermission> groupPermissionList = groupPermissionMapper.selectList(groupPermissionQueryWrapper);
 
         //get permissions
         List<String> permissionIdList = groupPermissionList.stream().map(GroupPermission::getPermissionId).collect(Collectors.toList());
         LambdaQueryWrapper<Permission> permissionLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        permissionLambdaQueryWrapper.in(Permission::getId,permissionIdList);
+        permissionLambdaQueryWrapper.in(Permission::getId,permissionIdList)
+                                    .eq(Permission::getArea,permissionDTO.getArea())
+                                    .eq(Permission::getOperationBit,permissionDTO.getOperationBit())
+                                    .eq(Permission::getResType,permissionDTO.getResType())
+                                    .eq(Permission::getDeleted,"N")
+                                    .gt(Permission::getExpireDate,new Date());
         return permissionMapper.selectList(permissionLambdaQueryWrapper);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean add(String groupCode, Permission permission) {
         LambdaQueryWrapper<Group> groupLambdaQueryWrapper = new LambdaQueryWrapper<>();
         groupLambdaQueryWrapper.eq(Group::getName,groupCode);
         Group group = groupMapper.selectOne(groupLambdaQueryWrapper);
         GroupPermission groupPermission = GroupPermission.builder().groupId(group.getId()).permissionId(permission.getId()).build();
+        //todo permission的格式校验
         int insertGroupNum = groupPermissionMapper.insert(groupPermission);
         int insertPermissionNum = permissionMapper.insert(permission);
-
-        PermissionDTO permissionDTO = new PermissionDTO();
-        BeanUtils.copyProperties(permission,permissionDTO);
-        PermissionChangeDTO permissionChangeDTO = PermissionChangeDTO.builder().permissionDTO(permissionDTO).groupCode(groupCode).changeType(PermissionChangeTypeEnum.ADD).build();
-        eventSender.send(BusConfig.PERMISSION_ROUTING_KEY,permissionChangeDTO);
-        return IsInsertSuccess(insertGroupNum,insertPermissionNum);
+        return isInsertSuccess(insertGroupNum,insertPermissionNum);
     }
 
     @Override
@@ -77,6 +77,7 @@ public class PermissionService extends ServiceImpl<PermissionMapper, Permission>
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean delete(String groupCode, Permission permission) {
         LambdaQueryWrapper<Group> groupLambdaQueryWrapper = new LambdaQueryWrapper<>();
         groupLambdaQueryWrapper.eq(Group::getName,groupCode);
@@ -94,12 +95,6 @@ public class PermissionService extends ServiceImpl<PermissionMapper, Permission>
         permissionLambdaQueryWrapper
                 .eq(Permission::getId,permission.getId());
         permissionMapper.delete(permissionLambdaQueryWrapper);
-
-        //send event
-        PermissionDTO permissionDTO = new PermissionDTO();
-        BeanUtils.copyProperties(permission,permissionDTO);
-        PermissionChangeDTO permissionChangeDTO = PermissionChangeDTO.builder().permissionDTO(permissionDTO).groupCode(groupCode).changeType(PermissionChangeTypeEnum.ADD).build();
-        eventSender.send(BusConfig.PERMISSION_ROUTING_KEY,permissionChangeDTO);
         return true;
     }
 
@@ -110,7 +105,7 @@ public class PermissionService extends ServiceImpl<PermissionMapper, Permission>
      * @param insertNum2 插入num2
      * @return boolean
      */
-    public boolean IsInsertSuccess(Integer insertNum1,Integer insertNum2){
+    public boolean isInsertSuccess(Integer insertNum1, Integer insertNum2){
          return (null != insertNum1 && insertNum1 >= 1) && (null != insertNum2 && insertNum2 >= 1);
     }
 }

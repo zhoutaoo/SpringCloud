@@ -1,9 +1,10 @@
-package com.springboot.cloud.auth.authentication.events;
+package com.springboot.cloud.sysadmin.organization.events;
 
 
-import com.springboot.cloud.auth.authentication.service.impl.PermissionService;
 import com.springboot.cloud.sysadmin.facade.constant.PermissionChangeTypeEnum;
 import com.springboot.cloud.sysadmin.facade.dto.PermissionChangeDTO;
+import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
+import com.springboot.cloud.sysadmin.organization.dao.GroupPermissionMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,17 +20,29 @@ import org.springframework.stereotype.Component;
 public class PermissionBusReceiver {
 
     @Autowired
-    private PermissionService permissionService;
+    GroupPermissionMapper groupPermissionMapper;
 
     public void handleMessage(PermissionChangeDTO permissionChangeDTO) {
         log.info("Received Message:<{}>", permissionChangeDTO);
         PermissionChangeTypeEnum changeType = permissionChangeDTO.getChangeType();
+        PermissionDTO permissionDTO = permissionChangeDTO.getPermissionDTO();
         if(changeType.equals(PermissionChangeTypeEnum.DELETE)){
-            permissionService.removePermission(permissionChangeDTO.getGroupCode(), permissionChangeDTO.getPermissionDTO());
+            removePermission(permissionDTO);
         }else if(changeType.equals(PermissionChangeTypeEnum.ADD)){
-            permissionService.savePermission(permissionChangeDTO.getGroupCode(), permissionChangeDTO.getPermissionDTO());
+            savePermission(permissionDTO);
         }else{
             log.info("错误的消息,被舍弃");
         }
+    }
+
+
+    public void savePermission(PermissionDTO permissionDTO) {
+        //1.检查权限格式是否正确
+        //2.添加权限表
+        //3.添加权限
+    }
+
+    public void removePermission(PermissionDTO permissionDTO) {
+        //去除group_permission表中的权限关联
     }
 }

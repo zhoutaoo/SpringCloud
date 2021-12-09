@@ -39,7 +39,7 @@ public class AuthService implements IAuthService {
 
     @Override
     public Result dataAuthenticate(String authentication, String groupCode, PermissionDTO permissionDTO) {
-        return authProvider.dataAuth(authentication,groupCode,permissionDTO);
+        return authProvider.dataAuth(authentication,permissionDTO);
     }
 
     @Override

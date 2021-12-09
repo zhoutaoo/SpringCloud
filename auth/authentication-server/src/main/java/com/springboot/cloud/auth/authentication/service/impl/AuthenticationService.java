@@ -1,9 +1,9 @@
 package com.springboot.cloud.auth.authentication.service.impl;
 
+import com.springboot.cloud.auth.authentication.service.IAuthenticationService;
 import com.springboot.cloud.sysadmin.facade.dto.GroupDTO;
 import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
-import com.springboot.cloud.auth.authentication.service.IAuthenticationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
@@ -54,16 +54,16 @@ public class AuthenticationService implements IAuthenticationService {
     }
 
     @Override
-    public boolean dataDecide(String groupCode, PermissionDTO permissionDTO) {
-        log.debug("正在访问的权限是:{},groupCode:{}",permissionDTO.toString(),groupCode);
+    public boolean dataDecide(PermissionDTO permissionDTO) {
+        log.debug("正在访问的权限是:{},groupCode:{}", permissionDTO.toString(), permissionDTO.getGroupCode());
         //获取用户认证信息
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<GroupDTO> groupDTOList = groupService.queryGroupsByUsername(authentication.getName());
         //获取组权限列表
         List<PermissionDTO> groupPermissions = groupDTOList.stream()
-                .flatMap(x -> permissionService.queryPermissionsByGroupCode(x.getName()).stream())
+                .flatMap(x -> permissionService.queryPermissionsByGroupCode(permissionDTO).stream())
                 .collect(Collectors.toList());
-        return isContainsPermission(groupPermissions,permissionDTO);
+        return isContainsPermission(groupPermissions, permissionDTO);
     }
 
 
@@ -74,9 +74,16 @@ public class AuthenticationService implements IAuthenticationService {
      * @param groupPermissions   组权限
      * @return boolean
      */
-    public boolean isContainsPermission(List<PermissionDTO> groupPermissions,PermissionDTO requiredPermission){
-        return groupPermissions.contains(requiredPermission);
+    public boolean isContainsPermission(List<PermissionDTO> groupPermissions, PermissionDTO requiredPermission) {
+        //权限的父级继承
+        for (PermissionDTO groupPermission : groupPermissions) {
+            if(requiredPermission.getResFullPath().startsWith(groupPermission.getResFullPath())) {
+                return true;
+            }
+        }
+        return false;
     }
+
     /**
      * url对应资源与用户拥有资源进行匹配
      *

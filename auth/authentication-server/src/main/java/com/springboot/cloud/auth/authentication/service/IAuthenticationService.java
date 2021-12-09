@@ -16,12 +16,12 @@ public interface IAuthenticationService {
     boolean decide(HttpServletRequest authRequest);
 
     /**
+     * 数据决定
      * 校验数据权限
      *
-     * @param groupCode     组织代码
      * @param permissionDTO 许可dto
      * @return 是否有权限
      */
-    boolean dataDecide(String groupCode, PermissionDTO permissionDTO);
+    boolean dataDecide(PermissionDTO permissionDTO);
 
 }

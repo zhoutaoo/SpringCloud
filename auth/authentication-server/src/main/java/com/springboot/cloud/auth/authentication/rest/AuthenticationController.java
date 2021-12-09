@@ -7,6 +7,7 @@ import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,14 +36,13 @@ public class AuthenticationController {
 
     @ApiOperation(value = "权限验证", notes = "根据用户token，访问的url和method判断用户是否有权限访问")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "groupCode", value = "用户所在的应用组", required = true, dataType = "string"),
             @ApiImplicitParam(paramType = "query", name = "permissionDto", value = "用户需要的权限", required = true, dataType = "PermissionDto")
     })
     @ApiResponses(@ApiResponse(code = 200, message = "处理成功", response = Result.class))
     @PostMapping(value = "/auth/data/permission")
-    public Result dataDecide(@RequestParam String groupCode, @RequestParam PermissionDTO permissionDTO) {
-        boolean decide = authenticationService.dataDecide(groupCode, permissionDTO);
-        return Result.success(decide);
+    public Result dataDecide(@RequestBody PermissionDTO permissionDTO) {
+        boolean decide = authenticationService.dataDecide(permissionDTO);
+        return decide ? Result.success(decide) : Result.fail("数据权限验证失败");
     }
 
 }

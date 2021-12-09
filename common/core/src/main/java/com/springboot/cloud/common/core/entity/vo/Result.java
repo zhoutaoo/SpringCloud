@@ -7,13 +7,14 @@ import com.springboot.cloud.common.core.exception.ErrorType;
 import com.springboot.cloud.common.core.exception.SystemErrorType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;
 
 @ApiModel(description = "rest请求的返回模型，所有rest正常都返回该类的对象")
-@Getter
+@Data
 public class Result<T> {
 
     public static final String SUCCESSFUL_CODE = "000000";

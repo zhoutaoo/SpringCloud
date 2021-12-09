@@ -49,7 +49,19 @@ jetcache:
       keyConvertor: fastjson
       expireAfterWriteInMillis: 60000
       expireAfterAccessInMillis: 40000
-
+  remote:
+    # 默认永久的远程缓存
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: kryo
+      valueDecoder: kryo
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
 logging:
   level:
     com.springboot.cloud: debug

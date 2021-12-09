@@ -28,7 +28,7 @@ public class ResourceProviderFallback implements ResourceProvider {
     }
 
     @Override
-    public Result<List<PermissionDTO>> permissions(String groupCode) {
+    public Result<List<PermissionDTO>> permissions(PermissionDTO permissionDTO) {
         log.error("认证服务查询用户组权限异常！查询用户组权限为空！");
         return Result.success(new HashSet<PermissionDTO>());
     }

@@ -83,7 +83,7 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
     }
 
     @Override
-    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.BOTH)
+    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.BOTH,expire = 5)
     public List<Resource> query(String username) {
         //根据用户名查询到用户所拥有的角色
         User user = userService.getByUniqueId(username);
@@ -95,6 +95,8 @@ public class ResourceService extends ServiceImpl<ResourceMapper, Resource> imple
         //根据资源列表查询出所有资源对象
         Set<String> resourceIds = roleResources.stream().map(roleResource -> roleResource.getResourceId()).collect(Collectors.toSet());
         //根据resourceId列表查询出resource对象
-        return (List<Resource>) this.listByIds(resourceIds);
+        List<Resource> resources = (List<Resource>) this.listByIds(resourceIds);
+        log.info("resources:{}",resources);
+        return resources;
     }
 }
