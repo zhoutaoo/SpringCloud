@@ -19,7 +19,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PermissionChangeDTO implements Serializable {
-    private static final long serialVersionUID = -1793182425846093996L;
     private PermissionChangeTypeEnum changeType;
     private String groupCode;
     private PermissionDTO permissionDTO;

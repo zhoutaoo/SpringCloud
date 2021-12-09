@@ -7,6 +7,7 @@ import lombok.*;
 import java.util.Date;
 
 /**
+ * 许可
  * 数据权限资源
  *
  * @author wayne
@@ -49,6 +50,6 @@ public class Permission extends BasePo {
      */
     private Date expireDate;
 
-    @TableLogic
+    @TableLogic(value = "N",delval = "Y")
     private String deleted = "N";
 }

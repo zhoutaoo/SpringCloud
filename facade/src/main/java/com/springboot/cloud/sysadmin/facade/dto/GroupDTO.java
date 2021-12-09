@@ -20,7 +20,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class GroupDTO implements Serializable {
 
-    private static final long serialVersionUID = 2072096618398346273L;
     private String name;
     private String parentId;
     private String description;

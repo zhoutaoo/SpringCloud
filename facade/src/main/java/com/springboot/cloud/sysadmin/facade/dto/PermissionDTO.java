@@ -20,7 +20,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class PermissionDTO implements Serializable {
 
-    private static final long serialVersionUID = -6735224067139655403L;
+
+    /**
+     * 组织代码
+     */
+    private String groupCode;
     /**
      * 资源类型：hive，hdfs
      */
