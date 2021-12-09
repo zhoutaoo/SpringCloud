@@ -3,21 +3,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sysadmin</artifactId>
+    <artifactId>facade</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <name>sysadmin</name>
-    <description>Demo Sysadmin project for Spring Boot</description>
+    <name>facade</name>
 
     <parent>
-        <artifactId>webapp-parent</artifactId>
         <groupId>com.springboot.cloud</groupId>
+        <artifactId>cloud</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../webapps/webapp-parent/pom.xml</relativePath>
     </parent>
 
-    <modules>
-        <module>organization</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 </project>

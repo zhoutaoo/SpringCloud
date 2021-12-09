@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: local
   rabbitmq:
     host: ${RABBIT_MQ_HOST:localhost}
     port: ${RABBIT_MQ_PORT:5672}
