@@ -180,50 +180,72 @@ CREATE TABLE role_resource_relation
 -- DML准备初始化数据
 
 -- 用户
-INSERT INTO users (id, username, password, deleted, enabled, account_non_expired, credentials_non_expired, account_non_locked, name, mobile, created_time, updated_time, created_by, updated_by)
-VALUES
-(101, 'admin', '$2a$10$vYA9wKn/hVGOtwQw2eHiceeIGNBdfLYpDmbzHgBSVmOfHXPH4iYdS', 'N', true, true, true, true,
- '超级管理员', '', now(), now(), 'system', 'system'),
-(102, 'zhoutaoo', '$2a$10$vYA9wKn/hVGOtwQw2eHiceeIGNBdfLYpDmbzHgBSVmOfHXPH4iYdS', 'N', true, true, true, true,
- '周涛', 15619841000, now(), now(), 'system', 'system');
+INSERT INTO users (id, username, password, deleted, enabled, account_non_expired, credentials_non_expired,
+                   account_non_locked, name, mobile, created_time, updated_time, created_by, updated_by)
+VALUES (101, 'admin', '$2a$10$vYA9wKn/hVGOtwQw2eHiceeIGNBdfLYpDmbzHgBSVmOfHXPH4iYdS', 'N', true, true, true, true,
+        '超级管理员', '', now(), now(), 'system', 'system'),
+       (102, 'zhoutaoo', '$2a$10$vYA9wKn/hVGOtwQw2eHiceeIGNBdfLYpDmbzHgBSVmOfHXPH4iYdS', 'N', true, true, true, true,
+        '周涛', 15619841000, now(), now(), 'system', 'system');
 -- 角色
 INSERT INTO roles (id, code, name, description, created_time, updated_time, created_by, updated_by)
 VALUES (101, 'ADMIN', '超级管理员', '公司IT总负责人', now(), now(), 'system', 'system'),
        (102, 'FIN', '财务', '财务', now(), now(), 'system', 'system'),
        (103, 'IT', 'IT', 'IT角色', now(), now(), 'system', 'system');
 -- 资源
-INSERT INTO resource (id, name, code, type, url, method, description, created_time, updated_time, created_by, updated_by)
+INSERT INTO resource (id, name, code, type, url, method, description, created_time, updated_time, created_by,
+                      updated_by)
 VALUES (101, '新增用户', 'user_manager:btn_add', 'user', '/user', 'POST', '新增用户功能', now(), now(), 'system', 'system'),
        (102, '编辑用户', 'user_manager:btn_edit', 'user', '/user/{id}', 'PUT', '编辑用户功能', now(), now(), 'system', 'system'),
-       (103, '删除用户', 'user_manager:btn_del', 'user', '/user/{id}', 'DELETE', '根据用户id删除用户', now(), now(), 'system', 'system'),
+       (103, '删除用户', 'user_manager:btn_del', 'user', '/user/{id}', 'DELETE', '根据用户id删除用户', now(), now(), 'system',
+        'system'),
        (104, '查看用户', 'user_manager:view', 'user', '/user/{id}', 'GET', '根据用户id获取用户', now(), now(), 'system', 'system'),
-       (105, '搜索用户', 'user_manager:query', 'user', '/user/conditions', 'POST', '根据条件查询用户', now(), now(), 'system', 'system'),
+       (105, '搜索用户', 'user_manager:query', 'user', '/user/conditions', 'POST', '根据条件查询用户', now(), now(), 'system',
+        'system'),
        (106, '获取用户', 'user_manager:get', 'user', '/user', 'GET', '根据唯一标识获取用户', now(), now(), 'system', 'system'),
        (201, '新增角色', 'role_manager:btn_add', 'role', '/role', 'POST', '新增角色功能', now(), now(), 'system', 'system'),
        (202, '编辑角色', 'role_manager:btn_edit', 'role', '/role/{id}', 'PUT', '编辑角色功能', now(), now(), 'system', 'system'),
-       (203, '删除角色', 'role_manager:btn_del', 'role', '/role/{id}', 'DELETE', '根据id删除角色', now(), now(), 'system', 'system'),
+       (203, '删除角色', 'role_manager:btn_del', 'role', '/role/{id}', 'DELETE', '根据id删除角色', now(), now(), 'system',
+        'system'),
        (204, '查看角色', 'role_manager:view', 'role', '/role/{id}', 'GET', '根据id获取角色', now(), now(), 'system', 'system'),
-       (205, '根据用户id查询角色', 'role_manager:user', 'role', '/role/user/{userId}', 'GET', '根据用户id获取用户所拥有的角色集', now(), now(), 'system', 'system'),
+       (205, '根据用户id查询角色', 'role_manager:user', 'role', '/role/user/{userId}', 'GET', '根据用户id获取用户所拥有的角色集', now(), now(),
+        'system', 'system'),
        (206, '获取所有角色', 'role_manager:all', 'role', '/role/all', 'GET', '获取所有角色', now(), now(), 'system', 'system'),
-       (207, '搜索角色', 'role_manager:query', 'role', '/role/conditions', 'POST', '根据条件查询角色', now(), now(), 'system', 'system'),
-       (301, '根据父id查询组', 'group_manager:parent', 'group', '/group/parent/{id}', 'GET', '根据父id查询用户组', now(), now(), 'system', 'system'),
-       (302, '查看用户组', 'group_manager:get', 'group', '/group/{id}', 'GET', '根据id查询用户组', now(), now(), 'system', 'system'),
-       (303, '搜索用户组', 'group_manager:query', 'group', '/group/conditions', 'POST', '根据条件查询用户组信息', now(), now(), 'system', 'system'),
-       (304, '删除用户组', 'group_manager:del', 'group', '/group/{id}', 'DELETE', '根据用户id删除用户组', now(), now(), 'system', 'system'),
+       (207, '搜索角色', 'role_manager:query', 'role', '/role/conditions', 'POST', '根据条件查询角色', now(), now(), 'system',
+        'system'),
+       (301, '根据父id查询组', 'group_manager:parent', 'group', '/group/parent/{id}', 'GET', '根据父id查询用户组', now(), now(),
+        'system', 'system'),
+       (302, '查看用户组', 'group_manager:get', 'group', '/group/{id}', 'GET', '根据id查询用户组', now(), now(), 'system',
+        'system'),
+       (303, '搜索用户组', 'group_manager:query', 'group', '/group/conditions', 'POST', '根据条件查询用户组信息', now(), now(),
+        'system', 'system'),
+       (304, '删除用户组', 'group_manager:del', 'group', '/group/{id}', 'DELETE', '根据用户id删除用户组', now(), now(), 'system',
+        'system'),
        (305, '编辑用户组', 'group_manager:edit', 'group', '/group/{id}', 'PUT', '修改用户组', now(), now(), 'system', 'system'),
        (306, '新增用户组', 'group_manager:add', 'group', '/group', 'POST', '新增用户组', now(), now(), 'system', 'system'),
-       (307, '新增网关路由', 'gateway_manager:add', 'gateway', '/gateway/routes', 'POST', '新增网关路由', now(), now(), 'system', 'system'),
-       (308, '修改网关路由', 'gateway_manager:edit', 'gateway', '/gateway/routes/{id}', 'PUT', '修改网关路由', now(), now(), 'system', 'system'),
-       (309, '删除网关路由', 'gateway_manager:adel', 'gateway', '/gateway/routes/{id}', 'DELETE', '删除网关路由', now(), now(), 'system', 'system'),
-       (310, '查看网关路由', 'gateway_manager:view', 'gateway', '/gateway/routes/{id}', 'GET', '查看网关路由', now(), now(), 'system', 'system'),
-       (311, '搜索网关路由', 'gateway_manager:query', 'gateway', '/gateway/routes/conditions', 'POST', '搜索网关路由', now(), now(), 'system', 'system'),
-       (312, '全局加载路由', 'gateway_manager:overload', 'gateway', '/gateway/routes/overload', 'POST', '全局加载路由', now(), now(), 'system', 'system'),
-       (313, '新增网关路由', 'resource_manager:add', 'resource', '/resource', 'POST', '新增资源路由', now(), now(), 'system', 'system'),
-       (314, '修改网关路由', 'resource_manager:edit', 'resource', '/resource/{id}', 'PUT', '修改资源', now(), now(), 'system', 'system'),
-       (315, '删除网关路由', 'resource_manager:adel', 'resource', '/resource/{id}', 'DELETE', '删除资源', now(), now(), 'system', 'system'),
-       (316, '查看网关路由', 'resource_manager:view', 'resource', '/resource/{id}', 'GET', '查看资源', now(), now(), 'system', 'system'),
-       (317, '搜索网关路由', 'resource_manager:query', 'resource', '/resource/conditions', 'POST', '搜索资源', now(), now(), 'system', 'system'),
-       (318, '全局加载路由', 'resource_manager:all', 'resource', '/resource/all', 'GET', '查询全部资源', now(), now(), 'system', 'system');
+       (307, '新增网关路由', 'gateway_manager:add', 'gateway', '/gateway/routes', 'POST', '新增网关路由', now(), now(), 'system',
+        'system'),
+       (308, '修改网关路由', 'gateway_manager:edit', 'gateway', '/gateway/routes/{id}', 'PUT', '修改网关路由', now(), now(),
+        'system', 'system'),
+       (309, '删除网关路由', 'gateway_manager:adel', 'gateway', '/gateway/routes/{id}', 'DELETE', '删除网关路由', now(), now(),
+        'system', 'system'),
+       (310, '查看网关路由', 'gateway_manager:view', 'gateway', '/gateway/routes/{id}', 'GET', '查看网关路由', now(), now(),
+        'system', 'system'),
+       (311, '搜索网关路由', 'gateway_manager:query', 'gateway', '/gateway/routes/conditions', 'POST', '搜索网关路由', now(), now(),
+        'system', 'system'),
+       (312, '全局加载路由', 'gateway_manager:overload', 'gateway', '/gateway/routes/overload', 'POST', '全局加载路由', now(),
+        now(), 'system', 'system'),
+       (313, '新增网关路由', 'resource_manager:add', 'resource', '/resource', 'POST', '新增资源路由', now(), now(), 'system',
+        'system'),
+       (314, '修改网关路由', 'resource_manager:edit', 'resource', '/resource/{id}', 'PUT', '修改资源', now(), now(), 'system',
+        'system'),
+       (315, '删除网关路由', 'resource_manager:adel', 'resource', '/resource/{id}', 'DELETE', '删除资源', now(), now(), 'system',
+        'system'),
+       (316, '查看网关路由', 'resource_manager:view', 'resource', '/resource/{id}', 'GET', '查看资源', now(), now(), 'system',
+        'system'),
+       (317, '搜索网关路由', 'resource_manager:query', 'resource', '/resource/conditions', 'POST', '搜索资源', now(), now(),
+        'system', 'system'),
+       (318, '全局加载路由', 'resource_manager:all', 'resource', '/resource/all', 'GET', '查询全部资源', now(), now(), 'system',
+        'system');
 
 -- 用户关系授权
 INSERT INTO user_role_relation (id, user_id, role_id, created_time, updated_time, created_by, updated_by)
@@ -279,7 +301,8 @@ VALUES (101, -1, '总公司', '总公司', now(), now(), 'system', 'system'),
        (106, 102, '销售部门', '负责公司产品销售', now(), now(), 'system', 'system'),
        (107, 101, '北京分公司', '北京分公司', now(), now(), 'system', 'system');
 -- 菜单
-INSERT INTO menu (id, parent_id, type, href, icon, name, description, order_num, created_time, updated_time, created_by, updated_by)
+INSERT INTO menu (id, parent_id, type, href, icon, name, description, order_num, created_time, updated_time, created_by,
+                  updated_by)
 VALUES (101, -1, 'MENU', '/admin', 'setting', '系统管理', '系统设置管理', 0, now(), now(), 'system', 'system'),
        (102, 101, 'MENU', '/admin/users', 'fa-user', '用户管理', '用户新增，修改，查看，删除', 10, now(), now(), 'system', 'system'),
        (103, 101, 'MENU', '/admin/menus', 'category', '菜单管理', '菜单新增，修改，删除', 20, now(), now(), 'system', 'system');
@@ -300,3 +323,74 @@ VALUES (101, 101, 101, now(), now(), 'system', 'system'),
        (106, 103, 101, now(), now(), 'system', 'system'),
        (107, 103, 102, now(), now(), 'system', 'system'),
        (108, 103, 103, now(), now(), 'system', 'system');
+
+
+-- 数据权限表
+DROP TABLE IF EXISTS permission;
+CREATE TABLE permission
+(
+    id            VARCHAR(20) PRIMARY KEY COMMENT '关系id',
+    res_type      VARCHAR(20)  NOT NULL COMMENT '资源类型(hive,hdfs)',
+    area          VARCHAR(20)  NOT NULL COMMENT '资源地区',
+    res_full_path VARCHAR(500) NOT NULL COMMENT '资源全路径',
+    res_full_name VARCHAR(500) NOT NULL COMMENT '资源全路径(中)',
+    operation_bit VARCHAR(20)  NOT NULL COMMENT '权限操作位(read,write...)',
+    expire_date   DATETIME     NOT NULL COMMENT '权限过期时间',
+    created_time  DATETIME     NOT NULL DEFAULT now() COMMENT '创建时间',
+    updated_time  DATETIME     NOT NULL DEFAULT now() COMMENT '更新时间',
+    created_by    VARCHAR(100) NOT NULL COMMENT '创建人',
+    updated_by    VARCHAR(100) NOT NULL COMMENT '更新人',
+    deleted       VARCHAR(1)   NOT NULL DEFAULT 'N' COMMENT '是否已删除Y：已删除，N：未删除'
+) COMMENT '角色和资源关系表';
+
+
+-- 组和数据权限关系表
+DROP TABLE IF EXISTS group_permission_relation;
+CREATE TABLE group_permission_relation
+(
+    id            VARCHAR(20) PRIMARY KEY COMMENT '关系id',
+    group_id      VARCHAR(20)  NOT NULL COMMENT '用户id',
+    permission_id VARCHAR(20)  NOT NULL COMMENT '用户组id',
+    created_time  DATETIME     NOT NULL DEFAULT now() COMMENT '创建时间',
+    updated_time  DATETIME     NOT NULL DEFAULT now() COMMENT '更新时间',
+    created_by    VARCHAR(100) NOT NULL COMMENT '创建人',
+    updated_by    VARCHAR(100) NOT NULL COMMENT '更新人'
+) COMMENT '角色和资源关系表';
+-- 组和权限的关系
+INSERT INTO group_permission_relation (id, group_id, permission_id, created_time, updated_time, created_by, updated_by)
+VALUES (1, 101, 101, now(), now(), 'system', 'system'),
+       (2, 101, 102, now(), now(), 'system', 'system'),
+       (3, 101, 103, now(), now(), 'system', 'system'),
+       (4, 102, 101, now(), now(), 'system', 'system'),
+       (5, 102, 102, now(), now(), 'system', 'system'),
+       (6, 103, 101, now(), now(), 'system', 'system'),
+       (7, 103, 102, now(), now(), 'system', 'system'),
+       (8, 103, 103, now(), now(), 'system', 'system');
+
+INSERT INTO permission (id, res_type, area, res_full_path, res_full_name, operation_bit, expire_date, created_time,
+                        updated_time, created_by, updated_by)
+VALUES (101, 'hive', 'china', '/test.db/test', '/测试库/测试表', 'select', '2099-12-26 10:45:26', now(), now(),
+        'system', 'system'),
+       (102, 'hive', 'china', '/test.db/test1', '/测试库/测试表1', 'select', '2099-12-26 10:45:26', now(), now(),
+        'system', 'system'),
+       (103, 'hive', 'china', '/test.db', '/测试库', 'select', '2099-12-26 10:45:26', now(), now(),
+        'system', 'system');
+
+
+
+INSERT INTO sc_admin.resource (id, code, type, name, url, method, description, created_time, updated_time, created_by,
+                               updated_by)
+VALUES ('401', 'permission:auth', 'permission', '数据权限验证', '/auth/data/permission', 'POST', '验证数据权限', DEFAULT, DEFAULT,
+        'system', 'system');
+
+
+INSERT INTO sc_admin.role_resource_relation (id, resource_id, role_id, created_time, updated_time, created_by,
+                                             updated_by)
+VALUES ('601', '401', '101', DEFAULT, DEFAULT, 'system', 'system');
+
+
+
+
+
+
+

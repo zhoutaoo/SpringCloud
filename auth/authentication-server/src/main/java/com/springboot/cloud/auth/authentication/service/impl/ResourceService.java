@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ResourceService implements IResourceService {
 
+
+
     @Autowired
     private HandlerMappingIntrospector mvcHandlerMappingIntrospector;
 
@@ -79,10 +81,11 @@ public class ResourceService implements IResourceService {
     }
 
     @Override
-    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.LOCAL)
+    @Cached(name = "resource4user::", key = "#username", cacheType = CacheType.BOTH,expire = 5)
     public Set<Resource> queryByUsername(String username) {
         return resourceProvider.resources(username).getData();
     }
+
 
     /**
      * 创建RequestMatcher

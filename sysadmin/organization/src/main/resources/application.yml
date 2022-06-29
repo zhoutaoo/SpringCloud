@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: local
   cloud:
     bus:
       trace:

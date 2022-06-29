@@ -3,6 +3,7 @@ package com.springboot.cloud.auth.client.service.impl;
 import com.springboot.cloud.auth.client.provider.AuthProvider;
 import com.springboot.cloud.auth.client.service.IAuthService;
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -35,6 +36,11 @@ public class AuthService implements IAuthService {
      */
     @Value("${gate.ignore.authentication.startWith}")
     private String ignoreUrls = "/oauth";
+
+    @Override
+    public Result dataAuthenticate(String authentication, String groupCode, PermissionDTO permissionDTO) {
+        return authProvider.dataAuth(authentication,permissionDTO);
+    }
 
     @Override
     public Result authenticate(String authentication, String url, String method) {
