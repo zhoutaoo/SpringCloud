@@ -61,6 +61,12 @@
             <groupId>com.springboot.cloud</groupId>
             <artifactId>facade</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hibernate-validator</artifactId>
+                    <groupId>org.hibernate.validator</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.springboot.cloud</groupId>
