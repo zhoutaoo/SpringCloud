@@ -11,7 +11,6 @@ public class RibbonConsumerApplicationTests {
 
     @Test
     public void contextLoads() {
-        //
     }
 
 }
