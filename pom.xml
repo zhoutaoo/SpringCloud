@@ -112,43 +112,30 @@
 
     <repositories>
         <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-            <snapshots>
+            <id>maven-public</id>
+            <name>maven-public</name>
+            <url>http://localhost:8081/repository/group-maven</url>
+            <releases>
                 <enabled>true</enabled>
-            </snapshots>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
         </repository>
     </repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>repository.spring.release</id>
-            <name>Spring GA Repository</name>
-            <url>https://repo.spring.io/plugins-release/</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>jcenter-snapshots</id>
-            <name>jcenter</name>
-            <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url>
-        </pluginRepository>
-        <pluginRepository>
-            <id>jcenter-releases</id>
-            <name>jcenter</name>
-            <url>http://jcenter.bintray.com</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-local</id>
+            <name>maven-local</name>
+            <url>http://localhost:8081/repository/maven-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-local-snapshot</id>
+            <name>maven-local-snapshot</name>
+            <url>http://localhost:8081/repository/maven-local-snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
