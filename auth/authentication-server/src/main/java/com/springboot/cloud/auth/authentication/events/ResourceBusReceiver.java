@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class BusReceiver {
+public class ResourceBusReceiver {
 
     @Autowired
     private ResourceService resourceService;

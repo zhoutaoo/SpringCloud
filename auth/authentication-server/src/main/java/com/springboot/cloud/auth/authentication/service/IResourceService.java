@@ -2,15 +2,15 @@ package com.springboot.cloud.auth.authentication.service;
 
 import com.springboot.cloud.sysadmin.organization.entity.po.Resource;
 import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 import java.util.Set;
 
 @Service
 public interface IResourceService {
+
+
 
     /**
      * 动态新增更新权限
@@ -29,7 +29,7 @@ public interface IResourceService {
     /**
      * 加载权限资源数据
      */
-    Map<RequestMatcher, ConfigAttribute> loadResource();
+    void loadResource();
 
     /**
      * 根据url和method查询到对应的权限信息

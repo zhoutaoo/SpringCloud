@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @ApiOperation(value = "删除产品", notes = "根据url的id来指定删除对象")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "产品ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "产品ID", required = true, dataType = "string")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
         return Result.success(productService.delete(id));
@@ -40,7 +40,7 @@ public class ProductController {
 
     @ApiOperation(value = "修改产品", notes = "修改指定产品信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "产品ID", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "id", value = "产品ID", required = true, dataType = "string"),
             @ApiImplicitParam(name = "productForm", value = "产品实体", required = true, dataType = "ProductForm")
     })
     @PutMapping(value = "/{id}")
@@ -51,7 +51,7 @@ public class ProductController {
     }
 
     @ApiOperation(value = "获取产品", notes = "获取指定产品信息")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "产品ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "产品ID", required = true, dataType = "string")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
         log.info("get with id:{}", id);

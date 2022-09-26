@@ -31,7 +31,7 @@ public class PositionController {
     }
 
     @ApiOperation(value = "删除职位", notes = "根据url的id来指定删除对象")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "职位ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "职位ID", required = true, dataType = "string")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
         return Result.success(positionService.delete(id));
@@ -39,7 +39,7 @@ public class PositionController {
 
     @ApiOperation(value = "修改职位", notes = "修改指定职位信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "职位ID", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "id", value = "职位ID", required = true, dataType = "string"),
             @ApiImplicitParam(name = "positionForm", value = "职位实体", required = true, dataType = "PositionForm")
     })
     @PutMapping(value = "/{id}")
@@ -50,7 +50,7 @@ public class PositionController {
     }
 
     @ApiOperation(value = "获取职位", notes = "获取指定职位信息")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "职位ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "职位ID", required = true, dataType = "string")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);

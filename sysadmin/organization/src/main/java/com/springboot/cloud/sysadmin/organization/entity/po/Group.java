@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("groups")
+@TableName("t_groups")
 public class Group extends BasePo {
     private String name;
     private String parentId;

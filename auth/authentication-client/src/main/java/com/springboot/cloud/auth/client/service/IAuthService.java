@@ -1,10 +1,21 @@
 package com.springboot.cloud.auth.client.service;
 
 import com.springboot.cloud.common.core.entity.vo.Result;
+import com.springboot.cloud.sysadmin.facade.dto.PermissionDTO;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 
 public interface IAuthService {
+
+    /**
+     * 数据权限验证
+     *
+     * @param authentication 身份验证
+     * @param permissionDTO  许可dto
+     * @param groupCode      组织代码
+     * @return {@link Result}
+     */
+    Result dataAuthenticate(String authentication,String groupCode, PermissionDTO permissionDTO);
     /**
      * 调用签权服务，判断用户是否有权限
      *

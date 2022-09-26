@@ -32,7 +32,7 @@ public class ResourceController {
     }
 
     @ApiOperation(value = "删除资源", notes = "根据url的id来指定删除对象")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "string")
     @DeleteMapping(value = "/{id}")
     public Result delete(@PathVariable String id) {
         return Result.success(resourceService.delete(id));
@@ -40,7 +40,7 @@ public class ResourceController {
 
     @ApiOperation(value = "修改资源", notes = "修改指定资源信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "资源ID", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "id", value = "资源ID", required = true, dataType = "string"),
             @ApiImplicitParam(name = "resourceForm", value = "资源实体", required = true, dataType = "ResourceForm")
     })
     @PutMapping(value = "/{id}")
@@ -50,7 +50,7 @@ public class ResourceController {
     }
 
     @ApiOperation(value = "获取资源", notes = "获取指定资源信息")
-    @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "id", value = "资源ID", required = true, dataType = "string")
     @GetMapping(value = "/{id}")
     public Result get(@PathVariable String id) {
         log.debug("get with id:{}", id);
@@ -58,7 +58,7 @@ public class ResourceController {
     }
 
     @ApiOperation(value = "查询资源", notes = "根据userId查询用户所拥有的资源信息")
-    @ApiImplicitParam(paramType = "path", name = "userId", value = "用户id", required = true, dataType = "long")
+    @ApiImplicitParam(paramType = "path", name = "userId", value = "用户id", required = true, dataType = "string")
     @ApiResponses(
             @ApiResponse(code = 200, message = "处理成功", response = Result.class)
     )
