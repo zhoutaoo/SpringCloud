@@ -8,8 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- *
- * 属性管理者
+ * 属性管理者:此处也可以改成使用nacos的sdk读取数据源配置,会更加灵活一些
  * @Auther: zhaoyong
  * @Date: 2018/7/11
  * @Description:

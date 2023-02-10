@@ -75,6 +75,12 @@
             <artifactId>spring-cloud-starter-contract-verifier</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- 多数据源切换：如果不需要可以去除 -->
+        <dependency>
+            <groupId>com.springboot.cloud</groupId>
+            <artifactId>dynamic-datasource</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -2,6 +2,7 @@ package com.springboot.cloud.demos.producer.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.springboot.cloud.annotation.SwitchDatabase;
 import com.springboot.cloud.demos.producer.dao.ProductMapper;
 import com.springboot.cloud.demos.producer.entity.param.ProductQueryParam;
 import com.springboot.cloud.demos.producer.entity.po.Product;
@@ -47,7 +48,16 @@ public class ProductService extends ServiceImpl<ProductMapper, Product> implemen
     }
 
     @Override
+    @SwitchDatabase("sc_product")
     public List<Product> query(ProductQueryParam productQueryParam) {
+        QueryWrapper<Product> queryWrapper = productQueryParam.build();
+        queryWrapper.eq("name", productQueryParam.getName());
+        return this.list(queryWrapper);
+    }
+
+    @Override
+    @SwitchDatabase("db_test")
+    public List<Product> query_db2(ProductQueryParam productQueryParam) {
         QueryWrapper<Product> queryWrapper = productQueryParam.build();
         queryWrapper.eq("name", productQueryParam.getName());
         return this.list(queryWrapper);

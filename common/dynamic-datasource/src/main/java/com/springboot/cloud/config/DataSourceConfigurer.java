@@ -46,6 +46,8 @@ public class DataSourceConfigurer {
 
         // 打开后，增强timeBetweenEvictionRunsMillis的周期性连接检查，minIdle内的空闲连接，每次检查强制验证连接有效性
         dataSource.setKeepAlive(true);
+        // 数据源名称
+        dataSource.setName(databaseName);
         DynamicDataSourceContext.add(databaseName);
         return dataSource;
         }catch (Exception e){
