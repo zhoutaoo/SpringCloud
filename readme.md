@@ -2,6 +2,41 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![codecov](https://codecov.io/gh/zhoutaoo/SpringCloud/branch/master/graph/badge.svg)](https://codecov.io/gh/zhoutaoo/SpringCloud)
 
+
+# 根据前期的使用和反馈，目前将脚手架整体进行了重构，发布了新的框架 Opensabre，当前仓库代码暂停维护
+
+## 开放源码： https://github.com/opensabre/opensabre-framework
+
+## 在线文档： [在线文档](https://opensabre.github.io/docs/#/)
+
+## 架构特点
+
+```
+1. 统一Restful的响应报文，controll返回原始类型即可，无需手动包装，简化代码，可读性更好。
+
+2. 统一异常处理，封装了基本的异常的响应，如参数检验、文件上传等。简化代码，更方便扩展。
+
+3. 默认集成Swagger 3.0 API文档，方便接口文档的传递、协作与调试。
+
+4. 标准化WEB对象传递/转换/使用，方便统一开发风格，简化操作。
+
+5. 框架/环境等元数据自动收集注册至properties和Nacos，方便系统运行时作为扩展判断，信息处理。
+
+6. 系统启动时自动收集所有Restful url注册到权限资源，方便进行集中权限管理和授权使用。
+
+7. 多机房/双活路由负载扩展支持，自定义路由和负载规则，更灵活、可控。
+
+8. 默认引入spring validation，并扩展枚举、手机号等常用校验注解。
+
+9. 默认引入日志trace、actuator等组件，统一日志打印格式。
+
+10. 整体系统化为三层，framework框架、framework组件、基础应用，层次更清楚，结构更合理。
+
+11. 配置中心，划分框架全局配置与应用配置（熔断降级、网关路由），规划中。
+```
+
+
+
 ## 快速开始
 
 ### 先决条件
