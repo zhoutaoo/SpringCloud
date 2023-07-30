@@ -3,11 +3,13 @@
 [![codecov](https://codecov.io/gh/zhoutaoo/SpringCloud/branch/master/graph/badge.svg)](https://codecov.io/gh/zhoutaoo/SpringCloud)
 
 
-# 根据前期的使用和反馈，目前将脚手架整体进行了重构，发布了新的框架 Opensabre，当前仓库代码暂停维护
+# 根据前期的使用和反馈，目前将脚手架整体进行了重构，发布了新的框架 Opensabre，当前仓库代码暂停维护，请使用新版
 
 ## 开放源码： https://github.com/opensabre/opensabre-framework
 
 ## 在线文档： [在线文档](https://opensabre.github.io/docs/#/)
+
+## 进群交流： ![进群交流](https://github.com/zhoutaoo/SpringCloud/assets/3946731/b1ee1458-3e81-4228-b62b-39cee08fed39)
 
 ## 架构特点
 
