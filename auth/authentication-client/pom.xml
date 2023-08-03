@@ -20,21 +20,36 @@
 
     <repositories>
         <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <id>maven-public</id>
+            <name>maven-public</name>
+            <url>http://localhost:8081/repository/group-maven</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-local</id>
+            <name>maven-local</name>
+            <url>http://localhost:8081/repository/maven-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-local-snapshot</id>
+            <name>maven-local-snapshot</name>
+            <url>http://localhost:8081/repository/maven-local-snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-openfeign</artifactId>
-                <version>2.0.0.RC2</version>
+                <version>2.1.0.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -46,6 +61,12 @@
             <groupId>com.springboot.cloud</groupId>
             <artifactId>facade</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hibernate-validator</artifactId>
+                    <groupId>org.hibernate.validator</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.springboot.cloud</groupId>
