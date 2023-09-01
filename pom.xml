@@ -21,6 +21,7 @@
         <module>sysadmin</module>
         <module>demos</module>
         <module>facade</module>
+        <module>common/dynamic-datasource</module>
     </modules>
 
     <profiles>

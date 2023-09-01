@@ -30,6 +30,13 @@ public interface IProductService {
     List<Product> query(ProductQueryParam productQueryParam);
 
     /**
+     * 查询用户
+     *
+     * @return
+     */
+    List<Product> query_db2(ProductQueryParam productQueryParam);
+
+    /**
      * 更新用户信息
      *
      * @param product

@@ -70,6 +70,18 @@ public class ProductController {
         return Result.success(productService.query(productQueryParam));
     }
 
+    @ApiOperation(value = "查询产品", notes = "根据条件查询产品信息，简单查询")
+    @ApiImplicitParam(paramType = "query", name = "name", value = "产品名称", required = true, dataType = "string")
+    @ApiResponses(
+            @ApiResponse(code = 200, message = "处理成功", response = Result.class)
+    )
+    @GetMapping("/query_db2")
+    public Result query_db2(@RequestParam String name) {
+        log.info("query with name:{}", name);
+        ProductQueryParam productQueryParam = new ProductQueryParam(name);
+        return Result.success(productService.query_db2(productQueryParam));
+    }
+
     @ApiOperation(value = "搜索产品", notes = "根据条件查询产品信息")
     @ApiImplicitParam(name = "productQueryForm", value = "产品查询参数", required = true, dataType = "ProductQueryForm")
     @ApiResponses(
