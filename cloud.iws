@@ -5,11 +5,82 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8639f85f-5db4-421b-97f0-5713b2379799" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cloud.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/src/main/java/com/springboot/cloud/auth/client/config/FeignOkHttpConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/src/main/java/com/springboot/cloud/auth/client/provider/AuthProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/src/main/java/com/springboot/cloud/auth/client/service/IAuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/src/main/java/com/springboot/cloud/auth/client/service/impl/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-client/src/test/java/com/springboot/cloud/auth/client/service/impl/AuthServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/docs/权限校验.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/Oauth2AuthenticationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/config/BusConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/config/LoadResourceDefine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/config/ResourceServerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/events/ResourceBusReceiver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/provider/ResourceProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/provider/ResourceProviderFallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/rest/AuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/rest/HttpServletRequestAuthWrapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/IAuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/IGroupService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/IPermissionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/IResourceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/NewMvcRequestMatcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/impl/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/impl/GroupService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/impl/PermissionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/auth/authentication/service/impl/ResourceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/java/com/springboot/cloud/sysadmin/organization/entity/po/Resource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/resources/application-local.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/test/java/com/springboot/cloud/auth/authentication/ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/test/java/com/springboot/cloud/auth/authentication/service/impl/AuthenticationServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/test/java/com/springboot/cloud/auth/authentication/service/impl/ResourceServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authentication-server/src/test/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/Oauth2AuthorizationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/config/AuthorizationServerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/config/WebServerSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/entity/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/exception/AuthErrorType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/exception/CustomOauthException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/exception/CustomOauthExceptionSerializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/exception/CustomWebResponseExceptionTranslator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/exception/GlobalExceptionHandlerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/oauth2/CustomUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/oauth2/MobileUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/oauth2/enhancer/CustomTokenEnhancer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/oauth2/granter/MobileAuthenticationProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/oauth2/granter/MobileAuthenticationToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/oauth2/granter/MobileTokenGranter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/provider/OrganizationProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/provider/OrganizationProviderFallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/provider/SmsCodeProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/provider/SmsCodeProviderFallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/service/IRoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/service/IUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/service/impl/RoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/java/com/springboot/auth/authorization/service/impl/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/resources/application-local.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/test/java/com/springboot/auth/authorization/ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/authorization-server/src/test/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/db/db.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/cloud.ipr" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +164,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735710109962</updated>
       <workItem from="1735710111409" duration="285000" />
-      <workItem from="1735710872098" duration="7922000" />
+      <workItem from="1735710872098" duration="8348000" />
     </task>
     <servers />
   </component>

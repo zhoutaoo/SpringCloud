@@ -105,6 +105,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/auth/pom.xml" />
         <option value="$PROJECT_DIR$/common/pom.xml" />
         <option value="$PROJECT_DIR$/demos/pom.xml" />
         <option value="$PROJECT_DIR$/facade/pom.xml" />
@@ -115,7 +116,6 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/auth/auth.iml" filepath="$PROJECT_DIR$/auth/auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/auth/authentication-client/authentication-client.iml" filepath="$PROJECT_DIR$/auth/authentication-client/authentication-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/auth/authentication-server/authentication-server.iml" filepath="$PROJECT_DIR$/auth/authentication-server/authentication-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/auth/authorization-server/authorization-server.iml" filepath="$PROJECT_DIR$/auth/authorization-server/authorization-server.iml" />
