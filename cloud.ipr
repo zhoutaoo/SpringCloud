@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+    </wildcardResourcePatterns>
+  </component>
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/auth/authentication-client/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/authentication-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/authentication-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/authorization-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/authorization-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/web/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/consumer-feign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/consumer-feign/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/consumer-ribbon/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/consumer-ribbon/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/producer-jpa/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/producer-jpa/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/producer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/producer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demos/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/facade/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/facade/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/gateway-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/gateway-admin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/gateway-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/gateway-web/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sysadmin/organization/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sysadmin/organization/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sysadmin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sysadmin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webapps/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webapps/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webapps/webapp-parent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webapps/webapp-parent/src/main/resources" charset="UTF-8" />
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="InspectionProjectProfileManager">
+    <profile version="1.0">
+      <option name="myName" value="Project Default" />
+    </profile>
+    <version value="1.0" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/facade/pom.xml" />
+        <option value="$PROJECT_DIR$/webapps/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/auth/auth.iml" filepath="$PROJECT_DIR$/auth/auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sysadmin/organization/organization.iml" filepath="$PROJECT_DIR$/sysadmin/organization/organization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sysadmin/sysadmin.iml" filepath="$PROJECT_DIR$/sysadmin/sysadmin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webapps/webapp-parent/webapp-parent.iml" filepath="$PROJECT_DIR$/webapps/webapp-parent/webapp-parent.iml" />
+    </modules>
+  </component>
+  <component name="ProjectRootManager" version="2" default="true" />
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="sonatype-nexus-snapshots" />
+      <option name="name" value="Sonatype Nexus Snapshots" />
+      <option name="url" value="https://maven.aliyun.com/repository/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-milestones" />
+      <option name="name" value="Spring Milestones" />
+      <option name="url" value="https://maven.aliyun.com/repository/public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://maven.aliyun.com/repository/public" />
+    </remote-repository>
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+  </component>
+</project>

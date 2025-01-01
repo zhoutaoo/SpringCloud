@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8639f85f-5db4-421b-97f0-5713b2379799" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/bug_report.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/feature_request.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.rancher-pipeline.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/src/main/java/com/springboot/cloud/center/bus/BusApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/src/main/resources/application-local.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/bus/src/test/java/com/springboot/cloud/center/bus/BusApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/center/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/kong/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/mysql/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/rabbitmq/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/redis/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/devops/elasticsearch.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/devops/kibana.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/alarm-settings.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/component-libraries.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/log4j2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.auth.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.center.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.devops.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.gateway.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.monitor.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.moss.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.nacos.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.spring-gateway.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/init-db.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/moss/mysql/moss-init.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/nacos/prometheus.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facade/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/constant/PermissionChangeTypeEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/dto/GroupDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/dto/PermissionChangeDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/dto/PermissionDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/java/com/springboot/admin/AdminApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/java/com/springboot/admin/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/admin/src/test/java/com/springboot/admin/ConsumerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitor/readme.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/docs/minio部署.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/FileServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/configure/MinioConfigure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/configure/MinioProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/entity/FileObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/exception/GlobalExceptionHandlerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/exception/MinioFileException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/exception/MinioFileType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/rest/FileController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/service/FileService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/service/MinIoFileServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/util/MinioFileUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/test/java/com/springboot/cloud/file/FileServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/object-storage/pom.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "zhoutaoo"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/zhoutaoo/SpringCloud.git",
+    "accountId": "6163d0d0-3624-4668-a5ed-1a2390057125"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2r0y5zszQOtG5othUjRzctzJ0EV" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "master"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8639f85f-5db4-421b-97f0-5713b2379799" name="Changes" comment="" />
+      <created>1735710109962</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1735710109962</updated>
+      <workItem from="1735710111409" duration="285000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
