@@ -4,99 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8639f85f-5db4-421b-97f0-5713b2379799" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/cloud.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/cloud.ipr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cloud.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/FeignConsumerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/rest/ClassController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/service/ClassService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/service/ClassServiceFallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/test/java/com/springboot/cloud/demos/feign/ApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/test/java/com/springboot/cloud/demos/feign/rest/ClassControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/test/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/java/com/springboot/cloud/demos/ribbon/RibbonConsumerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/java/com/springboot/cloud/demos/ribbon/rest/ClassController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/java/com/springboot/cloud/demos/ribbon/service/ClassService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/test/java/com/springboot/cloud/demos/ribbon/RibbonConsumerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/db/db.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/ProducerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/dao/ProductMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/entity/po/JpaBasePo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/entity/po/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/exception/GlobalExceptionHandlerAdvice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/test/java/com/springboot/cloud/demos/producer/jpa/rest/ProductControllerTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/test/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/db/db.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/definitions.adoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/overview.adoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/paths.adoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/security.adoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/definitions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/overview.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/paths.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/security.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/ProducerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/BusConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/MyRedisConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/MybatisConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/SwaggerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/WebServerMvcConfigurerAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/dao/ProductMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/form/ProductForm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/form/ProductQueryForm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/param/ProductQueryParam.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/po/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/BusReceiver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/BusSender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/RabbitReceiver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/RedisReceiver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/RedisSender.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/exception/GlobalExceptionHandlerAdvice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/interceptor/MyMetaObjectHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/rest/FooController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/rest/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/rest/ProductController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/service/IProductService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/service/ProductService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/task/ScheduledTasks.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/MvcMockTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/rest/HelloControllerTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/rest/ProductControllerTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/service/ProductServiceTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/resources/contracts/HelloController.groovy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/development.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/grafana.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/kibana.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/pattern.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/register-nacos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/register.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/register.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/zipkin-dependencies.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/zipkin-detail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/zipkin-server.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-    </list>
+    <list default="true" id="8639f85f-5db4-421b-97f0-5713b2379799" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735710109962</updated>
       <workItem from="1735710111409" duration="285000" />
-      <workItem from="1735710872098" duration="5445000" />
+      <workItem from="1735710872098" duration="5855000" />
     </task>
     <servers />
   </component>
