@@ -5,80 +5,97 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8639f85f-5db4-421b-97f0-5713b2379799" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/bug_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/feature_request.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.rancher-pipeline.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/src/main/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/src/main/java/com/springboot/cloud/center/bus/BusApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/src/main/resources/application-local.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/bus/src/test/java/com/springboot/cloud/center/bus/BusApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/center/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/kong/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/mysql/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rabbitmq/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/redis/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/devops/elasticsearch.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/devops/kibana.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/alarm-settings.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/component-libraries.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/devops/skywalking/config/log4j2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.auth.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.center.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.devops.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.gateway.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.monitor.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.moss.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.nacos.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.spring-gateway.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/init-db.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/moss/mysql/moss-init.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/nacos/prometheus.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facade/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/constant/PermissionChangeTypeEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/dto/GroupDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/dto/PermissionChangeDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/facade/src/main/java/com/springboot/cloud/sysadmin/facade/dto/PermissionDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/install.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/java/com/springboot/admin/AdminApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/java/com/springboot/admin/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/admin/src/test/java/com/springboot/admin/ConsumerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/docs/minio部署.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/FileServiceApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/configure/MinioConfigure.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/configure/MinioProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/entity/FileObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/exception/GlobalExceptionHandlerAdvice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/exception/MinioFileException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/exception/MinioFileType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/rest/FileController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/service/FileService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/service/MinIoFileServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/java/com/springboot/cloud/file/util/MinioFileUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/main/resources/bootstrap.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/file-service/src/test/java/com/springboot/cloud/file/FileServiceApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/object-storage/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/cloud.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud.iws" beforeDir="false" afterPath="$PROJECT_DIR$/cloud.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/FeignConsumerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/rest/ClassController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/service/ClassService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/java/com/springboot/cloud/demos/feign/service/ClassServiceFallback.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/test/java/com/springboot/cloud/demos/feign/ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/test/java/com/springboot/cloud/demos/feign/rest/ClassControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-feign/src/test/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/java/com/springboot/cloud/demos/ribbon/RibbonConsumerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/java/com/springboot/cloud/demos/ribbon/rest/ClassController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/java/com/springboot/cloud/demos/ribbon/service/ClassService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/consumer-ribbon/src/test/java/com/springboot/cloud/demos/ribbon/RibbonConsumerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/db/db.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/ProducerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/dao/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/entity/po/JpaBasePo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/entity/po/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/java/com/springboot/cloud/demos/producer/jpa/exception/GlobalExceptionHandlerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/test/java/com/springboot/cloud/demos/producer/jpa/rest/ProductControllerTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer-jpa/src/test/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/db/db.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docker/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/definitions.adoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/overview.adoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/paths.adoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/generated/security.adoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/definitions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/overview.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/paths.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/docs/asciidoc/html/security.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/ProducerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/BusConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/MyRedisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/MybatisConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/SwaggerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/config/WebServerMvcConfigurerAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/dao/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/form/ProductForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/form/ProductQueryForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/param/ProductQueryParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/entity/po/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/BusReceiver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/BusSender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/RabbitReceiver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/RedisReceiver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/events/RedisSender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/exception/GlobalExceptionHandlerAdvice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/interceptor/MyMetaObjectHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/rest/FooController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/rest/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/rest/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/service/IProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/service/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/java/com/springboot/cloud/demos/producer/task/ScheduledTasks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/MvcMockTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/rest/HelloControllerTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/rest/ProductControllerTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/java/com/springboot/cloud/demos/producer/service/ProductServiceTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demos/producer/src/test/resources/contracts/HelloController.groovy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/development.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/grafana.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/kibana.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/pattern.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/register-nacos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/register.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/register.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/zipkin-dependencies.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/zipkin-detail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/zipkin-server.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,21 +105,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "zhoutaoo"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;zhoutaoo&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/zhoutaoo/SpringCloud.git",
-    "accountId": "6163d0d0-3624-4668-a5ed-1a2390057125"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/zhoutaoo/SpringCloud.git&quot;,
+    &quot;accountId&quot;: &quot;6163d0d0-3624-4668-a5ed-1a2390057125&quot;
   }
+}</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2r0y5zszQOtG5othUjRzctzJ0EV" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -112,9 +136,32 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "master"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="auth" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="auth" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -132,6 +179,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735710109962</updated>
       <workItem from="1735710111409" duration="285000" />
+      <workItem from="1735710872098" duration="5445000" />
     </task>
     <servers />
   </component>
