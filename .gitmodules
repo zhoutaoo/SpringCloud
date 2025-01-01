@@ -1,3 +1,6 @@
 [submodule "examples"]
 	path = examples
 	url = https://github.com/opensabre/examples.git
+[submodule "opensabre-framework"]
+	path = opensabre-framework
+	url = https://github.com/opensabre/opensabre-framework.git
