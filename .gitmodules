@@ -10,3 +10,6 @@
 [submodule "base-organization"]
 	path = base-organization
 	url = https://github.com/opensabre/base-organization.git
+[submodule "base-gateway"]
+	path = base-gateway
+	url = https://github.com/opensabre/base-gateway.git
