@@ -4,3 +4,9 @@
 [submodule "opensabre-framework"]
 	path = opensabre-framework
 	url = https://github.com/opensabre/opensabre-framework.git
+[submodule "base-authorization"]
+	path = base-authorization
+	url = https://github.com/opensabre/base-authorization.git
+[submodule "base-organization"]
+	path = base-organization
+	url = https://github.com/opensabre/base-organization.git
