@@ -13,3 +13,6 @@
 [submodule "base-gateway"]
 	path = base-gateway
 	url = https://github.com/opensabre/base-gateway.git
+[submodule "docs"]
+	path = docs
+	url = https://github.com/opensabre/docs.git
