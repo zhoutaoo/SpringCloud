@@ -29,7 +29,6 @@
       <module name="authentication-client" target="1.8" />
       <module name="authentication-server" target="1.8" />
       <module name="authorization-server" target="1.8" />
-      <module name="cloud" target="1.8" />
       <module name="common" target="1.5" />
       <module name="consumer-feign" target="1.8" />
       <module name="consumer-ribbon" target="1.8" />
@@ -41,6 +40,7 @@
       <module name="organization" target="1.8" />
       <module name="producer" target="1.8" />
       <module name="producer-jpa" target="1.8" />
+      <module name="springCloud" target="1.8" />
       <module name="sysadmin" target="1.8" />
       <module name="test" target="1.8" />
       <module name="web" target="1.8" />
@@ -119,7 +119,6 @@
       <module fileurl="file://$PROJECT_DIR$/auth/authentication-client/authentication-client.iml" filepath="$PROJECT_DIR$/auth/authentication-client/authentication-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/auth/authentication-server/authentication-server.iml" filepath="$PROJECT_DIR$/auth/authentication-server/authentication-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/auth/authorization-server/authorization-server.iml" filepath="$PROJECT_DIR$/auth/authorization-server/authorization-server.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cloud.iml" filepath="$PROJECT_DIR$/cloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/demos/consumer-feign/consumer-feign.iml" filepath="$PROJECT_DIR$/demos/consumer-feign/consumer-feign.iml" />
       <module fileurl="file://$PROJECT_DIR$/demos/consumer-ribbon/consumer-ribbon.iml" filepath="$PROJECT_DIR$/demos/consumer-ribbon/consumer-ribbon.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/core/core.iml" filepath="$PROJECT_DIR$/common/core/core.iml" />
@@ -129,6 +128,7 @@
       <module fileurl="file://$PROJECT_DIR$/sysadmin/organization/organization.iml" filepath="$PROJECT_DIR$/sysadmin/organization/organization.iml" />
       <module fileurl="file://$PROJECT_DIR$/demos/producer/producer.iml" filepath="$PROJECT_DIR$/demos/producer/producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/demos/producer-jpa/producer-jpa.iml" filepath="$PROJECT_DIR$/demos/producer-jpa/producer-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springCloud.iml" filepath="$PROJECT_DIR$/springCloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/test/test.iml" filepath="$PROJECT_DIR$/common/test/test.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/web/web.iml" filepath="$PROJECT_DIR$/common/web/web.iml" />
       <module fileurl="file://$PROJECT_DIR$/webapps/webapp-parent/webapp-parent.iml" filepath="$PROJECT_DIR$/webapps/webapp-parent/webapp-parent.iml" />
